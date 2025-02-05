@@ -174,11 +174,11 @@ const apps = [{
     media: [
       {
         type: "image",
-        url: "/api/placeholder/200/400"
+        url: "https://techcrunch.com/wp-content/uploads/2014/02/ivkd8z9.gif"
       },
       {
         type: "video",
-        url: "videoSnapchatId"
+        url: "https://youtu.be/pDZ4Li5hFao"
       },
       {
         type: "image",
@@ -195,12 +195,12 @@ const apps = [{
     size: "80 MB",
     icon: "https://upload.wikimedia.org/wikipedia/en/0/08/TikTok_logo.svg",
     description: "TikTok es una plataforma para crear y ver videos cortos.",
-    downloads: "1B+",
+    downloads: "22 millones+",
     bannerGradient: "45deg, #69C9D0, #EE1D52",
     security: false,
     version: "21.1.0",
     isAvailable: true,
-    allowedCountries: ["US", "ES", "MX", "BR", "IN"],
+    allowedCountries: [ "ES", "MX", "BR", "IN"],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically",
       ios: "https://apps.apple.com/app/tiktok/id835599320"
@@ -244,7 +244,7 @@ const apps = [{
     media: [
       {
         type: "image",
-        url: "/api/placeholder/200/400"
+        url: ""
       },
       {
         type: "video",
