@@ -921,19 +921,6 @@ function displayFeaturedApps() {
     </div>
   `;
   featuredApps.appendChild(updatesSection);
-// Sección de Top 5 aplicaciones más descargadas
-const topDownloadsSection = document.createElement('section');
-topDownloadsSection.className = 'category-section';
-const topDownloads = [...apps]
-  .sort((a, b) => b.downloads - a.downloads) // Ordenar por cantidad de descargas
-  .slice(0, 5);
-topDownloadsSection.innerHTML = 
-  <h2 class="section-title">Top 5 Aplicaciones Más Descargadas</h2>
-  <div class="horizontal-scroll">
-    ${topDownloads.map(app => createAppCard(app)).join('')}
-  </div>
-;
-featuredApps.appendChild(topDownloadsSection);
 // Sección de Nuevos Lanzamientos
 const newReleasesSection = document.createElement('section');
 newReleasesSection.className = 'category-section';
