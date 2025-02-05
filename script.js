@@ -65,7 +65,7 @@ const apps = [{
   size: "75 MB",
   icon: "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg",
   description: "WhatsApp es una aplicación de mensajería instantánea para conectar a las personas.",
-  downloads: "5B+",
+  downloads: "294M+",
   bannerGradient: "45deg, #25D366, #075E54",
   security: true,
   version: "2.21.20.17",
@@ -92,20 +92,20 @@ const apps = [{
 },
 
   {
-    name: "Twitter",
+    name: "X",
     developer: "Twitter, Inc.",
     packageName: "com.twitter.android",
     category: "Redes sociales",
     rating: 4.0,
     size: "50 MB",
-    icon: "https://upload.wikimedia.org/wikipedia/en/9/9f/Twitter_bird_logo_2012.svg",
-    description: "Twitter es una red social de microblogging donde los usuarios comparten mensajes cortos.",
-    downloads: "330M+",
+    icon: "https://cdn6.aptoide.com/imgs/e/9/f/e9f0145ff2d872f7c9b58c238c6bbd6a_icon.png?w=128",
+    description: "La aplicación X es la plaza digital global de confianza para todo el mundo.X te permite:,Postear contenidos para que los vea todo el mundo y participar en conversaciones públicas,Mantenerte al día de las últimas noticias y seguir tus intereses mantenerte mejor informado gracias al contexto adicional de Notas de la comunidad,transmitir en directo con Espacios para audio o transmitir vídeos en directo,Conectar directamente con tus clientes para hacer crecer tu negocio",
+    downloads: "23M+",
     bannerGradient: "45deg, #1DA1F2, #0D8BF2",
     security: false,
     version: "9.2.0",
     isAvailable: true,
-    allowedCountries: ["US", "ES", "GB", "CA", "AU"],
+    allowedCountries: [ "ES", "GB", "CA", "AU"],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.twitter.android",
       ios: "https://apps.apple.com/app/twitter/id333903271"
@@ -114,15 +114,12 @@ const apps = [{
     media: [
       {
         type: "image",
-        url: "/api/placeholder/200/400"
+        url: "https://cdn6.aptoide.com/imgs/b/e/d/bed33ccca12359a842ca74215931031d_screen.png"
       },
-      {
-        type: "video",
-        url: "videoTwitterId"
-      },
+
       {
         type: "image",
-        url: "/api/placeholder/200/400"
+        url: "https://cdn6.aptoide.com/imgs/9/5/b/95b73aec2115f55c14263bc5436f6ade_screen.png"
       }
     ]
   },
@@ -135,7 +132,7 @@ const apps = [{
     size: "70 MB",
     icon: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png",
     description: "LinkedIn es una red social orientada a profesionales y empresas.",
-    downloads: "100M+",
+    downloads: "6M+",
     bannerGradient: "45deg, #0077B5, #005582",
     security: false,
     version: "5.0.0",
@@ -149,16 +146,9 @@ const apps = [{
     media: [
       {
         type: "image",
-        url: "/api/placeholder/200/400"
-      },
-      {
-        type: "video",
-        url: "videoLinkedInId"
-      },
-      {
-        type: "image",
-        url: "/api/placeholder/200/400"
+        url: "https://cdn.dribbble.com/users/1525393/screenshots/6420056/comp_4.gif"
       }
+  
     ]
   },
   {
@@ -168,9 +158,9 @@ const apps = [{
     category: "Mensajería",
     rating: 4.1,
     size: "45 MB",
-    icon: "https://upload.wikimedia.org/wikipedia/en/a/ad/Snapchat_logo.svg",
+    icon: "https://cdn6.aptoide.com/imgs/4/a/b/4ab59bf6437538d0d99264293ef3c479_icon.png?w=128",
     description: "Snapchat es una aplicación de mensajería efímera y filtros creativos.",
-    downloads: "500M+",
+    downloads: "64M+",
     bannerGradient: "45deg, #FFFC00, #FFFC00",
     security: false,
     version: "10.50.0.0",
