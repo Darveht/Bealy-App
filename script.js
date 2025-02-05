@@ -957,6 +957,28 @@ newReleasesSection.innerHTML = `
   </div>
 `;
 featuredApps.appendChild(newReleasesSection);
+// Sección de los 20 Mejores Juegos
+const bestGamesSection = document.createElement('section');
+bestGamesSection.className = 'category-section';
+
+// Seleccionar los 20 mejores juegos (suponiendo que 'rating' es la métrica de calidad)
+const bestGames = [...apps]
+  .sort((a, b) => b.rating - a.rating) // Ordenar por calificación de mayor a menor
+  .slice(0, 20); // Seleccionar los 20 mejores
+
+bestGamesSection.innerHTML = `
+  <h2 class="section-title">Los 20 Mejores Juegos</h2>
+  <div class="horizontal-scroll">
+    ${bestGames.map((app, index) => `
+      <div class="game-card">
+        ${index < 3 ? `<span class="top-label">${index + 1}</span>` : ''}  
+        ${createAppCard(app)}
+      </div>
+    `).join('')}
+  </div>
+`;
+
+featuredApps.appendChild(bestGamesSection);
 
   // Sección de redes sociales (top 10)
   const socialApps = apps
