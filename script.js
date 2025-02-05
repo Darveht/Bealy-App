@@ -921,19 +921,42 @@ function displayFeaturedApps() {
     </div>
   `;
   featuredApps.appendChild(updatesSection);
-  // Sección de Top 5 aplicaciones más descargadas
+  // Función para formatear el número de descargas (K, M, B)
+function formatDownloads(number) {
+  if (number >= 1_000_000_000) {
+    return (number / 1_000_000_000).toFixed(1) + 'B';
+  } else if (number >= 1_000_000) {
+    return (number / 1_000_000).toFixed(1) + 'M';
+  } else if (number >= 1_000) {
+    return (number / 1_000).toFixed(1) + 'K';
+  }
+  return number;
+}
+
+// Sección de Top 5 aplicaciones más descargadas
 const topDownloadsSection = document.createElement('section');
 topDownloadsSection.className = 'category-section';
+
 const topDownloads = [...apps]
   .sort((a, b) => b.downloads - a.downloads) // Ordenar por cantidad de descargas
   .slice(0, 5);
+
 topDownloadsSection.innerHTML = `
   <h2 class="section-title">Top 5 Aplicaciones Más Descargadas</h2>
   <div class="horizontal-scroll">
-    ${topDownloads.map(app => createAppCard(app)).join('')}
+    ${topDownloads
+      .map(app => `
+        <div class="app-card">
+          <img src="${app.icon}" alt="${app.name}">
+          <h3>${app.name}</h3>
+          <p>Descargas: ${formatDownloads(app.downloads)}</p>
+        </div>
+      `).join('')}
   </div>
 `;
+
 featuredApps.appendChild(topDownloadsSection);
+
 // Sección de Nuevos Lanzamientos
 const newReleasesSection = document.createElement('section');
 newReleasesSection.className = 'category-section';
