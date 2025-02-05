@@ -44,7 +44,7 @@ const apps = [{
     previousVersions: ["496.0.0.45.65", "495.0.0.45.201", "494.1.0.56.73"],
     media: [{
         type: "image",
-        url: "/api/placeholder/200/400"
+        url: "https://play-lh.googleusercontent.com/zBb-4KhSZj8xKFLWYeyV00ReMusTZb7pAU3Jo4ePwTFfSNe5YWjNuaST_4uIvbypEqI=h650"
       },
       {
         type: "video",
