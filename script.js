@@ -17,15 +17,44 @@ async function detectCountry() {
     return data.country_code;
   } catch (error) {
     console.error('Error detecting country:', error);
-    return 'US'; // País por defecto si hay error
+    return 'US';
   }
+}
+
+// Función mejorada para verificar si una app está disponible basada en su fecha de lanzamiento
+function isAppReleased(releaseDate) {
+    if (!releaseDate) return true;
+    const now = new Date();
+    const release = new Date(releaseDate);
+    return now >= release;
+}
+
+// Función mejorada para formatear el tiempo restante
+function getTimeUntilRelease(releaseDate) {
+    const now = new Date();
+    const release = new Date(releaseDate);
+    
+    if (now >= release) return null;
+    
+    const diffTime = Math.abs(release - now);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays > 30) {
+        const diffMonths = Math.floor(diffDays / 30);
+        return `${diffMonths} mes${diffMonths > 1 ? 'es' : ''}`;
+    } else if (diffDays > 0) {
+        return `${diffDays} día${diffDays > 1 ? 's' : ''}`;
+    } else {
+        const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+        return `${diffHours} hora${diffHours > 1 ? 's' : ''}`;
+    }
 }
 
 // Array de apps con información de banners y gradientes
 const apps = [{
     name: "Facebook",
     developer: "Meta",
-    packageName: "com.facebook.katana", // Added package name
+    packageName: "com.facebook.katana",
     category: "Redes sociales",
     rating: 4.2,
     size: "85.7 MB",
@@ -35,8 +64,9 @@ const apps = [{
     bannerGradient: "45deg, #1877f2, #0a3d62",
     security: false,
     version: "497.0.0.47.36",
-    isAvailable: false,
-    allowedCountries: [ "ES", "MX", "AR", "CO", "PE", "CL"],
+    isAvailable: true,
+    releaseDate: "2024-01-01T00:00:00", // Ya disponible
+    allowedCountries: ["ES", "MX", "AR", "CO", "PE", "CL"],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.facebook.katana",
       ios: "https://apps.apple.com/us/app/facebook/id284882215"
@@ -44,7 +74,7 @@ const apps = [{
     previousVersions: ["496.0.0.45.65", "495.0.0.45.201", "494.1.0.56.73"],
     media: [{
         type: "image",
-        url: "https://play-lh.googleusercontent.com/zBb-4KhSZj8xKFLWYeyV00ReMusTZb7pAU3Jo4ePwTFfSNe5YWjNuaST_4uIvbypEqI=h650"
+        url: "/api/placeholder/200/400"
       },
       {
         type: "video",
@@ -56,7 +86,43 @@ const apps = [{
       }
     ]
   },
-      {
+              {
+    "name": "Picta",
+    "developer": "Universidad de Ciencias Informáticas (UCI)",
+    "packageName": "com.uci.picta",
+    "category": "Entretenimiento",
+    "rating": 4.5,
+    "size": "90 MB",
+    "icon": "https://cubapk.com/media/repo/icons-640/cu.picta.android.10909.png",
+    "description": "Picta es la plataforma de streaming cubana desarrollada por la UCI.",
+    "downloads": "193 M",
+    "bannerGradient": "45deg, #FF0000, #CC0000",
+    "security": false,
+    "version": "20.05.35",
+    "isAvailable": true,
+    releaseDate: "2025-02-07T00:00:00", // Ya disponible
+    "allowedCountries": ["CU"],
+    "platforms": {
+        "android": "https://apklis.cu/com.uci.picta",
+        "ios": "https://apps.apple.com/cu/app/picta/id1448744738"
+    },
+    "previousVersions": ["16.20.34", "16.20.33", "16.20.32"],
+    "media": [
+        {
+            "type": "image",
+            "url": "/api/placeholder/200/400"
+        },
+        {
+            "type": "video",
+            "url": "videoYouTubeId"
+        },
+        {
+            "type": "image",
+            "url": "/api/placeholder/200/400"
+        }
+    ]
+},
+         {
   name: "WhatsApp",
   developer: "WhatsApp Inc.",
   packageName: "com.whatsapp",
@@ -256,6 +322,42 @@ const apps = [{
       }
     ]
   },
+      {
+    name: "Edits, an Instagram app",
+    developer: "Instagram, Inc.",
+    packageName: "com.instagramedit",
+    category: "Estilo de vida",
+    rating: 0.0,
+    size: "60 MB",
+    icon: "https://2.img-dpreview.com/files/p/E~TS940x788~articles/4018562730/instagram-edits-app-logo-on-white.jpeg",
+    description: "Make videos you're proud to share with Edits, the new video creation app from Instagram. Edits is a free video editor that makes it easy for creators to ...",
+    downloads: "0",
+    bannerGradient: "45deg, #E60023, #B30017",
+    security: false,
+    version: "1.0.1",
+    isAvailable: true,
+    releaseDate: "2025-03-13T00:00:00", // Ya disponible
+    allowedCountries: [ "US","ES", "CU","MX", "GB"],
+    platforms: {
+      android: "https://apps.apple.com/mx/app/edits-an-instagram-app/id6738967378",
+      ios: "https://apps.apple.com/mx/app/edits-an-instagram-app/id6738967378"
+    },
+    previousVersions: ["8.2.0", "8.1.0", "8.0.0"],
+    media: [
+      {
+        type: "image",
+        url: ""
+      },
+      {
+        type: "video",
+        url: "videoPinterestId"
+      },
+      {
+        type: "image",
+        url: "/api/placeholder/200/400"
+      }
+    ]
+  },         
   {
     name: "Reddit",
     developer: "Reddit Inc.",
@@ -851,7 +953,8 @@ const apps = [{
     ]
   }
   // Aquí puedes agregar más aplicaciones siguiendo la misma estructura
-];
+];      
+ 
 
 function parseDownloads(downloads) {
   if (downloads.includes('B+')) {
@@ -862,7 +965,8 @@ function parseDownloads(downloads) {
 
 function getStoreLink(app) {
   const device = detectDevice();
-  if (!app.isAvailable) {
+  // Verificar si la app está disponible y ha sido lanzada
+  if (!app.isAvailable || !isAppReleased(app.releaseDate)) {
     return null;
   }
   if (device === 'ios' && app.platforms.ios) {
@@ -877,19 +981,18 @@ function displayFeaturedApps() {
   const featuredApps = document.getElementById('featuredApps');
   featuredApps.innerHTML = '';
 
-  // Ordenar apps por descargas para obtener las top 10
   const sortedApps = [...apps].sort((a, b) => {
     return parseDownloads(b.downloads) - parseDownloads(a.downloads);
   });
-  // Tomar solo las primeras 10 apps
   const top10Apps = sortedApps.slice(0, 10);
 
-  // Sección de posters (top 10)
   const posterSection = document.createElement('section');
   posterSection.innerHTML = `<h2 class="section-title">Top 10 Aplicaciones Destacadas</h2>`;
   const postersContainer = document.createElement('div');
   postersContainer.className = 'app-posters';
+  
   top10Apps.forEach(app => {
+    const isReleased = isAppReleased(app.releaseDate);
     const poster = document.createElement('div');
     poster.className = 'app-poster';
     poster.style.background = `linear-gradient(${app.bannerGradient})`;
@@ -899,83 +1002,54 @@ function displayFeaturedApps() {
           <img src="${app.icon}" class="poster-icon" alt="${app.name}">
           <div class="poster-title">${app.name}</div>
           <div class="poster-subtitle">${app.category}</div>
+          ${!isReleased ? 
+            `<div class="coming-soon-badge">Próximamente - ${getTimeUntilRelease(app.releaseDate)}</div>` : 
+            ''}
         </div>
       </div>
     `;
     poster.addEventListener('click', () => openAppModal(app));
     postersContainer.appendChild(poster);
   });
+  
   posterSection.appendChild(postersContainer);
   featuredApps.appendChild(posterSection);
 
-  // Sección de últimas actualizaciones (top 10)
-  const updatesSection = document.createElement('section');
-  updatesSection.className = 'category-section';
-  const latestUpdates = [...apps]
-    .sort((a, b) => b.version.localeCompare(a.version))
-    .slice(0, 10);
-  updatesSection.innerHTML = `
-    <h2 class="section-title">Top 10 Últimas Actualizaciones</h2>
-    <div class="horizontal-scroll">
-      ${latestUpdates.map(app => createAppCard(app)).join('')}
-    </div>
-  `;
-  featuredApps.appendChild(updatesSection);
-// Sección de Nuevos Lanzamientos
-const newReleasesSection = document.createElement('section');
-newReleasesSection.className = 'category-section';
-const newReleases = [...apps]
-  .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate)) // Ordenar por fecha de lanzamiento
-  .slice(0, 5); // Seleccionar las 5 más recientes
-newReleasesSection.innerHTML = `
-  <h2 class="section-title">Nuevos Lanzamientos</h2>
-  <div class="horizontal-scroll">
-    ${newReleases.map(app => createAppCard(app)).join('')}
-  </div>
-`;
-featuredApps.appendChild(newReleasesSection);
-// Sección de los 20 Mejores Juegos
-const bestGamesSection = document.createElement('section');
-bestGamesSection.className = 'category-section';
-
-// Seleccionar los 20 mejores juegos (suponiendo que 'rating' es la métrica de calidad)
-const bestGames = [...apps]
-  .sort((a, b) => b.rating - a.rating) // Ordenar por calificación de mayor a menor
-  .slice(0, 20); // Seleccionar los 20 mejores
-
-bestGamesSection.innerHTML = `
-  <h2 class="section-title">Los 20 Mejores Juegos</h2>
-  <div class="horizontal-scroll">
-    ${bestGames.map((app, index) => `
-      <div class="game-card">
-        ${index < 3 ? `<span class="top-label">${index + 1}</span>` : ''}  
-        ${createAppCard(app)}
+  // Resto de las secciones
+  [
+    {
+      title: "Top 10 Últimas Actualizaciones",
+      apps: [...apps].sort((a, b) => b.version.localeCompare(a.version)).slice(0, 10)
+    },
+    {
+      title: "Top 5 Aplicaciones Más Descargadas",
+      apps: [...apps].sort((a, b) => parseDownloads(b.downloads) - parseDownloads(a.downloads)).slice(0, 5)
+    },
+    {
+      title: "Nuevos Lanzamientos",
+      apps: [...apps].filter(app => !isAppReleased(app.releaseDate)).slice(0, 5)
+    },
+    {
+      title: "Top 10 Redes Sociales",
+      apps: apps.filter(app => app.category.toLowerCase() === 'redes sociales')
+        .sort((a, b) => parseDownloads(b.downloads) - parseDownloads(a.downloads))
+        .slice(0, 10)
+    }
+  ].forEach(section => {
+    const sectionElement = document.createElement('section');
+    sectionElement.className = 'category-section';
+    sectionElement.innerHTML = `
+      <h2 class="section-title">${section.title}</h2>
+      <div class="horizontal-scroll">
+        ${section.apps.map(app => createAppCard(app)).join('')}
       </div>
-    `).join('')}
-  </div>
-`;
-
-featuredApps.appendChild(bestGamesSection);
-
-  // Sección de redes sociales (top 10)
-  const socialApps = apps
-    .filter(app => app.category.toLowerCase() === 'redes sociales')
-    .sort((a, b) => parseDownloads(b.downloads) - parseDownloads(a.downloads))
-    .slice(0, 10);
-  const socialSection = document.createElement('section');
-  socialSection.className = 'category-section';
-  socialSection.innerHTML = `
-    <h2 class="section-title">Top 10 Redes Sociales</h2>
-    <div class="horizontal-scroll">
-      ${socialApps.map(app => createAppCard(app)).join('')}
-    </div>
-  `;
-  featuredApps.appendChild(socialSection);
+    `;
+    featuredApps.appendChild(sectionElement);
+  });
 }
 
-
-// Resto de las funciones
 function createAppCard(app) {
+  const isReleased = isAppReleased(app.releaseDate);
   return `
     <div class="app-card" onclick="openAppModal(${JSON.stringify(app).replace(/\"/g, '&quot;')})">
       <div class="app-header">
@@ -990,46 +1064,40 @@ function createAppCard(app) {
             <span class="stars">★★★★★</span>
             <span>${app.rating}</span>
           </div>
+          ${!isReleased ? 
+            `<div class="coming-soon-tag">Próximamente - ${getTimeUntilRelease(app.releaseDate)}</div>` : 
+            ''}
         </div>
       </div>
     </div>
   `;
 }
 
-function displayApps(filteredApps) {
-  const appsContainer = document.getElementById('appsContainer');
-  const featuredApps = document.getElementById('featuredApps');
-  if (filteredApps.length > 0) {
-    featuredApps.style.display = 'none';
-    appsContainer.style.display = 'block';
-    appsContainer.innerHTML = '';
-    filteredApps.forEach(app => {
-      const appCard = document.createElement('div');
-      appCard.classList.add('app-card');
-      appCard.innerHTML = createAppCard(app);
-      appCard.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('developer-link')) {
-          openAppModal(app);
-        }
-      });
-      appsContainer.appendChild(appCard);
-    });
-  } else {
-    appsContainer.style.display = 'none';
-    featuredApps.style.display = 'block';
-  }
-}
-
 async function openAppModal(app) {
   const storeLink = getStoreLink(app);
   const countryCode = await detectCountry();
   const isAvailableInCountry = app.allowedCountries.includes(countryCode);
-  const availabilityWarning = !isAvailableInCountry
-    ? `<div class="availability-warning">
-         <i class="fas fa-exclamation-triangle"></i>
-         Esta aplicación no está disponible en su país (${countryCode}).
-       </div>`
-    : '';
+  const isReleased = isAppReleased(app.releaseDate);
+  
+  let availabilityWarning = '';
+  
+  if (!isReleased) {
+    const timeRemaining = getTimeUntilRelease(app.releaseDate);
+    availabilityWarning = `
+      <div class="availability-warning coming-soon">
+        <i class="fas fa-clock"></i>
+        Próximamente - Disponible en ${timeRemaining}
+      </div>
+    `;
+  } else if (!isAvailableInCountry) {
+    availabilityWarning = `
+      <div class="availability-warning">
+        <i class="fas fa-exclamation-triangle"></i>
+        Esta aplicación no está disponible en su país (${countryCode}).
+      </div>
+    `;
+  }
+
   const modalContent = document.getElementById('modalContent');
   modalContent.innerHTML = `
     <div class="modal-banner" style="background: linear-gradient(${app.bannerGradient})">
@@ -1091,33 +1159,34 @@ async function openAppModal(app) {
     <p>${app.description}</p>
 
     <div class="action-buttons">
-    ${isAvailableInCountry && storeLink
-      ? `<a href="${storeLink}" class="action-btn primary-btn" target="_blank">
-           Descargar ${detectDevice() === 'ios' ? 'en App Store' : 'en Play Store'}
-         </a>`
-      : `<button class="action-btn primary-btn" disabled>Bloqueada</button>`
-    }
-    <button class="action-btn secondary-btn" onclick="togglePreviousVersions('${app.name}')">
-      Ver versiones anteriores
-    </button>
-  </div>
+      ${isAvailableInCountry && isReleased && storeLink
+        ? `<a href="${storeLink}" class="action-btn primary-btn" target="_blank">
+             Descargar ${detectDevice() === 'ios' ? 'en App Store' : 'en Play Store'}
+           </a>`
+        : `<button class="action-btn primary-btn" disabled>
+             ${!isReleased ? 'Próximamente' : 'Bloqueada'}
+           </button>`
+      }
+      <button class="action-btn secondary-btn" onclick="togglePreviousVersions('${app.name}')">
+        Ver versiones anteriores
+      </button>
+    </div>
 
-    <div class="security-info secure">
-         <div class="virustotal-badge">
-           <i class="fas fa-shield-alt"></i> Verificado por VirusTotal
-         </div>
-     <p>Esta aplicación ha pasado nuestras verificaciones de seguridad.</p>
-       </div>
-  
-       
+    <div class="security-info ${app.security ? 'secure' : ''}">
+      <div class="virustotal-badge">
+        <i class="fas fa-shield-alt"></i> Verificado por VirusTotal
+      </div>
+      <p>Esta aplicación ha pasado nuestras verificaciones de seguridad.</p>
+    </div>
 
-   <div class="previous-versions" id="${app.name}-versions" style="display:none;">
+    <div class="previous-versions" id="${app.name}-versions" style="display:none;">
       <h4>Versiones anteriores:</h4>
       <ul>
         ${app.previousVersions.map(version => `<li>${version}</li>`).join('')}
       </ul>
     </div>
   `;
+
   document.getElementById('appModal').classList.add('active');
   initializeCarousel();
   initializeVideoPlayers();
@@ -1134,6 +1203,7 @@ function initializeCarousel() {
     wrapper.style.transform = `translateX(-${slideWidth * index}px)`;
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
   }
+  
   dots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
       currentIndex = index;
@@ -1172,6 +1242,30 @@ function showDeveloperApps(developer, event) {
   developerModal.style.display = 'block';
 }
 
+// Función para mostrar las apps
+function displayApps(filteredApps) {
+  const appsContainer = document.getElementById('appsContainer');
+  const featuredApps = document.getElementById('featuredApps');
+  if (filteredApps.length > 0) {
+    featuredApps.style.display = 'none';
+    appsContainer.style.display = 'block';
+    appsContainer.innerHTML = '';
+    filteredApps.forEach(app => {
+      const appCard = document.createElement('div');
+      appCard.classList.add('app-card');
+      appCard.innerHTML = createAppCard(app);
+      appCard.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('developer-link')) {
+          openAppModal(app);
+        }
+      });
+      appsContainer.appendChild(appCard);
+    });
+  } else {
+    appsContainer.style.display = 'none';
+    featuredApps.style.display = 'block';
+  }
+}
 // Event Listeners
 document.getElementById('searchInput').addEventListener('input', (e) => {
   const searchTerm = e.target.value.toLowerCase();
@@ -1195,12 +1289,120 @@ document.getElementById('closeDeveloperModal').addEventListener('click', () => {
   document.getElementById('developerModal').style.display = 'none';
 });
 
-// Cerrar modal al hacer clic fuera del contenido
 document.getElementById('developerModal').addEventListener('click', (e) => {
   if (e.target.id === 'developerModal') {
     document.getElementById('developerModal').style.display = 'none';
   }
 });
+
+// Estilos CSS
+const styles = `
+.coming-soon {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.coming-soon i {
+    font-size: 1.2em;
+}
+
+.coming-soon-badge {
+    background-color: #4a90e2;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+.coming-soon-tag {
+    background-color: #4a90e2;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.75em;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.app-card:hover .coming-soon-tag {
+    background-color: #357abd;
+}
+
+.media-container {
+    position: relative;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.media-wrapper {
+    display: flex;
+    transition: transform 0.3s ease;
+    gap: 15px;
+}
+
+.media-item {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-dot.active {
+    background-color: #4a90e2;
+}
+
+.availability-warning {
+    background-color: #ff4444;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.availability-warning.coming-soon {
+    background-color: #4a90e2;
+}
+
+.action-btn[disabled] {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+
+
+`;
+
+// Agregar los estilos al documento
+const styleSheet = document.createElement("style");
+styleSheet.textContent = styles;
+document.head.appendChild(styleSheet);
 
 // Inicializar la visualización de aplicaciones
 displayFeaturedApps();
