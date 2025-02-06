@@ -66,7 +66,7 @@ const apps = [{
     version: "497.0.0.47.36",
     isAvailable: true,
     releaseDate: "2024-01-01T00:00:00", // Ya disponible
-    "ES", "MX", "AR", "CO", "PE", "CL", "BR" ],
+    allowedCountries: ["ES", "MX", "AR", "CO", "PE", "CL"],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.facebook.katana",
       ios: "https://apps.apple.com/us/app/facebook/id284882215"
@@ -86,44 +86,42 @@ const apps = [{
       }
     ]
   },
-              {
-    "name": "Picta",
-    "developer": "Universidad de Ciencias Informáticas (UCI)",
-    "packageName": "com.uci.picta",
-    "category": "Entretenimiento",
-    "rating": 4.5,
-    "size": "90 MB",
-    "icon": "https://cubapk.com/media/repo/icons-640/cu.picta.android.10909.png",
-    "description": "Picta es la plataforma de streaming cubana desarrollada por la UCI.",
-    "downloads": "193 M",
-    "bannerGradient": "45deg, #FF0000, #CC0000",
-    "security": false,
-    "version": "20.05.35",
-    "isAvailable": true,
-    releaseDate: "2025-02-07T00:00:00", // Ya disponible
-    "allowedCountries": ["CU","US"],
-    "platforms": {
-        "android": "https://apklis.cu/com.uci.picta",
-        "ios": "https://apps.apple.com/cu/app/picta/id1448744738"
+  {
+    name: "Threads",
+    developer: "Meta",
+    packageName: "com.instagram.threads",
+    category: "Redes sociales",
+    rating: 4.0,
+    size: "64.3 MB",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Threads_%28app%29_logo.svg/100px-Threads_%28app%29_logo.svg.png",
+    description: "Threads es la nueva app de texto de Instagram. Comparte actualizaciones y únete a conversaciones.",
+    downloads: "100M+",
+    bannerGradient: "45deg, #000000, #333333",
+    security: true,
+    version: "1.0.0",
+    isAvailable: true,
+    releaseDate: "2024-09-15T00:00:00", // Próximo lanzamiento
+    allowedCountries: ["US", "ES", "MX", "AR", "CO", "PE", "CL"],
+    platforms: {
+      android: "https://play.google.com/store/apps/details?id=com.instagram.threads",
+      ios: "https://apps.apple.com/us/app/threads-an-instagram-app/id6446901002"
     },
-    "previousVersions": ["16.20.34", "16.20.33", "16.20.32"],
-    "media": [
-        {
-            "type": "image",
-            "url": "/api/placeholder/200/400"
-        },
-        {
-            "type": "video",
-            "url": "videoYouTubeId"
-        },
-        {
-            "type": "image",
-            "url": "/api/placeholder/200/400"
-        }
+    previousVersions: [],
+    media: [{
+        type: "image",
+        url: "/api/placeholder/200/400"
+      },
+      {
+        type: "video",
+        url: "dQw4w9WgXcQ"
+      },
+      {
+        type: "image",
+        url: "/api/placeholder/200/400"
+      }
     ]
-}
-
- 
+  }
+];
 
 function parseDownloads(downloads) {
   if (downloads.includes('B+')) {
@@ -349,7 +347,7 @@ async function openAppModal(app) {
     </div>
 
     <div class="previous-versions" id="${app.name}-versions" style="display:none;">
-      <h4>Versiones anteriores:</h4>
+     <h4>Versiones anteriores:</h4>
       <ul>
         ${app.previousVersions.map(version => `<li>${version}</li>`).join('')}
       </ul>
@@ -435,6 +433,7 @@ function displayApps(filteredApps) {
     featuredApps.style.display = 'block';
   }
 }
+
 // Event Listeners
 document.getElementById('searchInput').addEventListener('input', (e) => {
   const searchTerm = e.target.value.toLowerCase();
@@ -563,9 +562,6 @@ const styles = `
     background-color: #cccccc;
     cursor: not-allowed;
 }
-
-
-
 `;
 
 // Agregar los estilos al documento
