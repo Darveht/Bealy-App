@@ -86,6 +86,73 @@ const apps = [{
       }
     ]
   },
+   {
+  name: "WhatsApp",
+  developer: "WhatsApp Inc.",
+  packageName: "com.whatsapp",
+  category: "Mensajería",
+  rating: 4.3,
+  size: "75 MB",
+  icon: "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg",
+  description: "WhatsApp es una aplicación de mensajería instantánea para conectar a las personas.",
+  downloads: "294M+",
+  bannerGradient: "45deg, #25D366, #075E54",
+  security: true,
+  version: "2.21.20.17",
+  isAvailable: true,
+  allowedCountries: [ "US","CU","ES", "MX", "AR"],
+  platforms: {
+    android: "https://play.google.com/store/apps/details?id=com.whatsapp",
+    ios: "https://apps.apple.com/app/whatsapp-messenger/id310633997"
+  },
+  previousVersions: ["2.21.20.16", "2.21.20.15", "2.21.20.14"],
+  media: [{
+      type: "image",
+      url: "/api/placeholder/200/400"
+    },
+    {
+      type: "video",
+      url: "abc123example"
+    },
+    {
+      type: "image",
+      url: "/api/placeholder/200/400"
+    }
+  ]
+},
+
+  {
+    name: "X",
+    developer: "Twitter, Inc.",
+    packageName: "com.twitter.android",
+    category: "Redes sociales",
+    rating: 4.0,
+    size: "50 MB",
+    icon: "https://cdn6.aptoide.com/imgs/e/9/f/e9f0145ff2d872f7c9b58c238c6bbd6a_icon.png?w=128",
+    description: "La aplicación X es la plaza digital global de confianza para todo el mundo.X te permite:,Postear contenidos para que los vea todo el mundo y participar en conversaciones públicas,Mantenerte al día de las últimas noticias y seguir tus intereses mantenerte mejor informado gracias al contexto adicional de Notas de la comunidad,transmitir en directo con Espacios para audio o transmitir vídeos en directo,Conectar directamente con tus clientes para hacer crecer tu negocio",
+    downloads: "23M+",
+    bannerGradient: "45deg, #1DA1F2, #0D8BF2",
+    security: false,
+    version: "9.2.0",
+    isAvailable: true,
+    allowedCountries: ["US","ES", "CU","MX"],
+    platforms: {
+      android: "https://play.google.com/store/apps/details?id=com.twitter.android",
+      ios: "https://apps.apple.com/app/twitter/id333903271"
+    },
+    previousVersions: ["9.1.0", "9.0.0", "8.9.0"],
+    media: [
+      {
+        type: "image",
+        url: "https://cdn6.aptoide.com/imgs/b/e/d/bed33ccca12359a842ca74215931031d_screen.png"
+      },
+
+      {
+        type: "image",
+        url: "https://cdn6.aptoide.com/imgs/9/5/b/95b73aec2115f55c14263bc5436f6ade_screen.png"
+      }
+    ]
+  },           
   {
     name: "Threads",
     developer: "Meta",
