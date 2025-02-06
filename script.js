@@ -66,9 +66,7 @@ const apps = [{
     version: "497.0.0.47.36",
     isAvailable: true,
     releaseDate: "2024-01-01T00:00:00", // Ya disponible
-    "ES", "MX", "AR", "CO", "PE", "CL", "BR", "UY", "PY", "VE", "EC", "BO", "CR", "SV", "GT", "HN", "NI", "PA", "PR", "DO", "CU",
-    "DE", "FR", "IT", "GB", "PT", "NL", "BE", "CH", "AT", "SE", "NO", "DK", "FI", "IE", "GR", "PL", "HU", "CZ", "SK", "SI", "HR", "BG", "RO", "IS", 
-    "US", "CA", "AU", "NZ", "ZA", "JP", "KR", "CN", "IN"],
+    "ES", "MX", "AR", "CO", "PE", "CL", "BR", ],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.facebook.katana",
       ios: "https://apps.apple.com/us/app/facebook/id284882215"
@@ -138,9 +136,7 @@ const apps = [{
   security: true,
   version: "2.21.20.17",
   isAvailable: true,
-  allowedCountries: [ "ES", "MX", "AR", "CO", "PE", "CL", "BR", "UY", "PY", "VE", "EC", "BO", "CR", "SV", "GT", "HN", "NI", "PA", "PR", "DO", "CU",
-    "DE", "FR", "IT", "GB", "PT", "NL", "BE", "CH", "AT", "SE", "NO", "DK", "FI", "IE", "GR", "PL", "HU", "CZ", "SK", "SI", "HR", "BG", "RO", "IS", 
-    "US", "CA", "AU", "NZ", "ZA", "JP", "KR", "CN", "IN"],
+  allowedCountries: [ "ES", "MX", "AR"],
   platforms: {
     android: "https://play.google.com/store/apps/details?id=com.whatsapp",
     ios: "https://apps.apple.com/app/whatsapp-messenger/id310633997"
@@ -175,9 +171,7 @@ const apps = [{
     security: false,
     version: "9.2.0",
     isAvailable: true,
-    allowedCountries: [ "ES", "MX", "AR", "CO", "PE", "CL", "BR", "UY", "PY", "VE", "EC", "BO", "CR", "SV", "GT", "HN", "NI", "PA", "PR", "DO", "CU",
-    "DE", "FR", "IT", "GB", "PT", "NL", "BE", "CH", "AT", "SE", "NO", "DK", "FI", "IE", "GR", "PL", "HU", "CZ", "SK", "SI", "HR", "BG", "RO", "IS", 
-    "US", "CA", "AU", "NZ", "ZA", "JP", "KR", "CN", "IN", "CL", "MY", "TH", "SG", "PH", "VN", "ID", "TR", "IL", "EG", "SA", "AE", "NG", "KE", "DZ", "MA", "TN"],
+    allowedCountries: [ "ES", "MX"],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.twitter.android",
       ios: "https://apps.apple.com/app/twitter/id333903271"
@@ -237,7 +231,7 @@ const apps = [{
     security: false,
     version: "10.50.0.0",
     isAvailable: true,
-    allowedCountries: ["US", "CA", "MX", "AR", "BR", "CL", "CO", "CR", "DO", "EC", "SV", "GT", "HN", "NI", "PA", "PE", "UY", "PY", "VE", "FR", "GB", "IT", "DE", "ES", "PT", "NL", "BE", "CH", "AT", "SE", "NO", "DK", "FI", "IE", "GR", "PL", "HU", "CZ", "SK", "SI", "HR", "BG", "RO", "IS", "AU", "NZ", "ZA", "JP", "KR", "CN", "IN", "MY", "TH", "SG", "PH", "VN", "ID", "TR", "IL", "EG", "SA", "AE", "NG", "KE", "DZ", "MA", "TN", "QA", "BH", "KW", "OM", "JO", "LB", "MT", "CY"],
+    allowedCountries: ["US", "CA"],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.snapchat.android",
       ios: "https://apps.apple.com/app/snapchat/id447188370"
@@ -272,7 +266,7 @@ const apps = [{
     security: false,
     version: "21.1.0",
     isAvailable: true,
-    allowedCountries: [   "MX", "AR", "BR", "CL", "CO", "CR", "DO", "EC", "SV", "GT", "HN", "NI", "PA", "PE", "UY", "PY", "VE", "IT", "GB", "PT", "NL", "BE", "CH", "AT", "SE", "NO", "DK", "FI", "IE", "GR", "PL", "HU", "CZ", "SK", "SI", "HR", "BG", "RO", "IS", "AU", "NZ", "ZA", "JP", "KR", "CN", "IN", "MY", "TH", "SG", "PH", "VN", "ID", "TR", "IL", "EG", "SA", "AE", "NG", "KE", "DZ", "MA", "TN", "QA", "BH", "KW", "OM", "JO", "LB", "MT", "CY"],
+    allowedCountries: [   "MX", "AR"],
     platforms: {
       android: "https://we.tl/t-rvmY3k4HTf",
       ios: "https://apps.apple.com/app/tiktok/id835599320"
