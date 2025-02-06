@@ -103,7 +103,7 @@ const apps = [{
     "version": "20.05.35",
     "isAvailable": true,
     releaseDate: "2025-02-07T00:00:00", // Ya disponible
-    "allowedCountries": ["CU"],
+    "allowedCountries": ["CU","US"],
     "platforms": {
         "android": "https://apklis.cu/com.uci.picta",
         "ios": "https://apps.apple.com/cu/app/picta/id1448744738"
