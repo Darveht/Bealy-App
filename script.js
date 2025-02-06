@@ -65,7 +65,7 @@ const apps = [{
     security: false,
     version: "497.0.0.47.36",
     isAvailable: true,
-    releaseDate: "2024-01-01T00:00:00", // Ya disponible
+    releaseDate: "2024-01-01T00:00:00",
     allowedCountries: ["ES", "MX", "AR", "CO", "PE", "CL"],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.facebook.katana",
@@ -100,7 +100,7 @@ const apps = [{
     security: true,
     version: "1.0.0",
     isAvailable: true,
-    releaseDate: "2024-09-15T00:00:00", // Próximo lanzamiento
+    releaseDate: "2024-09-15T00:00:00",
     allowedCountries: ["US", "ES", "MX", "AR", "CO", "PE", "CL"],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.instagram.threads",
@@ -123,6 +123,17 @@ const apps = [{
   }
 ];
 
+// Nueva función para filtrar apps por país
+async function filterAppsByCountry(appsToFilter) {
+  try {
+    const userCountry = await detectCountry();
+    return appsToFilter.filter(app => app.allowedCountries.includes(userCountry));
+  } catch (error) {
+    console.error('Error filtering apps by country:', error);
+    return appsToFilter;
+  }
+}
+
 function parseDownloads(downloads) {
   if (downloads.includes('B+')) {
     return parseFloat(downloads.replace('B+', '')) * 1000000000;
@@ -132,7 +143,6 @@ function parseDownloads(downloads) {
 
 function getStoreLink(app) {
   const device = detectDevice();
-  // Verificar si la app está disponible y ha sido lanzada
   if (!app.isAvailable || !isAppReleased(app.releaseDate)) {
     return null;
   }
@@ -144,11 +154,24 @@ function getStoreLink(app) {
   return app.platforms.android || app.platforms.ios;
 }
 
-function displayFeaturedApps() {
+async function displayFeaturedApps() {
   const featuredApps = document.getElementById('featuredApps');
   featuredApps.innerHTML = '';
 
-  const sortedApps = [...apps].sort((a, b) => {
+  // Filtrar apps por país
+  const availableApps = await filterAppsByCountry(apps);
+  
+  if (availableApps.length === 0) {
+    featuredApps.innerHTML = `
+      <div class="no-apps-message">
+        <h2>Apps no disponibles</h2>
+        <p>Lo sentimos, no hay aplicaciones disponibles en tu región en este momento.</p>
+      </div>
+    `;
+    return;
+  }
+
+  const sortedApps = [...availableApps].sort((a, b) => {
     return parseDownloads(b.downloads) - parseDownloads(a.downloads);
   });
   const top10Apps = sortedApps.slice(0, 10);
@@ -182,36 +205,38 @@ function displayFeaturedApps() {
   posterSection.appendChild(postersContainer);
   featuredApps.appendChild(posterSection);
 
-  // Resto de las secciones
+  // Resto de las secciones con filtrado por país
   [
     {
       title: "Top 10 Últimas Actualizaciones",
-      apps: [...apps].sort((a, b) => b.version.localeCompare(a.version)).slice(0, 10)
+      apps: [...availableApps].sort((a, b) => b.version.localeCompare(a.version)).slice(0, 10)
     },
     {
       title: "Top 5 Aplicaciones Más Descargadas",
-      apps: [...apps].sort((a, b) => parseDownloads(b.downloads) - parseDownloads(a.downloads)).slice(0, 5)
+      apps: [...availableApps].sort((a, b) => parseDownloads(b.downloads) - parseDownloads(a.downloads)).slice(0, 5)
     },
     {
       title: "Nuevos Lanzamientos",
-      apps: [...apps].filter(app => !isAppReleased(app.releaseDate)).slice(0, 5)
+      apps: [...availableApps].filter(app => !isAppReleased(app.releaseDate)).slice(0, 5)
     },
     {
       title: "Top 10 Redes Sociales",
-      apps: apps.filter(app => app.category.toLowerCase() === 'redes sociales')
+      apps: availableApps.filter(app => app.category.toLowerCase() === 'redes sociales')
         .sort((a, b) => parseDownloads(b.downloads) - parseDownloads(a.downloads))
         .slice(0, 10)
     }
   ].forEach(section => {
-    const sectionElement = document.createElement('section');
-    sectionElement.className = 'category-section';
-    sectionElement.innerHTML = `
-      <h2 class="section-title">${section.title}</h2>
-      <div class="horizontal-scroll">
-        ${section.apps.map(app => createAppCard(app)).join('')}
-      </div>
-    `;
-    featuredApps.appendChild(sectionElement);
+    if (section.apps.length > 0) {
+      const sectionElement = document.createElement('section');
+      sectionElement.className = 'category-section';
+      sectionElement.innerHTML = `
+        <h2 class="section-title">${section.title}</h2>
+        <div class="horizontal-scroll">
+          ${section.apps.map(app => createAppCard(app)).join('')}
+        </div>
+      `;
+      featuredApps.appendChild(sectionElement);
+    }
   });
 }
 
@@ -326,7 +351,7 @@ async function openAppModal(app) {
     <p>${app.description}</p>
 
     <div class="action-buttons">
-      ${isAvailableInCountry && isReleased && storeLink
+     ${isAvailableInCountry && isReleased && storeLink
         ? `<a href="${storeLink}" class="action-btn primary-btn" target="_blank">
              Descargar ${detectDevice() === 'ios' ? 'en App Store' : 'en Play Store'}
            </a>`
@@ -347,7 +372,7 @@ async function openAppModal(app) {
     </div>
 
     <div class="previous-versions" id="${app.name}-versions" style="display:none;">
-     <h4>Versiones anteriores:</h4>
+      <h4>Versiones anteriores:</h4>
       <ul>
         ${app.previousVersions.map(version => `<li>${version}</li>`).join('')}
       </ul>
@@ -409,15 +434,19 @@ function showDeveloperApps(developer, event) {
   developerModal.style.display = 'block';
 }
 
-// Función para mostrar las apps
-function displayApps(filteredApps) {
+// Función mejorada para mostrar apps filtradas
+async function displayApps(appsToDisplay) {
   const appsContainer = document.getElementById('appsContainer');
   const featuredApps = document.getElementById('featuredApps');
-  if (filteredApps.length > 0) {
+  
+  // Filtrar por país
+  const availableApps = await filterAppsByCountry(appsToDisplay);
+  
+  if (availableApps.length > 0) {
     featuredApps.style.display = 'none';
     appsContainer.style.display = 'block';
     appsContainer.innerHTML = '';
-    filteredApps.forEach(app => {
+    availableApps.forEach(app => {
       const appCard = document.createElement('div');
       appCard.classList.add('app-card');
       appCard.innerHTML = createAppCard(app);
@@ -429,13 +458,19 @@ function displayApps(filteredApps) {
       appsContainer.appendChild(appCard);
     });
   } else {
-    appsContainer.style.display = 'none';
-    featuredApps.style.display = 'block';
+    appsContainer.innerHTML = `
+      <div class="no-apps-message">
+        <h2>No se encontraron aplicaciones</h2>
+        <p>No hay aplicaciones disponibles en tu región que coincidan con tu búsqueda.</p>
+      </div>
+    `;
+    appsContainer.style.display = 'block';
+    featuredApps.style.display = 'none';
   }
 }
 
 // Event Listeners
-document.getElementById('searchInput').addEventListener('input', (e) => {
+document.getElementById('searchInput').addEventListener('input', async (e) => {
   const searchTerm = e.target.value.toLowerCase();
   if (searchTerm) {
     const filteredApps = apps.filter(app =>
@@ -443,9 +478,9 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
       app.developer.toLowerCase().includes(searchTerm) ||
       app.category.toLowerCase().includes(searchTerm)
     );
-    displayApps(filteredApps);
+    await displayApps(filteredApps);
   } else {
-    displayFeaturedApps();
+    await displayFeaturedApps();
   }
 });
 
@@ -561,6 +596,25 @@ const styles = `
 .action-btn[disabled] {
     background-color: #cccccc;
     cursor: not-allowed;
+}
+
+.no-apps-message {
+    text-align: center;
+    padding: 40px 20px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.no-apps-message h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.no-apps-message p {
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
 }
 `;
 
