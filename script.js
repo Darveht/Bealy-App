@@ -86,6 +86,76 @@ const apps = [{
       }
     ]
   },
+       {
+    name: "Snapchat",
+    developer: "Snap Inc.",
+    packageName: "com.snapchat.android",
+    category: "Mensajería",
+    rating: 4.1,
+    size: "45 MB",
+    icon: "https://cdn6.aptoide.com/imgs/4/a/b/4ab59bf6437538d0d99264293ef3c479_icon.png?w=128",
+    description: "Snapchat es una aplicación de mensajería efímera y filtros creativos.",
+    downloads: "64M+",
+    bannerGradient: "45deg, #FFFC00, #FFFC00",
+    security: false,
+    version: "10.50.0.0",
+    isAvailable: true,
+    allowedCountries: ["US", "CA"],
+    platforms: {
+      android: "https://play.google.com/store/apps/details?id=com.snapchat.android",
+      ios: "https://apps.apple.com/app/snapchat/id447188370"
+    },
+    previousVersions: ["10.49.0.0", "10.48.0.0", "10.47.0.0"],
+    media: [
+      {
+        type: "image",
+        url: "https://techcrunch.com/wp-content/uploads/2014/02/ivkd8z9.gif"
+      },
+      {
+        type: "video",
+        url: "https://youtu.be/pDZ4Li5hFao"
+      },
+      {
+        type: "image",
+        url: "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+    name: "TikTok",
+    developer: "TikTok Inc.",
+    packageName: "com.zhiliaoapp.musically",
+    category: "Entretenimiento",
+    rating: 4.5,
+    size: "80 MB",
+    icon: "https://upload.wikimedia.org/wikipedia/en/0/08/TikTok_logo.svg",
+    description: "TikTok es una plataforma para crear y ver videos cortos.",
+    downloads: "22M+",
+    bannerGradient: "45deg, #69C9D0, #EE1D52",
+    security: false,
+    version: "21.1.0",
+    isAvailable: true,
+    allowedCountries: [   "MX", "AR"],
+    platforms: {
+      android: "https://we.tl/t-rvmY3k4HTf",
+      ios: "https://apps.apple.com/app/tiktok/id835599320"
+    },
+    previousVersions: ["21.0.0", "20.9.0", "20.8.0"],
+    media: [
+      {
+        type: "image",
+        url: "/api/placeholder/200/400"
+      },
+      {
+        type: "video",
+        url: "videoTikTokId"
+      },
+      {
+        type: "image",
+        url: "/api/placeholder/200/400"
+      }
+    ]
+  },         
      {
     name: "LinkedIn",
     developer: "LinkedIn Corporation",
