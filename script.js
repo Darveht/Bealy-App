@@ -66,7 +66,7 @@ const apps = [{
     version: "497.0.0.47.36",
     isAvailable: true,
     releaseDate: "2024-01-01T00:00:00", // Ya disponible
-    "ES", "MX", "AR", "CO", "PE", "CL", "BR", ],
+    "ES", "MX", "AR", "CO", "PE", "CL", "BR" ],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.facebook.katana",
       ios: "https://apps.apple.com/us/app/facebook/id284882215"
@@ -121,8 +121,8 @@ const apps = [{
             "url": "/api/placeholder/200/400"
         }
     ]
-},
-         {
+}
+{
   name: "WhatsApp",
   developer: "WhatsApp Inc.",
   packageName: "com.whatsapp",
@@ -301,7 +301,7 @@ const apps = [{
     security: false,
     version: "8.3.0",
     isAvailable: true,
-    allowedCountries: ["US", "ES", "CU","MX", "GB"],
+    allowedCountries: ["US", "ES"],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.pinterest",
       ios: "https://apps.apple.com/app/pinterest/id429047995"
