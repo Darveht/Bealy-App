@@ -268,7 +268,7 @@ const apps = [{
     isAvailable: true,
     allowedCountries: [ "ES", "MX", "BR", "IN"],
     platforms: {
-      android: "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically",
+      android: "https://we.tl/t-rvmY3k4HTf",
       ios: "https://apps.apple.com/app/tiktok/id835599320"
     },
     previousVersions: ["21.0.0", "20.9.0", "20.8.0"],
