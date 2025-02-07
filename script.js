@@ -86,8 +86,186 @@ const apps = [{
       }
     ]
   },
-      
-    
+      {
+  "name": "TikTok Lite",
+  "developer": "TikTok Pte. Ltd.",
+  "packageName": "com.zhiliaoapp.musically.go",
+  "category": "Entretenimiento",
+  "rating": 4.2,
+  "size": "45 MB",
+  "icon": "https://img.utdstc.com/icon/f02/722/f02722184e010a9bfeebdeb4b5f57db1cac50688db6f959c297940ae3c4d7002:200",
+  "description": "TikTok Lite es la versión ligera y optimizada de la aplicación de vídeos cortos TikTok. Su menor tamaño y menor consumo de recursos la hace ideal para ser utilizada en dispositivos que tengan menos potencia o capacidades más limitadas. Al igual que TikTok, TikTok Lite te permite descubrir, crear y compartir videos cortos de forma sencilla y rápida, a la vez que mantienes todas las funcionalidades esenciales.",
+  "downloads": "19M+",
+  "bannerGradient": "45deg, #FF0050, #FF2C55",
+  "security": true,
+  "version": "29.1.2",
+  "isAvailable": true,
+  "releaseDate": "2018-08-06T00:00:00",
+  "allowedCountries": ["US", "IN", "BR", "ID"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically.go",
+    "ios": "https://apps.apple.com/app/tiktok-lite/id6447160980"
+  },
+  "previousVersions": ["29.1.1", "29.0.9", "28.9.3"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/screenshot1.jpg"
+    },
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/screenshot2.jpg"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=TikTokLiteDemo"
+    }
+  ]
+},
+    {
+  "name": "VK",
+  "developer": "VK.com",
+  "packageName": "com.vkontakte.android",
+  "category": "Redes Sociales",
+  "rating": 4.3,
+  "size": "100 MB",
+  "icon": "https://img.utdstc.com/icon/ed3/892/ed389254a73efcef2537d5234aa57495563852c43970586b58f836db4284f112:200",
+  "description": "VK es una red social popular en Rusia, que permite a los usuarios comunicarse, compartir contenido multimedia y unirse a comunidades.",
+  "downloads": "45M+",
+  "bannerGradient": "45deg, #0077FF, #0055CC",
+  "security": true,
+  "version": "9.8.2",
+  "isAvailable": true,
+  "releaseDate": "2006-10-10T00:00:00",
+  "allowedCountries": ["RU","US", "BY", "KZ", "UA"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.vkontakte.android",
+    "ios": "https://apps.apple.com/app/vk-social-network/id564177498"
+  },
+  "previousVersions": ["9.8.1", "9.7.5", "9.6.3"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/vk-screenshot1.jpg"
+    },
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/vk-screenshot2.jpg"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=VKDemo"
+    }
+  ]
+},
+{
+  "name": "Messenger Lite",
+  "developer": "Meta Platforms, Inc.",
+  "packageName": "com.facebook.mlite",
+  "category": "Mensajería",
+  "rating": 4.1,
+  "size": "20 MB",
+  "icon": "https://img.utdstc.com/icon/28d/aea/28daea3ff2e293ad6275ff85256ff13a82144f3348ec886f4954755940cf6104:200",
+  "description": "Messenger Lite es una versión más ligera de Messenger, que permite enviar mensajes y hacer llamadas con menor consumo de datos.",
+  "downloads": "76.3 M+",
+  "bannerGradient": "45deg, #0084FF, #0066CC",
+  "security": true,
+  "version": "335.0.0.10.104",
+  "isAvailable": true,
+  "releaseDate": "2016-10-02T00:00:00",
+  "allowedCountries": ["US", "IN", "BR", "ID"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.facebook.mlite",
+    "ios": "https://apps.apple.com/app/messenger-lite/id1234567890"
+  },
+  "previousVersions": ["334.0.0.10.104", "333.0.0.10.103", "332.0.0.10.102"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/messenger-lite-screenshot1.jpg"
+    },
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/messenger-lite-screenshot2.jpg"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=MessengerLiteDemo"
+    }
+  ]
+},
+{
+  "name": "Flip",
+  "developer": "Flip Fit, Inc.",
+  "packageName": "co.flip",
+  "category": "Compras",
+  "rating": 4.6,
+  "size": "85 MB",
+  "icon": "https://img.utdstc.com/icon/b2c/5f3/b2c5f3e8b756d80e5efbc15c7c08aaae02a367fa4028d0e897bad6b4c635a460:200",
+  "description": "Flip es una aplicación de compras sociales donde los usuarios pueden ver reseñas en video y comprar productos directamente desde la plataforma.",
+  "downloads": "4.3K+",
+  "bannerGradient": "45deg, #00C853, #008744",
+  "security": true,
+  "version": "5.3.0",
+  "isAvailable": true,
+  "releaseDate": "2021-03-12T00:00:00",
+  "allowedCountries": ["US", "CA"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=co.flip",
+    "ios": "https://apps.apple.com/app/flip-shop-with-your-friends/id1562633109"
+  },
+  "previousVersions": ["5.2.9", "5.2.8", "5.2.7"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/flip-screenshot1.jpg"
+    },
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/flip-screenshot2.jpg"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=FlipDemo"
+    }
+  ]
+},
+{
+  "name": "Clapper",
+  "developer": "Clapper Media Group Inc.",
+  "packageName": "com.clapper.video",
+  "category": "Redes Sociales",
+  "rating": 4.4,
+  "size": "60 MB",
+  "icon": "https://img.utdstc.com/icon/5f4/694/5f46941008be96f49123247309e5d2e280f04a3d108579ea6a39d75974b34ce6:200",
+  "description": "Clapper es una plataforma de videos cortos que permite a los usuarios expresarse libremente y compartir contenido sin censura.",
+  "downloads": "10M+",
+  "bannerGradient": "45deg, #FF6600, #FF3300",
+  "security": true,
+  "version": "2.8.1",
+  "isAvailable": true,
+  "releaseDate": "2020-06-15T00:00:00",
+  "allowedCountries": ["US", "CA", "UK", "AU"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.clapper.video",
+    "ios": "https://apps.apple.com/app/clapper/id1516466348"
+  },
+  "previousVersions": ["2.8.0", "2.7.9", "2.7.8"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/clapper-screenshot1.jpg"
+    },
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/clapper-screenshot2.jpg"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=ClapperDemo"
+    }
+  ]
+},
     {
       "name": "toDus",
       "developer": "ETECSA",
