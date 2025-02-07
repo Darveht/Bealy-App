@@ -88,7 +88,102 @@ const apps = [{
   },
       
     
-    
+    {
+      "name": "toDus",
+      "developer": "ETECSA",
+      "packageName": "cu.etecsa.todus",
+      "category": "Mensajería",
+      "rating": 3.1,
+      "size": "20 MB",
+      "icon": "https://todus.cu/page/images/logo.png",
+      "description": "toDus es una aplicación de mensajería instantánea desarrollada en Cuba, que permite a los usuarios enviar mensajes de texto, voz, imágenes y videos de forma gratuita, utilizando la red de datos móviles nacional.",
+      "downloads": "23M+",
+      "bannerGradient": "45deg, #00BFFF, #00BFFF",
+      "security": false,
+      "version": "1.0.0",
+      "isAvailable": true,
+      "releaseDate": "2025-02-08T00:00:00",
+      "allowedCountries": ["CU"],
+      "platforms": {
+        "android": "https://play.google.com/store/apps/details?id=cu.etecsa.todus",
+        "ios": "https://apps.apple.com/app/todus/id1234567890"
+      },
+      "previousVersions": ["0.9.9", "0.9.8", "0.9.7"],
+      "media": [
+        {
+          "type": "image",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Logo_toDus.png"
+        },
+        {
+          "type": "video",
+          "url": "https://youtu.be/3t6zqH7WEdI"
+        }
+      ]
+    },
+    {
+      "name": "Transfermóvil",
+      "developer": "ETECSA",
+      "packageName": "cu.etecsa.transfermovil",
+      "category": "Finanzas",
+      "rating": 4.2,
+      "size": "25 MB",
+      "icon": "https://lh6.googleusercontent.com/proxy/C4Yl_goGRs79Ki5EceZXTbUYcebnVImhgVmPT8_fWnQl7ZpN849aNn-RYPIxbwfeLbhf2TadmYuQETR9vMUPtS4t4UHfM0EXanLM133g9n_7fJDgIUwKWady0Bn2EZLw7nAML1Lczq3c",
+      "description": "Transfermóvil es una aplicación bancaria que facilita las transacciones financieras y el pago de servicios públicos desde dispositivos móviles. Los usuarios pueden recargar saldo telefónico, pagar facturas de electricidad y agua, y transferir dinero entre cuentas bancarias.",
+      "downloads": "13M+",
+      "bannerGradient": "45deg, #FF6347, #FF6347",
+      "security": true,
+      "version": "2.0.0",
+      "isAvailable": true,
+      "releaseDate": "2025-02-09T00:00:00",
+      "allowedCountries": ["CU","US"],
+      "platforms": {
+        "android": "https://play.google.com/store/apps/details?id=cu.etecsa.transfermovil",
+        "ios": "https://apps.apple.com/app/transfermovil/id1234567890"
+      },
+      "previousVersions": ["1.9.9", "1.9.8", "1.9.7"],
+      "media": [
+        {
+          "type": "image",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Logo_Transfermovil.png"
+        },
+        {
+          "type": "video",
+          "url": "https://youtu.be/3t6zqH7WEdI"
+        }
+      ]
+    },
+    {
+      "name": "Apklis",
+      "developer": "CubaSoft",
+      "packageName": "cu.cubasoft.apklis",
+      "category": "Herramientas",
+      "rating": 3.5,
+      "size": "30 MB",
+      "icon": "https://archive.apklis.cu/application/icon/cu.uci.android.apklis-v20240514.png",
+      "description": "Apklis es la tienda de aplicaciones oficial de Cuba, que ofrece una amplia variedad de aplicaciones tanto cubanas como internacionales, adaptadas a las necesidades locales. Permite a los desarrolladores cubanos distribuir sus aplicaciones de manera efectiva.",
+      "downloads": "12M+",
+      "bannerGradient": "45deg, #32CD32, #32CD32",
+      "security": true,
+      "version": "3.0.0",
+      "isAvailable": true,
+      "releaseDate": "2025-02-08T00:00:00",
+      "allowedCountries": ["CU"],
+      "platforms": {
+        "android": "https://play.google.com/store/apps/details?id=cu.cubasoft.apklis",
+        "ios": "https://apps.apple.com/app/apklis/id1234567890"
+      },
+      "previousVersions": ["2.9.9", "2.9.8", "2.9.7"],
+      "media": [
+        {
+          "type": "image",
+          "url": "https://www.citmatel.cu/sites/default/files/apklis-captura-movil.png"
+        },
+        {
+          "type": "video",
+          "url": "https://youtu.be/3t6zqH7WEdI"
+        }
+      ]
+    },
   
   {
     name: "Threads",
