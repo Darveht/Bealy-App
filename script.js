@@ -184,7 +184,77 @@ const apps = [{
         }
       ]
     },
-  
+    {
+    name: "Snapchat",
+    developer: "Snap Inc.",
+    packageName: "com.snapchat.android",
+    category: "Mensajería",
+    rating: 4.1,
+    size: "45 MB",
+    icon: "https://cdn6.aptoide.com/imgs/4/a/b/4ab59bf6437538d0d99264293ef3c479_icon.png?w=128",
+    description: "Snapchat es una aplicación de mensajería efímera y filtros creativos.",
+    downloads: "64M+",
+    bannerGradient: "45deg, #FFFC00, #FFFC00",
+    security: false,
+    version: "10.50.0.0",
+    isAvailable: true,
+    allowedCountries: ["US", "CA"],
+    platforms: {
+      android: "https://play.google.com/store/apps/details?id=com.snapchat.android",
+      ios: "https://apps.apple.com/app/snapchat/id447188370"
+    },
+    previousVersions: ["10.49.0.0", "10.48.0.0", "10.47.0.0"],
+    media: [
+      {
+        type: "image",
+        url: "https://techcrunch.com/wp-content/uploads/2014/02/ivkd8z9.gif"
+      },
+      {
+        type: "video",
+        url: "https://youtu.be/pDZ4Li5hFao"
+      },
+      {
+        type: "image",
+        url: "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+  "name": "TikTok",
+  "developer": "ByteDance",
+  "packageName": "com.zhiliaoapp.musically",
+  "category": "Redes sociales",
+  "rating": 4.6,
+  "size": "78 MB",
+  "icon": "https://img.icons8.com/?size=512&id=118640&format=png",
+  "description": "TikTok es una aplicación para crear y compartir videos musicales y creativos.",
+  "downloads": "5B+",
+  "bannerGradient": "45deg, #69C9D0, #69C9D0",
+  "security": false,
+  "version": "28.7.4",
+  "isAvailable": true,
+  "releaseDate": "2024-01-01T00:00:00",
+  "allowedCountries": ["US", "IN", "BR", "ID", "RU", "DE", "FR", "GB", "MX", "NG", "PH", "VN", "TH", "KR", "ZA", "MY", "SG", "UA", "EG", "PK", "SA", "AR", "CO", "PE", "CL", "DO", "PY", "CR", "HN", "SV", "PA", "BO", "GT", "CU", "JM", "BZ", "CU", "LK", "KW", "OM", "QA", "KW", "AE"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically",
+    "ios": "https://apps.apple.com/us/app/tiktok/id835599320"
+  },
+  "previousVersions": ["28.7.3", "28.7.2", "28.7.1"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://buffer.com/library/content/images/2024/07/1.png"
+    },
+    {
+      "type": "video",
+      "url": "https://youtu.be/3t6zqH7WEdI"
+    },
+    {
+      "type": "image",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkUHpV5_o4lTBK3bGQAlQzSPzyYxcYKZr2bg&usqp=CAU"
+    }
+  ]
+},
   {
     name: "Threads",
     developer: "Meta",
