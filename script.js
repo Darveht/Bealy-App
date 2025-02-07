@@ -274,10 +274,7 @@ const apps = [{
       "type": "image",
       "https://www.zdnet.com/a/img/resize/f6e80353f1dfb61534aff0cc505918b120f391b0/2023/01/10/15c65e40-5d22-4999-a546-1c0f96b5af99/screen-shot-2023-01-10-at-11-40-04-am.png?auto=webp&width=1280"
     },
-    {
-      "type": "video",
-      "url": "https://www.instagram.com/reel/DFsul9Mv_Wu/?igsh=MW43bWZsMXhwdjBneg=="
-    },
+    
     {
       "type": "image",
       "https://img.freepik.com/vector-premium/interfaz-pagina-inicio-instagram-maqueta-publicacion-vector-telefono-inteligente_536326-779.jpg"
