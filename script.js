@@ -103,7 +103,7 @@ const apps = [{
       "version": "1.0.0",
       "isAvailable": true,
       "releaseDate": "2025-02-08T00:00:00",
-      "allowedCountries": ["Global"],
+      "allowedCountries": ["CU", "US"],
       "platforms": {
         "android": "https://play.google.com/store/apps/details?id=cu.etecsa.todus",
         "ios": "https://apps.apple.com/app/todus/id1234567890"
