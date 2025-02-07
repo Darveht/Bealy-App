@@ -257,7 +257,7 @@ const apps = [{
   "category": "Redes sociales",
   "rating": 4.6,
   "size": "78 MB",
-  "icon": "https://preview.redd.it/help-creating-a-tiktok-logo-effect-v0-pugdk8t5i3sc1.png?width=512&format=png&auto=webp&s=3479645c6ee79963293af9165c5668ddd4c3b268.svg",
+  "icon": "https://cdn.worldvectorlogo.com/logos/tiktok-1.svg",
   "description": "TikTok es una aplicación para crear y compartir videos musicales y creativos.",
   "downloads": "5B+",
   "bannerGradient": "45deg, #69C9D0, #69C9D0",
