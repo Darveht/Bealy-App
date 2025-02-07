@@ -184,7 +184,74 @@ const apps = [{
         }
       ]
     },
-  
+   {
+      "name": "MiTransfer",
+      "developer": "ETECSA",
+      "packageName": "cu.etecsa.mitransfer",
+      "category": "Transporte",
+      "rating": 3.8,
+      "size": "22 MB",
+      "icon": "https://upload.wikimedia.org/wikipedia/commons/4/4d/MiTransfer_logo.png",
+      "description": "MiTransfer es una aplicación que permite a los usuarios gestionar y realizar transferencias de dinero entre cuentas bancarias, con la opción de realizar pagos y envíos internacionales.",
+      "downloads": "8M+",
+      "bannerGradient": "45deg, #32CD32, #32CD32",
+      "security": true,
+      "version": "1.2.0",
+      "isAvailable": true,
+      "releaseDate": "2025-02-10T00:00:00",
+      "allowedCountries": ["CU"],
+      "platforms": {
+        "android": "https://play.google.com/store/apps/details?id=cu.etecsa.mitransfer",
+        "ios": "https://apps.apple.com/app/mitransfer/id1234567890"
+      },
+      "previousVersions": ["1.1.9", "1.1.8", "1.1.7"],
+      "media": [
+        {
+          "type": "image",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/MiTransfer_logo.png"
+        },
+        {
+          "type": "video",
+          "url": "https://youtu.be/3t6zqH7WEdI"
+        }
+      ]
+    },
+   
+       {
+    name: "Snapchat",
+    developer: "Snap Inc.",
+    packageName: "com.snapchat.android",
+    category: "Mensajería",
+    rating: 4.1,
+    size: "45 MB",
+    icon: "https://cdn6.aptoide.com/imgs/4/a/b/4ab59bf6437538d0d99264293ef3c479_icon.png?w=128",
+    description: "Snapchat es una aplicación de mensajería efímera y filtros creativos.",
+    downloads: "64M+",
+    bannerGradient: "45deg, #FFFC00, #FFFC00",
+    security: false,
+    version: "10.50.0.0",
+    isAvailable: true,
+    allowedCountries: ["US", "CA"],
+    platforms: {
+      android: "https://play.google.com/store/apps/details?id=com.snapchat.android",
+      ios: "https://apps.apple.com/app/snapchat/id447188370"
+    },
+    previousVersions: ["10.49.0.0", "10.48.0.0", "10.47.0.0"],
+    media: [
+      {
+        type: "image",
+        url: "https://techcrunch.com/wp-content/uploads/2014/02/ivkd8z9.gif"
+      },
+      {
+        type: "video",
+        url: "https://youtu.be/pDZ4Li5hFao"
+      },
+      {
+        type: "image",
+        url: "/api/placeholder/200/400"
+      }
+    ]
+  },
   {
     name: "Threads",
     developer: "Meta",
