@@ -185,42 +185,212 @@ const apps = [{
       ]
     },
    
+      {
+    name: "Snapchat",
+    developer: "Snap Inc.",
+    packageName: "com.snapchat.android",
+    category: "Mensajería",
+    rating: 4.1,
+    size: "45 MB",
+    icon: "https://cdn6.aptoide.com/imgs/4/a/b/4ab59bf6437538d0d99264293ef3c479_icon.png?w=128",
+    description: "Snapchat es una aplicación de mensajería efímera y filtros creativos.",
+    downloads: "64M+",
+    bannerGradient: "45deg, #FFFC00, #FFFC00",
+    security: false,
+    version: "10.50.0.0",
+    isAvailable: true,
+    allowedCountries: ["US", "CA"],
+    platforms: {
+      android: "https://play.google.com/store/apps/details?id=com.snapchat.android",
+      ios: "https://apps.apple.com/app/snapchat/id447188370"
+    },
+    previousVersions: ["10.49.0.0", "10.48.0.0", "10.47.0.0"],
+    media: [
+      {
+        type: "image",
+        url: "https://techcrunch.com/wp-content/uploads/2014/02/ivkd8z9.gif"
+      },
+      {
+        type: "video",
+        url: "https://youtu.be/pDZ4Li5hFao"
+      },
+      {
+        type: "image",
+        url: "/api/placeholder/200/400"
+      }
+    ]
+  },
   {
-  "name": "TikTok",
-  "developer": "ByteDance",
-  "packageName": "com.zhiliaoapp.musically",
+  "name": "Facebook",
+  "developer": "Meta",
+  "packageName": "com.facebook.katana",
   "category": "Redes sociales",
-  "rating": 4.6,
-  "size": "78 MB",
-  "icon": "https://img.icons8.com/?size=512&id=118640&format=png",
-  "description": "TikTok es una aplicación para crear y compartir videos musicales y creativos.",
-  "downloads": "5B+",
-  "bannerGradient": "45deg, #69C9D0, #69C9D0",
+  "rating": 4.2,
+  "size": "85.7 MB",
+  "icon": "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+  "description": "Facebook es una red social donde los usuarios pueden compartir contenido.",
+  "downloads": "186M+",
+  "bannerGradient": "45deg, #1877f2, #0a3d62",
   "security": false,
-  "version": "28.7.4",
+  "version": "497.0.0.47.36",
   "isAvailable": true,
   "releaseDate": "2024-01-01T00:00:00",
-  "allowedCountries": ["US", "IN", "BR", "ID", "RU", "DE", "FR", "GB", "MX", "NG", "PH", "VN", "TH", "KR", "ZA", "MY", "SG", "UA", "EG", "PK", "SA", "AR", "CO", "PE", "CL", "DO", "PY", "CR", "HN", "SV", "PA", "BO", "GT", "CU", "JM", "BZ", "CU", "LK", "KW", "OM", "QA", "KW", "AE"],
+  "allowedCountries": ["ES", "MX", "AR", "CO", "PE", "CL", "BR", "US", "CA", "IN", "GB", "FR", "IT", "RU", "PH", "NG", "ZA", "EG", "JP", "KR", "ID", "NG", "MY", "SG", "TH", "VN", "PK", "SA", "AU", "LK", "BN", "KH", "DO", "PA", "GT", "CU", "HN", "JM", "CU", "ZW", "NG"],
   "platforms": {
-    "android": "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically",
-    "ios": "https://apps.apple.com/us/app/tiktok/id835599320"
+    "android": "https://play.google.com/store/apps/details?id=com.facebook.katana",
+    "ios": "https://apps.apple.com/us/app/facebook/id284882215"
   },
-  "previousVersions": ["28.7.3", "28.7.2", "28.7.1"],
+  "previousVersions": ["496.0.0.45.65", "495.0.0.45.201", "494.1.0.56.73"],
   "media": [
     {
       "type": "image",
-      "url": "https://buffer.com/library/content/images/2024/07/1.png"
+      "url": "/api/placeholder/200/400"
     },
     {
       "type": "video",
-      "url": "https://youtu.be/3t6zqH7WEdI"
+      "url": "dQw4w9WgXcQ"
     },
     {
       "type": "image",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkUHpV5_o4lTBK3bGQAlQzSPzyYxcYKZr2bg&usqp=CAU"
+      "url": "/api/placeholder/200/400"
     }
   ]
 },
+    {
+  "name": "WhatsApp",
+  "developer": "Meta Platforms, Inc.",
+  "packageName": "com.whatsapp",
+  "category": "Mensajería",
+  "rating": 4.7,
+  "size": "38 MB",
+  "icon": "https://cdn-icons-png.flaticon.com/512/124/124034.png",
+  "description": "WhatsApp es una aplicación de mensajería que permite enviar mensajes de texto, llamadas de voz y videollamadas de forma segura.",
+  "downloads": "5B+",
+  "bannerGradient": "45deg, #25D366, #25D366",
+  "security": true,
+  "version": "2.23.7.76",
+  "isAvailable": true,
+  "allowedCountries": ["US", "IN", "BR", "MX", "AR"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.whatsapp",
+    "ios": "https://apps.apple.com/app/whatsapp-messenger/id310633997"
+  },
+  "previousVersions": ["2.23.7.75", "2.23.7.74", "2.23.7.73"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/67/WhatsApp_Logo_2022.svg"
+    },
+    {
+      "type": "video",
+      "url": "https://youtu.be/J8CPO7v3w8M"
+    },
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    }
+  ]
+},
+{
+  "name": "Telegram",
+  "developer": "Telegram Messenger LLP",
+  "packageName": "org.telegram.messenger",
+  "category": "Mensajería",
+  "rating": 4.6,
+  "size": "30 MB",
+  "icon": "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/335_Telegram_logo-512.png",
+  "description": "Telegram es una aplicación de mensajería segura y rápida, que permite compartir mensajes, archivos, imágenes y más.",
+  "downloads": "500M+",
+  "bannerGradient": "45deg, #0088CC, #0088CC",
+  "security": true,
+  "version": "9.1.4",
+  "isAvailable": true,
+  "allowedCountries": ["US", "RU", "IN", "BR", "VN"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=org.telegram.messenger",
+    "ios": "https://apps.apple.com/app/telegram/id686449807"
+  },
+  "previousVersions": ["9.1.3", "9.1.2", "9.1.1"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Telegram_2019_logo.svg"
+    },
+    {
+      "type": "video",
+      "url": "https://youtu.be/9VAsHSH5f_4"
+    },
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    }
+  ]
+},
+{
+  "name": "Signal",
+  "developer": "Signal Foundation",
+  "packageName": "org.thoughtcrime.securesms",
+  "category": "Mensajería",
+  "rating": 4.8,
+  "size": "30 MB",
+  "icon": "https://cdn-icons-png.flaticon.com/512/4423/4423638.png",
+  "description": "Signal es una aplicación de mensajería privada que ofrece comunicaciones seguras a través de cifrado de extremo a extremo.",
+  "downloads": "100M+",
+  "bannerGradient": "45deg, #4A90E2, #4A90E2",
+  "security": true,
+  "version": "5.37.7",
+  "isAvailable": true,
+  "allowedCountries": ["US", "IN", "GB", "BR", "ZA"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms",
+    "ios": "https://apps.apple.com/app/signal/id874139669"
+  },
+  "previousVersions": ["5.37.6", "5.37.5", "5.37.4"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Signal-Logo.svg"
+    },
+    {
+      "type": "video",
+      "url": "https://youtu.be/4S6LwVxIMKw"
+    },
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    }
+  ]
+},
+     {
+    name: "LinkedIn",
+    developer: "LinkedIn Corporation",
+    packageName: "com.linkedin.android",
+    category: "Profesional",
+    rating: 4.3,
+    size: "70 MB",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png",
+    description: "LinkedIn es una red social orientada a profesionales y empresas.",
+    downloads: "6M+",
+    bannerGradient: "45deg, #0077B5, #005582",
+    security: false,
+    version: "5.0.0",
+    isAvailable: true,
+     releaseDate: "2025-02-09T00:00:00",  
+    allowedCountries: ["US", "ES", "MX", "BR", "IN"],
+    platforms: {
+      android: "https://play.google.com/store/apps/details?id=com.linkedin.android",
+      ios: "https://apps.apple.com/app/linkedin/id288429040"
+    },
+    previousVersions: ["4.9.0", "4.8.0", "4.7.0"],
+    media: [
+      {
+        type: "image",
+        url: "https://cdn.dribbble.com/users/1525393/screenshots/6420056/comp_4.gif"
+      }
+  
+    ]
+  },
+           
   {
     name: "Threads",
     developer: "Meta",
