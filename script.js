@@ -125,6 +125,42 @@ const apps = [{
       ]
     },
     {
+  "name": "RedNote",
+  "developer": "Xingin Information Technology (Shanghai) Co., Ltd",
+  "packageName": "com.xingin.xhs",
+  "category": "Redes Sociales",
+  "rating": 4.9,
+  "size": "460.3 MB",
+  "icon": "https://img.utdstc.com/icon/7a0/428/7a04288acb3629d00aaa8937410ef4559ffde7f7261acf1768096874404caf5b:200",
+  "description": "RedNote, conocida en China como Xiaohongshu o 'pequeño libro rojo', es una plataforma de redes sociales que permite a los usuarios compartir fotos, videos y experiencias de vida. Es popular por su enfoque en contenido auténtico y útil, abarcando temas como moda, música, recetas de cocina, ideas de decoración del hogar y consejos de viaje.",
+  "downloads": "112.4mil+",
+  "bannerGradient": "45deg, #FF0000, #FF4500",
+  "security": true,
+  "version": "8.69.4",
+  "isAvailable": true,
+  "releaseDate": "2013-06-06T00:00:00",
+  "allowedCountries": ["CN", "US", "CU"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.xingin.xhs",
+    "ios": "https://apps.apple.com/us/app/rednote-share-connect-love/id741292507"
+  },
+  "previousVersions": ["8.69.3", "8.69.2", "8.69.1"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://img.utdstc.com/screen/5e0/926/5e09260c00ae3250846f1736bf8f2132ccb3affca5db372621a96680c926d2dc:800"
+    },
+    {
+      "type": "image",
+      "url": "https://img.utdstc.com/screen/bc8/97f/bc897f6c25113b3eb7103e6a098dd961bdb9dc06c876c2f34c25c69474d42570:800"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=EujHBexDrsQ"
+    }
+  ]
+},
+    {
       "name": "Transfermóvil",
       "developer": "ETECSA",
       "packageName": "cu.etecsa.transfermovil",
