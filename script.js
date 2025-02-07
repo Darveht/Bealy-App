@@ -329,7 +329,7 @@ const apps = [{
   "category": "Mensajería",
   "rating": 4.7,
   "size": "38 MB",
-  "icon": "https://upload.wikimedia.org/wikipedia/commons/6/67/Whatsapp%2B%28brand%29%28social%29%28logo%29.png",
+  "icon": "https://cdn-icons-png.flaticon.com/512/124/124034.png",
   "description": "WhatsApp es una aplicación de mensajería que permite enviar mensajes de texto, llamadas de voz y videollamadas de forma segura.",
   "downloads": "5B+",
   "bannerGradient": "45deg, #25D366, #25D366",
