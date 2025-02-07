@@ -167,7 +167,7 @@ const apps = [{
       "version": "3.0.0",
       "isAvailable": true,
       "releaseDate": "2025-02-08T00:00:00",
-      "allowedCountries": ["CU"],
+      "allowedCountries": ["CU","MX"],
       "platforms": {
         "android": "https://play.google.com/store/apps/details?id=cu.cubasoft.apklis",
         "ios": "https://apps.apple.com/app/apklis/id1234567890"
@@ -199,7 +199,7 @@ const apps = [{
     security: false,
     version: "10.50.0.0",
     isAvailable: true,
-    allowedCountries: ["US", "CA"],
+    allowedCountries: ["US", "CA","MX"],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.snapchat.android",
       ios: "https://apps.apple.com/app/snapchat/id447188370"
@@ -305,7 +305,7 @@ const apps = [{
   "security": true,
   "version": "9.1.4",
   "isAvailable": true,
-  "allowedCountries": ["US", "RU", "IN", "BR", "VN"],
+  "allowedCountries": ["US","MX", "RU", "IN", "BR", "VN"],
   "platforms": {
     "android": "https://play.google.com/store/apps/details?id=org.telegram.messenger",
     "ios": "https://apps.apple.com/app/telegram/id686449807"
@@ -340,7 +340,7 @@ const apps = [{
   "security": true,
   "version": "5.37.7",
   "isAvailable": true,
-  "allowedCountries": ["US", "IN", "GB", "BR", "ZA"],
+  "allowedCountries": ["US","MX","IN", "GB", "BR", "ZA"],
   "platforms": {
     "android": "https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms",
     "ios": "https://apps.apple.com/app/signal/id874139669"
