@@ -1,4 +1,218 @@
- 
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviso de Descarga</title>
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f2f2f7;
+        }
+
+        /* Contenedor del aviso */
+        .aviso-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        /* Ventana flotante */
+        .slider {
+            width: 90%;
+            max-width: 380px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Slide */
+        .slide {
+            display: none;
+            text-align: center;
+        }
+
+        .slide h3 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .slide p {
+            font-size: 14px;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .slide i {
+            font-size: 40px;
+            color: #007aff;
+            margin-bottom: 10px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: #f2f2f7;
+            border-top: 1px solid #ddd;
+        }
+
+        .btn {
+            background: transparent;
+            border: none;
+            font-size: 16px;
+            color: #007aff;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .btn:disabled {
+            color: #ccc;
+        }
+
+        /* Estilo para la verificación */
+        .verified {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-weight: bold;
+            color: #007aff;
+        }
+
+        /* Ocultar aviso después de completarlo */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor del aviso -->
+    <div class="aviso-container" id="aviso">
+        <div class="slider">
+            <!-- Slide 1: Aviso sobre enlaces -->
+            <div class="slide" id="slide1">
+                <i class="fas fa-info-circle"></i>
+                <h3>Descarga segura</h3>
+                <p>Todos los enlaces dirigen a Google Play y App Store. No alojamos archivos APK ni versiones modificadas.</p>
+            </div>
+
+            <!-- Slide 2: Aviso sobre regiones -->
+            <div class="slide" id="slide2">
+                <i class="fas fa-globe"></i>
+                <h3>Disponibilidad de apps</h3>
+                <p>Algunas apps pueden no estar disponibles en tu país. Las aplicaciones cambian según la región.</p>
+            </div>
+
+            <!-- Slide 3: Registro de usuario -->
+            <div class="slide" id="slide3">
+                <i class="fas fa-user"></i>
+                <h3>Tu perfil</h3>
+                <input type="text" id="username" placeholder="Tu nombre" style="width: 80%; padding: 8px; border-radius: 8px; border: 1px solid #ccc; text-align: center;">
+                <input type="file" id="file-input" accept="image/*" style="margin-top: 10px;">
+                <br>
+                <img id="profile-pic" src="https://via.placeholder.com/80" alt="Foto de perfil" style="width: 80px; height: 80px; border-radius: 50%; margin-top: 10px;">
+            </div>
+
+            <!-- Slide 4: Verificación -->
+            <div class="slide" id="slide4">
+                <i class="fas fa-check-circle"></i>
+                <h3>Verificación completada</h3>
+                <p class="verified"><span id="user-display">Usuario</span> <i class="fas fa-badge-check"></i></p>
+            </div>
+
+            <!-- Controles -->
+            <div class="controls">
+                <button class="btn" id="prevBtn" onclick="prevSlide()" disabled>Anterior</button>
+                <button class="btn" id="nextBtn" onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+
+        // Muestra la primera página y oculta las demás
+        function updateSlide() {
+            // Ocultar todos los slides
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById("slide" + i).style.display = "none";
+            }
+
+            // Mostrar solo el slide actual
+            document.getElementById("slide" + currentSlide).style.display = "block";
+
+            // Habilitar/deshabilitar botones
+            document.getElementById("prevBtn").disabled = currentSlide === 1;
+            document.getElementById("nextBtn").innerText = currentSlide === 4 ? "Comenzar" : "Siguiente";
+        }
+
+        function nextSlide() {
+            if (currentSlide < 4) {
+                currentSlide++;
+                updateSlide();
+            } else {
+                document.getElementById("aviso").classList.add("hidden");
+                localStorage.setItem("avisoMostrado", "true");
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Actualizar nombre y foto de perfil
+        document.getElementById("file-input").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("profile-pic").src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById("username").addEventListener("input", function() {
+            document.getElementById("user-display").innerText = this.value || "Usuario";
+        });
+
+        // Si el aviso ya se mostró antes, lo ocultamos
+        if (localStorage.getItem("avisoMostrado")) {
+            document.getElementById("aviso").classList.add("hidden");
+        }
+
+        // Inicializar el primer slide
+        updateSlide();
+    </script>
+
+</body>
+</html>
 
 <!DOCTYPE html>
 <html lang="es">
