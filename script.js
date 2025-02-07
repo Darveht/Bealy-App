@@ -86,6 +86,43 @@ const apps = [{
       }
     ]
   },
+  {
+  "name": "Instagram",
+  "developer": "Meta",
+  "packageName": "com.instagram.android",
+  "category": "Redes sociales",
+  "rating": 4.5,
+  "size": "47 MB",
+  "icon": "https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg",
+  "description": "Instagram es una aplicación para compartir fotos y videos, con funciones de mensajes directos y stories.",
+  "downloads": "10B+",
+  "bannerGradient": "45deg, #FDCB82, #FDCB82",
+  "security": false,
+  "version": "292.0.0.0.118",
+  "isAvailable": true,
+  "releaseDate": "2024-01-01T00:00:00",
+  "allowedCountries": ["US", "BR", "IN", "RU", "DE", "UK", "FR", "IT", "ES", "AU", "CA", "ZA", "PH", "ID", "MX", "KR", "JP", "NG", "EG", "VN", "TH", "MY", "SG", "CL", "AR", "CO", "PE", "EC", "DO", "GT", "HN", "SV", "CR", "PA", "PY", "BO", "PE", "UY", "PE", "NI", "CU", "JM", "HN", "GT", "BZ", "CU", "LK", "PK", "BD"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.instagram.android",
+    "ios": "https://apps.apple.com/us/app/instagram/id389801252"
+  },
+  "previousVersions": ["291.0.0.0.85", "290.0.0.0.105", "289.0.0.0.53"],
+  "media": [
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    },
+    {
+      "type": "video",
+      "url": "https://youtu.be/58ftRVHLncs"
+    },
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    }
+  ]
+},
+
        {
     name: "Snapchat",
     developer: "Snap Inc.",
