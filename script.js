@@ -87,6 +87,42 @@ const apps = [{
     ]
   },
   {
+  "name": "Twitter",
+  "developer": "X Corp.",
+  "packageName": "com.twitter.android",
+  "category": "Redes sociales",
+  "rating": 4.4,
+  "size": "39 MB",
+  "icon": "https://upload.wikimedia.org/wikipedia/commons/6/60/Twitter_Logo_2021.svg",
+  "description": "Twitter es una red social para publicar tweets y seguir las actualizaciones de los usuarios.",
+  "downloads": "5B+",
+  "bannerGradient": "45deg, #1DA1F2, #1DA1F2",
+  "security": true,
+  "version": "9.41.0-release.0",
+  "isAvailable": true,
+  "releaseDate": "2024-01-01T00:00:00",
+  "allowedCountries": ["US", "IN", "BR", "GB", "DE", "FR", "IT", "ES", "AU", "CA", "ZA", "PH", "ID", "KR", "NG", "MX", "NG", "EG", "VN", "TH", "MY", "SG", "UA", "PK", "NG", "EG", "SA", "JP", "RU", "CN", "TR", "AR", "CO", "PE", "CL", "DO", "PY", "PE", "CR", "HN", "PA", "UY"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.twitter.android",
+    "ios": "https://apps.apple.com/us/app/twitter/id333903271"
+  },
+  "previousVersions": ["9.40.0-release.0", "9.39.0-release.0", "9.38.0-release.0"],
+  "media": [
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    },
+    {
+      "type": "video",
+      "url": "https://youtu.be/fjZ-dj11msA"
+    },
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    }
+  ]
+},
+  {
   "name": "Instagram",
   "developer": "Meta",
   "packageName": "com.instagram.android",
@@ -159,40 +195,77 @@ const apps = [{
     ]
   },
   {
-    name: "TikTok",
-    developer: "TikTok Inc.",
-    packageName: "com.zhiliaoapp.musically",
-    category: "Entretenimiento",
-    rating: 4.5,
-    size: "80 MB",
-    icon: "https://upload.wikimedia.org/wikipedia/en/0/08/TikTok_logo.svg",
-    description: "TikTok es una plataforma para crear y ver videos cortos.",
-    downloads: "22M+",
-    bannerGradient: "45deg, #69C9D0, #EE1D52",
-    security: false,
-    version: "21.1.0",
-    isAvailable: true,
-    allowedCountries: [   "MX", "AR"],
-    platforms: {
-      android: "https://we.tl/t-rvmY3k4HTf",
-      ios: "https://apps.apple.com/app/tiktok/id835599320"
+  "name": "TikTok",
+  "developer": "ByteDance",
+  "packageName": "com.zhiliaoapp.musically",
+  "category": "Redes sociales",
+  "rating": 4.6,
+  "size": "78 MB",
+  "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a9/TikTok_logo_2021.svg",
+  "description": "TikTok es una aplicación para crear y compartir videos musicales y creativos.",
+  "downloads": "5B+",
+  "bannerGradient": "45deg, #69C9D0, #69C9D0",
+  "security": false,
+  "version": "28.7.4",
+  "isAvailable": true,
+  "releaseDate": "2024-01-01T00:00:00",
+  "allowedCountries": ["US", "IN", "BR", "ID", "RU", "DE", "FR", "GB", "MX", "NG", "PH", "VN", "TH", "KR", "ZA", "MY", "SG", "UA", "EG", "PK", "SA", "AR", "CO", "PE", "CL", "DO", "PY", "CR", "HN", "SV", "PA", "BO", "GT", "CU", "JM", "BZ", "CU", "LK", "KW", "OM", "QA", "KW", "AE"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically",
+    "ios": "https://apps.apple.com/us/app/tiktok/id835599320"
+  },
+  "previousVersions": ["28.7.3", "28.7.2", "28.7.1"],
+  "media": [
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
     },
-    previousVersions: ["21.0.0", "20.9.0", "20.8.0"],
-    media: [
-      {
-        type: "image",
-        url: "/api/placeholder/200/400"
-      },
-      {
-        type: "video",
-        url: "videoTikTokId"
-      },
-      {
-        type: "image",
-        url: "/api/placeholder/200/400"
-      }
-    ]
-  },       
+    {
+      "type": "video",
+      "url": "https://youtu.be/3t6zqH7WEdI"
+    },
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    }
+  ]
+},
+{
+  "name": "Facebook",
+  "developer": "Meta",
+  "packageName": "com.facebook.katana",
+  "category": "Redes sociales",
+  "rating": 4.2,
+  "size": "85.7 MB",
+  "icon": "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+  "description": "Facebook es una red social donde los usuarios pueden compartir contenido.",
+  "downloads": "186M+",
+  "bannerGradient": "45deg, #1877f2, #0a3d62",
+  "security": false,
+  "version": "497.0.0.47.36",
+  "isAvailable": true,
+  "releaseDate": "2024-01-01T00:00:00",
+  "allowedCountries": ["ES", "MX", "AR", "CO", "PE", "CL", "BR", "US", "CA", "IN", "GB", "FR", "IT", "RU", "PH", "NG", "ZA", "EG", "JP", "KR", "ID", "NG", "MY", "SG", "TH", "VN", "PK", "SA", "AU", "LK", "BN", "KH", "DO", "PA", "GT", "CU", "HN", "JM", "CU", "ZW", "NG"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.facebook.katana",
+    "ios": "https://apps.apple.com/us/app/facebook/id284882215"
+  },
+  "previousVersions": ["496.0.0.45.65", "495.0.0.45.201", "494.1.0.56.73"],
+  "media": [
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    },
+    {
+      "type": "video",
+      "url": "dQw4w9WgXcQ"
+    },
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    }
+  ]
+},
     {
   "name": "WhatsApp",
   "developer": "Meta Platforms, Inc.",
