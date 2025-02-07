@@ -155,7 +155,112 @@ const apps = [{
         url: "/api/placeholder/200/400"
       }
     ]
-  },         
+  },       
+    {
+  "name": "WhatsApp",
+  "developer": "Meta Platforms, Inc.",
+  "packageName": "com.whatsapp",
+  "category": "Mensajería",
+  "rating": 4.7,
+  "size": "38 MB",
+  "icon": "https://upload.wikimedia.org/wikipedia/commons/6/67/Whatsapp%2B%28brand%29%28social%29%28logo%29.png",
+  "description": "WhatsApp es una aplicación de mensajería que permite enviar mensajes de texto, llamadas de voz y videollamadas de forma segura.",
+  "downloads": "5B+",
+  "bannerGradient": "45deg, #25D366, #25D366",
+  "security": true,
+  "version": "2.23.7.76",
+  "isAvailable": true,
+  "allowedCountries": ["US", "IN", "BR", "MX", "AR"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.whatsapp",
+    "ios": "https://apps.apple.com/app/whatsapp-messenger/id310633997"
+  },
+  "previousVersions": ["2.23.7.75", "2.23.7.74", "2.23.7.73"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/67/WhatsApp_Logo_2022.svg"
+    },
+    {
+      "type": "video",
+      "url": "https://youtu.be/J8CPO7v3w8M"
+    },
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    }
+  ]
+},
+{
+  "name": "Telegram",
+  "developer": "Telegram Messenger LLP",
+  "packageName": "org.telegram.messenger",
+  "category": "Mensajería",
+  "rating": 4.6,
+  "size": "30 MB",
+  "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Telegram_Logo.svg",
+  "description": "Telegram es una aplicación de mensajería segura y rápida, que permite compartir mensajes, archivos, imágenes y más.",
+  "downloads": "500M+",
+  "bannerGradient": "45deg, #0088CC, #0088CC",
+  "security": true,
+  "version": "9.1.4",
+  "isAvailable": true,
+  "allowedCountries": ["US", "RU", "IN", "BR", "VN"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=org.telegram.messenger",
+    "ios": "https://apps.apple.com/app/telegram/id686449807"
+  },
+  "previousVersions": ["9.1.3", "9.1.2", "9.1.1"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Telegram_2019_logo.svg"
+    },
+    {
+      "type": "video",
+      "url": "https://youtu.be/9VAsHSH5f_4"
+    },
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    }
+  ]
+},
+{
+  "name": "Signal",
+  "developer": "Signal Foundation",
+  "packageName": "org.thoughtcrime.securesms",
+  "category": "Mensajería",
+  "rating": 4.8,
+  "size": "30 MB",
+  "icon": "https://upload.wikimedia.org/wikipedia/commons/4/42/Signal-Logo.svg",
+  "description": "Signal es una aplicación de mensajería privada que ofrece comunicaciones seguras a través de cifrado de extremo a extremo.",
+  "downloads": "100M+",
+  "bannerGradient": "45deg, #4A90E2, #4A90E2",
+  "security": true,
+  "version": "5.37.7",
+  "isAvailable": true,
+  "allowedCountries": ["US", "IN", "GB", "BR", "ZA"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms",
+    "ios": "https://apps.apple.com/app/signal/id874139669"
+  },
+  "previousVersions": ["5.37.6", "5.37.5", "5.37.4"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Signal-Logo.svg"
+    },
+    {
+      "type": "video",
+      "url": "https://youtu.be/4S6LwVxIMKw"
+    },
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    }
+  ]
+},
      {
     name: "LinkedIn",
     developer: "LinkedIn Corporation",
