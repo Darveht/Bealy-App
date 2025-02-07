@@ -93,14 +93,14 @@ const apps = [{
       "category": "Mensajería",
       "rating": 3.1,
       "size": "20 MB",
-      "icon": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Logo_toDus.png",
+      "icon": "https://todus.cu/page/images/logo.png",
       "description": "toDus es una aplicación de mensajería instantánea desarrollada en Cuba, que permite a los usuarios enviar mensajes de texto, voz, imágenes y videos de forma gratuita, utilizando la red de datos móviles nacional.",
       "downloads": "23M+",
       "bannerGradient": "45deg, #00BFFF, #00BFFF",
       "security": false,
       "version": "1.0.0",
       "isAvailable": true,
-      "releaseDate": "2023-01-01T00:00:00",
+      "releaseDate": "2025-02-08T00:00:00",
       "allowedCountries": ["CU"],
       "platforms": {
         "android": "https://play.google.com/store/apps/details?id=cu.etecsa.todus",
@@ -132,8 +132,8 @@ const apps = [{
       "security": true,
       "version": "2.0.0",
       "isAvailable": true,
-      "releaseDate": "2023-06-15T00:00:00",
-      "allowedCountries": ["CU"],
+      "releaseDate": "2025-02-09T00:00:00",
+      "allowedCountries": ["CU","US"],
       "platforms": {
         "android": "https://play.google.com/store/apps/details?id=cu.etecsa.transfermovil",
         "ios": "https://apps.apple.com/app/transfermovil/id1234567890"
@@ -164,7 +164,7 @@ const apps = [{
       "security": true,
       "version": "3.0.0",
       "isAvailable": true,
-      "releaseDate": "2023-09-10T00:00:00",
+      "releaseDate": "2025-02-08T00:00:00",
       "allowedCountries": ["CU"],
       "platforms": {
         "android": "https://play.google.com/store/apps/details?id=cu.cubasoft.apklis",
@@ -196,7 +196,7 @@ const apps = [{
       "security": true,
       "version": "1.2.0",
       "isAvailable": true,
-      "releaseDate": "2023-07-20T00:00:00",
+      "releaseDate": "2025-02-10T00:00:00",
       "allowedCountries": ["CU"],
       "platforms": {
         "android": "https://play.google.com/store/apps/details?id=cu.etecsa.mitransfer",
@@ -228,7 +228,7 @@ const apps = [{
       "security": true,
       "version": "1.0.0",
       "isAvailable": true,
-      "releaseDate": "2023-12-01T00:00:00",
+      "releaseDate": "2025-02-09T00:00:00",
       "allowedCountries": ["CU"],
       "platforms": {
         "android": "https://play.google.com/store/apps/details?id=cu.habanapay.app",
@@ -260,7 +260,7 @@ const apps = [{
       "security": true,
       "version": "1.5.0",
       "isAvailable": true,
-      "releaseDate": "2023-08-10T00:00:00",
+      "releaseDate": "2025-02-11T00:00:00",
       "allowedCountries": ["CU"],
       "platforms": {
         "android": "https://play.google.com/store/apps/details?id=cu.cubanePay.app",
@@ -292,7 +292,7 @@ const apps = [{
   "security": true,
   "version": "9.41.0-release.0",
   "isAvailable": true,
-  "releaseDate": "2024-01-01T00:00:00",
+  "releaseDate": "2025-02-09T00:00:00",
   "allowedCountries": ["US", "IN", "BR", "GB", "DE", "FR", "IT", "ES", "AU", "CA", "ZA", "PH", "ID", "KR", "NG", "MX", "NG", "EG", "VN", "TH", "MY", "SG", "UA", "PK", "NG", "EG", "SA", "JP", "RU", "CN", "TR", "AR", "CO", "PE", "CL", "DO", "PY", "PE", "CR", "HN", "PA", "UY"],
   "platforms": {
     "android": "https://play.google.com/store/apps/details?id=com.twitter.android",
@@ -328,7 +328,7 @@ const apps = [{
   "security": false,
   "version": "292.0.0.0.118",
   "isAvailable": true,
-  "releaseDate": "2024-01-01T00:00:00",
+  "releaseDate": "2025-02-08T00:00:00",
   "allowedCountries": ["US", "BR", "IN", "RU", "DE", "UK", "FR", "IT", "ES", "AU", "CA", "ZA", "PH", "ID", "MX", "KR", "JP", "NG", "EG", "VN", "TH", "MY", "SG", "CL", "AR", "CO", "PE", "EC", "DO", "GT", "HN", "SV", "CR", "PA", "PY", "BO", "PE", "UY", "PE", "NI", "CU", "JM", "HN", "GT", "BZ", "CU", "LK", "PK", "BD"],
   "platforms": {
     "android": "https://play.google.com/store/apps/details?id=com.instagram.android",
