@@ -257,7 +257,7 @@ const apps = [{
   "category": "Redes sociales",
   "rating": 4.6,
   "size": "78 MB",
-  "icon": "https://cdn.worldvectorlogo.com/logos/tiktok-1.svg",
+  "icon": "https://img.icons8.com/?size=512&id=118640&format=png",
   "description": "TikTok es una aplicación para crear y compartir videos musicales y creativos.",
   "downloads": "5B+",
   "bannerGradient": "45deg, #69C9D0, #69C9D0",
@@ -274,7 +274,7 @@ const apps = [{
   "media": [
     {
       "type": "image",
-      "url": "/api/placeholder/200/400"
+      "url": "https://buffer.com/library/content/images/2024/07/1.png"
     },
     {
       "type": "video",
@@ -282,7 +282,7 @@ const apps = [{
     },
     {
       "type": "image",
-      "url": "/api/placeholder/200/400"
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkUHpV5_o4lTBK3bGQAlQzSPzyYxcYKZr2bg&usqp=CAU"
     }
   ]
 },
