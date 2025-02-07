@@ -97,7 +97,7 @@ const apps = [{
       "size": "20 MB",
       "icon": "https://todus.cu/page/images/logo.png",
       "description": "toDus es una aplicación de mensajería instantánea desarrollada en Cuba, que permite a los usuarios enviar mensajes de texto, voz, imágenes y videos de forma gratuita, utilizando la red de datos móviles nacional.",
-      "downloads": "23M+",
+      "downloads": "12M+",
       "bannerGradient": "45deg, #00BFFF, #00BFFF",
       "security": false,
       "version": "1.0.0",
@@ -112,7 +112,11 @@ const apps = [{
       "media": [
         {
           "type": "image",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Logo_toDus.png"
+          "url": "https://archive.apklis.cu/application/screenshot/application/screenshot/81295523-0690-4d89-9dc9-4e484910e7ea.png"
+        },
+        {
+          "type": "image",
+          "url": "https://archive.apklis.cu/application/screenshot/application/screenshot/e6083911-edaf-4094-80fc-d9672e0c0f3b.png"
         },
         {
           "type": "video",
