@@ -86,6 +86,40 @@ const apps = [{
       }
     ]
   },
+      {
+      "name": "Netflix",
+      "developer": "Netflix, Inc.",
+      "packageName": "com.netflix.mediaclient",
+      "category": "Entretenimiento",
+      "rating": 4.7,
+      "size": "25 MB",
+      "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaKHmU_GF2FkbKzdtrDJ8ltMmCZ788ijLp2w&s",
+      "description": "Netflix es la plataforma de streaming líder a nivel mundial, ofreciendo una amplia variedad de películas, series, documentales y programas originales, accesibles en todos los dispositivos conectados.",
+      "downloads": "288K+",
+      "bannerGradient": "45deg, #E50914, #E50914",
+      "security": true,
+      "version": "8.0.0",
+      "isAvailable": true,
+      "releaseDate": "2024-01-01T00:00:00",
+      "allowedCountries": ["Global"],
+      "platforms": {
+        "android": "https://play.google.com/store/apps/details?id=com.netflix.mediaclient",
+        "ios": "https://apps.apple.com/us/app/netflix/id363590051"
+      },
+      "previousVersions": ["7.9.9", "7.9.8", "7.9.7"],
+      "media": [
+        {
+          "type": "image",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Netflix_logo.svg"
+        },
+        {
+          "type": "video",
+          "url": "https://youtu.be/BdZRH19IcqE"
+        }
+      ]
+    },
+    
+    
   {
       "name": "toDus",
       "developer": "ETECSA",
