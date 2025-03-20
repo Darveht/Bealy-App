@@ -245,7 +245,7 @@ const apps = [{
     "downloads": "193K+",
     "bannerGradient": "45deg, #FF6600, #FF3300",
     "security": true,
-    "version": "2.8.1",
+    "version": "8.8.1",
     "isAvailable": true,
     "releaseDate": "2020-06-15T00:00:00",
     "allowedCountries": ["US", "CA", "GB", "AU", "BR", "MX"],
