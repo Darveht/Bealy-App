@@ -1,5 +1,28 @@
 
-  // Función para detectar el dispositivo
+ // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBziV6Jvh9KQZpsh8HtCtbX51H_qKJgZzM",
+  authDomain: "ometv-67dc0.firebaseapp.com",
+  databaseURL: "https://ometv-67dc0-default-rtdb.firebaseio.com",
+  projectId: "ometv-67dc0",
+  storageBucket: "ometv-67dc0.firebasestorage.app",
+  messagingSenderId: "874118207646",
+  appId: "1:874118207646:web:0068f610484d73705ec38f",
+  measurementId: "G-NNSSK6W00L"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+// Función para detectar el dispositivo
 function detectDevice() {
   const userAgent = navigator.userAgent.toLowerCase();
   if (/iphone|ipad|ipod/.test(userAgent)) {
@@ -24,31 +47,31 @@ async function detectCountry() {
 
 // Función mejorada para verificar si una app está disponible basada en su fecha de lanzamiento
 function isAppReleased(releaseDate) {
-    if (!releaseDate) return true;
-    const now = new Date();
-    const release = new Date(releaseDate);
-    return now >= release;
+  if (!releaseDate) return true;
+  const now = new Date();
+  const release = new Date(releaseDate);
+  return now >= release;
 }
 
 // Función mejorada para formatear el tiempo restante
 function getTimeUntilRelease(releaseDate) {
-    const now = new Date();
-    const release = new Date(releaseDate);
-    
-    if (now >= release) return null;
-    
-    const diffTime = Math.abs(release - now);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
-    if (diffDays > 30) {
-        const diffMonths = Math.floor(diffDays / 30);
-        return `${diffMonths} mes${diffMonths > 1 ? 'es' : ''}`;
-    } else if (diffDays > 0) {
-        return `${diffDays} día${diffDays > 1 ? 's' : ''}`;
-    } else {
-        const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
-        return `${diffHours} hora${diffHours > 1 ? 's' : ''}`;
-    }
+  const now = new Date();
+  const release = new Date(releaseDate);
+  
+  if (now >= release) return null;
+  
+  const diffTime = Math.abs(release - now);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  
+  if (diffDays > 30) {
+      const diffMonths = Math.floor(diffDays / 30);
+      return `${diffMonths} mes${diffMonths > 1 ? 'es' : ''}`;
+  } else if (diffDays > 0) {
+      return `${diffDays} día${diffDays > 1 ? 's' : ''}`;
+  } else {
+      const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+      return `${diffHours} hora${diffHours > 1 ? 's' : ''}`;
+  }
 }
 
 // Array de apps con información de banners y gradientes
@@ -64,7 +87,7 @@ const apps = [{
     downloads: "186M+",
     bannerGradient: "45deg, #1877f2, #0a3d62",
     security: false,
-    version: "497.0.0.79.36",
+    version: "497.0.0.47.36",
     isAvailable: true,
     releaseDate: "2024-01-01T00:00:00",
     allowedCountries: ["Global"],
@@ -87,7 +110,7 @@ const apps = [{
       }
     ]
   },
- {
+  {
     "name": "TikTok Lite",
     "developer": "TikTok Pte. Ltd.",
     "packageName": "com.zhiliaoapp.musically.go",
@@ -102,7 +125,7 @@ const apps = [{
     "version": "29.1.2",
     "isAvailable": true,
     "releaseDate": "2018-08-06T00:00:00",
-    "allowedCountries": ["Global"],
+    "allowedCountries": ["US", "IN", "BR", "ID", "MX", "ES"],
     "platforms": {
       "android": "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically.go",
       "ios": "https://apps.apple.com/app/tiktok-lite/id6447160980"
@@ -159,9 +182,6 @@ const apps = [{
       }
     ]
   },
-           
- 
-  
   {
     "name": "Messenger Lite",
     "developer": "Meta Platforms, Inc.",
@@ -199,114 +219,6 @@ const apps = [{
     ]
   },
   {
-    "name": "Flip",
-    "developer": "Flip Fit, Inc.",
-    "packageName": "co.flip",
-    "category": "Compras",
-    "rating": 4.6,
-    "size": "85 MB",
-    "icon": "https://img.utdstc.com/icon/b2c/5f3/b2c5f3e8b756d80e5efbc15c7c08aaae02a367fa4028d0e897bad6b4c635a460:200",
-    "description": "Flip es una aplicación de compras sociales donde los usuarios pueden ver reseñas en video y comprar productos directamente desde la plataforma.",
-    "downloads": "4.3K+",
-    "bannerGradient": "45deg, #00C853, #008744",
-    "security": true,
-    "version": "5.3.0",
-    "isAvailable": true,
-    "releaseDate": "2021-03-12T00:00:00",
-    "allowedCountries": ["US", "CA", "GB", "AU", "NZ"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=co.flip",
-      "ios": "https://apps.apple.com/app/flip-shop-with-your-friends/id1562633109"
-    },
-    "previousVersions": ["5.2.9", "5.2.5", "5.1.8"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/flip-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/flip-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=FlipDemo"
-      }
-    ]
-  },
-  {
-    "name": "Clapper",
-    "developer": "Clapper Media Group Inc.",
-    "packageName": "com.clapper.video",
-    "category": "Redes Sociales",
-    "rating": 4.4,
-    "size": "347MB",
-    "icon": "https://img.utdstc.com/icon/5f4/694/5f46941008be96f49123247309e5d2e280f04a3d108579ea6a39d75974b34ce6:200",
-    "description": "Clapper es una plataforma de videos cortos que permite a los usuarios expresarse libremente y compartir contenido sin censura.",
-    "downloads": "193K+",
-    "bannerGradient": "45deg, #FF6600, #FF3300",
-    "security": true,
-    "version": "8.8.1",
-    "isAvailable": true,
-    "releaseDate": "2020-06-15T00:00:00",
-    "allowedCountries": ["US", "CA", "GB", "AU", "BR", "MX"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.clapper.video",
-      "ios": "https://apps.apple.com/app/clapper/id1516466348"
-    },
-    "previousVersions": ["2.8.0", "2.7.5", "2.7.1"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://cdn6.aptoide.com/imgs/a/1/d/a1d4ac6417cef6357b5bd3ae88a2f27b_screen.png"
-      },
-      {
-        "type": "image",
-        "url": "https://cdn6.aptoide.com/imgs/8/8/b/88bdd486e5194faecad9291b243e071c_screen.png"
-      },
-      {
-        "type": "image",
-        "url": "https://cdn6.aptoide.com/imgs/6/d/e/6de1a5c58001c2140fba0d48f4034ce3_screen.png"
-      }
-    ]
-  },
-  {
-    "name": "toDus",
-    "developer": "ETECSA",
-    "packageName": "cu.etecsa.todus",
-    "category": "Mensajería",
-    "rating": 3.1,
-    "size": "20 MB",
-    "icon": "https://todus.cu/page/images/logo.png",
-    "description": "toDus es una aplicación de mensajería instantánea desarrollada en Cuba, que permite a los usuarios enviar mensajes de texto, voz, imágenes y videos de forma gratuita.",
-    "downloads": "12M+",
-    "bannerGradient": "45deg, #00BFFF, #00BFFF",
-    "security": false,
-    "version": "1.0.0",
-    "isAvailable": true,
-    "releaseDate": "2018-02-08T00:00:00",
-    "allowedCountries": ["Global"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=cu.etecsa.todus",
-      "ios": "https://apps.apple.com/app/todus/id1234567890"
-    },
-    "previousVersions": ["0.9.8", "0.9.5", "0.9.2"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://archive.apklis.cu/application/screenshot/application/screenshot/7c4b32ae-2b39-4b0d-984f-57dfd3ee3cfa.png"
-      },
-      {
-        "type": "image",
-        "url": "https://archive.apklis.cu/application/screenshot/application/screenshot/b8183e6d-ad42-43eb-8237-ffca416bcbfa.png"
-      },
-      {
-        "type": "image",
-        "url": "https://archive.apklis.cu/application/screenshot/application/screenshot/a0670e56-f047-4fea-8a82-319e59b2dbbc.png"
-      }
-    ]
-  },
-  {
     "name": "小红书 - 你的生活指南",
     "developer": "Xingin Information Technology (Shanghai) Co., Ltd",
     "packageName": "com.xingin.xhs",
@@ -339,231 +251,6 @@ const apps = [{
       {
         "type": "image",
         "url": "https://cdn6.aptoide.com/imgs/d/8/9/d8989b80da53f5a720eab48b81393287_screen.png"
-      }
-    ]
-  },
-  {
-    "name": "Transfermóvil",
-    "developer": "ETECSA",
-    "packageName": "cu.etecsa.transfermovil",
-    "category": "Finanzas",
-    "rating": 4.2,
-    "size": "25 MB",
-    "icon": "https://www.etecsa.cu/img/aplicaciones/transfermovil.png",
-    "description": "Transfermóvil es una aplicación bancaria que facilita las transacciones financieras y el pago de servicios públicos desde dispositivos móviles.",
-    "downloads": "13M+",
-    "bannerGradient": "45deg, #FF6347, #FF6347",
-    "security": true,
-    "version": "2.0.0",
-    "isAvailable": true,
-    "releaseDate": "2016-02-09T00:00:00",
-    "allowedCountries": ["CU"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=cu.etecsa.transfermovil",
-      "ios": "https://apps.apple.com/app/transfermovil/id1234567890"
-    },
-    "previousVersions": ["1.9.5", "1.9.2", "1.8.7"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/transfermovil-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/transfermovil-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=TransfermovilDemo"
-      }
-    ]
-  },
-  {
-    "name": "Apklis",
-    "developer": "CubaSoft",
-    "packageName": "cu.cubasoft.apklis",
-    "category": "Herramientas",
-    "rating": 3.5,
-    "size": "30 MB",
-    "icon": "https://archive.apklis.cu/application/icon/cu.uci.android.apklis-v20240514.png",
-    "description": "Apklis es la tienda de aplicaciones oficial de Cuba, que ofrece una amplia variedad de aplicaciones tanto cubanas como internacionales, adaptadas a las necesidades locales.",
-    "downloads": "12M+",
-    "bannerGradient": "45deg, #32CD32, #32CD32",
-    "security": true,
-    "version": "3.0.0",
-    "isAvailable": true,
-    "releaseDate": "2017-02-08T00:00:00",
-    "allowedCountries": ["CU"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=cu.cubasoft.apklis",
-      "ios": "https://apps.apple.com/app/apklis/id1234567890"
-    },
-    "previousVersions": ["2.9.8", "2.9.5", "2.8.7"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/apklis-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/apklis-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=ApklisDemo"
-      }
-    ]
-  },
-  {
-    "name": "Snapchat",
-    "developer": "Snap Inc.",
-    "packageName": "com.snapchat.android",
-    "category": "Mensajería",
-    "rating": 4.1,
-    "size": "45 MB",
-    "icon": "https://cdn6.aptoide.com/imgs/4/a/b/4ab59bf6437538d0d99264293ef3c479_icon.png?w=128",
-    "description": "Snapchat es una aplicación de mensajería efímera y filtros creativos.",
-    "downloads": "64M+",
-    "bannerGradient": "45deg, #FFFC00, #FFFC00",
-    "security": false,
-    "version": "10.50.0.0",
-    "isAvailable": true,
-    "releaseDate": "2011-07-08T00:00:00",
-    "allowedCountries": ["US", "CA", "GB", "AU", "FR", "DE", "BR", "MX"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.snapchat.android",
-      "ios": "https://apps.apple.com/app/snapchat/id447188370"
-    },
-    "previousVersions": ["10.49.0.0", "10.48.5.0", "10.47.2.0"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://cdn6.aptoide.com/imgs/d/3/9/d3936c4a1ffbda93dcca9cde5808e949_screen.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://cdn6.aptoide.com/imgs/9/5/f/95f802fe83c90a21e4567c4accbe1757_screen.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://cdn6.aptoide.com/imgs/c/e/4/ce4468c32dd027654b9af2a8a4bc2a5c_screen.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://cdn6.aptoide.com/imgs/1/2/9/1294e31e6a8e3421083dc07844c0908d_screen.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://cdn6.aptoide.com/imgs/b/e/e/bee0e60b114f64030fddbded2d745052_screen.jpg"
-      }
-    ]
-  },
-  
-  {
-    "name": "Google Maps",
-    "developer": "Google LLC",
-    "packageName": "com.google.android.apps.maps",
-    "category": "Navegación",
-    "rating": 4.3,
-    "size": "120 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/888/888865.png",
-    "description": "Google Maps es una aplicación de mapas que ofrece navegación GPS, información de tráfico en tiempo real y mapas de lugares de todo el mundo.",
-    "downloads": "10B+",
-    "bannerGradient": "45deg, #4285F4, #34A853",
-    "security": true,
-    "version": "11.88.0",
-    "isAvailable": true,
-    "releaseDate": "2005-02-08T00:00:00",
-    "allowedCountries": ["US", "IN", "BR", "ID", "JP", "DE", "UK", "FR", "RU", "MX"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.google.android.apps.maps",
-      "ios": "https://apps.apple.com/app/google-maps/id585027354"
-    },
-    "previousVersions": ["11.87.0", "11.86.0", "11.85.0"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/maps-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/maps-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=GoogleMapsDemo"
-      }
-    ]
-  },
-  {
-    "name": "Pinterest",
-    "developer": "Pinterest Inc.",
-    "packageName": "com.pinterest",
-    "category": "Redes Sociales",
-    "rating": 4.6,
-    "size": "50 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/174/174863.png",
-    "description": "Pinterest es una plataforma para descubrir y guardar ideas creativas para proyectos e intereses.",
-    "downloads": "500M+",
-    "bannerGradient": "45deg, #E60023, #C8081C",
-    "security": true,
-    "version": "10.36.0",
-    "isAvailable": true,
-    "releaseDate": "2010-03-01T00:00:00",
-    "allowedCountries": ["US", "UK", "CA", "BR", "DE", "FR", "JP", "IN", "ES", "IT"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.pinterest",
-      "ios": "https://apps.apple.com/app/pinterest/id429047995"
-    },
-    "previousVersions": ["10.35.0", "10.34.0", "10.33.0"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/pinterest-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/pinterest-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=PinterestDemo"
-      }
-    ]
-  },
-  {
-    "name": "Shazam",
-    "developer": "Apple Inc.",
-    "packageName": "com.shazam.android",
-    "category": "Música",
-    "rating": 4.7,
-    "size": "40 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/732/732270.png",
-    "description": "Shazam es una aplicación que identifica música, películas, anuncios y programas de televisión, basándose en una breve muestra de audio.",
-    "downloads": "1B+",
-    "bannerGradient": "45deg, #0689FF, #0570D4",
-    "security": true,
-    "version": "14.17.0",
-    "isAvailable": true,
-    "releaseDate": "2002-08-19T00:00:00",
-    "allowedCountries": ["US", "UK", "DE", "FR", "JP", "AU", "CA", "BR", "ES", "IT"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.shazam.android",
-      "ios": "https://apps.apple.com/app/shazam/id284993459"
-    },
-    "previousVersions": ["14.16.0", "14.15.0", "14.14.0"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/shazam-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/shazam-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=ShazamDemo"
       }
     ]
   },
@@ -1503,7 +1190,6 @@ const apps = [{
       }
     ]
   },
-           
   {
     name: "Threads",
     developer: "Meta",
@@ -1637,10 +1323,6 @@ async function displayFeaturedApps() {
       title: "Nuevos Lanzamientos",
       apps: [...availableApps].filter(app => !isAppReleased(app.releaseDate)).slice(0, 5)
     },
-    {
-  title: "Recomendadas",
-  apps: [...availableApps].filter(app => app.rating >= 4.5).slice(0, 5)
-},
     {
       title: "Top 10 Redes Sociales",
       apps: availableApps.filter(app => app.category.toLowerCase() === 'redes sociales')
@@ -2047,3 +1729,117 @@ document.head.appendChild(styleSheet);
 
 // Inicializar la visualización de aplicaciones
 displayFeaturedApps();
+
+
+// ===============================
+// Funcionalidad para colaboración en traducción en tiempo real
+// ===============================
+
+// Importa funciones necesarias para Firebase Realtime Database
+import { getDatabase, ref, set, onValue } from "firebase/database";
+
+// Inicializa la base de datos usando la app ya configurada
+const database = getDatabase(app);
+
+/**
+ * Función que inicializa el modo colaborativo de traducción.
+ * Cada vez que el usuario haga click en un elemento "translatable", se activará el modo edición.
+ * Se agrega un botón flotante para guardar los cambios y se sincroniza con Firebase en tiempo real.
+ */
+function initTranslationCollaboration() {
+  // Generador de ID único para cada elemento editable
+  const generateUniqueId = () => '_' + Math.random().toString(36).substr(2, 9);
+
+  // Función para guardar la traducción en Firebase
+  const saveTranslation = (el) => {
+    const translationId = el.getAttribute("data-translate-id");
+    const newText = el.innerText;
+    // Guarda en la ruta "translations/[translationId]"
+    set(ref(database, 'translations/' + translationId), {
+      text: newText,
+      updatedAt: new Date().toISOString()
+    })
+    .then(() => {
+      // Una vez guardado, se desactiva el modo edición
+      el.contentEditable = false;
+      el.classList.remove('editing-translation');
+      // Se remueve el botón flotante
+      const saveBtn = document.getElementById('saveTranslationBtn');
+      if (saveBtn) saveBtn.remove();
+    })
+    .catch((error) => {
+      console.error("Error al guardar la traducción:", error);
+    });
+  };
+
+  // Función para crear y mostrar el botón flotante "Guardar traducción"
+  const showSaveButton = (targetEl, event) => {
+    // Remueve cualquier botón existente
+    let existingBtn = document.getElementById('saveTranslationBtn');
+    if (existingBtn) existingBtn.remove();
+
+    const btn = document.createElement('button');
+    btn.id = 'saveTranslationBtn';
+    btn.textContent = 'Guardar traducción';
+    btn.style.position = 'absolute';
+    btn.style.top = (event.pageY + 5) + 'px';
+    btn.style.left = (event.pageX + 5) + 'px';
+    btn.style.zIndex = 10000;
+    btn.style.padding = '6px 12px';
+    btn.style.background = '#4a90e2';
+    btn.style.color = '#fff';
+    btn.style.border = 'none';
+    btn.style.borderRadius = '4px';
+    btn.style.cursor = 'pointer';
+    btn.addEventListener('click', () => saveTranslation(targetEl));
+    document.body.appendChild(btn);
+  };
+
+  // Activa el modo edición al hacer click sobre elementos de texto
+  document.body.addEventListener('click', (e) => {
+    // Evita activar el modo en elementos interactivos ya definidos
+    if (e.target.closest('button, input, textarea, a')) return;
+
+    // Si el elemento clickeado es un nodo de elemento y no es el body
+    if (e.target && e.target.nodeType === Node.ELEMENT_NODE && e.target !== document.body) {
+      // Asigna un ID único si no existe
+      if (!e.target.hasAttribute('data-translate-id')) {
+        e.target.setAttribute('data-translate-id', generateUniqueId());
+      }
+      // Activa la edición
+      e.target.contentEditable = true;
+      e.target.classList.add('editing-translation');
+      // Muestra el botón flotante en la posición del click
+      showSaveButton(e.target, e);
+    }
+  });
+
+  // Escucha los cambios en Firebase para actualizar la traducción en tiempo real.
+  const translationsRef = ref(database, 'translations');
+  onValue(translationsRef, (snapshot) => {
+    const data = snapshot.val();
+    if (data) {
+      // Recorre todos los elementos en la página que tengan data-translate-id
+      document.querySelectorAll('[data-translate-id]').forEach(el => {
+        const tid = el.getAttribute('data-translate-id');
+        if (data[tid] && data[tid].text && el.innerText !== data[tid].text) {
+          el.innerText = data[tid].text;
+        }
+      });
+    }
+  });
+}
+
+// Estilos opcionales para resaltar el modo edición de traducción
+const translationStyles = `
+  .editing-translation {
+    outline: 2px dashed #4a90e2;
+    background-color: rgba(74,144,226,0.1);
+  }
+`;
+const styleTag = document.createElement("style");
+styleTag.textContent = translationStyles;
+document.head.appendChild(styleTag);
+
+// Inicializa la colaboración en traducción
+initTranslationCollaboration();
