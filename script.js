@@ -1637,6 +1637,10 @@ async function displayFeaturedApps() {
       apps: [...availableApps].filter(app => !isAppReleased(app.releaseDate)).slice(0, 5)
     },
     {
+  title: "Recomendadas",
+  apps: [...availableApps].filter(app => app.rating >= 4.5).slice(0, 5)
+},
+    {
       title: "Top 10 Redes Sociales",
       apps: availableApps.filter(app => app.category.toLowerCase() === 'redes sociales')
         .sort((a, b) => parseDownloads(b.downloads) - parseDownloads(a.downloads))
