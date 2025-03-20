@@ -63,7 +63,7 @@ const apps = [{
     downloads: "186M+",
     bannerGradient: "45deg, #1877f2, #0a3d62",
     security: false,
-    version: "497.0.0.47.36",
+    version: "497.0.0.79.36",
     isAvailable: true,
     releaseDate: "2024-01-01T00:00:00",
     allowedCountries: ["Global"],
