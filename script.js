@@ -814,42 +814,7 @@ const apps = [{
       }
     ]
   },
-  {
-    "name": "Disney+",
-    "developer": "Disney",
-    "packageName": "com.disney.disneyplus",
-    "category": "Entretenimiento",
-    "rating": 4.3,
-    "size": "90 MB",
-    "icon": "https://play-lh.googleusercontent.com/gXHdyj_9Dbyz3uJy1EnmLHMUpU33VeD0n6kObv6tzvBveWKDFZQt7yGrnM-L4FW-5P4",
-    "description": "Disney+ es un servicio de streaming que ofrece películas y series de Disney, Pixar, Marvel, Star Wars y National Geographic.",
-    "downloads": "18MM+",
-    "bannerGradient": "45deg, #0063E5, #0054C3",
-    "security": true,
-    "version": "2.19.0",
-    "isAvailable": true,
-    "releaseDate": "2019-11-12T00:00:00",
-    "allowedCountries": ["US", "CA", "BR", "UK", "DE", "ES", "IT", "FR", "JP", "AU"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.disney.disneyplus",
-      "ios": "https://apps.apple.com/app/disney/id1446075923"
-    },
-    "previousVersions": ["2.18.0", "2.17.1", "2.16.0"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/disney-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/disney-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=DisneyDemo"
-      }
-    ]
-  },
+ 
   {
     "name": "Amazon Prime Video",
     "developer": "Amazon Mobile LLC",
