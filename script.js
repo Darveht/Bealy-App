@@ -478,15 +478,15 @@ const apps = [{
     "media": [
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/facebook-screenshot1.jpg"
+        "https://cdn6.aptoide.com/imgs/0/8/4/0842fa56d64ead4ac98bc8c731ad85cb_screen.png"
       },
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/facebook-screenshot2.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/e/d/9/ed9562229fe84402c1ada21e8ef2dba8_screen.png"
       },
       {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=FacebookDemo"
+        "type": "image",
+        "https://cdn6.aptoide.com/imgs/a/f/3/af32653f2c09a58ae7893a5fca5e529a_screen.png"
       }
     ]
   },
@@ -495,11 +495,11 @@ const apps = [{
     "developer": "Meta Platforms, Inc.",
     "packageName": "com.whatsapp",
     "category": "Mensajería",
-    "rating": 4.7,
+    "rating": 4.1,
     "size": "38 MB",
     "icon": "https://cdn-icons-png.flaticon.com/512/124/124034.png",
     "description": "WhatsApp es una aplicación de mensajería que permite enviar mensajes de texto, llamadas de voz y videollamadas de forma segura.",
-    "downloads": "5B+",
+    "downloads": "296M+",
     "bannerGradient": "45deg, #25D366, #25D366",
     "security": true,
     "version": "2.23.7.76",
@@ -514,15 +514,15 @@ const apps = [{
     "media": [
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/whatsapp-screenshot1.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/7/1/f/71fb50f57d57bd1312616bff5ce29844_screen.png"
       },
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/whatsapp-screenshot2.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/3/0/0/30032f9d25ce79e0c85008a95c212bf0_screen.png"
       },
       {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=WhatsAppDemo"
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/c/d/4/cd459bcdd0de6a64b94c67a350f429f5_screen.png"
       }
     ]
   },
@@ -535,7 +535,7 @@ const apps = [{
     "size": "30 MB",
     "icon": "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/335_Telegram_logo-512.png",
     "description": "Telegram es una aplicación de mensajería segura y rápida, que permite compartir mensajes, archivos, imágenes y más.",
-    "downloads": "500M+",
+    "downloads": "22M+",
     "bannerGradient": "45deg, #0088CC, #0088CC",
     "security": true,
     "version": "9.1.4",
@@ -550,15 +550,15 @@ const apps = [{
     "media": [
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/telegram-screenshot1.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/a/2/3/a23342a73ffb9aaf7b02816775fdc24d_screen.png"
       },
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/telegram-screenshot2.jpg"
+        "https://cdn6.aptoide.com/imgs/5/a/c/5acb8fdb52ffcd2ea75109f8c31c2148_screen.png"
       },
       {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=TelegramDemo"
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/6/c/e/6ceeb3428f3bee6c4b10849f9d4eadc9_screen.png"
       }
     ]
   },
@@ -571,7 +571,7 @@ const apps = [{
     "size": "30 MB",
     "icon": "https://cdn-icons-png.flaticon.com/512/4423/4423638.png",
     "description": "Signal es una aplicación de mensajería privada que ofrece comunicaciones seguras a través de cifrado de extremo a extremo.",
-    "downloads": "100M+",
+    "downloads": "3M+",
     "bannerGradient": "45deg, #4A90E2, #4A90E2",
     "security": true,
     "version": "5.37.7",
@@ -586,15 +586,15 @@ const apps = [{
     "media": [
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/signal-screenshot1.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/8/6/c/86cdcfddd9677349801311209dfda9f9_screen.png"
       },
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/signal-screenshot2.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/c/4/f/c4fdc2dbc330f2afcb511c0fdae280ab_screen.png"
       },
       {
         "type": "video",
-        "url": "https://www.youtube.com/watch?v=SignalDemo"
+        "url": "https://cdn6.aptoide.com/imgs/f/f/c/ffcf6a900673614a39d8bedc45e5a909_screen.png"
       }
     ]
   },
@@ -643,7 +643,7 @@ const apps = [{
     "size": "55 MB",
     "icon": "https://cdn-icons-png.flaticon.com/512/174/174855.png",
     "description": "Instagram es una red social para compartir fotos y vídeos, que permite aplicar filtros y efectos a las imágenes.",
-    "downloads": "1B+",
+    "downloads": "124M+",
     "bannerGradient": "45deg, #C13584, #E1306C",
     "security": true,
     "version": "278.0.0.19.118",
@@ -679,7 +679,7 @@ const apps = [{
     "size": "40 MB",
     "icon": "https://cdn-icons-png.flaticon.com/512/124/124021.png",
     "description": "Twitter es una plataforma de microblogging para compartir mensajes cortos de hasta 280 caracteres.",
-    "downloads": "500M+",
+    "downloads": "22M+",
     "bannerGradient": "45deg, #1DA1F2, #1A91DA",
     "security": true,
     "version": "9.72.0-release.0",
@@ -694,15 +694,15 @@ const apps = [{
     "media": [
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/twitter-screenshot1.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/d/6/c/d6ce7758c8a53bdc5cc352de84f12716_screen.png"
       },
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/twitter-screenshot2.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/4/4/4/444adc77004ef6789736cedd9fd38102_screen.png"
       },
       {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=TwitterDemo"
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/9/5/b/95b73aec2115f55c14263bc5436f6ade_screen.png"
       }
     ]
   },
@@ -713,9 +713,9 @@ const apps = [{
     "category": "Música",
     "rating": 4.4,
     "size": "80 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/174/174872.png",
+    "icon": "https://cdn6.aptoide.com/imgs/1/a/2/1a23317c01a01474417302b1e32578d4_icon.jpg?w=100",
     "description": "Spotify es un servicio de streaming de música que ofrece millones de canciones y podcasts.",
-    "downloads": "1B+",
+    "downloads": "25M+",
     "bannerGradient": "45deg, #1DB954, #1AA34A",
     "security": true,
     "version": "8.8.12.510",
@@ -751,7 +751,7 @@ const apps = [{
     "size": "98 MB",
     "icon": "https://cdn-icons-png.flaticon.com/512/1384/1384060.png",
     "description": "YouTube es una plataforma para ver, subir y compartir vídeos en línea.",
-    "downloads": "10B+",
+    "downloads": "700M+",
     "bannerGradient": "45deg, #FF0000, #CC0000",
     "security": true,
     "version": "17.36.37",
@@ -785,9 +785,9 @@ const apps = [{
     "category": "Entretenimiento",
     "rating": 4.4,
     "size": "95 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/5977/5977590.png",
+    "icon": "https://cdn6.aptoide.com/imgs/1/5/f/15fcb3894310c79bacf005040c225c6c_icon.png?w=128",
     "description": "Netflix es un servicio de streaming que ofrece una amplia variedad de series, películas y documentales.",
-    "downloads": "1B+",
+    "downloads": "78M+",
     "bannerGradient": "45deg, #E50914, #B00710",
     "security": true,
     "version": "8.62.0",
@@ -821,9 +821,9 @@ const apps = [{
     "category": "Entretenimiento",
     "rating": 4.3,
     "size": "90 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968643.png",
+    "icon": "https://play-lh.googleusercontent.com/gXHdyj_9Dbyz3uJy1EnmLHMUpU33VeD0n6kObv6tzvBveWKDFZQt7yGrnM-L4FW-5P4",
     "description": "Disney+ es un servicio de streaming que ofrece películas y series de Disney, Pixar, Marvel, Star Wars y National Geographic.",
-    "downloads": "500M+",
+    "downloads": "18MM+",
     "bannerGradient": "45deg, #0063E5, #0054C3",
     "security": true,
     "version": "2.19.0",
@@ -857,9 +857,9 @@ const apps = [{
     "category": "Entretenimiento",
     "rating": 4.1,
     "size": "85 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968901.png",
+    "icon": "https://cdn6.aptoide.com/imgs/f/1/e/f1e9fbb123826722d636c57b743bca0c_icon.png?w=128",
     "description": "Amazon Prime Video es un servicio de streaming que ofrece películas, series y contenido original de Amazon.",
-    "downloads": "500M+",
+    "downloads": "17M+",
     "bannerGradient": "45deg, #00A8E1, #0096C7",
     "security": true,
     "version": "3.0.356.32547",
@@ -893,9 +893,9 @@ const apps = [{
     "category": "Entretenimiento",
     "rating": 3.8,
     "size": "85 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968701.png",
+    "icon": "https://cdn6.aptoide.com/imgs/0/3/4/03499a635955eef08635e6b4bdf482ec_icon.png?w=128",
     "description": "HBO Max es un servicio de streaming que ofrece contenido de HBO, Warner Bros., DC, Cartoon Network y más.",
-    "downloads": "100M+",
+    "downloads": "5M+",
     "bannerGradient": "45deg, #5E2AB9, #501DA3",
     "security": true,
     "version": "52.50.0.219",
@@ -910,15 +910,15 @@ const apps = [{
     "media": [
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/hbo-screenshot1.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/2/8/4/284d244e3ec8d9078cbe8fa0cdf4b935_screen.jpg"
       },
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/hbo-screenshot2.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/d/5/a/d5a3d382ebb46f6b05f6b571fca60a78_screen.jpg"
       },
       {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=HBODemo"
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/f/b/f/fbf3c13db9fe3ca8850aa7914c73f946_screen.jpg"
       }
     ]
   },
