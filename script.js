@@ -1,12 +1,12 @@
 // ------------------------------
-// Tu código original
+// Tu código original y funcionalidad de apps
 // ------------------------------
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// Importa también Firebase Realtime Database (más adelante se vuelve a importar, pero aquí es para tener todo)
+import { getDatabase, ref, update, onValue } from "firebase/database";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -24,6 +24,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+// Inicializar Firebase Realtime Database
+const database = getDatabase(app);
 
 // Función para detectar el dispositivo
 function detectDevice() {
@@ -48,37 +51,35 @@ async function detectCountry() {
   }
 }
 
-// Función mejorada para verificar si una app está disponible basada en su fecha de lanzamiento
+// Función para verificar si una app está disponible basada en su fecha de lanzamiento
 function isAppReleased(releaseDate) {
-    if (!releaseDate) return true;
-    const now = new Date();
-    const release = new Date(releaseDate);
-    return now >= release;
+  if (!releaseDate) return true;
+  const now = new Date();
+  const release = new Date(releaseDate);
+  return now >= release;
 }
 
-// Función mejorada para formatear el tiempo restante
+// Función para formatear el tiempo restante hasta el lanzamiento
 function getTimeUntilRelease(releaseDate) {
-    const now = new Date();
-    const release = new Date(releaseDate);
-    
-    if (now >= release) return null;
-    
-    const diffTime = Math.abs(release - now);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
-    if (diffDays > 30) {
-        const diffMonths = Math.floor(diffDays / 30);
-        return `${diffMonths} mes${diffMonths > 1 ? 'es' : ''}`;
-    } else if (diffDays > 0) {
-        return `${diffDays} día${diffDays > 1 ? 's' : ''}`;
-    } else {
-        const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
-        return `${diffHours} hora${diffHours > 1 ? 's' : ''}`;
-    }
+  const now = new Date();
+  const release = new Date(releaseDate);
+  if (now >= release) return null;
+  const diffTime = Math.abs(release - now);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  if (diffDays > 30) {
+    const diffMonths = Math.floor(diffDays / 30);
+    return `${diffMonths} mes${diffMonths > 1 ? 'es' : ''}`;
+  } else if (diffDays > 0) {
+    return `${diffDays} día${diffDays > 1 ? 's' : ''}`;
+  } else {
+    const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+    return `${diffHours} hora${diffHours > 1 ? 's' : ''}`;
+  }
 }
 
-// Array de apps con información de banners y gradientes
-const apps = [{
+// Array de apps con información
+const apps = [
+  {
     name: "Facebook",
     developer: "Meta",
     packageName: "com.facebook.katana",
@@ -99,164 +100,118 @@ const apps = [{
       ios: "https://apps.apple.com/us/app/facebook/id284882215"
     },
     previousVersions: ["496.0.0.45.65", "495.0.0.45.201", "494.1.0.56.73"],
-    media: [{
-        type: "image",
-        url: "/api/placeholder/200/400"
-      },
-      {
-        type: "video",
-        url: "dQw4w9WgXcQ"
-      },
-      {
-        type: "image",
-        url: "/api/placeholder/200/400"
-      }
-    ]
-  },
-
-  {
-    "name": "小红书 - 你的生活指南",
-    "developer": "Xingin Information Technology (Shanghai) Co., Ltd",
-    "packageName": "com.xingin.xhs",
-    "category": "Redes Sociales",
-    "rating": 4.5,
-    "size": "460.3 MB",
-    "icon": "https://img.utdstc.com/icon/7a0/428/7a04288acb3629d00aaa8937410ef4559ffde7f7261acf1768096874404caf5b:200",
-    "description": "RedNote, conocida en China como Xiaohongshu o 'pequeño libro rojo', es una plataforma de redes sociales que permite a los usuarios compartir fotos, videos y experiencias de vida.",
-    "downloads": "22K+",
-    "bannerGradient": "45deg, #FF0000, #FF4500",
-    "security": true,
-    "version": "8.69.4",
-    "isAvailable": true,
-    "releaseDate": "2013-06-06T00:00:00",
-    "allowedCountries": ["CN", "HK", "TW", "SG", "JP"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.xingin.xhs",
-      "ios": "https://apps.apple.com/us/app/rednote-share-connect-love/id741292507"
-    },
-    "previousVersions": ["8.69.3", "8.68.1", "8.67.5"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://cdn6.aptoide.com/imgs/a/2/6/a267811e6da9b0021d56c9011e08e6c4_screen.png"
-      },
-      {
-        "type": "image",
-        "url": "https://cdn6.aptoide.com/imgs/8/7/d/87d12064a89075b09501c34bf417c25d_screen.png"
-      },
-      {
-        "type": "image",
-        "url": "https://cdn6.aptoide.com/imgs/d/8/9/d8989b80da53f5a720eab48b81393287_screen.png"
-      }
-    ]
-  },
-
-  {
-    "name": "Uber",
-    "developer": "Uber Technologies, Inc.",
-    "packageName": "com.ubercab",
-    "category": "Transporte",
-    "rating": 4.2,
-    "size": "75 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968733.png",
-    "description": "Uber es una aplicación que conecta a conductores con pasajeros para viajes urbanos a pedido.",
-    "downloads": "500M+",
-    "bannerGradient": "45deg, #000000, #333333",
-    "security": true,
-    "version": "4.441.10000",
-    "isAvailable": true,
-    "releaseDate": "2009-03-01T00:00:00",
-    "allowedCountries": ["US", "UK", "BR", "MX", "IN", "AU", "CA", "FR", "DE", "JP"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.ubercab",
-      "ios": "https://apps.apple.com/app/uber/id368677368"
-    },
-    "previousVersions": ["4.440.10000", "4.439.10000", "4.438.10000"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/uber-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/uber-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=UberDemo"
-      }
+    media: [
+      { type: "image", url: "/api/placeholder/200/400" },
+      { type: "video", url: "dQw4w9WgXcQ" },
+      { type: "image", url: "/api/placeholder/200/400" }
     ]
   },
   {
-    "name": "Duolingo",
-    "developer": "Duolingo",
-    "packageName": "com.duolingo",
-    "category": "Educación",
-    "rating": 4.7,
-    "size": "60 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968746.png",
-    "description": "Duolingo es una plataforma de aprendizaje de idiomas que combina lecciones con juegos interactivos.",
-    "downloads": "500M+",
-    "bannerGradient": "45deg, #58CC02, #4CAF50",
-    "security": true,
-    "version": "5.112.4",
-    "isAvailable": true,
-    "releaseDate": "2011-11-30T00:00:00",
-    "allowedCountries": ["US", "BR", "MX", "JP", "IN", "DE", "FR", "RU", "ES", "IT"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.duolingo",
-      "ios": "https://apps.apple.com/app/duolingo/id570060128"
+    name: "小红书 - 你的生活指南",
+    developer: "Xingin Information Technology (Shanghai) Co., Ltd",
+    packageName: "com.xingin.xhs",
+    category: "Redes Sociales",
+    rating: 4.5,
+    size: "460.3 MB",
+    icon: "https://img.utdstc.com/icon/7a0/428/7a04288acb3629d00aaa8937410ef4559ffde7f7261acf1768096874404caf5b:200",
+    description: "RedNote, conocida en China como Xiaohongshu o 'pequeño libro rojo', es una plataforma de redes sociales que permite a los usuarios compartir fotos, videos y experiencias de vida.",
+    downloads: "22K+",
+    bannerGradient: "45deg, #FF0000, #FF4500",
+    security: true,
+    version: "8.69.4",
+    isAvailable: true,
+    releaseDate: "2013-06-06T00:00:00",
+    allowedCountries: ["CN", "HK", "TW", "SG", "JP"],
+    platforms: {
+      android: "https://play.google.com/store/apps/details?id=com.xingin.xhs",
+      ios: "https://apps.apple.com/us/app/rednote-share-connect-love/id741292507"
     },
-    "previousVersions": ["5.112.3", "5.112.2", "5.111.5"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/duolingo-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/duolingo-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=DuolingoDemo"
-      }
+    previousVersions: ["8.69.3", "8.68.1", "8.67.5"],
+    media: [
+      { type: "image", url: "https://cdn6.aptoide.com/imgs/a/2/6/a267811e6da9b0021d56c9011e08e6c4_screen.png" },
+      { type: "image", url: "https://cdn6.aptoide.com/imgs/8/7/d/87d12064a89075b09501c34bf417c25d_screen.png" },
+      { type: "image", url: "https://cdn6.aptoide.com/imgs/d/8/9/d8989b80da53f5a720eab48b81393287_screen.png" }
     ]
   },
   {
-    "name": "Google Drive",
-    "developer": "Google LLC",
-    "packageName": "com.google.android.apps.docs",
-    "category": "Productividad",
-    "rating": 4.4,
-    "size": "70 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/2965/2965327.png",
-    "description": "Google Drive es un servicio de almacenamiento en la nube que permite guardar y compartir archivos.",
-    "downloads": "5B+",
-    "bannerGradient": "45deg, #0F9D58, #0B8043",
-    "security": true,
-    "version": "2.23.055.0",
-    "isAvailable": true,
-    "releaseDate": "2012-04-24T00:00:00",
-    "allowedCountries": ["US", "IN", "BR", "JP", "DE", "UK", "FR", "IT", "ES", "CA"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.google.android.apps.docs",
-      "ios": "https://apps.apple.com/app/google-drive/id507874739"
+    name: "Uber",
+    developer: "Uber Technologies, Inc.",
+    packageName: "com.ubercab",
+    category: "Transporte",
+    rating: 4.2,
+    size: "75 MB",
+    icon: "https://cdn-icons-png.flaticon.com/512/5968/5968733.png",
+    description: "Uber es una aplicación que conecta a conductores con pasajeros para viajes urbanos a pedido.",
+    downloads: "500M+",
+    bannerGradient: "45deg, #000000, #333333",
+    security: true,
+    version: "4.441.10000",
+    isAvailable: true,
+    releaseDate: "2009-03-01T00:00:00",
+    allowedCountries: ["US", "UK", "BR", "MX", "IN", "AU", "CA", "FR", "DE", "JP"],
+    platforms: {
+      android: "https://play.google.com/store/apps/details?id=com.ubercab",
+      ios: "https://apps.apple.com/app/uber/id368677368"
     },
-    "previousVersions": ["2.23.054.0", "2.23.053.0", "2.23.052.0"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/drive-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/drive-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=GoogleDriveDemo"
-      }
+    previousVersions: ["4.440.10000", "4.439.10000", "4.438.10000"],
+    media: [
+      { type: "image", url: "https://play-lh.googleusercontent.com/uber-screenshot1.jpg" },
+      { type: "image", url: "https://play-lh.googleusercontent.com/uber-screenshot2.jpg" },
+      { type: "video", url: "https://www.youtube.com/watch?v=UberDemo" }
+    ]
+  },
+  {
+    name: "Duolingo",
+    developer: "Duolingo",
+    packageName: "com.duolingo",
+    category: "Educación",
+    rating: 4.7,
+    size: "60 MB",
+    icon: "https://cdn-icons-png.flaticon.com/512/5968/5968746.png",
+    description: "Duolingo es una plataforma de aprendizaje de idiomas que combina lecciones con juegos interactivos.",
+    downloads: "500M+",
+    bannerGradient: "45deg, #58CC02, #4CAF50",
+    security: true,
+    version: "5.112.4",
+    isAvailable: true,
+    releaseDate: "2011-11-30T00:00:00",
+    allowedCountries: ["US", "BR", "MX", "JP", "IN", "DE", "FR", "RU", "ES", "IT"],
+    platforms: {
+      android: "https://play.google.com/store/apps/details?id=com.duolingo",
+      ios: "https://apps.apple.com/app/duolingo/id570060128"
+    },
+    previousVersions: ["5.112.3", "5.112.2", "5.111.5"],
+    media: [
+      { type: "image", url: "https://play-lh.googleusercontent.com/duolingo-screenshot1.jpg" },
+      { type: "image", url: "https://play-lh.googleusercontent.com/duolingo-screenshot2.jpg" },
+      { type: "video", url: "https://www.youtube.com/watch?v=DuolingoDemo" }
+    ]
+  },
+  {
+    name: "Google Drive",
+    developer: "Google LLC",
+    packageName: "com.google.android.apps.docs",
+    category: "Productividad",
+    rating: 4.4,
+    size: "70 MB",
+    icon: "https://cdn-icons-png.flaticon.com/512/2965/2965327.png",
+    description: "Google Drive es un servicio de almacenamiento en la nube que permite guardar y compartir archivos.",
+    downloads: "5B+",
+    bannerGradient: "45deg, #0F9D58, #0B8043",
+    security: true,
+    version: "2.23.055.0",
+    isAvailable: true,
+    releaseDate: "2012-04-24T00:00:00",
+    allowedCountries: ["US", "IN", "BR", "JP", "DE", "UK", "FR", "IT", "ES", "CA"],
+    platforms: {
+      android: "https://play.google.com/store/apps/details?id=com.google.android.apps.docs",
+      ios: "https://apps.apple.com/app/google-drive/id507874739"
+    },
+    previousVersions: ["2.23.054.0", "2.23.053.0", "2.23.052.0"],
+    media: [
+      { type: "image", url: "https://play-lh.googleusercontent.com/drive-screenshot1.jpg" },
+      { type: "image", url: "https://play-lh.googleusercontent.com/drive-screenshot2.jpg" },
+      { type: "video", url: "https://www.youtube.com/watch?v=GoogleDriveDemo" }
     ]
   },
   {
@@ -280,23 +235,15 @@ const apps = [{
       ios: "https://apps.apple.com/us/app/threads-an-instagram-app/id6446901002"
     },
     previousVersions: [],
-    media: [{
-        type: "image",
-        url: "/api/placeholder/200/400"
-      },
-      {
-        type: "video",
-        url: "dQw4w9WgXcQ"
-      },
-      {
-        type: "image",
-        url: "/api/placeholder/200/400"
-      }
+    media: [
+      { type: "image", url: "/api/placeholder/200/400" },
+      { type: "video", url: "dQw4w9WgXcQ" },
+      { type: "image", url: "/api/placeholder/200/400" }
     ]
   }
 ];
 
-// Nueva función para filtrar apps por país
+// Función para filtrar apps por país
 async function filterAppsByCountry(appsToFilter) {
   try {
     const userCountry = await detectCountry();
@@ -307,6 +254,7 @@ async function filterAppsByCountry(appsToFilter) {
   }
 }
 
+// Función para convertir las descargas a número
 function parseDownloads(downloads) {
   if (downloads.includes('B+')) {
     return parseFloat(downloads.replace('B+', '')) * 1000000000;
@@ -314,6 +262,7 @@ function parseDownloads(downloads) {
   return parseInt(downloads.replace('M+', '')) * 1000000;
 }
 
+// Función para obtener el enlace de descarga según el dispositivo
 function getStoreLink(app) {
   const device = detectDevice();
   if (!app.isAvailable || !isAppReleased(app.releaseDate)) {
@@ -327,6 +276,7 @@ function getStoreLink(app) {
   return app.platforms.android || app.platforms.ios;
 }
 
+// Función para mostrar las apps destacadas
 async function displayFeaturedApps() {
   const featuredApps = document.getElementById('featuredApps');
   featuredApps.innerHTML = '';
@@ -365,9 +315,7 @@ async function displayFeaturedApps() {
           <img src="${app.icon}" class="poster-icon" alt="${app.name}">
           <div class="poster-title">${app.name}</div>
           <div class="poster-subtitle">${app.category}</div>
-          ${!isReleased ? 
-            `<div class="coming-soon-badge">Próximamente - ${getTimeUntilRelease(app.releaseDate)}</div>` : 
-            ''}
+          ${!isReleased ? `<div class="coming-soon-badge">Próximamente - ${getTimeUntilRelease(app.releaseDate)}</div>` : ''}
         </div>
       </div>
     `;
@@ -378,7 +326,7 @@ async function displayFeaturedApps() {
   posterSection.appendChild(postersContainer);
   featuredApps.appendChild(posterSection);
 
-  // Resto de las secciones con filtrado por país
+  // Otras secciones de apps
   [
     {
       title: "Top 10 Últimas Actualizaciones",
@@ -429,9 +377,7 @@ function createAppCard(app) {
             <span class="stars">★★★★★</span>
             <span>${app.rating}</span>
           </div>
-          ${!isReleased ? 
-            `<div class="coming-soon-tag">Próximamente - ${getTimeUntilRelease(app.releaseDate)}</div>` : 
-            ''}
+          ${!isReleased ? `<div class="coming-soon-tag">Próximamente - ${getTimeUntilRelease(app.releaseDate)}</div>` : ''}
         </div>
       </div>
     </div>
@@ -445,7 +391,6 @@ async function openAppModal(app) {
   const isReleased = isAppReleased(app.releaseDate);
   
   let availabilityWarning = '';
-  
   if (!isReleased) {
     const timeRemaining = getTimeUntilRelease(app.releaseDate);
     availabilityWarning = `
@@ -562,13 +507,11 @@ function initializeCarousel() {
   const wrapper = container.querySelector('.media-wrapper');
   const dots = container.querySelectorAll('.carousel-dot');
   let currentIndex = 0;
-
   function updateCarousel(index) {
     const slideWidth = container.querySelector('.media-item').offsetWidth + 15;
     wrapper.style.transform = `translateX(-${slideWidth * index}px)`;
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
   }
-  
   dots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
       currentIndex = index;
@@ -607,14 +550,11 @@ function showDeveloperApps(developer, event) {
   developerModal.style.display = 'block';
 }
 
-// Función mejorada para mostrar apps filtradas
+// Función para mostrar apps filtradas según búsqueda
 async function displayApps(appsToDisplay) {
   const appsContainer = document.getElementById('appsContainer');
   const featuredApps = document.getElementById('featuredApps');
-  
-  // Filtrar por país
   const availableApps = await filterAppsByCountry(appsToDisplay);
-  
   if (availableApps.length > 0) {
     featuredApps.style.display = 'none';
     appsContainer.style.display = 'block';
@@ -683,11 +623,9 @@ const styles = `
     align-items: center;
     gap: 10px;
 }
-
 .coming-soon i {
     font-size: 1.2em;
 }
-
 .coming-soon-badge {
     background-color: #4a90e2;
     color: white;
@@ -696,7 +634,6 @@ const styles = `
     font-size: 0.8em;
     margin-top: 5px;
 }
-
 .coming-soon-tag {
     background-color: #4a90e2;
     color: white;
@@ -706,23 +643,19 @@ const styles = `
     margin-top: 5px;
     display: inline-block;
 }
-
 .app-card:hover .coming-soon-tag {
     background-color: #357abd;
 }
-
 .media-container {
     position: relative;
     overflow: hidden;
     margin: 20px 0;
 }
-
 .media-wrapper {
     display: flex;
     transition: transform 0.3s ease;
     gap: 15px;
 }
-
 .media-item {
     flex: 0 0 auto;
     width: 100%;
@@ -730,14 +663,12 @@ const styles = `
     border-radius: 8px;
     overflow: hidden;
 }
-
 .carousel-dots {
     display: flex;
     justify-content: center;
     gap: 8px;
     margin-top: 10px;
 }
-
 .carousel-dot {
     width: 8px;
     height: 8px;
@@ -746,11 +677,9 @@ const styles = `
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
 .carousel-dot.active {
     background-color: #4a90e2;
 }
-
 .availability-warning {
     background-color: #ff4444;
     color: white;
@@ -761,16 +690,13 @@ const styles = `
     align-items: center;
     gap: 10px;
 }
-
 .availability-warning.coming-soon {
     background-color: #4a90e2;
 }
-
 .action-btn[disabled] {
     background-color: #cccccc;
     cursor: not-allowed;
 }
-
 .no-apps-message {
     text-align: center;
     padding: 40px 20px;
@@ -778,12 +704,10 @@ const styles = `
     border-radius: 8px;
     margin: 20px 0;
 }
-
 .no-apps-message h2 {
     color: #333;
     margin-bottom: 10px;
 }
-
 .no-apps-message p {
     color: #666;
     max-width: 600px;
@@ -796,23 +720,17 @@ const styleSheet = document.createElement("style");
 styleSheet.textContent = styles;
 document.head.appendChild(styleSheet);
 
-// Inicializar la visualización de aplicaciones
+// Inicializar la visualización de apps
 displayFeaturedApps();
+
 
 // ------------------------------
 // Funcionalidad de traducción colaborativa en tiempo real
 // ------------------------------
 
-// Importa las funciones necesarias del SDK de Firebase Realtime Database
-import { getDatabase, ref, update, onValue } from "firebase/database";
-
-// Inicializa la base de datos utilizando la app ya inicializada
-const database = getDatabase(app);
-
 /**
- * Habilita la edición en línea para elementos translatables.
- * Los elementos deben tener la clase "translatable".
- * Cada elemento solo se puede editar 2 veces.
+ * Permite que cualquier elemento con la clase "translatable" se pueda editar al hacer clic.
+ * Cada elemento solo se podrá editar 2 veces.
  */
 function enableInlineTranslation() {
   document.body.addEventListener('click', function(event) {
@@ -822,11 +740,9 @@ function enableInlineTranslation() {
       let editCount = parseInt(target.getAttribute('data-edit-count') || "0", 10);
       if (editCount >= 2) {
         console.log('Límite de ediciones alcanzado para este elemento.');
-        return; // No permitir más ediciones
+        return;
       }
-
       event.stopPropagation();
-      // Habilitar el modo edición
       target.contentEditable = true;
       target.focus();
 
@@ -836,27 +752,20 @@ function enableInlineTranslation() {
       saveBtn.style.marginLeft = '10px';
       saveBtn.style.fontSize = '0.9em';
       saveBtn.style.cursor = 'pointer';
-      // Insertar el botón justo después del elemento editable
       target.parentNode.insertBefore(saveBtn, target.nextSibling);
 
-      // Listener para guardar los cambios
+      // Al hacer clic en guardar se actualiza en Firebase
       saveBtn.addEventListener('click', function(e) {
         e.stopPropagation();
-        // Obtener el nuevo texto editado
         let newText = target.innerText;
-        // Desactivar el modo edición
         target.contentEditable = false;
         saveBtn.remove();
-        // Usar el atributo id del elemento para identificar la traducción en Firebase.
-        // Si no tiene id, se le asigna uno único.
         let translationKey = target.id || 'trans_' + Math.random().toString(36).substr(2, 9);
-        target.id = translationKey; // Asigna el id si no estaba definido
-
-        // Incrementar el contador de ediciones
+        target.id = translationKey;
         editCount++;
         target.setAttribute('data-edit-count', editCount);
 
-        // Actualizar el valor en Firebase Realtime Database
+        // Actualizar en Firebase Realtime Database
         const translationRef = ref(database, 'translations/' + translationKey);
         update(translationRef, {
           text: newText,
@@ -874,8 +783,7 @@ function enableInlineTranslation() {
 }
 
 /**
- * Escucha en tiempo real los cambios en las traducciones almacenadas en Firebase
- * y actualiza el contenido de los elementos correspondientes.
+ * Escucha los cambios en el nodo "translations" de Firebase y actualiza los elementos correspondientes.
  */
 function listenForTranslationUpdates() {
   const translationsRef = ref(database, 'translations/');
@@ -895,9 +803,8 @@ function listenForTranslationUpdates() {
   });
 }
 
-// Inicializar las funciones de traducción una vez cargado el DOM
+// Inicializar la funcionalidad de traducción una vez cargado el DOM
 document.addEventListener('DOMContentLoaded', () => {
   enableInlineTranslation();
   listenForTranslationUpdates();
 });
- 
