@@ -519,42 +519,7 @@ const apps = [{
     ]
   },
  
-  {
-    "name": "Amazon Prime Video",
-    "developer": "Amazon Mobile LLC",
-    "packageName": "com.amazon.avod.thirdpartyclient",
-    "category": "Entretenimiento",
-    "rating": 4.1,
-    "size": "85 MB",
-    "icon": "https://cdn6.aptoide.com/imgs/f/1/e/f1e9fbb123826722d636c57b743bca0c_icon.png?w=128",
-    "description": "Amazon Prime Video es un servicio de streaming que ofrece películas, series y contenido original de Amazon.",
-    "downloads": "17M+",
-    "bannerGradient": "45deg, #00A8E1, #0096C7",
-    "security": true,
-    "version": "3.0.356.32547",
-    "isAvailable": true,
-    "releaseDate": "2006-09-07T00:00:00",
-    "allowedCountries": ["US", "UK", "DE", "JP", "IN", "FR", "IT", "ES", "CA", "BR"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.amazon.avod.thirdpartyclient",
-      "ios": "https://apps.apple.com/app/amazon-prime-video/id545519333"
-    },
-    "previousVersions": ["3.0.355.32546", "3.0.354.32545", "3.0.353.32544"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/amazon-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/amazon-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=AmazonDemo"
-      }
-    ]
-  },
+  
   {
     "name": "Messenger Lite",
     "developer": "Meta Platforms, Inc.",
