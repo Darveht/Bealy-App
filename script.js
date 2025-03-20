@@ -1,4 +1,5 @@
-// Función para detectar el dispositivo
+
+  // Función para detectar el dispositivo
 function detectDevice() {
   const userAgent = navigator.userAgent.toLowerCase();
   if (/iphone|ipad|ipod/.test(userAgent)) {
@@ -23,50 +24,31 @@ async function detectCountry() {
 
 // Función mejorada para verificar si una app está disponible basada en su fecha de lanzamiento
 function isAppReleased(releaseDate) {
-  if (!releaseDate) return true;
-  const now = new Date();
-  const release = new Date(releaseDate);
-  return now >= release;
+    if (!releaseDate) return true;
+    const now = new Date();
+    const release = new Date(releaseDate);
+    return now >= release;
 }
 
 // Función mejorada para formatear el tiempo restante
 function getTimeUntilRelease(releaseDate) {
-  const now = new Date();
-  const release = new Date(releaseDate);
-  
-  if (now >= release) return null;
-  
-  const diffTime = Math.abs(release - now);
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  
-  if (diffDays > 30) {
-    const diffMonths = Math.floor(diffDays / 30);
-    return `${diffMonths} mes${diffMonths > 1 ? 'es' : ''}`;
-  } else if (diffDays > 0) {
-    return `${diffDays} día${diffDays > 1 ? 's' : ''}`;
-  } else {
-    const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
-    return `${diffHours} hora${diffHours > 1 ? 's' : ''}`;
-  }
-}
-
-// NUEVAS FUNCIONES PARA MARCAR LAS APPS COMO "ORIGINALES" (oficiales, sin virus)
-// Se considera original si la propiedad security es true y el desarrollador no es "administrador"
-function isOriginalApp(app) {
-  if (app.developer && app.developer.toLowerCase() === 'administrador') {
-    return false;
-  }
-  return app.security === true;
-}
-
-// Función para marcar una app como original o no (actualiza la propiedad 'original')
-function setOriginalStatus(app, status) {
-  app.original = status;
-}
-
-// Función para obtener el estado de seguridad de la app en formato texto
-function getAppSecurityStatus(app) {
-  return isOriginalApp(app) ? 'Segura' : 'No Segura';
+    const now = new Date();
+    const release = new Date(releaseDate);
+    
+    if (now >= release) return null;
+    
+    const diffTime = Math.abs(release - now);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays > 30) {
+        const diffMonths = Math.floor(diffDays / 30);
+        return `${diffMonths} mes${diffMonths > 1 ? 'es' : ''}`;
+    } else if (diffDays > 0) {
+        return `${diffDays} día${diffDays > 1 ? 's' : ''}`;
+    } else {
+        const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+        return `${diffHours} hora${diffHours > 1 ? 's' : ''}`;
+    }
 }
 
 // Array de apps con información de banners y gradientes
@@ -82,7 +64,7 @@ const apps = [{
     downloads: "186M+",
     bannerGradient: "45deg, #1877f2, #0a3d62",
     security: false,
-    version: "497.0.0.47.36",
+    version: "497.0.0.79.36",
     isAvailable: true,
     releaseDate: "2024-01-01T00:00:00",
     allowedCountries: ["Global"],
@@ -90,7 +72,20 @@ const apps = [{
       android: "https://play.google.com/store/apps/details?id=com.facebook.katana",
       ios: "https://apps.apple.com/us/app/facebook/id284882215"
     },
-    previousVersions: ["496.0.0.45.65", "495.0.0.45.201", "494.1.0.56.73"]
+    previousVersions: ["496.0.0.45.65", "495.0.0.45.201", "494.1.0.56.73"],
+    media: [{
+        type: "image",
+        url: "/api/placeholder/200/400"
+      },
+      {
+        type: "video",
+        url: "dQw4w9WgXcQ"
+      },
+      {
+        type: "image",
+        url: "/api/placeholder/200/400"
+      }
+    ]
   },
  {
     "name": "TikTok Lite",
@@ -107,12 +102,26 @@ const apps = [{
     "version": "29.1.2",
     "isAvailable": true,
     "releaseDate": "2018-08-06T00:00:00",
-    "allowedCountries": ["US", "IN", "BR", "ID", "MX", "ES"],
+    "allowedCountries": ["Global"],
     "platforms": {
       "android": "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically.go",
       "ios": "https://apps.apple.com/app/tiktok-lite/id6447160980"
     },
-    "previousVersions": ["29.1.1", "29.0.9", "28.9.3"]
+    "previousVersions": ["29.1.1", "29.0.9", "28.9.3"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/tiktok-lite-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/tiktok-lite-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=TikTokLiteDemo"
+      }
+    ]
   },
   {
     "name": "VK",
@@ -134,8 +143,25 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.vkontakte.android",
       "ios": "https://apps.apple.com/app/vk-social-network/id564177498"
     },
-    "previousVersions": ["9.8.1", "9.7.5", "9.6.3"]
+    "previousVersions": ["9.8.1", "9.7.5", "9.6.3"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/vk-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/vk-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=VKDemo"
+      }
+    ]
   },
+           
+ 
+  
   {
     "name": "Messenger Lite",
     "developer": "Meta Platforms, Inc.",
@@ -156,7 +182,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.facebook.mlite",
       "ios": "https://apps.apple.com/app/messenger-lite/id1234567890"
     },
-    "previousVersions": ["334.0.0.8.102", "333.1.0.7.99", "332.0.0.6.85"]
+    "previousVersions": ["334.0.0.8.102", "333.1.0.7.99", "332.0.0.6.85"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/messenger-lite-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/messenger-lite-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=MessengerLiteDemo"
+      }
+    ]
   },
   {
     "name": "Flip",
@@ -178,7 +218,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=co.flip",
       "ios": "https://apps.apple.com/app/flip-shop-with-your-friends/id1562633109"
     },
-    "previousVersions": ["5.2.9", "5.2.5", "5.1.8"]
+    "previousVersions": ["5.2.9", "5.2.5", "5.1.8"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/flip-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/flip-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=FlipDemo"
+      }
+    ]
   },
   {
     "name": "Clapper",
@@ -192,7 +246,7 @@ const apps = [{
     "downloads": "193K+",
     "bannerGradient": "45deg, #FF6600, #FF3300",
     "security": true,
-    "version": "2.8.1",
+    "version": "8.8.1",
     "isAvailable": true,
     "releaseDate": "2020-06-15T00:00:00",
     "allowedCountries": ["US", "CA", "GB", "AU", "BR", "MX"],
@@ -200,7 +254,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.clapper.video",
       "ios": "https://apps.apple.com/app/clapper/id1516466348"
     },
-    "previousVersions": ["2.8.0", "2.7.5", "2.7.1"]
+    "previousVersions": ["2.8.0", "2.7.5", "2.7.1"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/a/1/d/a1d4ac6417cef6357b5bd3ae88a2f27b_screen.png"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/8/8/b/88bdd486e5194faecad9291b243e071c_screen.png"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/6/d/e/6de1a5c58001c2140fba0d48f4034ce3_screen.png"
+      }
+    ]
   },
   {
     "name": "toDus",
@@ -217,12 +285,26 @@ const apps = [{
     "version": "1.0.0",
     "isAvailable": true,
     "releaseDate": "2018-02-08T00:00:00",
-    "allowedCountries": ["CU", "VE"],
+    "allowedCountries": ["Global"],
     "platforms": {
       "android": "https://play.google.com/store/apps/details?id=cu.etecsa.todus",
       "ios": "https://apps.apple.com/app/todus/id1234567890"
     },
-    "previousVersions": ["0.9.8", "0.9.5", "0.9.2"]
+    "previousVersions": ["0.9.8", "0.9.5", "0.9.2"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://archive.apklis.cu/application/screenshot/application/screenshot/7c4b32ae-2b39-4b0d-984f-57dfd3ee3cfa.png"
+      },
+      {
+        "type": "image",
+        "url": "https://archive.apklis.cu/application/screenshot/application/screenshot/b8183e6d-ad42-43eb-8237-ffca416bcbfa.png"
+      },
+      {
+        "type": "image",
+        "url": "https://archive.apklis.cu/application/screenshot/application/screenshot/a0670e56-f047-4fea-8a82-319e59b2dbbc.png"
+      }
+    ]
   },
   {
     "name": "小红书 - 你的生活指南",
@@ -244,7 +326,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.xingin.xhs",
       "ios": "https://apps.apple.com/us/app/rednote-share-connect-love/id741292507"
     },
-    "previousVersions": ["8.69.3", "8.68.1", "8.67.5"]
+    "previousVersions": ["8.69.3", "8.68.1", "8.67.5"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/a/2/6/a267811e6da9b0021d56c9011e08e6c4_screen.png"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/8/7/d/87d12064a89075b09501c34bf417c25d_screen.png"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/d/8/9/d8989b80da53f5a720eab48b81393287_screen.png"
+      }
+    ]
   },
   {
     "name": "Transfermóvil",
@@ -266,7 +362,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=cu.etecsa.transfermovil",
       "ios": "https://apps.apple.com/app/transfermovil/id1234567890"
     },
-    "previousVersions": ["1.9.5", "1.9.2", "1.8.7"]
+    "previousVersions": ["1.9.5", "1.9.2", "1.8.7"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/transfermovil-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/transfermovil-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=TransfermovilDemo"
+      }
+    ]
   },
   {
     "name": "Apklis",
@@ -288,7 +398,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=cu.cubasoft.apklis",
       "ios": "https://apps.apple.com/app/apklis/id1234567890"
     },
-    "previousVersions": ["2.9.8", "2.9.5", "2.8.7"]
+    "previousVersions": ["2.9.8", "2.9.5", "2.8.7"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/apklis-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/apklis-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=ApklisDemo"
+      }
+    ]
   },
   {
     "name": "Snapchat",
@@ -297,7 +421,7 @@ const apps = [{
     "category": "Mensajería",
     "rating": 4.1,
     "size": "45 MB",
-    "icon": "https://cdn6.aptoide.com/imgs/4/a/b/4ab59bf6437538d0d99264293ef3c479_icon.png",
+    "icon": "https://cdn6.aptoide.com/imgs/4/a/b/4ab59bf6437538d0d99264293ef3c479_icon.png?w=128",
     "description": "Snapchat es una aplicación de mensajería efímera y filtros creativos.",
     "downloads": "64M+",
     "bannerGradient": "45deg, #FFFC00, #FFFC00",
@@ -310,8 +434,31 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.snapchat.android",
       "ios": "https://apps.apple.com/app/snapchat/id447188370"
     },
-    "previousVersions": ["10.49.0.0", "10.48.5.0", "10.47.2.0"]
+    "previousVersions": ["10.49.0.0", "10.48.5.0", "10.47.2.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/d/3/9/d3936c4a1ffbda93dcca9cde5808e949_screen.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/9/5/f/95f802fe83c90a21e4567c4accbe1757_screen.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/c/e/4/ce4468c32dd027654b9af2a8a4bc2a5c_screen.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/1/2/9/1294e31e6a8e3421083dc07844c0908d_screen.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/b/e/e/bee0e60b114f64030fddbded2d745052_screen.jpg"
+      }
+    ]
   },
+  
   {
     "name": "Google Maps",
     "developer": "Google LLC",
@@ -332,7 +479,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.google.android.apps.maps",
       "ios": "https://apps.apple.com/app/google-maps/id585027354"
     },
-    "previousVersions": ["11.87.0", "11.86.0", "11.85.0"]
+    "previousVersions": ["11.87.0", "11.86.0", "11.85.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/maps-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/maps-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=GoogleMapsDemo"
+      }
+    ]
   },
   {
     "name": "Pinterest",
@@ -354,7 +515,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.pinterest",
       "ios": "https://apps.apple.com/app/pinterest/id429047995"
     },
-    "previousVersions": ["10.35.0", "10.34.0", "10.33.0"]
+    "previousVersions": ["10.35.0", "10.34.0", "10.33.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/pinterest-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/pinterest-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=PinterestDemo"
+      }
+    ]
   },
   {
     "name": "Shazam",
@@ -376,7 +551,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.shazam.android",
       "ios": "https://apps.apple.com/app/shazam/id284993459"
     },
-    "previousVersions": ["14.16.0", "14.15.0", "14.14.0"]
+    "previousVersions": ["14.16.0", "14.15.0", "14.14.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/shazam-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/shazam-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=ShazamDemo"
+      }
+    ]
   },
   {
     "name": "Uber",
@@ -398,7 +587,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.ubercab",
       "ios": "https://apps.apple.com/app/uber/id368677368"
     },
-    "previousVersions": ["4.440.10000", "4.439.10000", "4.438.10000"]
+    "previousVersions": ["4.440.10000", "4.439.10000", "4.438.10000"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/uber-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/uber-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=UberDemo"
+      }
+    ]
   },
   {
     "name": "Duolingo",
@@ -420,7 +623,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.duolingo",
       "ios": "https://apps.apple.com/app/duolingo/id570060128"
     },
-    "previousVersions": ["5.112.3", "5.112.2", "5.111.5"]
+    "previousVersions": ["5.112.3", "5.112.2", "5.111.5"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/duolingo-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/duolingo-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=DuolingoDemo"
+      }
+    ]
   },
   {
     "name": "Google Drive",
@@ -442,7 +659,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.google.android.apps.docs",
       "ios": "https://apps.apple.com/app/google-drive/id507874739"
     },
-    "previousVersions": ["2.23.054.0", "2.23.053.0", "2.23.052.0"]
+    "previousVersions": ["2.23.054.0", "2.23.053.0", "2.23.052.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/drive-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/drive-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=GoogleDriveDemo"
+      }
+    ]
   },
   {
     "name": "Gmail",
@@ -464,7 +695,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.google.android.gm",
       "ios": "https://apps.apple.com/app/gmail/id422689480"
     },
-    "previousVersions": ["2023.05.21.554329977", "2023.05.14.553029976", "2023.05.07.551729975"]
+    "previousVersions": ["2023.05.21.554329977", "2023.05.14.553029976", "2023.05.07.551729975"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/gmail-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/gmail-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=GmailDemo"
+      }
+    ]
   },
   {
     "name": "Google Chrome",
@@ -486,7 +731,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.android.chrome",
       "ios": "https://apps.apple.com/app/google-chrome/id535886823"
     },
-    "previousVersions": ["112.0.5615.135", "112.0.5615.48", "111.0.5563.116"]
+    "previousVersions": ["112.0.5615.135", "112.0.5615.48", "111.0.5563.116"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/chrome-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/chrome-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=ChromeDemo"
+      }
+    ]
   },
   {
     "name": "Zoom",
@@ -508,7 +767,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=us.zoom.videomeetings",
       "ios": "https://apps.apple.com/app/zoom-cloud-meetings/id546505307"
     },
-    "previousVersions": ["5.14.6.17735", "5.14.5.17694", "5.14.4.17523"]
+    "previousVersions": ["5.14.6.17735", "5.14.5.17694", "5.14.4.17523"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/zoom-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/zoom-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=ZoomDemo"
+      }
+    ]
   },
   {
     "name": "Skype",
@@ -530,7 +803,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.skype.raider",
       "ios": "https://apps.apple.com/app/skype/id304878510"
     },
-    "previousVersions": ["8.92.0.403", "8.91.0.402", "8.90.0.401"]
+    "previousVersions": ["8.92.0.403", "8.91.0.402", "8.90.0.401"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/skype-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/skype-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=SkypeDemo"
+      }
+    ]
   },
   {
     "name": "Microsoft Teams",
@@ -552,7 +839,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.microsoft.teams",
       "ios": "https://apps.apple.com/app/microsoft-teams/id1113153706"
     },
-    "previousVersions": ["1415/1.0.0.2023070502", "1414/1.0.0.2023070201", "1413/1.0.0.2023062901"]
+    "previousVersions": ["1415/1.0.0.2023070502", "1414/1.0.0.2023070201", "1413/1.0.0.2023062901"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/teams-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/teams-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=TeamsDemo"
+      }
+    ]
   },
   {
     "name": "Google Classroom",
@@ -574,7 +875,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.google.android.apps.classroom",
       "ios": "https://apps.apple.com/app/google-classroom/id924620788"
     },
-    "previousVersions": ["8.5.1.24", "8.5.0.23", "8.4.0.22"]
+    "previousVersions": ["8.5.1.24", "8.5.0.23", "8.4.0.22"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/classroom-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/classroom-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=ClassroomDemo"
+      }
+    ]
   },
   {
     "name": "Google Meet",
@@ -596,7 +911,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.google.android.apps.meetings",
       "ios": "https://apps.apple.com/app/google-meet/id1013231476"
     },
-    "previousVersions": ["2023.04.20.520505207", "2023.04.13.519205206", "2023.04.06.517905205"]
+    "previousVersions": ["2023.04.20.520505207", "2023.04.13.519205206", "2023.04.06.517905205"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/meet-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/meet-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=MeetDemo"
+      }
+    ]
   },
   {
     "name": "PayPal",
@@ -618,7 +947,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.paypal.android.p2pmobile",
       "ios": "https://apps.apple.com/app/paypal/id283646709"
     },
-    "previousVersions": ["8.25.0", "8.24.0", "8.23.0"]
+    "previousVersions": ["8.25.0", "8.24.0", "8.23.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/paypal-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/paypal-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=PayPalDemo"
+      }
+    ]
   },
   {
     "name": "Cash App",
@@ -640,7 +983,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.squareup.cash",
       "ios": "https://apps.apple.com/app/cash-app/id711923939"
     },
-    "previousVersions": ["3.78.0", "3.77.0", "3.76.0"]
+    "previousVersions": ["3.78.0", "3.77.0", "3.76.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/cashapp-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/cashapp-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=CashAppDemo"
+      }
+    ]
   },
   {
     "name": "Venmo",
@@ -662,7 +1019,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.venmo",
       "ios": "https://apps.apple.com/app/venmo/id351727428"
     },
-    "previousVersions": ["9.29.0", "9.28.0", "9.27.0"]
+    "previousVersions": ["9.29.0", "9.28.0", "9.27.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/venmo-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/venmo-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=VenmoDemo"
+      }
+    ]
   },
   {
     "name": "Clubhouse",
@@ -684,7 +1055,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.clubhouse.app",
       "ios": "https://apps.apple.com/app/clubhouse/id1503133294"
     },
-    "previousVersions": ["1.0.37", "1.0.36", "1.0.35"]
+    "previousVersions": ["1.0.37", "1.0.36", "1.0.35"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/clubhouse-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/clubhouse-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=ClubhouseDemo"
+      }
+    ]
   },
   {
     "name": "Twitch",
@@ -706,7 +1091,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=tv.twitch.android.app",
       "ios": "https://apps.apple.com/app/twitch/id460177396"
     },
-    "previousVersions": ["15.3.0", "15.2.0", "15.1.0"]
+    "previousVersions": ["15.3.0", "15.2.0", "15.1.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/twitch-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/twitch-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=TwitchDemo"
+      }
+    ]
   },
   {
     "name": "Discord",
@@ -728,7 +1127,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.discord",
       "ios": "https://apps.apple.com/app/discord/id985746746"
     },
-    "previousVersions": ["180.14", "180.13", "180.12"]
+    "previousVersions": ["180.14", "180.13", "180.12"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/discord-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/discord-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=DiscordDemo"
+      }
+    ]
   },
   {
     "name": "Minecraft",
@@ -750,7 +1163,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe",
       "ios": "https://apps.apple.com/app/minecraft/id479516143"
     },
-    "previousVersions": ["1.20.10", "1.20.5", "1.20.0"]
+    "previousVersions": ["1.20.10", "1.20.5", "1.20.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/minecraft-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/minecraft-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=MinecraftDemo"
+      }
+    ]
   },
   {
     "name": "Roblox",
@@ -772,7 +1199,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.roblox.client",
       "ios": "https://apps.apple.com/app/roblox/id431946152"
     },
-    "previousVersions": ["2.609.440", "2.608.439", "2.607.438"]
+    "previousVersions": ["2.609.440", "2.608.439", "2.607.438"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/roblox-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/roblox-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=RobloxDemo"
+      }
+    ]
   },
   {
     "name": "Candy Crush Saga",
@@ -794,7 +1235,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.king.candycrushsaga",
       "ios": "https://apps.apple.com/app/candy-crush-saga/id553834731"
     },
-    "previousVersions": ["1.251.0.1", "1.250.0.1", "1.249.0.1"]
+    "previousVersions": ["1.251.0.1", "1.250.0.1", "1.249.0.1"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/candycrush-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/candycrush-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=CandyCrushDemo"
+      }
+    ]
   },
   {
     "name": "Clash of Clans",
@@ -816,7 +1271,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.supercell.clashofclans",
       "ios": "https://apps.apple.com/app/clash-of-clans/id529479190"
     },
-    "previousVersions": ["15.546.10", "15.545.9", "15.544.8"]
+    "previousVersions": ["15.546.10", "15.545.9", "15.544.8"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/clashofclans-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/clashofclans-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=ClashOfClansDemo"
+      }
+    ]
   },
   {
     "name": "PUBG Mobile",
@@ -838,7 +1307,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.tencent.ig",
       "ios": "https://apps.apple.com/app/pubg-mobile/id1330123889"
     },
-    "previousVersions": ["2.6.0", "2.5.0", "2.4.0"]
+    "previousVersions": ["2.6.0", "2.5.0", "2.4.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/pubg-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/pubg-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=PUBGDemo"
+      }
+    ]
   },
   {
     "name": "Among Us",
@@ -860,7 +1343,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.innersloth.spacemafia",
       "ios": "https://apps.apple.com/app/among-us/id1351168404"
     },
-    "previousVersions": ["2022.11.09", "2022.10.25", "2022.9.20"]
+    "previousVersions": ["2022.11.09", "2022.10.25", "2022.9.20"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/amongus-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/amongus-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=AmongUsDemo"
+      }
+    ]
   },
   {
     "name": "Genshin Impact",
@@ -882,7 +1379,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact",
       "ios": "https://apps.apple.com/app/genshin-impact/id1517783697"
     },
-    "previousVersions": ["3.6.0", "3.5.0", "3.4.0"]
+    "previousVersions": ["3.6.0", "3.5.0", "3.4.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/genshin-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/genshin-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=GenshinDemo"
+      }
+    ]
   },
   {
     "name": "Free Fire",
@@ -904,7 +1415,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.dts.freefireth",
       "ios": "https://apps.apple.com/app/garena-free-fire/id1300146617"
     },
-    "previousVersions": ["1.99.1", "1.98.1", "1.97.1"]
+    "previousVersions": ["1.99.1", "1.98.1", "1.97.1"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/freefire-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/freefire-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=FreeFireDemo"
+      }
+    ]
   },
   {
     "name": "Pokémon GO",
@@ -926,7 +1451,21 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.nianticlabs.pokemongo",
       "ios": "https://apps.apple.com/app/pokemon-go/id1094591345"
     },
-    "previousVersions": ["0.284.0", "0.283.0", "0.282.0"]
+    "previousVersions": ["0.284.0", "0.283.0", "0.282.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/pokemon-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/pokemon-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=PokemonGODemo"
+      }
+    ]
   },
   {
     "name": "Call of Duty Mobile",
@@ -948,8 +1487,23 @@ const apps = [{
       "android": "https://play.google.com/store/apps/details?id=com.activision.callofduty.shooter",
       "ios": "https://apps.apple.com/app/call-of-duty/id1287282214"
     },
-    "previousVersions": ["1.0.39", "1.0.38", "1.0.37"]
+    "previousVersions": ["1.0.39", "1.0.38", "1.0.37"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/cod-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/cod-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=CODMobileDemo"
+      }
+    ]
   },
+           
   {
     name: "Threads",
     developer: "Meta",
@@ -970,14 +1524,22 @@ const apps = [{
       android: "https://play.google.com/store/apps/details?id=com.instagram.threads",
       ios: "https://apps.apple.com/us/app/threads-an-instagram-app/id6446901002"
     },
-    previousVersions: []
+    previousVersions: [],
+    media: [{
+        type: "image",
+        url: "/api/placeholder/200/400"
+      },
+      {
+        type: "video",
+        url: "dQw4w9WgXcQ"
+      },
+      {
+        type: "image",
+        url: "/api/placeholder/200/400"
+      }
+    ]
   }
 ];
-
-// Después de definir el array de apps, se asigna la propiedad "original" en cada objeto usando la función isOriginalApp
-apps.forEach(app => {
-  setOriginalStatus(app, isOriginalApp(app));
-});
 
 // Nueva función para filtrar apps por país
 async function filterAppsByCountry(appsToFilter) {
@@ -1075,6 +1637,10 @@ async function displayFeaturedApps() {
       title: "Nuevos Lanzamientos",
       apps: [...availableApps].filter(app => !isAppReleased(app.releaseDate)).slice(0, 5)
     },
+    {
+  title: "Recomendadas",
+  apps: [...availableApps].filter(app => app.rating >= 4.5).slice(0, 5)
+},
     {
       title: "Top 10 Redes Sociales",
       apps: availableApps.filter(app => app.category.toLowerCase() === 'redes sociales')
@@ -1220,12 +1786,11 @@ async function openAppModal(app) {
       </button>
     </div>
 
-    <div class="security-info ${isOriginalApp(app) ? 'secure' : 'insecure'}">
+    <div class="security-info ${app.security ? 'secure' : ''}">
       <div class="virustotal-badge">
         <i class="fas fa-shield-alt"></i> Verificado por VirusTotal
       </div>
-      <p>Estado de seguridad: ${getAppSecurityStatus(app)}</p>
-      ${isOriginalApp(app) ? '<span class="original-badge">Original</span>' : ''}
+      <p>Esta aplicación ha pasado nuestras verificaciones de seguridad.</p>
     </div>
 
     <div class="previous-versions" id="${app.name}-versions" style="display:none;">
@@ -1472,32 +2037,6 @@ const styles = `
     color: #666;
     max-width: 600px;
     margin: 0 auto;
-}
-
-.security-info {
-    margin: 20px 0;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.security-info.secure {
-    background-color: #e0f7e9;
-    color: #2d7a46;
-}
-
-.security-info.insecure {
-    background-color: #fdecea;
-    color: #a94442;
-}
-
-.original-badge {
-    display: inline-block;
-    background-color: #2d7a46;
-    color: white;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 0.8em;
-    margin-top: 5px;
 }
 `;
 
