@@ -95,7 +95,7 @@ const apps = [{
     "size": "45 MB",
     "icon": "https://img.utdstc.com/icon/f02/722/f02722184e010a9bfeebdeb4b5f57db1cac50688db6f959c297940ae3c4d7002:200",
     "description": "TikTok Lite es la versión ligera y optimizada de la aplicación de vídeos cortos TikTok. Su menor tamaño y menor consumo de recursos la hace ideal para ser utilizada en dispositivos que tengan menos potencia o capacidades más limitadas.",
-    "downloads": "19M+",
+    "downloads": "2M+",
     "bannerGradient": "45deg, #FF0050, #FF2C55",
     "security": true,
     "version": "29.1.2",
@@ -236,10 +236,10 @@ const apps = [{
     "packageName": "com.clapper.video",
     "category": "Redes Sociales",
     "rating": 4.4,
-    "size": "60 MB",
+    "size": "347MB",
     "icon": "https://img.utdstc.com/icon/5f4/694/5f46941008be96f49123247309e5d2e280f04a3d108579ea6a39d75974b34ce6:200",
     "description": "Clapper es una plataforma de videos cortos que permite a los usuarios expresarse libremente y compartir contenido sin censura.",
-    "downloads": "10M+",
+    "downloads": "193K+",
     "bannerGradient": "45deg, #FF6600, #FF3300",
     "security": true,
     "version": "2.8.1",
@@ -254,15 +254,15 @@ const apps = [{
     "media": [
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/clapper-screenshot1.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/a/1/d/a1d4ac6417cef6357b5bd3ae88a2f27b_screen.png"
       },
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/clapper-screenshot2.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/8/8/b/88bdd486e5194faecad9291b243e071c_screen.png"
       },
       {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=ClapperDemo"
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/6/d/e/6de1a5c58001c2140fba0d48f4034ce3_screen.png"
       }
     ]
   },
@@ -290,28 +290,28 @@ const apps = [{
     "media": [
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/todus-screenshot1.jpg"
+        "url": "https://archive.apklis.cu/application/screenshot/application/screenshot/7c4b32ae-2b39-4b0d-984f-57dfd3ee3cfa.png"
       },
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/todus-screenshot2.jpg"
+        "url": "https://archive.apklis.cu/application/screenshot/application/screenshot/b8183e6d-ad42-43eb-8237-ffca416bcbfa.png"
       },
       {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=ToDusDemo"
+        "type": "image",
+        "url": "https://archive.apklis.cu/application/screenshot/application/screenshot/a0670e56-f047-4fea-8a82-319e59b2dbbc.png"
       }
     ]
   },
   {
-    "name": "RedNote",
+    "name": "小红书 - 你的生活指南",
     "developer": "Xingin Information Technology (Shanghai) Co., Ltd",
     "packageName": "com.xingin.xhs",
     "category": "Redes Sociales",
-    "rating": 4.9,
+    "rating": 4.5,
     "size": "460.3 MB",
     "icon": "https://img.utdstc.com/icon/7a0/428/7a04288acb3629d00aaa8937410ef4559ffde7f7261acf1768096874404caf5b:200",
     "description": "RedNote, conocida en China como Xiaohongshu o 'pequeño libro rojo', es una plataforma de redes sociales que permite a los usuarios compartir fotos, videos y experiencias de vida.",
-    "downloads": "112.4K+",
+    "downloads": "22K+",
     "bannerGradient": "45deg, #FF0000, #FF4500",
     "security": true,
     "version": "8.69.4",
@@ -326,15 +326,15 @@ const apps = [{
     "media": [
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/rednote-screenshot1.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/a/2/6/a267811e6da9b0021d56c9011e08e6c4_screen.png"
       },
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/rednote-screenshot2.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/8/7/d/87d12064a89075b09501c34bf417c25d_screen.png"
       },
       {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=RedNoteDemo"
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/d/8/9/d8989b80da53f5a720eab48b81393287_screen.png"
       }
     ]
   },
@@ -434,15 +434,23 @@ const apps = [{
     "media": [
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/snapchat-screenshot1.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/d/3/9/d3936c4a1ffbda93dcca9cde5808e949_screen.jpg"
       },
       {
         "type": "image",
-        "url": "https://play-lh.googleusercontent.com/snapchat-screenshot2.jpg"
+        "url": "https://cdn6.aptoide.com/imgs/9/5/f/95f802fe83c90a21e4567c4accbe1757_screen.jpg"
       },
       {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=SnapchatDemo"
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/c/e/4/ce4468c32dd027654b9af2a8a4bc2a5c_screen.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/1/2/9/1294e31e6a8e3421083dc07844c0908d_screen.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/b/e/e/bee0e60b114f64030fddbded2d745052_screen.jpg"
       }
     ]
   },
