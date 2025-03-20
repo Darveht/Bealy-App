@@ -158,6 +158,9 @@ const apps = [{
       }
     ]
   },
+           
+ 
+  
   {
     "name": "Messenger Lite",
     "developer": "Meta Platforms, Inc.",
@@ -417,7 +420,7 @@ const apps = [{
     "category": "Mensajería",
     "rating": 4.1,
     "size": "45 MB",
-    "icon": "https://cdn6.aptoide.com/imgs/4/a/b/4ab59bf6437538d0d99264293ef3c479_icon.png",
+    "icon": "https://cdn6.aptoide.com/imgs/4/a/b/4ab59bf6437538d0d99264293ef3c479_icon.png?w=128",
     "description": "Snapchat es una aplicación de mensajería efímera y filtros creativos.",
     "downloads": "64M+",
     "bannerGradient": "45deg, #FFFC00, #FFFC00",
@@ -454,6 +457,7 @@ const apps = [{
       }
     ]
   },
+  
   {
     "name": "Google Maps",
     "developer": "Google LLC",
@@ -1498,6 +1502,7 @@ const apps = [{
       }
     ]
   },
+           
   {
     name: "Threads",
     developer: "Meta",
@@ -1632,6 +1637,10 @@ async function displayFeaturedApps() {
       apps: [...availableApps].filter(app => !isAppReleased(app.releaseDate)).slice(0, 5)
     },
     {
+  title: "Recomendadas",
+  apps: [...availableApps].filter(app => app.rating >= 4.5).slice(0, 5)
+},
+    {
       title: "Top 10 Redes Sociales",
       apps: availableApps.filter(app => app.category.toLowerCase() === 'redes sociales')
         .sort((a, b) => parseDownloads(b.downloads) - parseDownloads(a.downloads))
@@ -1666,7 +1675,7 @@ function createAppCard(app) {
           <div class="package-name">${app.packageName || 'No disponible'}</div>
           <div class="rating">
             <span class="stars">★★★★★</span>
-            <span class="editable-rating">${app.rating}</span>
+            <span>${app.rating}</span>
           </div>
           ${!isReleased ? 
             `<div class="coming-soon-tag">Próximamente - ${getTimeUntilRelease(app.releaseDate)}</div>` : 
@@ -1732,7 +1741,7 @@ async function openAppModal(app) {
       </div>
       <div class="info-item">
         <div class="info-label">Descargas</div>
-        <div class="editable-downloads">${app.downloads}</div>
+        <div>${app.downloads}</div>
       </div>
     </div>
 
@@ -1794,9 +1803,6 @@ async function openAppModal(app) {
   document.getElementById('appModal').classList.add('active');
   initializeCarousel();
   initializeVideoPlayers();
-
-  // Habilitamos la edición en tiempo real para rating y descargas
-  enableRealTimeEditing(app);
 }
 
 function initializeCarousel() {
@@ -1881,69 +1887,6 @@ async function displayApps(appsToDisplay) {
     `;
     appsContainer.style.display = 'block';
     featuredApps.style.display = 'none';
-  }
-}
-
-// Función para habilitar la edición en tiempo real de ciertos detalles de la aplicación
-async function enableRealTimeEditing(app) {
-  // Se asume que Firebase ya está inicializado en tu proyecto.
-  // Se intentará hacer "inline editing" sobre el rating y las descargas.
-  // Es importante que en el HTML del modal se hayan agregado las clases 'editable-rating' y 'editable-downloads'
-  // en los elementos correspondientes.
-  const modal = document.getElementById('modalContent');
-
-  // Seleccionamos el elemento donde se muestra el rating.
-  const ratingElement = modal.querySelector('.editable-rating');
-  // Seleccionamos el elemento donde se muestran las descargas.
-  const downloadsElement = modal.querySelector('.editable-downloads');
-
-  // Función auxiliar para actualizar un campo en Firestore
-  async function updateAppField(field, newValue) {
-    try {
-      await firebase.firestore().collection('apps').doc(app.packageName).update({
-        [field]: newValue
-      });
-      console.log(`Campo ${field} actualizado a ${newValue}`);
-    } catch (error) {
-      console.error(`Error actualizando ${field}:`, error);
-    }
-  }
-
-  // Configurar edición en el rating
-  if (ratingElement) {
-    ratingElement.contentEditable = true;
-    ratingElement.style.border = "1px dashed #ccc"; // Indicador visual de que es editable
-    ratingElement.addEventListener('blur', async (e) => {
-      const newRating = parseFloat(e.target.innerText.trim());
-      if (isNaN(newRating)) {
-        alert("Por favor ingresa un número válido para el rating.");
-        // Opcional: recargar el valor original
-        ratingElement.innerText = app.rating;
-        return;
-      }
-      // Actualizamos el rating en Firebase
-      await updateAppField("rating", newRating);
-      // También actualizamos el objeto local (si es necesario para reflejar el cambio inmediatamente)
-      app.rating = newRating;
-    });
-  }
-
-  // Configurar edición en el campo de descargas
-  if (downloadsElement) {
-    downloadsElement.contentEditable = true;
-    downloadsElement.style.border = "1px dashed #ccc";
-    downloadsElement.addEventListener('blur', async (e) => {
-      const newDownloads = e.target.innerText.trim();
-      if (!newDownloads) {
-        alert("El campo de descargas no puede quedar vacío.");
-        downloadsElement.innerText = app.downloads;
-        return;
-      }
-      // Actualizamos el número de descargas en Firebase
-      await updateAppField("downloads", newDownloads);
-      // Actualizamos el objeto local
-      app.downloads = newDownloads;
-    });
   }
 }
 
