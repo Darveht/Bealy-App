@@ -556,42 +556,6 @@ const apps = [{
     ]
   },
   {
-    "name": "HBO Max",
-    "developer": "WarnerMedia",
-    "packageName": "com.hbo.hbonow",
-    "category": "Entretenimiento",
-    "rating": 3.8,
-    "size": "85 MB",
-    "icon": "https://cdn6.aptoide.com/imgs/0/3/4/03499a635955eef08635e6b4bdf482ec_icon.png?w=128",
-    "description": "HBO Max es un servicio de streaming que ofrece contenido de HBO, Warner Bros., DC, Cartoon Network y más.",
-    "downloads": "5M+",
-    "bannerGradient": "45deg, #5E2AB9, #501DA3",
-    "security": true,
-    "version": "52.50.0.219",
-    "isAvailable": true,
-    "releaseDate": "2020-05-27T00:00:00",
-    "allowedCountries": ["US", "CA", "MX", "BR", "AR", "CL", "CO", "ES", "PT"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.hbo.hbonow",
-      "ios": "https://apps.apple.com/app/hbo-max/id971265422"
-    },
-    "previousVersions": ["52.49.0.218", "52.48.0.217", "52.47.0.216"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://cdn6.aptoide.com/imgs/2/8/4/284d244e3ec8d9078cbe8fa0cdf4b935_screen.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://cdn6.aptoide.com/imgs/d/5/a/d5a3d382ebb46f6b05f6b571fca60a78_screen.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://cdn6.aptoide.com/imgs/f/b/f/fbf3c13db9fe3ca8850aa7914c73f946_screen.jpg"
-      }
-    ]
-  },
-  {
     "name": "Messenger Lite",
     "developer": "Meta Platforms, Inc.",
     "packageName": "com.facebook.mlite",
