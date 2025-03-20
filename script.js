@@ -1,4 +1,6 @@
-
+<!-- Elfsight Website Translator | Untitled Website Translator -->
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
+<div class="elfsight-app-273f029e-a82a-4fce-943a-2d5adf8d8c3d" data-elfsight-app-lazy></div>
   // Función para detectar el dispositivo
 function detectDevice() {
   const userAgent = navigator.userAgent.toLowerCase();
