@@ -1,5 +1,8 @@
+// ------------------------------
+// Tu código original
+// ------------------------------
 
- // Import the functions you need from the SDKs you need
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -47,31 +50,31 @@ async function detectCountry() {
 
 // Función mejorada para verificar si una app está disponible basada en su fecha de lanzamiento
 function isAppReleased(releaseDate) {
-  if (!releaseDate) return true;
-  const now = new Date();
-  const release = new Date(releaseDate);
-  return now >= release;
+    if (!releaseDate) return true;
+    const now = new Date();
+    const release = new Date(releaseDate);
+    return now >= release;
 }
 
 // Función mejorada para formatear el tiempo restante
 function getTimeUntilRelease(releaseDate) {
-  const now = new Date();
-  const release = new Date(releaseDate);
-  
-  if (now >= release) return null;
-  
-  const diffTime = Math.abs(release - now);
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  
-  if (diffDays > 30) {
-      const diffMonths = Math.floor(diffDays / 30);
-      return `${diffMonths} mes${diffMonths > 1 ? 'es' : ''}`;
-  } else if (diffDays > 0) {
-      return `${diffDays} día${diffDays > 1 ? 's' : ''}`;
-  } else {
-      const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
-      return `${diffHours} hora${diffHours > 1 ? 's' : ''}`;
-  }
+    const now = new Date();
+    const release = new Date(releaseDate);
+    
+    if (now >= release) return null;
+    
+    const diffTime = Math.abs(release - now);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays > 30) {
+        const diffMonths = Math.floor(diffDays / 30);
+        return `${diffMonths} mes${diffMonths > 1 ? 'es' : ''}`;
+    } else if (diffDays > 0) {
+        return `${diffDays} día${diffDays > 1 ? 's' : ''}`;
+    } else {
+        const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+        return `${diffHours} hora${diffHours > 1 ? 's' : ''}`;
+    }
 }
 
 // Array de apps con información de banners y gradientes
@@ -110,114 +113,7 @@ const apps = [{
       }
     ]
   },
-  {
-    "name": "TikTok Lite",
-    "developer": "TikTok Pte. Ltd.",
-    "packageName": "com.zhiliaoapp.musically.go",
-    "category": "Entretenimiento",
-    "rating": 4.2,
-    "size": "45 MB",
-    "icon": "https://img.utdstc.com/icon/f02/722/f02722184e010a9bfeebdeb4b5f57db1cac50688db6f959c297940ae3c4d7002:200",
-    "description": "TikTok Lite es la versión ligera y optimizada de la aplicación de vídeos cortos TikTok. Su menor tamaño y menor consumo de recursos la hace ideal para ser utilizada en dispositivos que tengan menos potencia o capacidades más limitadas.",
-    "downloads": "2M+",
-    "bannerGradient": "45deg, #FF0050, #FF2C55",
-    "security": true,
-    "version": "29.1.2",
-    "isAvailable": true,
-    "releaseDate": "2018-08-06T00:00:00",
-    "allowedCountries": ["US", "IN", "BR", "ID", "MX", "ES"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically.go",
-      "ios": "https://apps.apple.com/app/tiktok-lite/id6447160980"
-    },
-    "previousVersions": ["29.1.1", "29.0.9", "28.9.3"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/tiktok-lite-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/tiktok-lite-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=TikTokLiteDemo"
-      }
-    ]
-  },
-  {
-    "name": "VK",
-    "developer": "VK.com",
-    "packageName": "com.vkontakte.android",
-    "category": "Redes Sociales",
-    "rating": 4.3,
-    "size": "100 MB",
-    "icon": "https://img.utdstc.com/icon/ed3/892/ed389254a73efcef2537d5234aa57495563852c43970586b58f836db4284f112:200",
-    "description": "VK es una red social popular en Rusia, que permite a los usuarios comunicarse, compartir contenido multimedia y unirse a comunidades.",
-    "downloads": "45M+",
-    "bannerGradient": "45deg, #0077FF, #0055CC",
-    "security": true,
-    "version": "9.8.2",
-    "isAvailable": true,
-    "releaseDate": "2006-10-10T00:00:00",
-    "allowedCountries": ["RU", "US", "BY", "KZ", "UA"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.vkontakte.android",
-      "ios": "https://apps.apple.com/app/vk-social-network/id564177498"
-    },
-    "previousVersions": ["9.8.1", "9.7.5", "9.6.3"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/vk-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/vk-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=VKDemo"
-      }
-    ]
-  },
-  {
-    "name": "Messenger Lite",
-    "developer": "Meta Platforms, Inc.",
-    "packageName": "com.facebook.mlite",
-    "category": "Mensajería",
-    "rating": 4.1,
-    "size": "20 MB",
-    "icon": "https://img.utdstc.com/icon/28d/aea/28daea3ff2e293ad6275ff85256ff13a82144f3348ec886f4954755940cf6104:200",
-    "description": "Messenger Lite es una versión más ligera de Messenger, que permite enviar mensajes y hacer llamadas con menor consumo de datos.",
-    "downloads": "76.3M+",
-    "bannerGradient": "45deg, #0084FF, #0066CC",
-    "security": true,
-    "version": "335.0.0.10.104",
-    "isAvailable": true,
-    "releaseDate": "2016-10-02T00:00:00",
-    "allowedCountries": ["US", "IN", "BR", "MX", "ES", "CO", "AR"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.facebook.mlite",
-      "ios": "https://apps.apple.com/app/messenger-lite/id1234567890"
-    },
-    "previousVersions": ["334.0.0.8.102", "333.1.0.7.99", "332.0.0.6.85"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/messenger-lite-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/messenger-lite-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=MessengerLiteDemo"
-      }
-    ]
-  },
+
   {
     "name": "小红书 - 你的生活指南",
     "developer": "Xingin Information Technology (Shanghai) Co., Ltd",
@@ -254,6 +150,7 @@ const apps = [{
       }
     ]
   },
+
   {
     "name": "Uber",
     "developer": "Uber Technologies, Inc.",
@@ -359,834 +256,6 @@ const apps = [{
       {
         "type": "video",
         "url": "https://www.youtube.com/watch?v=GoogleDriveDemo"
-      }
-    ]
-  },
-  {
-    "name": "Gmail",
-    "developer": "Google LLC",
-    "packageName": "com.google.android.gm",
-    "category": "Comunicación",
-    "rating": 4.3,
-    "size": "65 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968534.png",
-    "description": "Gmail es un servicio de correo electrónico gratuito proporcionado por Google.",
-    "downloads": "10B+",
-    "bannerGradient": "45deg, #D44638, #B23121",
-    "security": true,
-    "version": "2023.05.28.555629978",
-    "isAvailable": true,
-    "releaseDate": "2004-04-01T00:00:00",
-    "allowedCountries": ["US", "IN", "BR", "JP", "DE", "UK", "FR", "RU", "MX", "ID"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.google.android.gm",
-      "ios": "https://apps.apple.com/app/gmail/id422689480"
-    },
-    "previousVersions": ["2023.05.21.554329977", "2023.05.14.553029976", "2023.05.07.551729975"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/gmail-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/gmail-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=GmailDemo"
-      }
-    ]
-  },
-  {
-    "name": "Google Chrome",
-    "developer": "Google LLC",
-    "packageName": "com.android.chrome",
-    "category": "Navegadores",
-    "rating": 4.1,
-    "size": "100 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/888/888846.png",
-    "description": "Google Chrome es un navegador web rápido y seguro desarrollado por Google.",
-    "downloads": "10B+",
-    "bannerGradient": "45deg, #4285F4, #3367D6",
-    "security": true,
-    "version": "113.0.5672.76",
-    "isAvailable": true,
-    "releaseDate": "2008-09-02T00:00:00",
-    "allowedCountries": ["US", "IN", "BR", "ID", "JP", "DE", "UK", "FR", "MX", "RU"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.android.chrome",
-      "ios": "https://apps.apple.com/app/google-chrome/id535886823"
-    },
-    "previousVersions": ["112.0.5615.135", "112.0.5615.48", "111.0.5563.116"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/chrome-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/chrome-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=ChromeDemo"
-      }
-    ]
-  },
-  {
-    "name": "Zoom",
-    "developer": "Zoom Video Communications, Inc.",
-    "packageName": "us.zoom.videomeetings",
-    "category": "Comunicación",
-    "rating": 4.2,
-    "size": "85 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/4401/4401470.png",
-    "description": "Zoom es una plataforma de videoconferencias y llamadas en línea.",
-    "downloads": "500M+",
-    "bannerGradient": "45deg, #2D8CFF, #2681E6",
-    "security": true,
-    "version": "5.14.7.17797",
-    "isAvailable": true,
-    "releaseDate": "2011-01-01T00:00:00",
-    "allowedCountries": ["US", "IN", "BR", "CA", "UK", "DE", "JP", "AU", "FR", "MX"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=us.zoom.videomeetings",
-      "ios": "https://apps.apple.com/app/zoom-cloud-meetings/id546505307"
-    },
-    "previousVersions": ["5.14.6.17735", "5.14.5.17694", "5.14.4.17523"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/zoom-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/zoom-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=ZoomDemo"
-      }
-    ]
-  },
-  {
-    "name": "Skype",
-    "developer": "Microsoft Corporation",
-    "packageName": "com.skype.raider",
-    "category": "Comunicación",
-    "rating": 4.1,
-    "size": "80 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/174/174869.png",
-    "description": "Skype es una aplicación que permite llamadas de voz y video, mensajería instantánea y compartir archivos.",
-    "downloads": "1B+",
-    "bannerGradient": "45deg, #00AFF0, #0078D7",
-    "security": true,
-    "version": "8.93.0.404",
-    "isAvailable": true,
-    "releaseDate": "2003-08-29T00:00:00",
-    "allowedCountries": ["US", "IN", "BR", "RU", "UK", "DE", "FR", "JP", "AU", "IT"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.skype.raider",
-      "ios": "https://apps.apple.com/app/skype/id304878510"
-    },
-    "previousVersions": ["8.92.0.403", "8.91.0.402", "8.90.0.401"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/skype-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/skype-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=SkypeDemo"
-      }
-    ]
-  },
-  {
-    "name": "Microsoft Teams",
-    "developer": "Microsoft Corporation",
-    "packageName": "com.microsoft.teams",
-    "category": "Comunicación",
-    "rating": 4.3,
-    "size": "95 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/2504/2504903.png",
-    "description": "Microsoft Teams es una plataforma de comunicación y colaboración que combina chat, videoconferencias, almacenamiento de archivos e integración de aplicaciones.",
-    "downloads": "500M+",
-    "bannerGradient": "45deg, #6264A7, #5558A5",
-    "security": true,
-    "version": "1416/1.0.0.2023071002",
-    "isAvailable": true,
-    "releaseDate": "2017-03-14T00:00:00",
-    "allowedCountries": ["US", "UK", "DE", "IN", "BR", "CA", "JP", "AU", "FR", "IT"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.microsoft.teams",
-      "ios": "https://apps.apple.com/app/microsoft-teams/id1113153706"
-    },
-    "previousVersions": ["1415/1.0.0.2023070502", "1414/1.0.0.2023070201", "1413/1.0.0.2023062901"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/teams-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/teams-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=TeamsDemo"
-      }
-    ]
-  },
-  {
-    "name": "Google Classroom",
-    "developer": "Google LLC",
-    "packageName": "com.google.android.apps.classroom",
-    "category": "Educación",
-    "rating": 4.0,
-    "size": "60 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/2965/2965306.png",
-    "description": "Google Classroom es una plataforma educativa gratuita desarrollada por Google para escuelas.",
-    "downloads": "500M+",
-    "bannerGradient": "45deg, #0F9D58, #0B8043",
-    "security": true,
-    "version": "8.5.2.25",
-    "isAvailable": true,
-    "releaseDate": "2014-08-12T00:00:00",
-    "allowedCountries": ["US", "IN", "BR", "MX", "UK", "JP", "AU", "CA", "DE", "FR"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.google.android.apps.classroom",
-      "ios": "https://apps.apple.com/app/google-classroom/id924620788"
-    },
-    "previousVersions": ["8.5.1.24", "8.5.0.23", "8.4.0.22"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/classroom-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/classroom-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=ClassroomDemo"
-      }
-    ]
-  },
-  {
-    "name": "Google Meet",
-    "developer": "Google LLC",
-    "packageName": "com.google.android.apps.meetings",
-    "category": "Comunicación",
-    "rating": 4.1,
-    "size": "65 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/2991/2991108.png",
-    "description": "Google Meet es una aplicación de videoconferencias desarrollada por Google.",
-    "downloads": "1B+",
-    "bannerGradient": "45deg, #00897B, #00796B",
-    "security": true,
-    "version": "2023.04.27.521805208",
-    "isAvailable": true,
-    "releaseDate": "2017-02-28T00:00:00",
-    "allowedCountries": ["US", "IN", "BR", "UK", "JP", "DE", "FR", "CA", "AU", "IT"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.google.android.apps.meetings",
-      "ios": "https://apps.apple.com/app/google-meet/id1013231476"
-    },
-    "previousVersions": ["2023.04.20.520505207", "2023.04.13.519205206", "2023.04.06.517905205"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/meet-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/meet-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=MeetDemo"
-      }
-    ]
-  },
-  {
-    "name": "PayPal",
-    "developer": "PayPal, Inc.",
-    "packageName": "com.paypal.android.p2pmobile",
-    "category": "Finanzas",
-    "rating": 4.4,
-    "size": "70 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/174/174861.png",
-    "description": "PayPal es un servicio de pagos en línea que permite a los usuarios enviar y recibir dinero a nivel mundial.",
-    "downloads": "500M+",
-    "bannerGradient": "45deg, #003087, #002366",
-    "security": true,
-    "version": "8.26.0",
-    "isAvailable": true,
-    "releaseDate": "1998-12-01T00:00:00",
-    "allowedCountries": ["US", "UK", "CA", "AU", "DE", "FR", "IT", "ES", "MX", "BR"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.paypal.android.p2pmobile",
-      "ios": "https://apps.apple.com/app/paypal/id283646709"
-    },
-    "previousVersions": ["8.25.0", "8.24.0", "8.23.0"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/paypal-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/paypal-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=PayPalDemo"
-      }
-    ]
-  },
-  {
-    "name": "Cash App",
-    "developer": "Block, Inc.",
-    "packageName": "com.squareup.cash",
-    "category": "Finanzas",
-    "rating": 4.5,
-    "size": "65 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/8442/8442629.png",
-    "description": "Cash App es una aplicación de pagos móviles que permite a los usuarios transferir dinero entre sí.",
-    "downloads": "100M+",
-    "bannerGradient": "45deg, #00D632, #00B32C",
-    "security": true,
-    "version": "3.79.0",
-    "isAvailable": true,
-    "releaseDate": "2013-10-15T00:00:00",
-    "allowedCountries": ["US", "UK"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.squareup.cash",
-      "ios": "https://apps.apple.com/app/cash-app/id711923939"
-    },
-    "previousVersions": ["3.78.0", "3.77.0", "3.76.0"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/cashapp-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/cashapp-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=CashAppDemo"
-      }
-    ]
-  },
-  {
-    "name": "Venmo",
-    "developer": "PayPal, Inc.",
-    "packageName": "com.venmo",
-    "category": "Finanzas",
-    "rating": 4.3,
-    "size": "55 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/887/887397.png",
-    "description": "Venmo es un servicio de pagos móviles que facilita las transferencias de dinero entre amigos y familiares.",
-    "downloads": "50M+",
-    "bannerGradient": "45deg, #3D95CE, #3681B3",
-    "security": true,
-    "version": "9.30.0",
-    "isAvailable": true,
-    "releaseDate": "2009-01-01T00:00:00",
-    "allowedCountries": ["US"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.venmo",
-      "ios": "https://apps.apple.com/app/venmo/id351727428"
-    },
-    "previousVersions": ["9.29.0", "9.28.0", "9.27.0"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/venmo-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/venmo-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=VenmoDemo"
-      }
-    ]
-  },
-  {
-    "name": "Clubhouse",
-    "developer": "Alpha Exploration Co.",
-    "packageName": "com.clubhouse.app",
-    "category": "Redes Sociales",
-    "rating": 3.7,
-    "size": "50 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/8751/8751401.png",
-    "description": "Clubhouse es una red social basada en audio que permite a los usuarios participar en conversaciones de voz.",
-    "downloads": "10M+",
-    "bannerGradient": "45deg, #F1C40F, #D4AC0D",
-    "security": true,
-    "version": "1.0.38",
-    "isAvailable": true,
-    "releaseDate": "2020-03-17T00:00:00",
-    "allowedCountries": ["US", "CA", "UK", "AU", "DE", "JP", "FR", "BR", "MX", "IN"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.clubhouse.app",
-      "ios": "https://apps.apple.com/app/clubhouse/id1503133294"
-    },
-    "previousVersions": ["1.0.37", "1.0.36", "1.0.35"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/clubhouse-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/clubhouse-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=ClubhouseDemo"
-      }
-    ]
-  },
-  {
-    "name": "Twitch",
-    "developer": "Twitch Interactive, Inc.",
-    "packageName": "tv.twitch.android.app",
-    "category": "Entretenimiento",
-    "rating": 4.2,
-    "size": "90 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968819.png",
-    "description": "Twitch es una plataforma de streaming en vivo que se centra en videojuegos, música, deportes y contenido creativo.",
-    "downloads": "100M+",
-    "bannerGradient": "45deg, #6441A5, #552F99",
-    "security": true,
-    "version": "15.4.0",
-    "isAvailable": true,
-    "releaseDate": "2011-06-06T00:00:00",
-    "allowedCountries": ["US", "UK", "CA", "DE", "FR", "JP", "BR", "MX", "KR", "AU"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=tv.twitch.android.app",
-      "ios": "https://apps.apple.com/app/twitch/id460177396"
-    },
-    "previousVersions": ["15.3.0", "15.2.0", "15.1.0"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/twitch-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/twitch-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=TwitchDemo"
-      }
-    ]
-  },
-  {
-    "name": "Discord",
-    "developer": "Discord Inc.",
-    "packageName": "com.discord",
-    "category": "Comunicación",
-    "rating": 4.6,
-    "size": "80 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968759.png",
-    "description": "Discord es una aplicación de mensajería instantánea y chat de voz diseñada para comunidades en línea.",
-    "downloads": "500M+",
-    "bannerGradient": "45deg, #7289DA, #5B73BC",
-    "security": true,
-    "version": "180.15",
-    "isAvailable": true,
-    "releaseDate": "2015-05-13T00:00:00",
-    "allowedCountries": ["US", "UK", "CA", "DE", "FR", "JP", "BR", "AU", "MX", "KR"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.discord",
-      "ios": "https://apps.apple.com/app/discord/id985746746"
-    },
-    "previousVersions": ["180.14", "180.13", "180.12"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/discord-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/discord-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=DiscordDemo"
-      }
-    ]
-  },
-  {
-    "name": "Minecraft",
-    "developer": "Mojang",
-    "packageName": "com.mojang.minecraftpe",
-    "category": "Juegos",
-    "rating": 4.5,
-    "size": "150 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/2199/2199529.png",
-    "description": "Minecraft es un juego de mundo abierto que permite a los jugadores construir y explorar mundos virtuales hechos de bloques.",
-    "downloads": "100M+",
-    "bannerGradient": "45deg, #44A842, #388C38",
-    "security": true,
-    "version": "1.20.12",
-    "isAvailable": true,
-    "releaseDate": "2011-11-18T00:00:00",
-    "allowedCountries": ["US", "UK", "CA", "DE", "FR", "JP", "BR", "AU", "MX", "IN"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe",
-      "ios": "https://apps.apple.com/app/minecraft/id479516143"
-    },
-    "previousVersions": ["1.20.10", "1.20.5", "1.20.0"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/minecraft-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/minecraft-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=MinecraftDemo"
-      }
-    ]
-  },
-  {
-    "name": "Roblox",
-    "developer": "Roblox Corporation",
-    "packageName": "com.roblox.client",
-    "category": "Juegos",
-    "rating": 4.4,
-    "size": "120 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/3992/3992429.png",
-    "description": "Roblox es una plataforma de juegos en línea donde los usuarios pueden crear y jugar juegos creados por otros usuarios.",
-    "downloads": "500M+",
-    "bannerGradient": "45deg, #FF0000, #D60001",
-    "security": true,
-    "version": "2.610.441",
-    "isAvailable": true,
-    "releaseDate": "2006-09-01T00:00:00",
-    "allowedCountries": ["US", "UK", "CA", "BR", "DE", "FR", "JP", "MX", "AU", "IN"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.roblox.client",
-      "ios": "https://apps.apple.com/app/roblox/id431946152"
-    },
-    "previousVersions": ["2.609.440", "2.608.439", "2.607.438"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/roblox-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/roblox-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=RobloxDemo"
-      }
-    ]
-  },
-  {
-    "name": "Candy Crush Saga",
-    "developer": "King",
-    "packageName": "com.king.candycrushsaga",
-    "category": "Juegos",
-    "rating": 4.6,
-    "size": "100 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968713.png",
-    "description": "Candy Crush Saga es un juego de puzle de combinación de dulces que ofrece cientos de niveles de juego.",
-    "downloads": "1B+",
-    "bannerGradient": "45deg, #FA4673, #E02B57",
-    "security": true,
-    "version": "1.252.0.1",
-    "isAvailable": true,
-    "releaseDate": "2012-04-12T00:00:00",
-    "allowedCountries": ["US", "UK", "BR", "IN", "JP", "DE", "FR", "IT", "ES", "MX"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.king.candycrushsaga",
-      "ios": "https://apps.apple.com/app/candy-crush-saga/id553834731"
-    },
-    "previousVersions": ["1.251.0.1", "1.250.0.1", "1.249.0.1"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/candycrush-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/candycrush-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=CandyCrushDemo"
-      }
-    ]
-  },
-  {
-    "name": "Clash of Clans",
-    "developer": "Supercell",
-    "packageName": "com.supercell.clashofclans",
-    "category": "Juegos",
-    "rating": 4.5,
-    "size": "180 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968715.png",
-    "description": "Clash of Clans es un juego de estrategia multijugador donde los jugadores construyen aldeas, entrenan tropas y atacan a otros jugadores.",
-    "downloads": "500M+",
-    "bannerGradient": "45deg, #FFB800, #E5A600",
-    "security": true,
-    "version": "15.547.11",
-    "isAvailable": true,
-    "releaseDate": "2012-08-02T00:00:00",
-    "allowedCountries": ["US", "IN", "BR", "DE", "FR", "JP", "UK", "MX", "TR", "RU"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.supercell.clashofclans",
-      "ios": "https://apps.apple.com/app/clash-of-clans/id529479190"
-    },
-    "previousVersions": ["15.546.10", "15.545.9", "15.544.8"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/clashofclans-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/clashofclans-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=ClashOfClansDemo"
-      }
-    ]
-  },
-  {
-    "name": "PUBG Mobile",
-    "developer": "KRAFTON, Inc.",
-    "packageName": "com.tencent.ig",
-    "category": "Juegos",
-    "rating": 4.2,
-    "size": "700 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/871/871378.png",
-    "description": "PUBG Mobile es un juego de batalla real donde 100 jugadores luchan en una isla hasta que solo queda uno.",
-    "downloads": "1B+",
-    "bannerGradient": "45deg, #F5821F, #E56D15",
-    "security": true,
-    "version": "2.7.0",
-    "isAvailable": true,
-    "releaseDate": "2018-02-09T00:00:00",
-    "allowedCountries": ["US", "IN", "BR", "TR", "ID", "RU", "MX", "JP", "DE", "FR"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.tencent.ig",
-      "ios": "https://apps.apple.com/app/pubg-mobile/id1330123889"
-    },
-    "previousVersions": ["2.6.0", "2.5.0", "2.4.0"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/pubg-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/pubg-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=PUBGDemo"
-      }
-    ]
-  },
-  {
-    "name": "Among Us",
-    "developer": "InnerSloth LLC",
-    "packageName": "com.innersloth.spacemafia",
-    "category": "Juegos",
-    "rating": 4.3,
-    "size": "160 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968756.png",
-    "description": "Among Us es un juego multijugador online donde los jugadores intentan preparar su nave espacial para la salida, mientras que uno o más impostores intentan matar al resto de la tripulación.",
-    "downloads": "500M+",
-    "bannerGradient": "45deg, #2EAAE1, #278CCB",
-    "security": true,
-    "version": "2022.12.14",
-    "isAvailable": true,
-    "releaseDate": "2018-07-25T00:00:00",
-    "allowedCountries": ["US", "BR", "MX", "UK", "DE", "FR", "RU", "JP", "KR", "CA"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.innersloth.spacemafia",
-      "ios": "https://apps.apple.com/app/among-us/id1351168404"
-    },
-    "previousVersions": ["2022.11.09", "2022.10.25", "2022.9.20"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/amongus-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/amongus-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=AmongUsDemo"
-      }
-    ]
-  },
-  {
-    "name": "Genshin Impact",
-    "developer": "miHoYo Limited",
-    "packageName": "com.miHoYo.GenshinImpact",
-    "category": "Juegos",
-    "rating": 4.4,
-    "size": "350 MB",
-    "icon": "https://icon-library.com/images/genshin-impact-icon/genshin-impact-icon-16.jpg",
-    "description": "Genshin Impact es un juego de acción RPG de mundo abierto con un sistema de combate basado en elementos y un mundo para explorar.",
-    "downloads": "100M+",
-    "bannerGradient": "45deg, #59C2FF, #4A9CDB",
-    "security": true,
-    "version": "3.7.0",
-    "isAvailable": true,
-    "releaseDate": "2020-09-28T00:00:00",
-    "allowedCountries": ["US", "JP", "CN", "KR", "UK", "DE", "FR", "BR", "RU", "MX"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact",
-      "ios": "https://apps.apple.com/app/genshin-impact/id1517783697"
-    },
-    "previousVersions": ["3.6.0", "3.5.0", "3.4.0"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/genshin-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/genshin-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=GenshinDemo"
-      }
-    ]
-  },
-  {
-    "name": "Free Fire",
-    "developer": "Garena International",
-    "packageName": "com.dts.freefireth",
-    "category": "Juegos",
-    "rating": 4.2,
-    "size": "720 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/11169/11169898.png",
-    "description": "Garena Free Fire es un juego de batalla real móvil donde 50 jugadores luchan por la supervivencia en una isla remota.",
-    "downloads": "1B+",
-    "bannerGradient": "45deg, #F60000, #D20000",
-    "security": true,
-    "version": "1.100.1",
-    "isAvailable": true,
-    "releaseDate": "2017-12-04T00:00:00",
-    "allowedCountries": ["BR", "ID", "IN", "MX", "TH", "VN", "CO", "PE", "SG", "MY"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.dts.freefireth",
-      "ios": "https://apps.apple.com/app/garena-free-fire/id1300146617"
-    },
-    "previousVersions": ["1.99.1", "1.98.1", "1.97.1"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/freefire-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/freefire-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=FreeFireDemo"
-      }
-    ]
-  },
-  {
-    "name": "Pokémon GO",
-    "developer": "Niantic, Inc.",
-    "packageName": "com.nianticlabs.pokemongo",
-    "category": "Juegos",
-    "rating": 4.0,
-    "size": "350 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/528/528098.png",
-    "description": "Pokémon GO es un juego de realidad aumentada basado en la ubicación donde los jugadores capturan, entrenan y combaten Pokémon.",
-    "downloads": "500M+",
-    "bannerGradient": "45deg, #3B4CCA, #3240A8",
-    "security": true,
-    "version": "0.285.0",
-    "isAvailable": true,
-    "releaseDate": "2016-07-06T00:00:00",
-    "allowedCountries": ["US", "JP", "UK", "DE", "FR", "BR", "IT", "ES", "AU", "MX"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.nianticlabs.pokemongo",
-      "ios": "https://apps.apple.com/app/pokemon-go/id1094591345"
-    },
-    "previousVersions": ["0.284.0", "0.283.0", "0.282.0"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/pokemon-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/pokemon-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=PokemonGODemo"
-      }
-    ]
-  },
-  {
-    "name": "Call of Duty Mobile",
-    "developer": "Activision Publishing, Inc.",
-    "packageName": "com.activision.callofduty.shooter",
-    "category": "Juegos",
-    "rating": 4.3,
-    "size": "1.8 GB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/588/588267.png",
-    "description": "Call of Duty: Mobile es un juego de disparos en primera persona que ofrece modos multijugador y Battle Royale.",
-    "downloads": "500M+",
-    "bannerGradient": "45deg, #131313, #000000",
-    "security": true,
-    "version": "1.0.40",
-    "isAvailable": true,
-    "releaseDate": "2019-10-01T00:00:00",
-    "allowedCountries": ["US", "BR", "IN", "MX", "JP", "UK", "DE", "FR", "RU", "KR"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.activision.callofduty.shooter",
-      "ios": "https://apps.apple.com/app/call-of-duty/id1287282214"
-    },
-    "previousVersions": ["1.0.39", "1.0.38", "1.0.37"],
-    "media": [
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/cod-screenshot1.jpg"
-      },
-      {
-        "type": "image",
-        "url": "https://play-lh.googleusercontent.com/cod-screenshot2.jpg"
-      },
-      {
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=CODMobileDemo"
       }
     ]
   },
@@ -1730,116 +799,105 @@ document.head.appendChild(styleSheet);
 // Inicializar la visualización de aplicaciones
 displayFeaturedApps();
 
+// ------------------------------
+// Funcionalidad de traducción colaborativa en tiempo real
+// ------------------------------
 
-// ===============================
-// Funcionalidad para colaboración en traducción en tiempo real
-// ===============================
+// Importa las funciones necesarias del SDK de Firebase Realtime Database
+import { getDatabase, ref, update, onValue } from "firebase/database";
 
-// Importa funciones necesarias para Firebase Realtime Database
-import { getDatabase, ref, set, onValue } from "firebase/database";
-
-// Inicializa la base de datos usando la app ya configurada
+// Inicializa la base de datos utilizando la app ya inicializada
 const database = getDatabase(app);
 
 /**
- * Función que inicializa el modo colaborativo de traducción.
- * Cada vez que el usuario haga click en un elemento "translatable", se activará el modo edición.
- * Se agrega un botón flotante para guardar los cambios y se sincroniza con Firebase en tiempo real.
+ * Habilita la edición en línea para elementos translatables.
+ * Los elementos deben tener la clase "translatable".
+ * Cada elemento solo se puede editar 2 veces.
  */
-function initTranslationCollaboration() {
-  // Generador de ID único para cada elemento editable
-  const generateUniqueId = () => '_' + Math.random().toString(36).substr(2, 9);
-
-  // Función para guardar la traducción en Firebase
-  const saveTranslation = (el) => {
-    const translationId = el.getAttribute("data-translate-id");
-    const newText = el.innerText;
-    // Guarda en la ruta "translations/[translationId]"
-    set(ref(database, 'translations/' + translationId), {
-      text: newText,
-      updatedAt: new Date().toISOString()
-    })
-    .then(() => {
-      // Una vez guardado, se desactiva el modo edición
-      el.contentEditable = false;
-      el.classList.remove('editing-translation');
-      // Se remueve el botón flotante
-      const saveBtn = document.getElementById('saveTranslationBtn');
-      if (saveBtn) saveBtn.remove();
-    })
-    .catch((error) => {
-      console.error("Error al guardar la traducción:", error);
-    });
-  };
-
-  // Función para crear y mostrar el botón flotante "Guardar traducción"
-  const showSaveButton = (targetEl, event) => {
-    // Remueve cualquier botón existente
-    let existingBtn = document.getElementById('saveTranslationBtn');
-    if (existingBtn) existingBtn.remove();
-
-    const btn = document.createElement('button');
-    btn.id = 'saveTranslationBtn';
-    btn.textContent = 'Guardar traducción';
-    btn.style.position = 'absolute';
-    btn.style.top = (event.pageY + 5) + 'px';
-    btn.style.left = (event.pageX + 5) + 'px';
-    btn.style.zIndex = 10000;
-    btn.style.padding = '6px 12px';
-    btn.style.background = '#4a90e2';
-    btn.style.color = '#fff';
-    btn.style.border = 'none';
-    btn.style.borderRadius = '4px';
-    btn.style.cursor = 'pointer';
-    btn.addEventListener('click', () => saveTranslation(targetEl));
-    document.body.appendChild(btn);
-  };
-
-  // Activa el modo edición al hacer click sobre elementos de texto
-  document.body.addEventListener('click', (e) => {
-    // Evita activar el modo en elementos interactivos ya definidos
-    if (e.target.closest('button, input, textarea, a')) return;
-
-    // Si el elemento clickeado es un nodo de elemento y no es el body
-    if (e.target && e.target.nodeType === Node.ELEMENT_NODE && e.target !== document.body) {
-      // Asigna un ID único si no existe
-      if (!e.target.hasAttribute('data-translate-id')) {
-        e.target.setAttribute('data-translate-id', generateUniqueId());
+function enableInlineTranslation() {
+  document.body.addEventListener('click', function(event) {
+    let target = event.target;
+    if (target.classList.contains('translatable') && !target.isContentEditable) {
+      // Verificar si el elemento ya alcanzó el límite de 2 ediciones
+      let editCount = parseInt(target.getAttribute('data-edit-count') || "0", 10);
+      if (editCount >= 2) {
+        console.log('Límite de ediciones alcanzado para este elemento.');
+        return; // No permitir más ediciones
       }
-      // Activa la edición
-      e.target.contentEditable = true;
-      e.target.classList.add('editing-translation');
-      // Muestra el botón flotante en la posición del click
-      showSaveButton(e.target, e);
+
+      event.stopPropagation();
+      // Habilitar el modo edición
+      target.contentEditable = true;
+      target.focus();
+
+      // Crear botón de guardar
+      let saveBtn = document.createElement('button');
+      saveBtn.textContent = 'Guardar';
+      saveBtn.style.marginLeft = '10px';
+      saveBtn.style.fontSize = '0.9em';
+      saveBtn.style.cursor = 'pointer';
+      // Insertar el botón justo después del elemento editable
+      target.parentNode.insertBefore(saveBtn, target.nextSibling);
+
+      // Listener para guardar los cambios
+      saveBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        // Obtener el nuevo texto editado
+        let newText = target.innerText;
+        // Desactivar el modo edición
+        target.contentEditable = false;
+        saveBtn.remove();
+        // Usar el atributo id del elemento para identificar la traducción en Firebase.
+        // Si no tiene id, se le asigna uno único.
+        let translationKey = target.id || 'trans_' + Math.random().toString(36).substr(2, 9);
+        target.id = translationKey; // Asigna el id si no estaba definido
+
+        // Incrementar el contador de ediciones
+        editCount++;
+        target.setAttribute('data-edit-count', editCount);
+
+        // Actualizar el valor en Firebase Realtime Database
+        const translationRef = ref(database, 'translations/' + translationKey);
+        update(translationRef, {
+          text: newText,
+          editCount: editCount
+        })
+        .then(() => {
+          console.log('Traducción actualizada en Firebase.');
+        })
+        .catch((error) => {
+          console.error('Error actualizando la traducción:', error);
+        });
+      });
     }
   });
+}
 
-  // Escucha los cambios en Firebase para actualizar la traducción en tiempo real.
-  const translationsRef = ref(database, 'translations');
+/**
+ * Escucha en tiempo real los cambios en las traducciones almacenadas en Firebase
+ * y actualiza el contenido de los elementos correspondientes.
+ */
+function listenForTranslationUpdates() {
+  const translationsRef = ref(database, 'translations/');
   onValue(translationsRef, (snapshot) => {
     const data = snapshot.val();
     if (data) {
-      // Recorre todos los elementos en la página que tengan data-translate-id
-      document.querySelectorAll('[data-translate-id]').forEach(el => {
-        const tid = el.getAttribute('data-translate-id');
-        if (data[tid] && data[tid].text && el.innerText !== data[tid].text) {
-          el.innerText = data[tid].text;
+      Object.keys(data).forEach(key => {
+        const elem = document.getElementById(key);
+        if (elem && elem.innerText !== data[key].text) {
+          elem.innerText = data[key].text;
+          if (data[key].editCount !== undefined) {
+            elem.setAttribute('data-edit-count', data[key].editCount);
+          }
         }
       });
     }
   });
 }
 
-// Estilos opcionales para resaltar el modo edición de traducción
-const translationStyles = `
-  .editing-translation {
-    outline: 2px dashed #4a90e2;
-    background-color: rgba(74,144,226,0.1);
-  }
-`;
-const styleTag = document.createElement("style");
-styleTag.textContent = translationStyles;
-document.head.appendChild(styleTag);
-
-// Inicializa la colaboración en traducción
-initTranslationCollaboration();
+// Inicializar las funciones de traducción una vez cargado el DOM
+document.addEventListener('DOMContentLoaded', () => {
+  enableInlineTranslation();
+  listenForTranslationUpdates();
+});
+ 
