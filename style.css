@@ -60,6 +60,28 @@ body.dark-mode .detail-label {
     color: #cccccc;
 }
 
+body.dark-mode .app-details-scroll .detail-item {
+    background-color: #3d3d3d;
+}
+
+body.dark-mode .app-details-scroll .detail-label {
+    color: #cccccc;
+}
+
+body.dark-mode .app-details-scroll .detail-value {
+    color: #ffffff;
+}
+
+body.dark-mode .action-container .action-btn.secondary-btn {
+    background-color: #3d3d3d;
+    color: #ffffff;
+    border-color: #4d4d4d;
+}
+
+body.dark-mode .action-container .action-btn.secondary-btn:hover {
+    background-color: #4d4d4d;
+}
+
 body.dark-mode .security-info {
     background-color: #2d2d2d;
     color: #ffffff;
