@@ -385,14 +385,92 @@ body {
     display: block;
 }
 
-.modal-banner {
-    position: relative;
-    height: 200px;
-    margin: -20px -20px 20px -20px;
+.modal-header-new {
+    padding: 20px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    align-items: flex-start;
+    gap: 20px;
+    border-bottom: 1px solid #eaeced;
+}
+
+.app-icon-container {
+    flex-shrink: 0;
+}
+
+.app-icon-new {
+    width: 80px;
+    height: 80px;
+    border-radius: 15px;
+}
+
+.app-info-new {
+    flex-grow: 1;
+}
+
+.app-name-new {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.app-version {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.app-developer-new {
+    color: #0070ba;
+    margin-bottom: 15px;
+}
+
+.app-stats {
+    display: flex;
+    gap: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    flex: 1;
+    text-align: center;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-weight: 600;
+}
+
+.action-container {
+    display: flex;
+    gap: 15px;
+    margin: 20px;
+}
+
+.action-container .action-btn {
+    flex: 1;
+}
+
+.screenshots-section {
+    margin: 20px;
+}
+
+.description-section {
+    margin: 20px;
+    line-height: 1.6;
+}
+
+.package-info {
+    margin: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
 }
 
 .modal-banner::before {
