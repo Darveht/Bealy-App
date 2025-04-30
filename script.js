@@ -65,7 +65,7 @@ const apps = [{
     security: false,
     version: "497.0.0.79.36",
     isAvailable: true,
-    releaseDate: "2024-01-01T00:00:00",
+    releaseDate: "2026-01-01T00:00:00",
     allowedCountries: ["Global"],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.facebook.katana",
