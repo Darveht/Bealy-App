@@ -426,14 +426,33 @@ body {
     margin-bottom: 4px;
 }
 
-.app-stats-inline {
-    margin-top: 8px;
-    color: #666;
-    font-size: 14px;
+.app-details-scroll {
+    display: flex;
+    overflow-x: auto;
+    padding: 15px 0;
+    gap: 15px;
+    scrollbar-width: thin;
+    margin: 10px 0;
 }
 
-.app-stats-inline span {
-    margin: 0 5px;
+.detail-item {
+    flex: 0 0 auto;
+    min-width: 100px;
+    padding: 10px 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.detail-label {
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    font-weight: 600;
+    font-size: 14px;
 }
 
 .app-info-new .rating {
