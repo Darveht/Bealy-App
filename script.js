@@ -2138,5 +2138,24 @@ const styleSheet = document.createElement("style");
 styleSheet.textContent = styles;
 document.head.appendChild(styleSheet);
 
+// Settings Modal Functions
+document.getElementById('settingsIcon').addEventListener('click', () => {
+    document.getElementById('settingsModal').style.display = 'block';
+});
+
+document.getElementById('closeSettings').addEventListener('click', () => {
+    document.getElementById('settingsModal').style.display = 'none';
+});
+
+function showBeappInfo() {
+    document.getElementById('settingsModal').style.display = 'none';
+    document.getElementById('beappInfoModal').style.display = 'block';
+}
+
+function backToSettings() {
+    document.getElementById('beappInfoModal').style.display = 'none';
+    document.getElementById('settingsModal').style.display = 'block';
+}
+
 // Inicializar la visualización de aplicaciones
 displayFeaturedApps();
