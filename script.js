@@ -1664,13 +1664,13 @@ async function displayFeaturedApps() {
 function createAppCard(app) {
   const isReleased = isAppReleased(app.releaseDate);
   return `
-    <div class="app-card" onclick="openAppModal(${JSON.stringify(app).replace(/\"/g, '&quot;')})">
-      <div class="app-header">
+    <div class="app-card">
+      <div class="app-header" onclick="openAppModal(${JSON.stringify(app).replace(/\"/g, '&quot;')})">
         <img class="app-icon" src="${app.icon}" alt="${app.name}">
         <div class="app-info">
           <div class="app-name">${app.name}</div>
           <div class="app-developer">
-            <span class="developer-link" onclick="showDeveloperApps('${app.developer}', event)">${app.developer}</span>
+            <span class="developer-link" onclick="event.stopPropagation(); showDeveloperApps('${app.developer}', event)">${app.developer}</span>
           </div>
           <div class="package-name">${app.packageName || 'No disponible'}</div>
           <div class="rating">
@@ -1767,6 +1767,7 @@ async function openAppModal(app) {
 
     
 
+    ${app.media && app.media.length > 0 ? `
     <div class="media-container">
       <div class="media-wrapper">
         ${app.media.map(item => {
@@ -1790,6 +1791,7 @@ async function openAppModal(app) {
         `).join('')}
       </div>
     </div>
+  ` : ''}
 
     <p>${app.description}</p>
 
