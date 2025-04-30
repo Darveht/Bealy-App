@@ -697,6 +697,81 @@ body {
     font-size: 20px;
     cursor: pointer;
 }
+
+.report-section {
+    margin: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.violations-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.violation-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #eaeced;
+}
+
+.report-description {
+    width: 100%;
+    min-height: 100px;
+    margin: 15px 0;
+    padding: 10px;
+    border: 1px solid #eaeced;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+.spinner-container {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #0070ba;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.report-confirmation {
+    text-align: center;
+    padding: 20px;
+}
+
+.report-confirmation i {
+    font-size: 48px;
+    color: #4CAF50;
+    margin-bottom: 15px;
+}
+
+.report-confirmation h3 {
+    color: #2c2e2f;
+    margin-bottom: 10px;
+}
+
+.report-confirmation p {
+    color: #666;
+    margin-bottom: 8px;
+}
 .package-name {
   font-size: 0.8em;
   color: #666;
