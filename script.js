@@ -2205,6 +2205,90 @@ function backToSettings() {
     document.getElementById('settingsModal').style.display = 'block';
 }
 
+// Websites data
+const websites = [
+  {
+    name: "Google",
+    url: "https://www.google.com",
+    icon: "https://cdn-icons-png.flaticon.com/512/2991/2991148.png",
+    category: "Search Engine",
+    developer: "Google LLC",
+    description: "The world's most popular search engine.",
+    rating: 4.8
+  },
+  {
+    name: "Wikipedia",
+    url: "https://www.wikipedia.org",
+    icon: "https://cdn-icons-png.flaticon.com/512/2111/2111728.png",
+    category: "Encyclopedia",
+    developer: "Wikimedia Foundation",
+    description: "The free online encyclopedia.",
+    rating: 4.6
+  },
+  {
+    name: "GitHub",
+    url: "https://github.com",
+    icon: "https://cdn-icons-png.flaticon.com/512/733/733609.png",
+    category: "Development",
+    developer: "GitHub Inc.",
+    description: "Development platform for hosting and collaborating on code.",
+    rating: 4.7
+  }
+];
+
+function createWebsiteCard(website) {
+  return `
+    <div class="app-card" onclick="openWebsiteModal(${JSON.stringify(website).replace(/\"/g, '&quot;')})">
+      <div class="app-header">
+        <img class="app-icon" src="${website.icon}" alt="${website.name}">
+        <div class="app-info">
+          <div class="app-name">${website.name}</div>
+          <div class="app-developer">${website.developer}</div>
+          <div class="app-category">${website.category}</div>
+          <div class="rating">
+            <span class="stars">★★★★★</span>
+            <span>${website.rating}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function openWebsiteModal(website) {
+  const modalContent = document.getElementById('modalContent');
+  modalContent.innerHTML = `
+    <div class="modal-header-new">
+      <div class="app-icon-container">
+        <img class="app-icon-new" src="${website.icon}" alt="${website.name}">
+      </div>
+      <div class="app-info-new">
+        <div class="app-name-new">${website.name}</div>
+        <div class="app-developer-new">${website.developer}</div>
+        <div class="app-category">${website.category}</div>
+      </div>
+    </div>
+    <div class="action-container">
+      <a href="${website.url}" class="action-btn primary-btn" target="_blank">Visit Website</a>
+    </div>
+    <p>${website.description}</p>
+  `;
+  document.getElementById('appModal').classList.add('active');
+}
+
+function showWebsitesSection() {
+  document.getElementById('featuredApps').style.display = 'none';
+  document.getElementById('gamesSection').style.display = 'none';
+  document.getElementById('editorialSection').style.display = 'none';
+  document.getElementById('websitesSection').style.display = 'block';
+  
+  const websitesContainer = document.getElementById('websitesContainer');
+  websitesContainer.innerHTML = websites.map(website => createWebsiteCard(website)).join('');
+  
+  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+  document.querySelector('.nav-item[href="#websites"]').classList.add('active');
+}
+
 // Navigation Functions
 function showGamesSection() {
     document.getElementById('featuredApps').style.display = 'none';
