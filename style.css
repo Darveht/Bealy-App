@@ -655,3 +655,85 @@ body {
   border-radius: 50%;
   box-shadow: 0 2px 6px rgba(255, 215, 0, 0.5);
 }
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    padding: 20px 0;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.action-btn.primary-btn {
+    background: #0070ba;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 112, 186, 0.2);
+}
+
+.action-btn.primary-btn:hover {
+    background: #005ea6;
+    transform: translateY(-2px);
+}
+
+.action-btn.secondary-btn {
+    background: white;
+    color: #0070ba;
+    border: 2px solid #0070ba;
+}
+
+.action-btn.secondary-btn:hover {
+    background: #f5f7fa;
+    transform: translateY(-2px);
+}
+
+.previous-versions {
+    margin: 20px 0;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.previous-versions h4 {
+    color: #2c2e2f;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.previous-versions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.previous-versions li {
+    padding: 12px;
+    margin-bottom: 8px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #eaeced;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.previous-versions li:before {
+    content: "\f021";
+    font-family: "Font Awesome 5 Free";
+    color: #0070ba;
+}
+
+.previous-versions li:hover {
+    background: #f5f7fa;
+    transform: translateX(5px);
+    transition: all 0.3s ease;
+}
