@@ -1723,11 +1723,29 @@ async function openAppModal(app) {
         <div class="app-developer-new">${app.developer}</div>
         <div class="app-category">${app.category}</div>
         <div class="package-name">${app.packageName}</div>
-        <div class="app-stats-inline">
-          <span>★ ${app.rating}</span> •
-          <span>${app.size}</span> •
-          <span>${app.downloads}</span>
         </div>
+    </div>
+
+    <div class="app-details-scroll">
+      <div class="detail-item">
+        <div class="detail-label">Calificación</div>
+        <div class="detail-value">★ ${app.rating}</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Tamaño</div>
+        <div class="detail-value">${app.size}</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Descargas</div>
+        <div class="detail-value">${app.downloads}</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Versión</div>
+        <div class="detail-value">${app.version}</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Categoría</div>
+        <div class="detail-value">${app.category}</div>
       </div>
     </div>
 
