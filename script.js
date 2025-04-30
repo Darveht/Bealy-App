@@ -1721,21 +1721,13 @@ async function openAppModal(app) {
         <div class="app-name-new">${app.name}</div>
         <div class="app-version">Versión ${app.version}</div>
         <div class="app-developer-new">${app.developer}</div>
-      </div>
-    </div>
-
-    <div class="app-stats">
-      <div class="stat-item">
-        <div class="stat-label">Calificación</div>
-        <div class="stat-value">★ ${app.rating}</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-label">Tamaño</div>
-        <div class="stat-value">${app.size}</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-label">Descargas</div>
-        <div class="stat-value">${app.downloads}</div>
+        <div class="app-category">${app.category}</div>
+        <div class="package-name">${app.packageName}</div>
+        <div class="app-stats-inline">
+          <span>★ ${app.rating}</span> •
+          <span>${app.size}</span> •
+          <span>${app.downloads}</span>
+        </div>
       </div>
     </div>
 
@@ -1755,28 +1747,7 @@ async function openAppModal(app) {
 
     ${availabilityWarning}
 
-    <div class="info-grid">
-      <div class="info-item">
-        <div class="info-label">Categoría</div>
-        <div>${app.category}</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">Package Name</div>
-        <div>${app.packageName || 'No disponible'}</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">Versión</div>
-        <div>${app.version}</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">Tamaño</div>
-        <div>${app.size}</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">Descargas</div>
-        <div>${app.downloads}</div>
-      </div>
-    </div>
+    
 
     <div class="media-container">
       <div class="media-wrapper">
