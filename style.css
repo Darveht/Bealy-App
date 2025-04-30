@@ -1121,6 +1121,92 @@ body.dark-mode .previous-versions li {
     background: rgba(255, 255, 255, 0.3);
 }
 
+/* Rating System Styles */
+.rating-system {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.star-rating {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.star {
+  color: #ddd;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0 5px;
+}
+
+.star:hover,
+.star:hover ~ .star {
+  color: #ffd700;
+}
+
+.rating-overview {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.rating-average {
+  text-align: center;
+  min-width: 120px;
+}
+
+.big-rating {
+  font-size: 48px;
+  font-weight: bold;
+  color: #333;
+}
+
+.total-ratings {
+  color: #666;
+  font-size: 14px;
+}
+
+.rating-bars {
+  flex-grow: 1;
+}
+
+.rating-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.rating-bar {
+  flex-grow: 1;
+  height: 8px;
+  background: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.rating-fill {
+  height: 100%;
+  background: #4CAF50;
+  transition: width 0.3s ease;
+}
+
+body.dark-mode .rating-system {
+  background: #2d2d2d;
+}
+
+body.dark-mode .big-rating {
+  color: #fff;
+}
+
+body.dark-mode .rating-bar {
+  background: #444;
+}
+
 /* Bottom Navigation Bar */
 .bottom-nav {
     position: fixed;
