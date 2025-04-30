@@ -21,6 +21,7 @@ body.dark-mode .settings-modal,
 body.dark-mode .faq-modal,
 body.dark-mode .beapp-info-modal {
     background-color: #2d2d2d;
+    color: #ffffff;
 }
 
 body.dark-mode .search-input {
@@ -29,14 +30,49 @@ body.dark-mode .search-input {
     border-color: #4d4d4d;
 }
 
+body.dark-mode .app-name,
+body.dark-mode .app-developer,
+body.dark-mode .package-name,
+body.dark-mode .app-category,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p {
+    color: #ffffff;
+}
+
 body.dark-mode .settings-item,
 body.dark-mode .faq-item {
     border-color: #4d4d4d;
+    color: #ffffff;
 }
 
 body.dark-mode .settings-item:hover,
 body.dark-mode .faq-item:hover {
     background-color: #3d3d3d;
+}
+
+body.dark-mode .detail-item {
+    background-color: #3d3d3d;
+    color: #ffffff;
+}
+
+body.dark-mode .detail-label {
+    color: #cccccc;
+}
+
+body.dark-mode .security-info {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+body.dark-mode .previous-versions {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+body.dark-mode .previous-versions li {
+    background-color: #3d3d3d;
+    border-color: #4d4d4d;
 }
 
 .search-container {
