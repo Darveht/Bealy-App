@@ -577,7 +577,7 @@ const apps = [{
     "description": "Uber es una aplicación que conecta a conductores con pasajeros para viajes urbanos a pedido.",
     "downloads": "500M+",
     "bannerGradient": "45deg, #000000, #333333",
-    "security: true,
+    "security": true,
     "version": "4.441.10000",
     "isAvailable": true,
     "releaseDate": "2009-03-01T00:00:00",
@@ -1182,7 +1182,7 @@ const apps = [{
     "name": "Roblox",
     "developer": "Roblox Corporation",
     "packageName": "com.roblox.client",
-    "category":"Juegos",
+    "category": "Juegos",
     "rating": 4.4,
     "size": "120 MB",
     "icon": "https://cdn-icons-pngflaticon.com/512/3992/3992429.png",
@@ -1765,7 +1765,7 @@ async function openAppModal(app) {
 
     ${availabilityWarning}
 
-
+    
 
     ${app.media && app.media.length > 0 ? `
     <div class="media-container">
@@ -1813,7 +1813,6 @@ async function openAppModal(app) {
   document.getElementById('appModal').classList.add('active');
   initializeCarousel();
   initializeVideoPlayers();
-  reportApp(app); // Agregar la función de reporte aquí
 }
 
 function initializeCarousel() {
@@ -2131,83 +2130,6 @@ const styles = `
     color: #666;
     max-width: 600px;
     margin: 0 auto;
-}
-
-/* Estilos para la sección de reporte */
-.report-section {
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-
-.violations-list {
-    margin-bottom: 10px;
-}
-
-.violation-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-.violation-item label {
-    margin-left: 5px;
-}
-
-.report-description {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-}
-
-/* Estilos para el spinner */
-.spinner-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100px;
-}
-
-.spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #3498db;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.spinner p {
-    margin-top: 10px;
-}
-
-/* Estilos para la confirmación del reporte */
-.report-confirmation {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100px;
-    background-color: #d4edda;
-    border: 1px solid #c3e6cb;
-    border-radius: 8px;
-    padding: 20px;
-}
-
-.report-confirmation i {
-    font-size: 3em;
-    color: #28a745;
-    margin-bottom: 10px;
 }
 `;
 
