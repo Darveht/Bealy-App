@@ -2138,6 +2138,41 @@ const styleSheet = document.createElement("style");
 styleSheet.textContent = styles;
 document.head.appendChild(styleSheet);
 
+// Dark Mode Functions
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+}
+
+// Check for saved dark mode preference
+if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+}
+
+// FAQ Functions
+function showFaqSupport() {
+    document.getElementById('settingsModal').style.display = 'none';
+    document.getElementById('faqModal').style.display = 'block';
+}
+
+function showFaqArticle(articleId) {
+    if (articleId === 'about') {
+        document.getElementById('beappInfoModal').style.display = 'block';
+        document.getElementById('faqModal').style.display = 'none';
+    }
+}
+
+// FAQ Search
+document.getElementById('faqSearch')?.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const text = item.querySelector('h3').textContent.toLowerCase();
+        item.style.display = text.includes(searchTerm) ? 'flex' : 'none';
+    });
+});
+
 // Settings Modal Functions
 document.getElementById('settingsIcon').addEventListener('click', () => {
     document.getElementById('settingsModal').style.display = 'block';
