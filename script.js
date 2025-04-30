@@ -2192,5 +2192,43 @@ function backToSettings() {
     document.getElementById('settingsModal').style.display = 'block';
 }
 
+// Navigation Functions
+function showGamesSection() {
+    document.getElementById('featuredApps').style.display = 'none';
+    document.getElementById('gamesSection').style.display = 'block';
+    document.getElementById('editorialSection').style.display = 'none';
+    
+    // Filter and display only games
+    const gameApps = apps.filter(app => app.category === 'Juegos');
+    const gamesContainer = document.getElementById('gamesContainer');
+    gamesContainer.innerHTML = gameApps.map(app => createAppCard(app)).join('');
+    
+    // Update active navigation
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    document.querySelector('.nav-item[href="#games"]').classList.add('active');
+}
+
+function showEditorialSection() {
+    document.getElementById('featuredApps').style.display = 'none';
+    document.getElementById('gamesSection').style.display = 'none';
+    document.getElementById('editorialSection').style.display = 'block';
+    
+    // Update active navigation
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    document.querySelector('.nav-item[href="#editorial"]').classList.add('active');
+}
+
+// Home navigation
+document.querySelector('.nav-item[href="#"]').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('featuredApps').style.display = 'block';
+    document.getElementById('gamesSection').style.display = 'none';
+    document.getElementById('editorialSection').style.display = 'none';
+    
+    // Update active navigation
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    e.currentTarget.classList.add('active');
+});
+
 // Inicializar la visualización de aplicaciones
 displayFeaturedApps();
