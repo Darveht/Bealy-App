@@ -1760,6 +1760,15 @@ async function openAppModal(app) {
       </div>
     </div>
 
+    <div class="rating-system">
+      <div class="star-rating">
+        ${[1, 2, 3, 4, 5].map(star => `
+          <span class="star" data-rating="${star}" onclick="saveRating('${app.name}', ${star})">★</span>
+        `).join('')}
+      </div>
+      <div id="ratingStats"></div>
+    </div>
+
     <div class="action-container">
       ${isAvailableInCountry && isReleased && storeLink
         ? `<a href="${storeLink}" class="action-btn primary-btn" target="_blank">
@@ -1776,7 +1785,7 @@ async function openAppModal(app) {
 
     ${availabilityWarning}
 
-    
+
 
     ${app.media && app.media.length > 0 ? `
     <div class="media-container">
@@ -1855,7 +1864,7 @@ function initializeCarousel() {
     e.preventDefault();
     currentX = e.type === 'mousemove' ? e.pageX : e.touches[0].pageX;
     const diff = currentX - startX;
-    const slideWidth = container.querySelector('.media-item').offsetWidth + 15;
+    const slideWidth = container.querySelector('.media-item').offsetWidth+ 15;
     wrapper.style.transform = `translateX(${-currentIndex * slideWidth + diff}px)`;
   }
 
@@ -2144,6 +2153,31 @@ const styles = `
     max-width: 600px;
     margin: 0 auto;
 }
+
+/* Rating System Styles */
+.rating-system {
+  margin-bottom: 20px;
+}
+
+.star-rating {
+  display: flex;
+}
+
+.star {
+  font-size: 2em;
+  cursor: pointer;
+  color: #ccc; /* Default color */
+}
+
+.star:hover,
+.star.active {
+  color: gold; /* Hover and active color */
+}
+
+#ratingStats {
+  margin-top: 10px;
+  font-style: italic;
+}
 `;
 
 // Agregar los estilos al documento
@@ -2179,7 +2213,7 @@ function showFaqArticle(articleId) {
 document.getElementById('faqSearch')?.addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase();
     const faqItems = document.querySelectorAll('.faq-item');
-    
+
     faqItems.forEach(item => {
         const text = item.querySelector('h3').textContent.toLowerCase();
         item.style.display = text.includes(searchTerm) ? 'flex' : 'none';
@@ -2281,10 +2315,10 @@ function showWebsitesSection() {
   document.getElementById('gamesSection').style.display = 'none';
   document.getElementById('editorialSection').style.display = 'none';
   document.getElementById('websitesSection').style.display = 'block';
-  
+
   const websitesContainer = document.getElementById('websitesContainer');
   websitesContainer.innerHTML = websites.map(website => createWebsiteCard(website)).join('');
-  
+
   document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
   document.querySelector('.nav-item[href="#websites"]').classList.add('active');
 }
@@ -2294,12 +2328,12 @@ function showGamesSection() {
     document.getElementById('featuredApps').style.display = 'none';
     document.getElementById('gamesSection').style.display = 'block';
     document.getElementById('editorialSection').style.display = 'none';
-    
+
     // Filter and display only games
     const gameApps = apps.filter(app => app.category === 'Juegos');
     const gamesContainer = document.getElementById('gamesContainer');
     gamesContainer.innerHTML = gameApps.map(app => createAppCard(app)).join('');
-    
+
     // Update active navigation
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
     document.querySelector('.nav-item[href="#games"]').classList.add('active');
@@ -2309,7 +2343,7 @@ function showEditorialSection() {
     document.getElementById('featuredApps').style.display = 'none';
     document.getElementById('gamesSection').style.display = 'none';
     document.getElementById('editorialSection').style.display = 'block';
-    
+
     // Update active navigation
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
     document.querySelector('.nav-item[href="#editorial"]').classList.add('active');
@@ -2321,7 +2355,7 @@ document.querySelector('.nav-item[href="#"]').addEventListener('click', (e) => {
     document.getElementById('featuredApps').style.display = 'block';
     document.getElementById('gamesSection').style.display = 'none';
     document.getElementById('editorialSection').style.display = 'none';
-    
+
     // Update active navigation
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
     e.currentTarget.classList.add('active');
@@ -2332,7 +2366,7 @@ let lastScrollPosition = 0;
 document.addEventListener('scroll', () => {
   const bottomNav = document.querySelector('.bottom-nav');
   const currentScroll = window.pageYOffset;
-  
+
   if (currentScroll > lastScrollPosition) {
     // Scrolling down
     bottomNav.style.transform = 'translateY(100%)';
@@ -2345,3 +2379,27 @@ document.addEventListener('scroll', () => {
 
 // Inicializar la visualización de aplicaciones
 displayFeaturedApps();
+
+// Function to save rating using local storage
+function saveRating(appName, rating) {
+  const ratings = JSON.parse(localStorage.getItem('appRatings')) || {};
+  ratings[appName] = rating;
+  localStorage.setItem('appRatings', JSON.stringify(ratings));
+  updateRatingStats(appName);
+  // Update star visual
+  const stars = document.querySelectorAll(`.star-rating span.star`);
+  stars.forEach(star => star.classList.remove('active'));
+  const ratedStars = document.querySelectorAll(`.star-rating span.star[data-rating="${rating}"]`);
+  ratedStars.forEach(star => star.classList.add('active'));
+}
+
+// Function to update rating statistics
+function updateRatingStats(appName) {
+  const ratings = JSON.parse(localStorage.getItem('appRatings')) || {};
+  const appRatings = Object.values(ratings).filter(rating => rating); // Filter out undefined ratings
+  const avgRating = appRatings.reduce((sum, rating) => sum + rating, 0) / appRatings.length || 0;
+  const ratingStatsDiv = document.getElementById('ratingStats');
+  ratingStatsDiv.innerHTML = `
+    Promedio: ${avgRating.toFixed(1)} estrellas (${appRatings.length} votos)
+  `;
+}
