@@ -1,5 +1,4 @@
-
-  // Función para detectar el dispositivo
+ // Función para detectar el dispositivo
 function detectDevice() {
   const userAgent = navigator.userAgent.toLowerCase();
   if (/iphone|ipad|ipod/.test(userAgent)) {
@@ -1714,11 +1713,44 @@ async function openAppModal(app) {
 
   const modalContent = document.getElementById('modalContent');
   modalContent.innerHTML = `
-    <div class="modal-banner" style="background: linear-gradient(${app.bannerGradient})">
-      <div class="modal-banner-content">
-        <img class="modal-banner-icon" src="${app.icon}" alt="${app.name}">
-        <h2>${app.name}</h2>
+    <div class="modal-header-new">
+      <div class="app-icon-container">
+        <img class="app-icon-new" src="${app.icon}" alt="${app.name}">
       </div>
+      <div class="app-info-new">
+        <div class="app-name-new">${app.name}</div>
+        <div class="app-version">Versión ${app.version}</div>
+        <div class="app-developer-new">${app.developer}</div>
+      </div>
+    </div>
+
+    <div class="app-stats">
+      <div class="stat-item">
+        <div class="stat-label">Calificación</div>
+        <div class="stat-value">★ ${app.rating}</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Tamaño</div>
+        <div class="stat-value">${app.size}</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Descargas</div>
+        <div class="stat-value">${app.downloads}</div>
+      </div>
+    </div>
+
+    <div class="action-container">
+      ${isAvailableInCountry && isReleased && storeLink
+        ? `<a href="${storeLink}" class="action-btn primary-btn" target="_blank">
+             Descargar ${detectDevice() === 'ios' ? 'en App Store' : 'en Play Store'}
+           </a>`
+        : `<button class="action-btn primary-btn" disabled>
+             ${!isReleased ? 'Próximamente' : 'No disponible'}
+           </button>`
+      }
+      <button class="action-btn secondary-btn" onclick="togglePreviousVersions('${app.name}')">
+        Ver versiones anteriores
+      </button>
     </div>
 
     ${availabilityWarning}
