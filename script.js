@@ -1817,19 +1817,103 @@ function initializeCarousel() {
   const container = document.querySelector('.media-container');
   const wrapper = container.querySelector('.media-wrapper');
   const dots = container.querySelectorAll('.carousel-dot');
+  const items = container.querySelectorAll('.media-item');
   let currentIndex = 0;
+  let startX, currentX;
+  let isDragging = false;
 
   function updateCarousel(index) {
+    currentIndex = index;
     const slideWidth = container.querySelector('.media-item').offsetWidth + 15;
     wrapper.style.transform = `translateX(-${slideWidth * index}px)`;
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
   }
 
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      currentIndex = index;
+  function handleTouchStart(e) {
+    startX = e.type === 'mousedown' ? e.pageX : e.touches[0].pageX;
+    isDragging = true;
+    wrapper.style.transition = 'none';
+  }
+
+  function handleTouchMove(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    currentX = e.type === 'mousemove' ? e.pageX : e.touches[0].pageX;
+    const diff = currentX - startX;
+    const slideWidth = container.querySelector('.media-item').offsetWidth + 15;
+    wrapper.style.transform = `translateX(${-currentIndex * slideWidth + diff}px)`;
+  }
+
+  function handleTouchEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    wrapper.style.transition = 'transform 0.3s ease';
+    const slideWidth = container.querySelector('.media-item').offsetWidth + 15;
+    const diff = currentX - startX;
+    if (Math.abs(diff) > slideWidth / 3) {
+      if (diff > 0 && currentIndex > 0) {
+        updateCarousel(currentIndex - 1);
+      } else if (diff < 0 && currentIndex < items.length - 1) {
+        updateCarousel(currentIndex + 1);
+      } else {
+        updateCarousel(currentIndex);
+      }
+    } else {
       updateCarousel(currentIndex);
-    });
+    }
+  }
+
+  // Eventos táctiles y de mouse
+  wrapper.addEventListener('mousedown', handleTouchStart);
+  wrapper.addEventListener('touchstart', handleTouchStart);
+  wrapper.addEventListener('mousemove', handleTouchMove);
+  wrapper.addEventListener('touchmove', handleTouchMove);
+  wrapper.addEventListener('mouseup', handleTouchEnd);
+  wrapper.addEventListener('touchend', handleTouchEnd);
+  wrapper.addEventListener('mouseleave', handleTouchEnd);
+
+  // Click en puntos
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => updateCarousel(index));
+  });
+
+  // Vista completa al hacer clic en imagen
+  items.forEach((item, index) => {
+    if (!item.classList.contains('video')) {
+      item.addEventListener('click', () => {
+        const fullscreenView = document.createElement('div');
+        fullscreenView.className = 'fullscreen-view';
+        fullscreenView.innerHTML = `
+          <div class="fullscreen-content">
+            <img src="${item.src}" alt="Fullscreen">
+            <div class="fullscreen-nav">
+              ${index > 0 ? '<button class="nav-prev">❮</button>' : ''}
+              ${index < items.length - 1 ? '<button class="nav-next">❯</button>' : ''}
+            </div>
+            <button class="close-fullscreen">✕</button>
+          </div>
+        `;
+        document.body.appendChild(fullscreenView);
+
+        const closeBtn = fullscreenView.querySelector('.close-fullscreen');
+        const prevBtn = fullscreenView.querySelector('.nav-prev');
+        const nextBtn = fullscreenView.querySelector('.nav-next');
+
+        closeBtn.addEventListener('click', () => fullscreenView.remove());
+        if (prevBtn) prevBtn.addEventListener('click', () => {
+          const prevItem = items[index - 1];
+          if (!prevItem.classList.contains('video')) {
+            fullscreenView.querySelector('img').src = prevItem.src;
+          }
+        });
+        if (nextBtn) nextBtn.addEventListener('click', () => {
+          const nextItem = items[index + 1];
+          if (!nextItem.classList.contains('video')) {
+            fullscreenView.querySelector('img').src = nextItem.src;
+          }
+        });
+      });
+    }
   });
 }
 
