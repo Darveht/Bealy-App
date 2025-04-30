@@ -307,15 +307,6 @@
         </div>
     </div>
 
-    <!-- Scripts (esto se enviará más tarde) -->
-</body>
-</html>
-<!-- partial -->
-  <script  src="./script.js"></script>
-
-</body>
-</html>
-<proposed_insert before="</body>">
     <!-- Modal de FAQ y Soporte -->
     <div class="faq-modal" id="faqModal">
         <div class="faq-content">
@@ -345,4 +336,57 @@
             </div>
         </div>
     </div>
-</proposed_insert>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#games" class="nav-item" onclick="showGamesSection()">
+            <i class="fas fa-gamepad"></i>
+            <span>Games</span>
+        </a>
+        <a href="#editorial" class="nav-item" onclick="showEditorialSection()">
+            <i class="fas fa-edit"></i>
+            <span>Editorial</span>
+        </a>
+    </nav>
+
+    <!-- Games Section -->
+    <div id="gamesSection" class="section-container" style="display: none;">
+        <h2 class="section-title">Games</h2>
+        <div id="gamesContainer" class="apps-grid"></div>
+    </div>
+
+    <!-- Editorial Section -->
+    <div id="editorialSection" class="section-container" style="display: none;">
+        <h2 class="section-title">Developer's Guide</h2>
+        <div class="editorial-content">
+            <h3>How to Become a Developer</h3>
+            <div class="steps-container">
+                <div class="step-card">
+                    <i class="fas fa-code"></i>
+                    <h4>1. Create Your App</h4>
+                    <p>Develop your application using best practices and ensure it meets our quality standards.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h4>2. Test Your App</h4>
+                    <p>Thoroughly test your application for bugs and ensure it works across different devices.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fas fa-upload"></i>
+                    <h4>3. Submit for Review</h4>
+                    <p>Submit your application for review. Our team will check for quality and security.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
