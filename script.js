@@ -1,4 +1,4 @@
- // Función para detectar el dispositivo
+// Función para detectar el dispositivo
 function detectDevice() {
   const userAgent = navigator.userAgent.toLowerCase();
   if (/iphone|ipad|ipod/.test(userAgent)) {
@@ -33,12 +33,12 @@ function isAppReleased(releaseDate) {
 function getTimeUntilRelease(releaseDate) {
     const now = new Date();
     const release = new Date(releaseDate);
-    
+
     if (now >= release) return null;
-    
+
     const diffTime = Math.abs(release - now);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
+
     if (diffDays > 30) {
         const diffMonths = Math.floor(diffDays / 30);
         return `${diffMonths} mes${diffMonths > 1 ? 'es' : ''}`;
@@ -65,7 +65,7 @@ const apps = [{
     security: false,
     version: "497.0.0.79.36",
     isAvailable: true,
-    releaseDate: "2026-01-01T00:00:00",
+    releaseDate: "2024-01-01T00:00:00",
     allowedCountries: ["Global"],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.facebook.katana",
@@ -158,9 +158,9 @@ const apps = [{
       }
     ]
   },
-           
- 
-  
+
+
+
   {
     "name": "Messenger Lite",
     "developer": "Meta Platforms, Inc.",
@@ -457,7 +457,7 @@ const apps = [{
       }
     ]
   },
-  
+
   {
     "name": "Google Maps",
     "developer": "Google LLC",
@@ -868,7 +868,7 @@ const apps = [{
     "security": true,
     "version": "8.5.2.25",
     "isAvailable": true,
-    "releaseDate": "2014-08-12T00:00:00",
+    "releaseDate": "2026-08-12T00:00:00",
     "allowedCountries": ["US", "IN", "BR", "MX", "UK", "JP", "AU", "CA", "DE", "FR"],
     "platforms": {
       "android": "https://play.google.com/store/apps/details?id=com.google.android.apps.classroom",
@@ -1185,7 +1185,7 @@ const apps = [{
     "category": "Juegos",
     "rating": 4.4,
     "size": "120 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/3992/3992429.png",
+    "icon": "https://cdn-icons-pngflaticon.com/512/3992/3992429.png",
     "description": "Roblox es una plataforma de juegos en línea donde los usuarios pueden crear y jugar juegos creados por otros usuarios.",
     "downloads": "500M+",
     "bannerGradient": "45deg, #FF0000, #D60001",
@@ -1502,39 +1502,39 @@ const apps = [{
       }
     ]
   },
-           
+
   {
-    name: "Threads",
-    developer: "Meta",
-    packageName: "com.instagram.threads",
-    category: "Redes sociales",
-    rating: 4.0,
-    size: "64.3 MB",
-    icon: "https://cdn.prod.website-files.com/63c5640295a3b83ae7861a3c/64da4f65aad5dfeae27e70c3_Threads%20logo.png",
-    description: "Threads es la nueva app de texto de Instagram. Comparte actualizaciones y únete a conversaciones.",
-    downloads: "100M+",
-    bannerGradient: "45deg, #000000, #333333",
-    security: true,
-    version: "1.0.0",
-    isAvailable: true,
-    releaseDate: "2024-09-15T00:00:00",
-    allowedCountries: ["US", "ES", "MX", "AR", "CO", "PE", "CL"],
-    platforms: {
-      android: "https://play.google.com/store/apps/details?id=com.instagram.threads",
-      ios: "https://apps.apple.com/us/app/threads-an-instagram-app/id6446901002"
+    "name": "Threads",
+    "developer": "Meta",
+    "packageName": "com.instagram.threads",
+    "category": "Redes sociales",
+    "rating": 4.0,
+    "size": "64.3 MB",
+    "icon": "https://cdn.prod.website-files.com/63c5640295a3b83ae7861a3c/64da4f65aad5dfeae27e70c3_Threads%20logo.png",
+    "description": "Threads es la nueva app de texto de Instagram. Comparte actualizaciones y únete a conversaciones.",
+    "downloads": "100M+",
+    "bannerGradient": "45deg, #000000, #333333",
+    "security": true,
+    "version": "1.0.0",
+    "isAvailable": true,
+    "releaseDate": "2024-09-15T00:00:00",
+    "allowedCountries": ["US", "ES", "MX", "AR", "CO", "PE", "CL"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.instagram.threads",
+      "ios": "https://apps.apple.com/us/app/threads-an-instagram-app/id6446901002"
     },
-    previousVersions: [],
-    media: [{
+    "previousVersions": [],
+    "media": [{
         type: "image",
-        url: "/api/placeholder/200/400"
+        "url": "/api/placeholder/200/400"
       },
       {
-        type: "video",
-        url: "dQw4w9WgXcQ"
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
       },
       {
-        type: "image",
-        url: "/api/placeholder/200/400"
+        "type": "image",
+        "url": "/api/placeholder/200/400"
       }
     ]
   }
@@ -1577,7 +1577,7 @@ async function displayFeaturedApps() {
 
   // Filtrar apps por país
   const availableApps = await filterAppsByCountry(apps);
-  
+
   if (availableApps.length === 0) {
     featuredApps.innerHTML = `
       <div class="no-apps-message">
@@ -1597,7 +1597,7 @@ async function displayFeaturedApps() {
   posterSection.innerHTML = `<h2 class="section-title">Top 10 Aplicaciones Destacadas</h2>`;
   const postersContainer = document.createElement('div');
   postersContainer.className = 'app-posters';
-  
+
   top10Apps.forEach(app => {
     const isReleased = isAppReleased(app.releaseDate);
     const poster = document.createElement('div');
@@ -1618,7 +1618,7 @@ async function displayFeaturedApps() {
     poster.addEventListener('click', () => openAppModal(app));
     postersContainer.appendChild(poster);
   });
-  
+
   posterSection.appendChild(postersContainer);
   featuredApps.appendChild(posterSection);
 
@@ -1691,9 +1691,9 @@ async function openAppModal(app) {
   const countryCode = await detectCountry();
   const isAvailableInCountry = app.allowedCountries.includes(countryCode);
   const isReleased = isAppReleased(app.releaseDate);
-  
+
   let availabilityWarning = '';
-  
+
   if (!isReleased) {
     const timeRemaining = getTimeUntilRelease(app.releaseDate);
     availabilityWarning = `
@@ -1804,20 +1804,6 @@ async function openAppModal(app) {
 
     <p>${app.description}</p>
 
-    <div class="action-buttons">
-     ${isAvailableInCountry && isReleased && storeLink
-        ? `<a href="${storeLink}" class="action-btn primary-btn" target="_blank">
-             Descargar ${detectDevice() === 'ios' ? 'en App Store' : 'en Play Store'}
-           </a>`
-        : `<button class="action-btn primary-btn" disabled>
-             ${!isReleased ? 'Próximamente' : 'Bloqueada'}
-           </button>`
-      }
-      <button class="action-btn secondary-btn" onclick="togglePreviousVersions('${app.name}')">
-        Ver versiones anteriores
-      </button>
-    </div>
-
     <div class="security-info ${app.security ? 'secure' : ''}">
       <div class="virustotal-badge">
         <i class="fas fa-shield-alt"></i> Verificado por VirusTotal
@@ -1849,7 +1835,7 @@ function initializeCarousel() {
     wrapper.style.transform = `translateX(-${slideWidth * index}px)`;
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
   }
-  
+
   dots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
       currentIndex = index;
@@ -1892,10 +1878,10 @@ function showDeveloperApps(developer, event) {
 async function displayApps(appsToDisplay) {
   const appsContainer = document.getElementById('appsContainer');
   const featuredApps = document.getElementById('featuredApps');
-  
+
   // Filtrar por país
   const availableApps = await filterAppsByCountry(appsToDisplay);
-  
+
   if (availableApps.length > 0) {
     featuredApps.style.display = 'none';
     appsContainer.style.display = 'block';
