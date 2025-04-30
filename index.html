@@ -228,6 +228,45 @@
         <div class="search-bar">
             <i class="fas fa-search search-icon"></i>
             <input type="text" class="search-input" placeholder="Buscar aplicaciones..." id="searchInput">
+            <i class="fas fa-cog settings-icon" id="settingsIcon"></i>
+        </div>
+    </div>
+
+    <!-- Modal de Configuración -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h2>Configuración</h2>
+                <button class="close-settings" id="closeSettings">&times;</button>
+            </div>
+            <div class="settings-body">
+                <div class="settings-item" onclick="showBeappInfo()">
+                    <h3>¿Qué es BeApp?</h3>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Información BeApp -->
+    <div class="beapp-info-modal" id="beappInfoModal">
+        <div class="beapp-info-content">
+            <div class="beapp-info-header">
+                <button class="back-to-settings" onclick="backToSettings()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Acerca de BeApp</h2>
+            </div>
+            <div class="beapp-info-body">
+                <p>BeApp es una plataforma innovadora que se dedica a proporcionar a los usuarios una experiencia única en la descarga y gestión de aplicaciones. Nuestra misión es facilitar el acceso a las mejores aplicaciones mientras garantizamos la seguridad y calidad de cada descarga.</p>
+                <p>Características principales:</p>
+                <ul>
+                    <li>Verificación de seguridad de todas las aplicaciones</li>
+                    <li>Información detallada sobre cada aplicación</li>
+                    <li>Actualizaciones en tiempo real</li>
+                    <li>Soporte para múltiples plataformas</li>
+                </ul>
+            </div>
         </div>
     </div>
 
