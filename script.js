@@ -1661,8 +1661,15 @@ async function displayFeaturedApps() {
   });
 }
 
+function isVerifiedDeveloper(developer) {
+  const devApps = apps.filter(app => app.developer === developer);
+  const totalDownloads = devApps.reduce((sum, app) => sum + parseDownloads(app.downloads), 0);
+  return devApps.length > 1 && totalDownloads > 3000000;
+}
+
 function createAppCard(app) {
   const isReleased = isAppReleased(app.releaseDate);
+  const isVerified = isVerifiedDeveloper(app.developer);
   return `
     <div class="app-card">
       <div class="app-header" onclick="openAppModal(${JSON.stringify(app).replace(/\"/g, '&quot;')})">
@@ -1671,6 +1678,7 @@ function createAppCard(app) {
           <div class="app-name">${app.name}</div>
           <div class="app-developer">
             <span class="developer-link" onclick="event.stopPropagation(); showDeveloperApps('${app.developer}', event)">${app.developer}</span>
+            ${isVerified ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}
           </div>
           <div class="package-name">${app.packageName || 'No disponible'}</div>
           <div class="rating">
@@ -1720,7 +1728,10 @@ async function openAppModal(app) {
       <div class="app-info-new">
         <div class="app-name-new">${app.name}</div>
         <div class="app-version">Versión ${app.version}</div>
-        <div class="app-developer-new">${app.developer}</div>
+        <div class="app-developer-new">
+          ${app.developer}
+          ${isVerifiedDeveloper(app.developer) ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}
+        </div>
         <div class="app-category">${app.category}</div>
         <div class="package-name">${app.packageName}</div>
         </div>
@@ -1795,12 +1806,14 @@ async function openAppModal(app) {
 
     <p>${app.description}</p>
 
-    <div class="security-info ${app.security ? 'secure' : ''}">
-      <div class="virustotal-badge">
-        <i class="fas fa-shield-alt"></i> Verificado por VirusTotal
+    ${isVerifiedDeveloper(app.developer) ? `
+    <div class="developer-verification">
+      <div class="verification-badge">
+        <i class="fas fa-check-circle"></i> Desarrollador Verificado
       </div>
-      <p>Esta aplicación ha pasado nuestras verificaciones de seguridad.</p>
+      <p>Este desarrollador tiene múltiples aplicaciones exitosas.</p>
     </div>
+    ` : ''}
 
     <div class="previous-versions" id="${app.name}-versions" style="display:none;">
       <h4>Versiones anteriores:</h4>
@@ -2228,6 +2241,22 @@ document.querySelector('.nav-item[href="#"]').addEventListener('click', (e) => {
     // Update active navigation
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
     e.currentTarget.classList.add('active');
+});
+
+// Control de scroll para la barra de navegación
+let lastScrollPosition = 0;
+document.addEventListener('scroll', () => {
+  const bottomNav = document.querySelector('.bottom-nav');
+  const currentScroll = window.pageYOffset;
+  
+  if (currentScroll > lastScrollPosition) {
+    // Scrolling down
+    bottomNav.style.transform = 'translateY(100%)';
+  } else {
+    // Scrolling up
+    bottomNav.style.transform = 'translateY(0)';
+  }
+  lastScrollPosition = currentScroll;
 });
 
 // Inicializar la visualización de aplicaciones
