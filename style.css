@@ -419,13 +419,21 @@ body {
 }
 
 .app-info-new .package-name,
-.app-info-new .category,
-.app-info-new .version,
-.app-info-new .size,
-.app-info-new .downloads {
+.app-info-new .app-category,
+.app-info-new .app-version {
     color: #666;
     font-size: 14px;
     margin-bottom: 4px;
+}
+
+.app-stats-inline {
+    margin-top: 8px;
+    color: #666;
+    font-size: 14px;
+}
+
+.app-stats-inline span {
+    margin: 0 5px;
 }
 
 .app-info-new .rating {
