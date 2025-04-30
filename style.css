@@ -413,14 +413,25 @@ body {
     margin-bottom: 5px;
 }
 
-.app-version {
-    color: #666;
-    margin-bottom: 5px;
-}
-
 .app-developer-new {
     color: #0070ba;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
+}
+
+.app-info-new .package-name,
+.app-info-new .category,
+.app-info-new .version,
+.app-info-new .size,
+.app-info-new .downloads {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.app-info-new .rating {
+    color: #f39c12;
+    font-size: 16px;
+    margin: 8px 0;
 }
 
 .app-stats {
