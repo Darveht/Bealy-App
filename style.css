@@ -896,16 +896,9 @@ body.dark-mode .previous-versions li {
   color: #666;
 }
 .verified-badge {
+  color: #0070ba;
   margin-left: 5px;
   font-size: 14px;
-}
-
-.verified-badge.blue {
-  color: #0070ba;
-}
-
-.verified-badge.black {
-  color: #000000;
 }
 
 .developer-verification {
