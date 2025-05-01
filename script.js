@@ -1078,6 +1078,7 @@ function showEditorialSection() {
     document.getElementById('featuredApps').style.display = 'none';
     document.getElementById('gamesSection').style.display = 'none';
     document.getElementById('editorialSection').style.display = 'block';
+    document.getElementById('websitesSection').style.display = 'none';
 
     // Update active navigation
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
@@ -1090,6 +1091,7 @@ document.querySelector('.nav-item[href="#"]').addEventListener('click', (e) => {
     document.getElementById('featuredApps').style.display = 'block';
     document.getElementById('gamesSection').style.display = 'none';
     document.getElementById('editorialSection').style.display = 'none';
+    document.getElementById('websitesSection').style.display = 'none';
 
     // Update active navigation
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
