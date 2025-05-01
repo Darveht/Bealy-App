@@ -2289,8 +2289,15 @@ function createWebsiteCard(website) {
   `;
 }
 
+function getWebsiteClicks() {
+  return Math.floor(Math.random() * (1000000 - 10000) + 10000);
+}
+
 function openWebsiteModal(website) {
+  const clicks = getWebsiteClicks();
+  const isVerifiedDev = website.rating >= 4.5;
   const modalContent = document.getElementById('modalContent');
+  
   modalContent.innerHTML = `
     <div class="modal-header-new">
       <div class="app-icon-container">
@@ -2298,16 +2305,49 @@ function openWebsiteModal(website) {
       </div>
       <div class="app-info-new">
         <div class="app-name-new">${website.name}</div>
-        <div class="app-developer-new">${website.developer}</div>
+        <div class="app-developer-new">
+          ${website.developer}
+          ${isVerifiedDev ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}
+        </div>
         <div class="app-category">${website.category}</div>
+        <div class="website-stats">
+          <i class="fas fa-mouse-pointer"></i> ${clicks.toLocaleString()} clicks aproximados
+        </div>
       </div>
     </div>
+    
+    <div class="app-details-scroll">
+      <div class="detail-item">
+        <div class="detail-label">Rating</div>
+        <div class="detail-value">★ ${website.rating}</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Categoría</div>
+        <div class="detail-value">${website.category}</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Clicks</div>
+        <div class="detail-value">${clicks.toLocaleString()}</div>
+      </div>
+    </div>
+
+    <div class="media-container">
+      <div class="media-wrapper">
+        <img src="${website.icon}" class="media-item" alt="${website.name}">
+      </div>
+      <div class="carousel-dots">
+        <div class="carousel-dot active" data-index="0"></div>
+      </div>
+    </div>
+
     <div class="action-container">
-      <a href="${website.url}" class="action-btn primary-btn" target="_blank">Visit Website</a>
+      <a href="${website.url}" class="action-btn primary-btn" target="_blank">Visitar Sitio Web</a>
     </div>
     <p>${website.description}</p>
   `;
+  
   document.getElementById('appModal').classList.add('active');
+  initializeCarousel();
 }
 
 function showWebsitesSection() {
