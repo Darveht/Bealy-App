@@ -428,10 +428,16 @@ async function displayFeaturedApps() {
   });
 }
 
-function isVerifiedDeveloper(developer) {
+function getVerificationStatus(developer) {
   const devApps = apps.filter(app => app.developer === developer);
   const totalDownloads = devApps.reduce((sum, app) => sum + parseDownloads(app.downloads), 0);
-  return devApps.length > 1 && totalDownloads > 3000000;
+  
+  if (devApps.length > 1 && totalDownloads > 3000000) {
+    return 'blue'; // Blue badge for multiple successful apps
+  } else if (devApps.length === 1 && totalDownloads > 1000000) {
+    return 'black'; // Black badge for single successful app
+  }
+  return null;
 }
 
 function createAppCard(app) {
@@ -445,7 +451,15 @@ function createAppCard(app) {
           <div class="app-name">${app.name}</div>
           <div class="app-developer">
             <span class="developer-link" onclick="event.stopPropagation(); showDeveloperApps('${app.developer}', event)">${app.developer}</span>
-            ${isVerified ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}
+            ${(() => {
+              const verificationStatus = getVerificationStatus(app.developer);
+              if (verificationStatus === 'blue') {
+                return '<i class="fas fa-check-circle verified-badge blue"></i>';
+              } else if (verificationStatus === 'black') {
+                return '<i class="fas fa-check-circle verified-badge black"></i>';
+              }
+              return '';
+            })()}
           </div>
           <div class="package-name">${app.packageName || 'No disponible'}</div>
           <div class="rating">
