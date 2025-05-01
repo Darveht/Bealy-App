@@ -122,6 +122,78 @@ const apps = [{
       }
     ]
   },
+   {
+    "name": "Flip",
+    "developer": "Flip Fit, Inc.",
+    "packageName": "co.flip",
+    "category": "Compras",
+    "rating": 4.6,
+    "size": "85 MB",
+    "icon": "https://img.utdstc.com/icon/b2c/5f3/b2c5f3e8b756d80e5efbc15c7c08aaae02a367fa4028d0e897bad6b4c635a460:200",
+    "description": "Flip es una aplicación de compras sociales donde los usuarios pueden ver reseñas en video y comprar productos directamente desde la plataforma.",
+    "downloads": "4.3K+",
+    "bannerGradient": "45deg, #00C853, #008744",
+    "security": true,
+    "version": "5.3.0",
+    "isAvailable": true,
+    "releaseDate": "2021-03-12T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=co.flip",
+      "ios": "https://apps.apple.com/app/flip-shop-with-your-friends/id1562633109"
+    },
+    "previousVersions": ["5.2.9", "5.2.5", "5.1.8"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/flip-screenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/flip-screenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=FlipDemo"
+      }
+    ]
+  },
+  {
+    "name": "Clapper",
+    "developer": "Clapper Media Group Inc.",
+    "packageName": "com.clapper.video",
+    "category": "Redes Sociales",
+    "rating": 4.4,
+    "size": "347MB",
+    "icon": "https://img.utdstc.com/icon/5f4/694/5f46941008be96f49123247309e5d2e280f04a3d108579ea6a39d75974b34ce6:200",
+    "description": "Clapper es una plataforma de videos cortos que permite a los usuarios expresarse libremente y compartir contenido sin censura.",
+    "downloads": "193K+",
+    "bannerGradient": "45deg, #FF6600, #FF3300",
+    "security": true,
+    "version": "8.8.1",
+    "isAvailable": true,
+    "releaseDate": "2020-06-15T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "BR", "MX"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.clapper.video",
+      "ios": "https://apps.apple.com/app/clapper/id1516466348"
+    },
+    "previousVersions": ["2.8.0", "2.7.5", "2.7.1"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/a/1/d/a1d4ac6417cef6357b5bd3ae88a2f27b_screen.png"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/8/8/b/88bdd486e5194faecad9291b243e071c_screen.png"
+      },
+      {
+        "type": "image",
+        "url": "https://cdn6.aptoide.com/imgs/6/d/e/6de1a5c58001c2140fba0d48f4034ce3_screen.png"
+      }
+    ]
+  },
   {
     "name": "VK",
     "developer": "VK.com",
