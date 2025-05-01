@@ -1135,6 +1135,7 @@ function showGamesSection() {
     document.getElementById('featuredApps').style.display = 'none';
     document.getElementById('gamesSection').style.display = 'block';
     document.getElementById('editorialSection').style.display = 'none';
+    document.getElementById('websitesSection').style.display = 'none';
 
     // Filter and display only games
     const gameApps = apps.filter(app => app.category === 'Juegos');
