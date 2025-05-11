@@ -158,6 +158,64 @@ const apps = [{
       }
     ]
   },
+    {
+  "name": "Reddit",
+  "developer": "reddit inc.",
+  "packageName": "com.reddit.frontpage",
+  "category": "Utilidades ",
+  "rating": null,
+  "size": "118.5MB",
+  "icon": "https://cdn6.aptoide.com/imgs/0/5/c/05c2271c0e114965490bee7962608507_icon.png?w=128",
+  "description": "Reddit es el lugar más diverso de la red, donde gente de todo el mundo se reúne para compartir pasiones, ideas y experiencias, y tener las conversaciones más auténticas e interesantes de Internet.\n\n¿Quieres hacer preguntas, compartir opiniones, pedir un consejo, participar en un debate de política actual, o simplemente pasar el rato viendo memes, bromas y vídeos divertidos? En Reddit encontrarás subreddits para todo lo que puedas imaginar, con la mayor variedad de temas, desde lo más popular a lo más específico: Aquí es donde comunidades de gaming, foros de Internet, deportes, creadores de memes y fandoms se mezclan con streamers, aficionados a las noticias y redes sociales, expertos, profesionales veteranos, artistas y creadores de todo tipo. ¡un foro para cualquier tema que te interese!\n\nCon más de 100.000 comunidades sobre todos los temas que te puedas imaginar, Reddit es la plataforma donde podrás descubrir cosas nuevas. Aquí puedes profundizar sobre aquello que más te interese y debatir sobre cualquier tema a través de distintas comunidades. Siempre hay nuevos temas por explorar y cada experiencia, interés o hobby tiene su espacio en esta comunidad global.\n\n¿Quieres compartir tus opiniones e ideas en un debate, incluso de forma anónima? ¿Necesitas consejo o inspiración? ¿Te apasiona la historia o el fútbol? ¿Eres experto en series de televisión? ¿O buscas un buen meme para enviarle a tus amigos? En Reddit, las posibilidades son infinitas. Cada día, millones de usuarios comparten sus ideas, opiniones e intereses en este increíble foro virtual.",
+  "downloads": "1M+",
+  "bannerGradient": "45deg, #00C853, #008744",
+  "security": true,
+  "version": "2025.19.0",
+  "isAvailable": true,
+  "releaseDate": "2004-05-11T00:00:00",
+  "allowedCountries": [
+    "US",
+    "CA",
+    "GB",
+    "AU",
+    "NZ",
+    "MX",
+    "ES",
+    "AR",
+    "CO",
+    "DO",
+    "CU",
+    "HN",
+    "NI",
+    "FR",
+    "IT",
+    "CN",
+    "JP",
+    "ID",
+    "VN"
+  ],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.reddit.frontpage&pcampaignid=web_share",
+    "ios": "https://apps.apple.com/us/app/reddit/id1064216828?l=es-MX"
+  },
+  "previousVersions": [
+    "2025.19.0"
+  ],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://cdn6.aptoide.com/imgs/e/5/8/e58e11595e3638b5f527ea2a702e9cef_screen.png"
+    },
+    {
+      "type": "image",
+      "url": "https://cdn6.aptoide.com/imgs/e/6/9/e6933c11ac7571eaa16866bec5883730_screen.png"
+    },
+    {
+      "type": "image",
+      "url": "https://cdn6.aptoide.com/imgs/4/2/7/42718296fc6aeec8f7265f3fd2329ef3_screen.png"
+    }
+  ]
+},          
   {
     "name": "Clapper",
     "developer": "Clapper Media Group Inc.",
