@@ -158,6 +158,42 @@ const apps = [{
     }
   ]
 },        
+     {
+  "name": "Among Us",
+  "developer": "Innersloth LLC",
+  "packageName": "com.innersloth.spacemafia",
+  "category": "Juegos",
+  "rating": 3.8,
+  "size": "150 MB",
+  "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH5kwAJ6UBsqDvkyCKyjGNXpAqtLtMB0ED9jh0sGpZeAUPnrrW8BJsLCtF&s=10",
+  "description": "Among Us es un juego multijugador en línea donde los jugadores trabajan en equipo para completar tareas, mientras intentan descubrir quiénes son los impostores infiltrados en la nave.",
+  "downloads": "500M+",
+  "bannerGradient": "45deg, #8A00D4, #FF0266",
+  "security": true,
+  "version": "2024.3.5",
+  "isAvailable": true,
+  "releaseDate": "2018-06-15T00:00:00",
+  "allowedCountries": ["US", "CA", "GB", "AU", "MX", "BR", "DE", "FR", "JP", "KR"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.innersloth.spacemafia",
+    "ios": "https://apps.apple.com/app/among-us/id1351168404"
+  },
+  "previousVersions": ["2024.2.1", "2023.12.12", "2023.10.24"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEnCFwQIw8tkKGKRPQGskN7yZTwEUBSYF0Web2Jc6ekPOLGPPxyIiMq3Fh&s=10"
+    },
+    {
+      "type": "image",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxowrQieXVxcsKXISf8cqB97ZpDDMNgV_ISEcrmKkILVdjzYPIMcoJvySY&s=10"
+    },
+    {
+      "type": "video",
+      "url": "https://youtu.be/p0aHDT8wwrw?si=zjbUPvoNlgYvlCSZ"
+    }
+  ]
+},         
    {
     "name": "Flip",
     "developer": "Flip Fit, Inc.",
