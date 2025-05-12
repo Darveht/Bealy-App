@@ -158,6 +158,42 @@ const apps = [{
       }
     ]
   },
+       {
+  "name": "X",
+  "developer": "X Corp.",
+  "packageName": "com.twitter.android",
+  "category": "Redes Sociales",
+  "rating": 4.1,
+  "size": "110 MB",
+  "icon": "https://abs.twimg.com/icons/apple-touch-icon-192x192.png",
+  "description": "X es una red social donde los usuarios pueden compartir pensamientos, noticias y multimedia en tiempo real a través de publicaciones llamadas 'posts'.",
+  "downloads": "1B+",
+  "bannerGradient": "45deg, #000000, #1DA1F2",
+  "security": true,
+  "version": "10.25.0",
+  "isAvailable": true,
+  "releaseDate": "2006-07-15T00:00:00",
+  "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.twitter.android",
+    "ios": "https://apps.apple.com/app/x/id333903271"
+  },
+  "previousVersions": ["10.24.0", "10.23.1", "10.22.5"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://pbs.twimg.com/media/F0x_example1.jpg"
+    },
+    {
+      "type": "image",
+      "url": "https://pbs.twimg.com/media/F0x_example2.jpg"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=twitterDemo"
+    }
+  ]
+},       
     {
   "name": "Reddit",
   "developer": "reddit inc.",
