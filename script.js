@@ -273,7 +273,7 @@ const apps = [{
     "category": "Comunicación",
     "rating": 4.5,
     "size": "80 MB",
-    "icon": "https://example.com/discord_icon.png",
+    "icon": "https://www.svgrepo.com/show/353655/discord-icon.svg",
     "description": "Discord es una plataforma de comunicación diseñada para gamers, comunidades y amigos, que permite chats de texto, voz y video en servidores personalizados.",
     "downloads": "100M+",
     "bannerGradient": "45deg, #7289DA, #424549",
