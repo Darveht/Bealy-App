@@ -122,6 +122,42 @@ const apps = [{
       }
     ]
   },
+      {
+  "name": "YouTube",
+  "developer": "Google LLC",
+  "packageName": "com.google.android.youtube",
+  "category": "Entretenimiento",
+  "rating": 4.2,
+  "size": "135 MB",
+  "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjX5LVxRxYR6uDz_MyBLBgi6ihUSOBsm4g_XUvyBwt4b6INTXV2THSdouK&s=10",
+  "description": "YouTube es una plataforma de videos donde los usuarios pueden ver, subir, comentar y compartir contenido multimedia de todo tipo, desde entretenimiento hasta educación.",
+  "downloads": "10B+",
+  "bannerGradient": "45deg, #FF0000, #282828",
+  "security": true,
+  "version": "19.20.35",
+  "isAvailable": true,
+  "releaseDate": "2005-12-15T00:00:00",
+  "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.google.android.youtube",
+    "ios": "https://apps.apple.com/app/youtube-watch-listen-stream/id544007664"
+  },
+  "previousVersions": ["19.19.34", "19.18.33", "19.17.32"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2K2R8wqExZOWpxBSm5dnJCMebfVn0hOSWeLKyu8IIvolBjW-GvqxPPeA&s=10"
+    },
+    {
+      "type": "image",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0a0XPPgsd_h78NcHc8t3iELtjS6_Vc5IbQRBbBmhvkV_dgbaaZkeqs52X&s=10"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=YouTubeDemo"
+    }
+  ]
+},        
    {
     "name": "Flip",
     "developer": "Flip Fit, Inc.",
