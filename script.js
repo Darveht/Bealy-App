@@ -266,6 +266,114 @@ const apps = [{
     }
   ]
 },   
+   {
+    "name": "Discord",
+    "developer": "Discord Inc.",
+    "packageName": "com.discord",
+    "category": "Comunicación",
+    "rating": 4.5,
+    "size": "80 MB",
+    "icon": "https://example.com/discord_icon.png",
+    "description": "Discord es una plataforma de comunicación diseñada para gamers, comunidades y amigos, que permite chats de texto, voz y video en servidores personalizados.",
+    "downloads": "100M+",
+    "bannerGradient": "45deg, #7289DA, #424549",
+    "security": true,
+    "version": "175.15",
+    "isAvailable": true,
+    "releaseDate": "2015-05-13T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "MX", "BR", "DE", "FR", "JP", "KR"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.discord",
+      "ios": "https://apps.apple.com/app/discord-chat-for-gamers/id985746746"
+    },
+    "previousVersions": ["175.14", "175.13", "175.12"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://example.com/discord_image1.png"
+      },
+      {
+        "type": "image",
+        "url": "https://example.com/discord_image2.png"
+      },
+      {
+        "type": "video",
+        "url": "https://example.com/discord_video.mp4"
+      }
+    ]
+  },
+  {
+    "name": "Zoom",
+    "developer": "Zoom Video Communications, Inc.",
+    "packageName": "us.zoom.videomeetings",
+    "category": "Productividad",
+    "rating": 4.2,
+    "size": "70 MB",
+    "icon": "https://example.com/zoom_icon.png",
+    "description": "Zoom es una aplicación de videoconferencias que permite a los usuarios realizar reuniones virtuales, webinars y colaborar en tiempo real desde cualquier lugar.",
+    "downloads": "500M+",
+    "bannerGradient": "45deg, #0B5CFF, #2AB8F6",
+    "security": true,
+    "version": "5.17.0",
+    "isAvailable": true,
+    "releaseDate": "2012-09-01T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "MX", "BR", "DE", "FR", "JP", "KR"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=us.zoom.videomeetings",
+      "ios": "https://apps.apple.com/app/zoom-cloud-meetings/id546505307"
+    },
+    "previousVersions": ["5.16.9", "5.16.8", "5.16.7"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://example.com/zoom_image1.png"
+      },
+      {
+        "type": "image",
+        "url": "https://example.com/zoom_image2.png"
+      },
+      {
+        "type": "video",
+        "url": "https://example.com/zoom_video.mp4"
+      }
+    ]
+  },
+  {
+    "name": "Candy Crush Saga",
+    "developer": "King",
+    "packageName": "com.king.candycrushsaga",
+    "category": "Juegos",
+    "rating": 4.6,
+    "size": "90 MB",
+    "icon": "https://example.com/candycrush_icon.png",
+    "description": "Candy Crush Saga es un juego de rompecabezas adictivo donde los jugadores combinan dulces para superar niveles y ganar recompensas.",
+    "downloads": "1B+",
+    "bannerGradient": "45deg, #FF69B4, #FFD700",
+    "security": true,
+    "version": "1.275.0.3",
+    "isAvailable": true,
+    "releaseDate": "2012-11-14T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "MX", "BR", "DE", "FR", "JP", "KR"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.king.candycrushsaga",
+      "ios": "https://apps.apple.com/app/candy-crush-saga/id553834731"
+    },
+    "previousVersions": ["1.274.0.2", "1.273.0.1", "1.272.0.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://example.com/candycrush_image1.png"
+      },
+      {
+        "type": "image",
+        "url": "https://example.com/candycrush_image2.png"
+      },
+      {
+        "type": "video",
+        "url": "https://example.com/candycrush_video.mp4"
+      }
+    ]
+  },           
     {
   "name": "Reddit",
   "developer": "reddit inc.",
