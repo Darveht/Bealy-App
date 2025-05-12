@@ -158,16 +158,16 @@ const apps = [{
       }
     ]
   },
-       {
+ {
   "name": "X",
   "developer": "X Corp.",
   "packageName": "com.twitter.android",
   "category": "Redes Sociales",
   "rating": 4.1,
   "size": "110 MB",
-  "icon": "https://abs.twimg.com/icons/apple-touch-icon-192x192.png",
+  "icon": "https://img.freepik.com/vector-gratis/nuevo-diseno-icono-x-logotipo-twitter-2023_1017-45418.jpg",
   "description": "X es una red social donde los usuarios pueden compartir pensamientos, noticias y multimedia en tiempo real a través de publicaciones llamadas 'posts'.",
-  "downloads": "1B+",
+  "downloads": "1mil millones+",
   "bannerGradient": "45deg, #000000, #1DA1F2",
   "security": true,
   "version": "10.25.0",
@@ -193,7 +193,7 @@ const apps = [{
       "url": "https://www.youtube.com/watch?v=twitterDemo"
     }
   ]
-},       
+},   
     {
   "name": "Reddit",
   "developer": "reddit inc.",
