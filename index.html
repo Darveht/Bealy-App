@@ -223,12 +223,29 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Header -->
+    <div class="header-container">
+        <div class="left-section">
+            <button class="icon-button menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="app-title">Veraxa</div>
+        </div>
+        <div class="right-section">
+            <button class="icon-button search-toggle">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="icon-button" id="settingsIcon">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- Barra de búsqueda -->
     <div class="search-container">
         <div class="search-bar">
             <i class="fas fa-search search-icon"></i>
             <input type="text" class="search-input" placeholder="Buscar aplicaciones..." id="searchInput">
-            <i class="fas fa-cog settings-icon" id="settingsIcon"></i>
         </div>
     </div>
 
