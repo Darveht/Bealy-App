@@ -801,14 +801,7 @@ async function openAppModal(app) {
       </div>
     </div>
 
-    <div class="rating-system">
-      <div class="star-rating">
-        ${[1, 2, 3, 4, 5].map(star => `
-          <span class="star" data-rating="${star}" onclick="saveRating('${app.name}', ${star})">★</span>
-        `).join('')}
-      </div>
-      <div id="ratingStats"></div>
-    </div>
+    
 
     <div class="action-container">
       ${isAvailableInCountry && isReleased && storeLink
