@@ -1124,18 +1124,53 @@ body.dark-mode .previous-versions li {
 
 
 /* Bottom Navigation Bar */
-.bottom-nav {
+.menu-button {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+    color: #687173;
+}
+
+.side-menu {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
     background: white;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    transition: left 0.3s ease;
     z-index: 1000;
-    transition: transform 0.3s ease;
+    padding-top: 60px;
+}
+
+.side-menu.active {
+    left: 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #687173;
+    transition: background-color 0.3s;
+}
+
+.menu-item.active {
+    color: #0070ba;
+    background-color: #f5f7fa;
+}
+
+.menu-item i {
+    margin-right: 15px;
+    font-size: 20px;
 }
 
 .nav-item {
