@@ -1426,32 +1426,32 @@ function showEditorialSection() {
 }
 
 // Home navigation
-document.querySelector('.nav-item[href="#"]').addEventListener('click', (e) => {
+document.querySelector('.menu-item[href="#"]').addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('featuredApps').style.display = 'block';
     document.getElementById('gamesSection').style.display = 'none';
     document.getElementById('editorialSection').style.display = 'none';
     document.getElementById('websitesSection').style.display = 'none';
+    displayFeaturedApps(); // Aseguramos que se muestren las apps destacadas
 
     // Update active navigation
-    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
     e.currentTarget.classList.add('active');
 });
 
-// Control de scroll para la barra de navegación
-let lastScrollPosition = 0;
-document.addEventListener('scroll', () => {
-  const bottomNav = document.querySelector('.bottom-nav');
-  const currentScroll = window.pageYOffset;
+// Función para controlar el menú lateral
+function toggleMenu() {
+    const menu = document.querySelector('.side-menu');
+    menu.classList.toggle('active');
+}
 
-  if (currentScroll > lastScrollPosition) {
-    // Scrolling down
-    bottomNav.style.transform = 'translateY(100%)';
-  } else {
-    // Scrolling up
-    bottomNav.style.transform = 'translateY(0)';
-  }
-  lastScrollPosition = currentScroll;
+// Actualizar elementos activos del menú
+document.querySelectorAll('.menu-item').forEach(item => {
+    item.addEventListener('click', () => {
+        document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        toggleMenu(); // Cerrar el menú después de seleccionar
+    });
 });
 
 // Inicializar la visualización de aplicaciones
