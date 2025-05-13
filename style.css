@@ -1169,19 +1169,7 @@ body.dark-mode .previous-versions li {
 
 
 
-/* Bottom Navigation Bar */
-.menu-button {
-    position: fixed;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 1001;
-    color: #687173;
-}
+
 
 .side-menu {
     position: fixed;
