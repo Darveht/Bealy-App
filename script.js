@@ -1254,6 +1254,14 @@ document.getElementById('faqSearch')?.addEventListener('input', (e) => {
     });
 });
 
+// Función para mostrar/ocultar la barra de búsqueda
+document.querySelector('.search-toggle').addEventListener('click', () => {
+    document.querySelector('.search-container').classList.toggle('active');
+});
+
+// Función para el menú lateral usando el nuevo botón
+document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
+
 // Settings Modal Functions
 document.getElementById('settingsIcon').addEventListener('click', () => {
     document.getElementById('settingsModal').style.display = 'block';
