@@ -97,13 +97,50 @@ body.dark-mode .previous-versions li {
     border-color: #4d4d4d;
 }
 
-.search-container {
+.header-container {
     position: sticky;
     top: 0;
     padding: 15px;
     background-color: #fff;
     z-index: 100;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.app-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background-color: #fff;
+    z-index: 101;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+.search-container.active {
+    transform: translateY(0);
 }
 
 .search-bar {
@@ -120,6 +157,15 @@ body.dark-mode .previous-versions li {
     background-color: #fff;
     font-size: 16px;
     transition: all 0.3s ease;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #687173;
+    cursor: pointer;
+    padding: 8px;
 }
 
 .search-input:focus {
