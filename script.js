@@ -1,3 +1,26 @@
+// Recomendación de apps similares por categoría
+function getSimilarApps(currentApp) {
+  return apps
+    .filter(app => 
+      app.category === currentApp.category && 
+      app.name !== currentApp.name
+    )
+    .slice(0, 5);
+}
+
+// Algoritmo de recomendación basado en categoría y rating
+function getRecommendedApps(currentApp) {
+  return apps
+    .filter(app => 
+      app.name !== currentApp.name &&
+      (app.category === currentApp.category ||
+       app.developer === currentApp.developer ||
+       Math.abs(app.rating - currentApp.rating) < 0.5)
+    )
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 5);
+}
+
 // Función para detectar el dispositivo
 function detectDevice() {
   const userAgent = navigator.userAgent.toLowerCase();
@@ -1028,6 +1051,22 @@ async function openAppModal(app) {
   ` : ''}
 
     <p>${app.description}</p>
+
+    <!-- Similar Apps Section -->
+    <div class="similar-apps-section">
+      <h3>Apps en la misma categoría</h3>
+      <div class="horizontal-scroll">
+        ${getSimilarApps(app).map(similarApp => createAppCard(similarApp)).join('')}
+      </div>
+    </div>
+
+    <!-- Recommendations Section -->
+    <div class="recommendations-section">
+      <h3>Quizás te pueden gustar</h3>
+      <div class="horizontal-scroll">
+        ${getRecommendedApps(app).map(recApp => createAppCard(recApp)).join('')}
+      </div>
+    </div>
 
     ${isVerifiedDeveloper(app.developer) ? `
     <div class="developer-verification">
