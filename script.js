@@ -86,6 +86,42 @@ const apps = [{
       }
     ]
   },
+       {
+  "name": "Revolut",
+  "developer": "Revolut Ltd",
+  "packageName": "com.revolut.revolut",
+  "category": "Finanzas",
+  "rating": 4.6,
+  "size": "96 MB",
+  "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo4bDTL3GlEUF3XveYEges63qOtfgNfPzZXcKYDxsTwfrvE6Bk1-FT_7w&s=10",
+  "description": "Revolut es una aplicación financiera que ofrece servicios bancarios modernos como cuentas digitales, tarjetas de débito, transferencias internacionales, inversión en acciones y criptomonedas, y control de gastos.",
+  "downloads": "222.5K+",
+  "bannerGradient": "45deg, #1000C9, #00BFFF",
+  "security": true,
+  "version": "10.12.1",
+  "isAvailable": true,
+  "releaseDate": "2015-07-01T00:00:00",
+  "allowedCountries": ["US","MX", "GB", "IE", "FR", "DE", "ES", "IT", "AU", "SG", "LT"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.revolut.revolut",
+    "ios": "https://apps.apple.com/app/revolut/id932493046"
+  },
+  "previousVersions": ["10.11.2", "10.10.0", "10.9.5"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/52/2f/da/522fdac2-35f3-570d-af9b-f4a7327f0180/Screen_1_1242x2688_mx-ES.jpg/300x0w.jpg"
+    },
+    {
+      "type": "image",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a2/94/b7/a294b71f-0703-38d5-346c-bbe03e0ffb9c/Screen_6_2048x2732_es-ES.jpg/643x0w.jpg"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=RevolutDemo"
+    }
+  ]
+},       
  {
     "name": "TikTok Lite",
     "developer": "TikTok Pte. Ltd.",
