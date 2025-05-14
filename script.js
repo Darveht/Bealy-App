@@ -586,7 +586,7 @@ const apps = [{
     "category": "Juegos",
     "rating": 4.3,
     "size": "1.8 GB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/588/588267.png",
+    "icon": "https://brandlogos.net/wp-content/uploads/2022/03/call_of_duty-logo-brandlogos.net_.png",
     "description": "Call of Duty: Mobile es un juego de disparos en primera persona que ofrece modos multijugador y Battle Royale.",
     "downloads": "500M+",
     "bannerGradient": "45deg, #131313, #000000",
