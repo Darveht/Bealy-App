@@ -182,6 +182,78 @@ const apps = [{
     ]
   },
       {
+  "name": "Gemini",
+  "developer": "Google LLC",
+  "packageName": "com.google.gemini",
+  "category": "Productividad",
+  "rating": 4.3,
+  "size": "50 MB",
+  "icon": "https://play-lh.googleusercontent.com/2NtkHysS91ktL9v6vWc9z1VD3JsaS5DQpDLrNAaFKa2W3NKeyn3uB2i8vwoD2aKtkA",
+  "description": "Gemini es una aplicación impulsada por IA que ofrece asistencia conversacional, generación de contenido y respuestas inteligentes para mejorar la productividad y creatividad de los usuarios.",
+  "downloads": "50M+",
+  "bannerGradient": "45deg, #1A73E8, #FFFFFF",
+  "security": true,
+  "version": "1.2.3",
+  "isAvailable": true,
+  "releaseDate": "2024-02-08T00:00:00",
+  "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "FR", "DE", "ES", "IT", "IN"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.google.gemini",
+    "ios": "https://apps.apple.com/app/gemini/id1677739987"
+  },
+  "previousVersions": ["1.2.2", "1.2.1", "1.1.0"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/gemini_screenshot1.jpg"
+    },
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/gemini_screenshot2.jpg"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=GeminiDemo"
+    }
+  ]
+},
+   {
+  "name": "Grok",
+  "developer": "X Corp",
+  "packageName": "com.xai.grok",
+  "category": "Productividad",
+  "rating": 4.5,
+  "size": "60 MB",
+  "icon": "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/grok.png",
+  "description": "Grok, creado por xAI, es una aplicación de IA conversacional que proporciona respuestas útiles y veraces, con funciones como modo de voz y acceso a funciones avanzadas para usuarios suscritos.",
+  "downloads": "10M+",
+  "bannerGradient": "45deg, #0A2540, #FFFFFF",
+  "security": true,
+  "version": "1.1.0",
+  "isAvailable": true,
+  "releaseDate": "2024-03-15T00:00:00",
+  "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "FR", "DE", "ES", "IT"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.xai.grok",
+    "ios": "https://apps.apple.com/app/grok/id1666848348"
+  },
+  "previousVersions": ["1.0.9", "1.0.8", "1.0.7"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/grok_screenshot1.jpg"
+    },
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/grok_screenshot2.jpg"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=GrokDemo"
+    }
+  ]
+},           
+      {
   "name": "YouTube",
   "developer": "Google LLC",
   "packageName": "com.google.android.youtube",
