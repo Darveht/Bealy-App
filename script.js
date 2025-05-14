@@ -265,6 +265,78 @@ const apps = [{
       "url": "https://www.youtube.com/watch?v=O4XHCg1AaGQ"
     }
   ]
+},        
+   {
+  "name": "VSCO",
+  "developer": "VSCO",
+  "packageName": "com.vsco.cam",
+  "category": "Fotografía",
+  "rating": 4.1,
+  "size": "70 MB",
+  "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRla6UOCH5XlcDVIJhkgONdg0NwUMt96eKUJA&s",
+  "description": "VSCO es una aplicación de edición fotográfica y comunidad creativa donde los usuarios pueden aplicar filtros profesionales, ajustar parámetros avanzados y compartir su trabajo artístico.",
+  "downloads": "100M+",
+  "bannerGradient": "45deg, #000000, #FFFFFF",
+  "security": true,
+  "version": "360",
+  "isAvailable": true,
+  "releaseDate": "2013-06-04T00:00:00",
+  "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "FR", "DE", "ES", "IT", "BR"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.vsco.cam",
+    "ios": "https://apps.apple.com/app/vsco-photo-video-editor/id588013838"
+  },
+  "previousVersions": ["359", "358", "357.1"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7mt6KSNE1IQgc6vNlAO7Hp36z_1V7fpOe6I3Lsz8t19VR7pKRzszEk0g&s=10"
+    },
+    {
+      "type": "image",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLhg0rXaOOFJn1QwoYWgIzZ1fgZM1vj92sVfEV3R-QNnf7QUi9N14v3wMM&s=10"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=VscoDemo"
+    }
+  ]
+},   
+    {
+  "name": "Edits, una app de Instagram",
+  "developer": "Meta",
+  "packageName": "com.edits.app",
+  "category": "Fotografía",
+  "rating": 4.6,
+  "size": "75 MB",
+  "icon": "https://play-lh.googleusercontent.com/BZSkyLJNJnqp91FtE1iSskcsalt9oJiepU_GEgr_bB5hVg5x8CUzHLoMmc2lNzm16Q=w480-h960",
+  "description": "Edits es una app de creación de videos de Instagram que permite convertir ideas en videos fácilmente desde el teléfono. Cuenta con todas las herramientas que necesitas para facilitar tu proceso creativo, todo en un solo lugar.",
+  "downloads": "5M+",
+  "bannerGradient": "45deg, #FF0000, #0000FF",
+  "security": true,
+  "version": "1.0",
+  "isAvailable": true,
+  "releaseDate": "2025-06-01T00:00:00",
+  "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "FR", "DE", "ES", "IT", "BR", "MX"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.instagram.basel&pcampaignid=web_share",
+    "ios": "https://apps.apple.com/us/app/edits-una-app-de-instagram/id6738967378?l=es-MX"
+  },
+  "previousVersions": ["0.9", "0.8"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://example.com/edits-screenshot1.png"
+    },
+    {
+      "type": "image",
+      "url": "https://play-lh.googleusercontent.com/NIEse_gfxOAFPizPGcmkAji5kdGLGQse5tA2yy7JEDynX-1RVhjvxLWRg3JuPfQz5Q=w5120-h2880"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=EditsDemo"
+    }
+  ]
 },          
    {
     "name": "Flip",
