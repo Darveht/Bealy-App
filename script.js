@@ -134,7 +134,7 @@ const apps = [{
   "downloads": "10B+",
   "bannerGradient": "45deg, #FF0000, #282828",
   "security": true,
-  "version": "19.20.35",
+  "version": "20.20.35",
   "isAvailable": true,
   "releaseDate": "2005-12-15T00:00:00",
   "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
