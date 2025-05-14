@@ -789,7 +789,7 @@ const apps = [{
     "category": "Juegos",
     "rating": 4.3,
     "size": "1.8 GB",
-    "icon": "https://play.google.com/store/apps/details/Call_of_Duty_Mobile_Season_1?id=com.activision.callofduty.shooter&hl=en_NZ",
+    "icon": "https://img.utdstc.com/icon/398/3aa/3983aa6b3ad0e1723ab331d6ef41c6ceb9bdd0d6c93acb57b4ce352c06ddc01b:200",
     "description": "Call of Duty: Mobile es un juego de disparos en primera persona que ofrece modos multijugador y Battle Royale.",
     "downloads": "43.7M+",
     "bannerGradient": "45deg, #131313, #000000",
