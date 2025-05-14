@@ -266,6 +266,42 @@ const apps = [{
       }
     ]
   },
+   {
+  "name": "Strava",
+  "developer": "Strava Inc.",
+  "packageName": "com.strava",
+  "category": "Salud y bienestar",
+  "rating": 4.6,
+  "size": "53 MB",
+  "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq6-pAhborcUk1Nz7Pq09HRX56U038t6CmnsfmDM3iWuzFWZ_rE4DzpQvX&s=10",
+  "description": "Strava es una aplicación para deportistas que permite registrar actividades como correr, andar en bicicleta, nadar y más, con seguimiento GPS, análisis de rendimiento y funciones sociales.",
+  "downloads": "752.8K",
+  "bannerGradient": "45deg, #FC4C02, #FF8330",
+  "security": true,
+  "version": "340.10",
+  "isAvailable": true,
+  "releaseDate": "2011-05-01T00:00:00",
+  "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "FR", "DE", "IT", "ES", "BR"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.strava",
+    "ios": "https://apps.apple.com/app/strava-run-ride-swim/id426826309"
+  },
+  "previousVersions": ["340.9", "339.0", "338.5"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5kktkm-uZhBYdx8RfLTrQX7MT1Se_d2n1y69SzlTK0IOuk3Gqo9LFD7xB&s=10"
+    },
+    {
+      "type": "image",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf1UJC8CvBmg76ds48nRCV6tKwb_rs5baEXESEax4iaVXzI-vaQo6dUrkC&s=10"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=StravaDemo"
+    }
+  ]
+},           
  {
   "name": "X",
   "developer": "X Corp.",
