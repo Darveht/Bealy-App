@@ -193,7 +193,43 @@ const apps = [{
       "url": "https://youtu.be/p0aHDT8wwrw?si=zjbUPvoNlgYvlCSZ"
     }
   ]
-},         
+},    
+    {
+  "name": "Netflix",
+  "developer": "Netflix, Inc.",
+  "packageName": "com.netflix.mediaclient",
+  "category": "Entretenimiento",
+  "rating": 4.1,
+  "size": "26 MB",
+  "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU3_FUVPsUWnfx0QU6CEByIfTew5jRQDkqakK-hmaQ3-VQ4wCzYO06kWs&s=10",
+  "description": "Netflix es una plataforma de streaming donde puedes ver series, películas, documentales y más desde cualquier dispositivo conectado a internet.",
+  "downloads": "1B+",
+  "bannerGradient": "45deg, #E50914, #221F1F",
+  "security": true,
+  "version": "8.104.0",
+  "isAvailable": true,
+  "releaseDate": "2025-05-28T00:00:00",
+  "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "FR", "DE", "ES", "IT", "KR"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.netflix.mediaclient",
+    "ios": "https://apps.apple.com/app/netflix/id363590051"
+  },
+  "previousVersions": ["8.105.1", "8.104.0", "8.103.1"],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI0LgqRAMAl19zN7GxROEvvUqysW2hwaFwk5Tj3Ckw5_hMYTLJkjN7V72w&s=10"
+    },
+    {
+      "type": "image",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMkdclk8qxprdD7pGKTp2-f5ccnPoI2PUrAYROhYnTCb0U2QzFL2yvi40&s=10"
+    },
+    {
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=O4XHCg1AaGQ"
+    }
+  ]
+},          
    {
     "name": "Flip",
     "developer": "Flip Fit, Inc.",
