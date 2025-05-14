@@ -101,7 +101,7 @@ const apps = [{
     "version": "29.1.2",
     "isAvailable": true,
     "releaseDate": "2018-08-06T00:00:00",
-    "allowedCountries": ["Global"],
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
     "platforms": {
       "android": "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically.go",
       "ios": "https://apps.apple.com/app/tiktok-lite/id6447160980"
