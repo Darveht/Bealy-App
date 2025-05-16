@@ -232,7 +232,7 @@ const apps = [{
   "version": "1.1.0",
   "isAvailable": true,
   "releaseDate": "2024-03-15T00:00:00",
-  "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "FR", "DE", "ES", "IT"],
+  "allowedCountries": ["US", "MX", "CA", "GB", "AU", "NZ", "FR", "DE", "ES", "IT"],
   "platforms": {
     "android": "https://play.google.com/store/apps/details?id=com.xai.grok",
     "ios": "https://apps.apple.com/app/grok/id1666848348"
