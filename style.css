@@ -1517,3 +1517,99 @@ body.dark-mode .previous-versions li {
     color: #fff;
     top: -18px;
 }
+
+/* Loading animation styles */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    margin-bottom: 15px;
+    transform-style: preserve-3d;
+    animation: roboticSpin 4s infinite;
+    perspective: 1000px;
+}
+
+.loading-spinner:before {
+    content: 'V';
+    position: absolute;
+    font-size: 60px;
+    font-weight: bold;
+    font-family: 'Arial Black', sans-serif;
+    color: #0070ba;
+    text-shadow: 
+        0 0 10px rgba(0,112,186,0.8),
+        2px 2px 0 #000,
+        -2px -2px 0 #000;
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    -webkit-text-stroke: 1px #000;
+    background: linear-gradient(45deg, #0070ba, #00a2ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+@keyframes roboticSpin {
+    0%, 100% {
+        transform: 
+            translateY(0) 
+            rotateY(0deg) 
+            rotateX(0deg) 
+            scale(1);
+    }
+    20% {
+        transform: 
+            translateY(-30px) 
+            rotateY(180deg) 
+            rotateX(90deg) 
+            scale(1.2);
+    }
+    40% {
+        transform: 
+            translateY(0) 
+            rotateY(360deg) 
+            rotateX(180deg) 
+            scale(1);
+    }
+    60% {
+        transform: 
+            translateY(-30px) 
+            rotateY(540deg) 
+            rotateX(270deg) 
+            scale(1.2);
+    }
+    80% {
+        transform: 
+            translateY(0) 
+            rotateY(720deg) 
+            rotateX(360deg) 
+            scale(1);
+    }
+}
+
+body.dark-mode .loading-spinner:before {
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.2);
+}
+
+.loading-container p {
+    color: #666;
+    font-size: 16px;
+}
+
+body.dark-mode .loading-container p {
+    color: #fff;
+}
+
+body.dark-mode .loading-spinner {
+    border-color: #333;
+    border-top-color: #0070ba;
+}
