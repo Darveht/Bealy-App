@@ -1,4 +1,3 @@
-
 function showAppOfDayModal(app) {
   const modal = document.createElement('div');
   modal.className = 'fullscreen-modal active';
@@ -994,6 +993,39 @@ function parseDownloads(downloads) {
   return parseInt(downloads.replace('M+', '')) * 1000000;
 }
 
+function simulateDownload(btn) {
+  btn.disabled = true;
+  const originalText = btn.innerHTML;
+  btn.innerHTML = `
+    <div class="download-progress">
+      <div class="download-bar"></div>
+      <span class="download-text">0%</span>
+    </div>
+  `;
+  
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.random() * 15;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-check"></i> Completado';
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }, 1000);
+      }, 500);
+    }
+    const bar = btn.querySelector('.download-bar');
+    const text = btn.querySelector('.download-text');
+    if (bar && text) {
+      bar.style.width = `${progress}%`;
+      text.textContent = `${Math.round(progress)}%`;
+    }
+  }, 200);
+}
+
 function getStoreLink(app) {
   const device = detectDevice();
   if (!app.isAvailable || !isAppReleased(app.releaseDate)) {
@@ -1243,9 +1275,9 @@ async function openAppModal(app) {
 
     <div class="action-container">
       ${isAvailableInCountry && isReleased && storeLink
-        ? `<a href="${storeLink}" class="action-btn primary-btn" target="_blank">
+        ? `<button onclick="simulateDownload(this); setTimeout(() => window.open('${storeLink}', '_blank'), 2500)" class="action-btn primary-btn">
              Descargar ${detectDevice() === 'ios' ? 'en App Store' : 'en Play Store'}
-           </a>`
+           </button>`
         : `<button class="action-btn primary-btn" disabled>
              ${!isReleased ? 'Próximamente' : 'No disponible'}
            </button>`
