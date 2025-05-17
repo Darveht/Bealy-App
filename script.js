@@ -122,15 +122,45 @@ function detectDevice() {
   return 'desktop';
 }
 
-// Función para detectar país
+// Función para detectar país y actualizar la interfaz
 async function detectCountry() {
   try {
     const response = await fetch('https://ipapi.co/json/');
     const data = await response.json();
+    const countryElement = document.getElementById('user-country');
+    if (countryElement) {
+      countryElement.innerHTML = `Tu país: ${data.country_name} (${data.country_code})`;
+    }
     return data.country_code;
   } catch (error) {
     console.error('Error detecting country:', error);
+    const countryElement = document.getElementById('user-country');
+    if (countryElement) {
+      countryElement.innerHTML = 'No se pudo detectar tu país';
+    }
     return 'US';
+  }
+}
+
+// Función mejorada para filtrar apps por país
+async function filterAppsByCountry(appsToFilter) {
+  try {
+    const userCountry = await detectCountry();
+    const filteredApps = appsToFilter.filter(app => {
+      const isAvailable = app.allowedCountries.includes('Global') || 
+                         app.allowedCountries.includes(userCountry);
+      
+      if (!isAvailable) {
+        console.log(`App ${app.name} no disponible en ${userCountry}`);
+      }
+      
+      return isAvailable;
+    });
+    
+    return filteredApps;
+  } catch (error) {
+    console.error('Error filtrando apps por país:', error);
+    return appsToFilter;
   }
 }
 
