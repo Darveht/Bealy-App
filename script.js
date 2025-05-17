@@ -1,3 +1,93 @@
+
+function showAppOfDayModal(app) {
+  const modal = document.createElement('div');
+  modal.className = 'fullscreen-modal active';
+  modal.innerHTML = `
+    <div class="modal-content">
+      <img src="${app.icon}" alt="${app.name}" style="width: 200px; height: 200px; border-radius: 30px; margin: 20px auto; display: block;">
+      <h2 style="text-align: center; margin: 20px 0;">${app.name}</h2>
+      <p style="text-align: center; margin: 20px 0;">${app.description}</p>
+      <div style="text-align: center; margin-top: 30px;">
+        <button class="action-btn primary-btn notify-btn">
+          <i class="fas fa-bell"></i> Notificar cuando esté disponible
+        </button>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+  
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.remove();
+    }
+  });
+  
+  const notifyBtn = modal.querySelector('.notify-btn');
+  notifyBtn.addEventListener('click', () => {
+    showNotification();
+    modal.remove();
+  });
+}
+
+function showNotification() {
+  const notification = document.createElement('div');
+  notification.className = 'notification-popup';
+  notification.innerHTML = `
+    <i class="fas fa-bell bell-icon"></i>
+    <span>¡Te notificaremos cuando la app esté disponible!</span>
+  `;
+  
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.classList.add('show');
+    const bellIcon = notification.querySelector('.bell-icon');
+    bellIcon.classList.add('animate');
+  }, 100);
+  
+  setTimeout(() => {
+    const bellIcon = notification.querySelector('.bell-icon');
+    bellIcon.classList.add('animate');
+    
+    setTimeout(() => {
+      notification.classList.remove('show');
+      setTimeout(() => notification.remove(), 300);
+    }, 3000);
+  }, 100);
+}
+
+function shareApp(app) {
+  if (navigator.share) {
+    navigator.share({
+      title: app.name,
+      text: `¡Descubre ${app.name}! ${app.description}`,
+      url: window.location.href
+    });
+  } else {
+    // Fallback para navegadores que no soportan Web Share API
+    const dummy = document.createElement('textarea');
+    document.body.appendChild(dummy);
+    dummy.value = window.location.href;
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
+    
+    const notification = document.createElement('div');
+    notification.className = 'notification-popup show';
+    notification.innerHTML = `
+      <i class="fas fa-check"></i>
+      <span>¡Enlace copiado al portapapeles!</span>
+    `;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.classList.remove('show');
+      setTimeout(() => notification.remove(), 300);
+    }, 3000);
+  }
+}
+
 // Recomendación de apps similares por categoría
 function getSimilarApps(currentApp) {
   return apps
@@ -890,6 +980,49 @@ function getStoreLink(app) {
 async function displayFeaturedApps() {
   const featuredApps = document.getElementById('featuredApps');
   featuredApps.innerHTML = '';
+  
+  // Find upcoming app release
+  const upcomingApp = apps.find(app => !isAppReleased(app.releaseDate));
+  
+  if (upcomingApp) {
+    const appOfDaySection = document.createElement('div');
+    appOfDaySection.className = 'app-of-day';
+    appOfDaySection.innerHTML = `
+      <div class="app-of-day-content">
+        <img src="${upcomingApp.icon}" alt="${upcomingApp.name}" class="app-of-day-icon">
+        <div class="app-of-day-info">
+          <span class="app-of-day-tag">App del Día</span>
+          <h2>${upcomingApp.name}</h2>
+          <p>¡Próximo lanzamiento!</p>
+          <div class="share-buttons">
+            <button class="share-button notify-btn">
+              <i class="fas fa-bell"></i> Notificar
+            </button>
+            <button class="share-button share-btn">
+              <i class="fas fa-share-alt"></i> Compartir
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    appOfDaySection.addEventListener('click', () => showAppOfDayModal(upcomingApp));
+    featuredApps.appendChild(appOfDaySection);
+    
+    // Add notification functionality
+    const notifyBtn = appOfDaySection.querySelector('.notify-btn');
+    notifyBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showNotification();
+    });
+    
+    // Add share functionality
+    const shareBtn = appOfDaySection.querySelector('.share-btn');
+    shareBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      shareApp(upcomingApp);
+    });
+  }
 
   // Filtrar apps por país
   const availableApps = await filterAppsByCountry(apps);
