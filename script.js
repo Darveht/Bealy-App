@@ -1527,9 +1527,25 @@ async function displayApps(appsToDisplay) {
 }
 
 // Event Listeners
+// Add loading animation during search
 document.getElementById('searchInput').addEventListener('input', async (e) => {
   const searchTerm = e.target.value.toLowerCase();
+  const appsContainer = document.getElementById('appsContainer');
+  
   if (searchTerm) {
+    // Show loading animation
+    appsContainer.innerHTML = `
+      <div class="loading-container">
+        <div class="loading-spinner"></div>
+        <p>Buscando aplicaciones...</p>
+      </div>
+    `;
+    appsContainer.style.display = 'block';
+    document.getElementById('featuredApps').style.display = 'none';
+    
+    // Simulate search delay
+    await new Promise(resolve => setTimeout(resolve, 800));
+    
     const filteredApps = apps.filter(app =>
       app.name.toLowerCase().includes(searchTerm) ||
       app.developer.toLowerCase().includes(searchTerm) ||
