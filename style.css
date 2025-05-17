@@ -4,6 +4,120 @@
     box-sizing: border-box;
 }
 
+.app-of-day {
+    background: linear-gradient(45deg, #FF416C, #FF4B2B);
+    margin: 20px 15px;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.app-of-day:hover {
+    transform: translateY(-5px);
+}
+
+.app-of-day-content {
+    padding: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.app-of-day-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.app-of-day-info {
+    flex: 1;
+}
+
+.app-of-day-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.notification-popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+    transform: translateY(150%);
+    transition: transform 0.3s ease;
+}
+
+.notification-popup.show {
+    transform: translateY(0);
+}
+
+.bell-icon {
+    font-size: 20px;
+    color: #FF416C;
+}
+
+.bell-icon.animate {
+    animation: ring 0.7s ease;
+}
+
+@keyframes ring {
+    0% { transform: rotate(0) scale(1); }
+    10% { transform: rotate(-25deg) scale(1.1); }
+    20% { transform: rotate(25deg) scale(1.2); }
+    30% { transform: rotate(-25deg) scale(1.1); }
+    40% { transform: rotate(25deg) scale(1.2); }
+    50% { transform: rotate(-25deg) scale(1.1); }
+    60% { transform: rotate(25deg) scale(1.2); }
+    70% { transform: rotate(-25deg) scale(1.1); }
+    80% { transform: rotate(25deg) scale(1); }
+    90% { transform: rotate(-25deg) scale(1); }
+    100% { transform: rotate(0) scale(1); }
+}
+
+.bell-icon.animate {
+    animation: ring 1s ease;
+    color: #FF416C;
+    text-shadow: 0 0 10px rgba(255, 65, 108, 0.5);
+}
+
+.share-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.share-button {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.share-button:hover {
+    background: rgba(255,255,255,0.3);
+}
+
 body {
     font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
     background-color: #f5f7fa;
