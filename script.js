@@ -458,7 +458,7 @@ const apps = [{
   "security": true,
   "version": "8.104.0",
   "isAvailable": true,
-  "releaseDate": "2025-05-28T00:00:00",
+  "releaseDate": "2025-05-11T00:00:00",
   "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "FR", "DE", "ES", "IT", "KR"],
   "platforms": {
     "android": "https://play.google.com/store/apps/details?id=com.netflix.mediaclient",
