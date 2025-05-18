@@ -206,7 +206,7 @@ const apps = [{
     bannerGradient: "45deg, #1877f2, #0a3d62",
     security: false,
     version: "497.0.0.79.36",
-    isAvailable: true,
+    isAvailable: false,
     releaseDate: "2024-01-01T00:00:00",
     allowedCountries: ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
     platforms: {
