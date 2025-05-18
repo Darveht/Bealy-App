@@ -338,7 +338,7 @@ const apps = [{
 },
    {
   "name": "Grok",
-  "developer": "X Corp",
+  "developer": "X Corp.",
   "packageName": "com.xai.grok",
   "category": "Productividad",
   "rating": 4.8,
