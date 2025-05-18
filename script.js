@@ -409,6 +409,42 @@ const apps = [{
     ]
   },
   {
+  "name": "RedNote",
+  "developer": "Xingin Information Technology Co., Ltd.",
+  "packageName": "com.xingin.xhs",
+  "category": "Redes sociales",
+  "rating": 4.3,
+  "size": "90 MB",
+  "icon": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Xiaohongshu_logo.png",
+  "description": "RedNote es una plataforma de redes sociales y comercio electrónico que combina videos cortos, fotos y recomendaciones de estilo de vida.",
+  "downloads": "300M+",
+  "bannerGradient": "45deg, #FF0000, #FFD700",
+  "security": false,
+  "version": "8.82.0",
+  "isAvailable": true,
+  "releaseDate": "2025-05-12T00:00:00",
+  "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES", "CN"],
+  "platforms": {
+    "android": "https://play.google.com/store/apps/details?id=com.xingin.xhs",
+    "ios": "https://apps.apple.com/us/app/rednote/id659680863"
+  },
+  "previousVersions": ["8.81.0", "8.80.0", "8.79.0"],
+  "media": [
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    },
+    {
+      "type": "video",
+      "url": "dQw4w9WgXcQ"
+    },
+    {
+      "type": "image",
+      "url": "/api/placeholder/200/400"
+    }
+  ]
+},            
+  {
     "name": "Douyin",
     "developer": "ByteDance",
     "packageName": "com.ss.android.ugc.aweme",
@@ -451,7 +487,7 @@ const apps = [{
     "category": "Edición de video",
     "rating": 4.6,
     "size": "80 MB",
-    "icon": "https://upload.wikimedia.org/wikipedia/commons/1/1b/CapCut_logo.svg",
+    "icon": "https://static.vecteezy.com/system/resources/previews/013/948/546/non_2x/capcut-logo-on-transparent-white-background-free-vector.jpg",
     "description": "CapCut es una herramienta de edición de video y fotos con funciones avanzadas de IA.",
     "downloads": "1B+",
     "bannerGradient": "45deg, #00C4B4, #7B68EE",
@@ -487,7 +523,7 @@ const apps = [{
     "category": "Redes sociales",
     "rating": 4.3,
     "size": "70 MB",
-    "icon": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Lemon8_logo.png",
+    "icon": "https://upload.wikimedia.org/wikipedia/en/3/35/Lemon8_icon.png",
     "description": "Lemon8 es una plataforma de redes sociales centrada en estilo de vida y contenido visual.",
     "downloads": "50M+",
     "bannerGradient": "45deg, #FFD700, #FF6347",
@@ -631,7 +667,7 @@ const apps = [{
     "category": "Productividad",
     "rating": 4.2,
     "size": "120 MB",
-    "icon": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Lark_logo.png",
+    "icon": "https://play-lh.googleusercontent.com/WBJp4E5ZLxMhnOBfj3iZ5HAzYjMc180O-qmVyVpQgI8Bwv70f_C_Kng-mzO2hFQ2zg",
     "description": "Lark es una suite de colaboración empresarial con herramientas de comunicación y gestión.",
     "downloads": "10M+",
     "bannerGradient": "45deg, #00B7D6, #0078D4",
