@@ -371,7 +371,331 @@ const apps = [{
       "url": "https://www.youtube.com/watch?v=RevolutDemo"
     }
   ]
-},       
+},      
+   {
+    "name": "TikTok",
+    "developer": "ByteDance",
+    "packageName": "com.zhiliaoapp.musically",
+    "category": "Redes sociales",
+    "rating": 4.4,
+    "size": "100 MB",
+    "icon": "https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg",
+    "description": "TikTok es una plataforma de videos cortos que permite a los usuarios crear y compartir contenido creativo.",
+    "downloads": "5.8B+",
+    "bannerGradient": "45deg, #FF0050, #00F2EA",
+    "security": false,
+    "version": "36.0.0",
+    "isAvailable": false,
+    "releaseDate": "2024-10-01T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically",
+      "ios": "https://apps.apple.com/us/app/tiktok/id835599320"
+    },
+    "previousVersions": ["35.9.0", "35.8.0", "35.7.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+    "name": "Douyin",
+    "developer": "ByteDance",
+    "packageName": "com.ss.android.ugc.aweme",
+    "category": "Redes sociales",
+    "rating": 4.5,
+    "size": "95 MB",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Douyin_logo.svg",
+    "description": "Douyin es la versión china de TikTok, enfocada en videos cortos y comercio electrónico.",
+    "downloads": "700M+",
+    "bannerGradient": "45deg, #FF0000, #FFD700",
+    "security": false,
+    "version": "28.0.0",
+    "isAvailable": true,
+    "releaseDate": "2024-09-15T00:00:00",
+    "allowedCountries": ["CN"],
+    "platforms": {
+      "android": "https://www.douyin.com/download",
+      "ios": "https://www.douyin.com/download"
+    },
+    "previousVersions": ["27.9.0", "27.8.0", "27.7.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+    "name": "CapCut",
+    "developer": "ByteDance",
+    "packageName": "com.lemon.lvoverseas",
+    "category": "Edición de video",
+    "rating": 4.6,
+    "size": "80 MB",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/1/1b/CapCut_logo.svg",
+    "description": "CapCut es una herramienta de edición de video y fotos con funciones avanzadas de IA.",
+    "downloads": "1B+",
+    "bannerGradient": "45deg, #00C4B4, #7B68EE",
+    "security": false,
+    "version": "12.0.0",
+    "isAvailable": false,
+    "releaseDate": "2024-10-09T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.lemon.lvoverseas",
+      "ios": "https://apps.apple.com/us/app/capcut-video-editor/id1506865452"
+    },
+    "previousVersions": ["11.9.0", "11.8.0", "11.7.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+    "name": "Lemon8",
+    "developer": "ByteDance",
+    "packageName": "com.bd.lemon8",
+    "category": "Redes sociales",
+    "rating": 4.3,
+    "size": "70 MB",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Lemon8_logo.png",
+    "description": "Lemon8 es una plataforma de redes sociales centrada en estilo de vida y contenido visual.",
+    "downloads": "50M+",
+    "bannerGradient": "45deg, #FFD700, #FF6347",
+    "security": false,
+    "version": "5.0.0",
+    "isAvailable": false,
+    "releaseDate": "2024-08-01T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.bd.lemon8",
+      "ios": "https://apps.apple.com/us/app/lemon8/id1541578250"
+    },
+    "previousVersions": ["4.9.0", "4.8.0", "4.7.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+    "name": "Hypic",
+    "developer": "ByteDance",
+    "packageName": "com.bytedance.hypic",
+    "category": "Edición de fotos",
+    "rating": 4.2,
+    "size": "65 MB",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Hypic_logo.png",
+    "description": "Hypic es una aplicación de edición de fotos con herramientas de IA para retoques y efectos.",
+    "downloads": "10M+",
+    "bannerGradient": "45deg, #FF69B4, #8A2BE2",
+    "security": false,
+    "version": "3.0.0",
+    "isAvailable": false,
+    "releaseDate": "2024-07-15T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.bytedance.hypic",
+      "ios": "https://apps.apple.com/us/app/hypic-photo-editor-ai-art/id1623904357"
+    },
+    "previousVersions": ["2.9.0", "2.8.0", "2.7.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+    "name": "Toutiao",
+    "developer": "ByteDance",
+    "packageName": "com.ss.android.article.news",
+    "category": "Noticias",
+    "rating": 4.1,
+    "size": "55 MB",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Toutiao_logo.png",
+    "description": "Toutiao es una plataforma de noticias personalizada para usuarios en China.",
+    "downloads": "300M+",
+    "bannerGradient": "45deg, #FF4500, #FFD700",
+    "security": false,
+    "version": "9.0.0",
+    "isAvailable": true,
+    "releaseDate": "2024-06-01T00:00:00",
+    "allowedCountries": ["CN"],
+    "platforms": {
+      "android": "https://www.toutiao.com/download",
+      "ios": "https://www.toutiao.com/download"
+    },
+    "previousVersions": ["8.9.0", "8.8.0", "8.7.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+    "name": "Xigua Video",
+    "developer": "ByteDance",
+    "packageName": "com.ss.android.ugc.xigua",
+    "category": "Video",
+    "rating": 4.0,
+    "size": "60 MB",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Xigua_Video_logo.png",
+    "description": "Xigua Video es una plataforma de videos cortos y largos en China.",
+    "downloads": "100M+",
+    "bannerGradient": "45deg, #FF6347, #FFA500",
+    "security": false,
+    "version": "8.0.0",
+    "isAvailable": true,
+    "releaseDate": "2024-05-20T00:00:00",
+    "allowedCountries": ["CN"],
+    "platforms": {
+      "android": "https://www.ixigua.com/download",
+      "ios": "https://www.ixigua.com/download"
+    },
+    "previousVersions": ["7.9.0", "7.8.0", "7.7.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+    "name": "Lark",
+    "developer": "ByteDance",
+    "packageName": "com.larksuite.lark",
+    "category": "Productividad",
+    "rating": 4.2,
+    "size": "120 MB",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Lark_logo.png",
+    "description": "Lark es una suite de colaboración empresarial con herramientas de comunicación y gestión.",
+    "downloads": "10M+",
+    "bannerGradient": "45deg, #00B7D6, #0078D4",
+    "security": true,
+    "version": "7.0.0",
+    "isAvailable": true,
+    "releaseDate": "2024-04-15T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.larksuite.lark",
+      "ios": "https://apps.apple.com/us/app/lark-meetings/id1497811009"
+    },
+    "previousVersions": ["6.9.0", "6.8.0", "6.7.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+    "name": "Helo",
+    "developer": "ByteDance",
+    "packageName": "com.helo.android",
+    "category": "Redes sociales",
+    "rating": 4.1,
+    "size": "75 MB",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Helo_logo.png",
+    "description": "Helo es una plataforma social para compartir contenido en idiomas regionales.",
+    "downloads": "50M+",
+    "bannerGradient": "45deg, #FF4500, #FFD700",
+    "security": false,
+    "version": "4.0.0",
+    "isAvailable": true,
+    "releaseDate": "2024-03-01T00:00:00",
+    "allowedCountries": ["IN"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.helo.android",
+      "ios": "https://apps.apple.com/in/app/helo/id1456079477"
+    },
+    "previousVersions": ["3.9.0", "3.8.0", "3.7.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },           
  {
     "name": "TikTok Lite",
     "developer": "TikTok Pte. Ltd.",
