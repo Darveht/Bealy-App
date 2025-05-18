@@ -1811,6 +1811,51 @@ async function openAppModal(app) {
       <p>Este desarrollador tiene múltiples aplicaciones exitosas.</p>
     </div>
     ` : ''}
+    
+    <div class="privacy-policy-section">
+      <button class="privacy-btn" onclick="showPrivacyPolicy('${app.name}')">
+        <i class="fas fa-shield-alt"></i> Políticas de Privacidad
+      </button>
+    </div>
+
+    <div id="privacyModal" class="privacy-modal">
+      <div class="privacy-content">
+        <div class="privacy-header">
+          <h2>Políticas de Privacidad</h2>
+          <button class="close-privacy" onclick="closePrivacyPolicy()">×</button>
+        </div>
+        <div class="privacy-body">
+          <h3>${app.name}</h3>
+          <div class="policy-section">
+            <h4>Recolección de Datos</h4>
+            <p>Esta aplicación recolecta los siguientes datos:</p>
+            <ul>
+              <li>Información del dispositivo</li>
+              <li>Datos de uso de la aplicación</li>
+              <li>Información de ubicación (si se autoriza)</li>
+            </ul>
+          </div>
+          <div class="policy-section">
+            <h4>Uso de Datos</h4>
+            <p>Los datos recolectados se utilizan para:</p>
+            <ul>
+              <li>Mejorar la experiencia del usuario</li>
+              <li>Análisis de rendimiento</li>
+              <li>Personalización de contenido</li>
+            </ul>
+          </div>
+          <div class="policy-section">
+            <h4>Compartir Datos</h4>
+            <p>Sus datos pueden ser compartidos con:</p>
+            <ul>
+              <li>Proveedores de servicios</li>
+              <li>Socios comerciales</li>
+              <li>Autoridades legales cuando sea requerido</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="previous-versions" id="${app.name}-versions" style="display:none;">
       <h4>Versiones anteriores:</h4>
@@ -2031,6 +2076,26 @@ document.getElementById('backButton').addEventListener('click', () => {
 
 document.getElementById('closeDeveloperModal').addEventListener('click', () => {
   document.getElementById('developerModal').style.display = 'none';
+});
+
+function showPrivacyPolicy(appName) {
+  const modal = document.getElementById('privacyModal');
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closePrivacyPolicy() {
+  const modal = document.getElementById('privacyModal');
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Close privacy policy modal when clicking outside
+window.addEventListener('click', (e) => {
+  const modal = document.getElementById('privacyModal');
+  if (e.target === modal) {
+    closePrivacyPolicy();
+  }
 });
 
 document.getElementById('developerModal').addEventListener('click', (e) => {
