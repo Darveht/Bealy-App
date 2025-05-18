@@ -415,7 +415,7 @@ const apps = [{
   "category": "Redes sociales",
   "rating": 4.3,
   "size": "90 MB",
-  "icon": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Xiaohongshu_logo.png",
+  "icon": "https://play-lh.googleusercontent.com/cvxZysz34aPGO1l__roDVapiQTNFeWpQ1tKD2YNO3RodNqBF3bI8cNQkDm1EVxY9CiM=w240-h480-rw",
   "description": "RedNote es una plataforma de redes sociales y comercio electrónico que combina videos cortos, fotos y recomendaciones de estilo de vida.",
   "downloads": "300M+",
   "bannerGradient": "45deg, #FF0000, #FFD700",
