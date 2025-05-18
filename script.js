@@ -2497,6 +2497,99 @@ document.querySelectorAll('.menu-item').forEach(item => {
     });
 });
 
+// Camera functionality
+const cameraIcon = document.getElementById('cameraIcon');
+const cameraModal = document.getElementById('cameraModal');
+const cameraView = document.getElementById('cameraView');
+const captureButton = document.getElementById('captureButton');
+const particleCanvas = document.getElementById('particleCanvas');
+
+let scene, camera, renderer, particles;
+
+function initParticles() {
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    renderer = new THREE.WebGLRenderer({ canvas: particleCanvas, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    const geometry = new THREE.BufferGeometry();
+    const vertices = [];
+    for (let i = 0; i < 1000; i++) {
+        vertices.push(
+            Math.random() * 2000 - 1000,
+            Math.random() * 2000 - 1000,
+            Math.random() * 2000 - 1000
+        );
+    }
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    const material = new THREE.PointsMaterial({ color: 0xffffff, size: 5 });
+    particles = new THREE.Points(geometry, material);
+    scene.add(particles);
+    camera.position.z = 1000;
+}
+
+function animateParticles() {
+    particleCanvas.style.display = 'block';
+    let frame = 0;
+    const animate = () => {
+        if (frame > 120) {
+            particleCanvas.style.display = 'none';
+            return;
+        }
+        requestAnimationFrame(animate);
+        particles.rotation.x += 0.01;
+        particles.rotation.y += 0.01;
+        particles.scale.x += 0.01;
+        particles.scale.y += 0.01;
+        particles.scale.z += 0.01;
+        renderer.render(scene, camera);
+        frame++;
+    };
+    animate();
+}
+
+cameraIcon.addEventListener('click', async () => {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        cameraView.srcObject = stream;
+        cameraModal.style.display = 'block';
+        initParticles();
+    } catch (err) {
+        console.error('Error accessing camera:', err);
+        alert('No se pudo acceder a la cámara');
+    }
+});
+
+captureButton.addEventListener('click', () => {
+    // Simulate photo capture
+    const flash = document.createElement('div');
+    flash.style.position = 'fixed';
+    flash.style.top = '0';
+    flash.style.left = '0';
+    flash.style.width = '100%';
+    flash.style.height = '100%';
+    flash.style.background = 'white';
+    flash.style.opacity = '0';
+    flash.style.transition = 'opacity 0.2s';
+    flash.style.zIndex = '3002';
+    document.body.appendChild(flash);
+
+    // Flash effect
+    setTimeout(() => {
+        flash.style.opacity = '1';
+        setTimeout(() => {
+            flash.remove();
+            animateParticles();
+            setTimeout(() => {
+                if (cameraView.srcObject) {
+                    cameraView.srcObject.getTracks().forEach(track => track.stop());
+                }
+                cameraModal.style.display = 'none';
+            }, 2000);
+        }, 200);
+    }, 0);
+});
+
 // Inicializar la visualización de aplicaciones
 displayFeaturedApps();
 
