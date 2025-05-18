@@ -227,6 +227,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veraxa</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -244,6 +245,19 @@
             <button class="icon-button" id="settingsIcon">
                 <i class="fas fa-cog"></i>
             </button>
+            <button class="icon-button" id="cameraIcon">
+                <i class="fas fa-camera"></i>
+            </button>
+        </div>
+    </div>
+
+    <div id="cameraModal" class="camera-modal">
+        <div class="camera-content">
+            <video id="cameraView" autoplay playsinline></video>
+            <button id="captureButton" class="capture-button">
+                <div class="capture-button-inner"></div>
+            </button>
+            <canvas id="particleCanvas"></canvas>
         </div>
     </div>
 
