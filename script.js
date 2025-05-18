@@ -202,13 +202,13 @@ const apps = [{
     size: "85.7 MB",
     icon: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
     description: "Facebook es una red social donde los usuarios pueden compartir contenido.",
-    downloads: "186M+",
+    downloads: "987.8M+",
     bannerGradient: "45deg, #1877f2, #0a3d62",
     security: false,
     version: "497.0.0.79.36",
     isAvailable: true,
     releaseDate: "2024-01-01T00:00:00",
-    allowedCountries: ["Global"],
+    allowedCountries: ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
     platforms: {
       android: "https://play.google.com/store/apps/details?id=com.facebook.katana",
       ios: "https://apps.apple.com/us/app/facebook/id284882215"
