@@ -278,7 +278,7 @@ const apps = [{
     "security": true,
     "version": "29.1.2",
     "isAvailable": true,
-    "releaseDate": "2018-08-06T00:00:00",
+    "releaseDate": "2025-05-28T00:00:00",
     "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
     "platforms": {
       "android": "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically.go",
@@ -314,7 +314,7 @@ const apps = [{
   "security": true,
   "version": "1.2.3",
   "isAvailable": true,
-  "releaseDate": "2024-02-08T00:00:00",
+  "releaseDate": "2024-05-28T00:00:00",
   "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "FR", "DE", "ES", "IT", "IN"],
   "platforms": {
     "android": "https://play.google.com/store/apps/details?id=com.google.gemini",
@@ -350,7 +350,7 @@ const apps = [{
   "security": true,
   "version": "1.1.0",
   "isAvailable": true,
-  "releaseDate": "2024-03-15T00:00:00",
+  "releaseDate": "2025-05-27T00:00:00",
   "allowedCountries": ["US", "MX", "CA", "GB", "AU", "NZ", "FR", "DE", "ES", "IT"],
   "platforms": {
     "android": "https://play.google.com/store/apps/details?id=com.xai.grok",
