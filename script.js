@@ -228,6 +228,114 @@ const apps = [{
       }
     ]
   },
+          {
+    "name": "Instagram",
+    "developer": "Meta",
+    "packageName": "com.instagram.android",
+    "category": "Redes sociales",
+    "rating": 4.5,
+    "size": "90 MB",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png",
+    "description": "Instagram es una red social para compartir fotos y videos.",
+    "downloads": "999M+",
+    "bannerGradient": "45deg, #833AB4, #FD1D1D, #F56040",
+    "security": false,
+    "version": "250.0.0.12.34",
+    "isAvailable": true,
+    "releaseDate": "2024-05-01T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.instagram.android",
+      "ios": "https://apps.apple.com/us/app/instagram/id389801252"
+    },
+    "previousVersions": ["249.0.0.11.22", "248.0.0.10.11", "247.0.0.9.10"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+    "name": "WhatsApp",
+    "developer": "Meta",
+    "packageName": "com.whatsapp",
+    "category": "Comunicación",
+    "rating": 4.3,
+    "size": "50 MB",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg",
+    "description": "WhatsApp es una aplicación de mensajería instantánea.",
+    "downloads": "5B+",
+    "bannerGradient": "45deg, #25D366, #128C7E",
+    "security": true,
+    "version": "2.24.10.74",
+    "isAvailable": true,
+    "releaseDate": "2024-05-15T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.whatsapp",
+      "ios": "https://apps.apple.com/us/app/whatsapp-messenger/id310633997"
+    },
+    "previousVersions": ["2.24.9.78", "2.24.8.85", "2.24.7.79"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+    "name": "Messenger",
+    "developer": "Meta",
+    "packageName": "com.facebook.orca",
+    "category": "Comunicación",
+    "rating": 4.1,
+    "size": "60 MB",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_Messenger_logo.svg",
+    "description": "Messenger es una aplicación de mensajería para usuarios de Facebook.",
+    "downloads": "868M+",
+    "bannerGradient": "45deg, #006AFF, #0084FF",
+    "security": false,
+    "version": "450.0.0.43.109",
+    "isAvailable": true,
+    "releaseDate": "2024-05-10T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.facebook.orca",
+      "ios": "https://apps.apple.com/us/app/messenger/id454638411"
+    },
+    "previousVersions": ["449.0.0.41.107", "448.0.0.39.105", "447.0.0.37.103"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },     
        {
   "name": "Revolut",
   "developer": "Revolut Ltd",
