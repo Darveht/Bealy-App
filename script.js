@@ -307,7 +307,7 @@ const apps = [{
     "category": "Comunicación",
     "rating": 4.1,
     "size": "60 MB",
-    "icon": "https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_Messenger_logo.svg",
+    "icon": "https://cdn-icons-png.flaticon.com/512/3621/3621443.png",
     "description": "Messenger es una aplicación de mensajería para usuarios de Facebook.",
     "downloads": "868M+",
     "bannerGradient": "45deg, #006AFF, #0084FF",
