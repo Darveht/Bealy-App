@@ -307,7 +307,7 @@ const apps = [{
     "category": "Educación",
     "rating": 4.6,
     "size": "30 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/7322/7322258.png",
+    "icon": "https://img.icons8.com/?size=512&id=OcH8C89hZ9SZ&format=png",
     "description": "Quizlet es una aplicación para estudiar y memorizar con tarjetas, juegos y pruebas.",
     "downloads": "100M+",
     "bannerGradient": "45deg, #2F80ED, #56CCF2",
