@@ -336,6 +336,42 @@ const apps = [{
       }
     ]
   },     
+         {
+    "name": "Messenger",
+    "developer": "Meta",
+    "packageName": "com.facebook.orca",
+    "category": "Comunicación",
+    "rating": 4.1,
+    "size": "60 MB",
+    "icon": "https://cdn-icons-png.flaticon.com/512/3621/3621443.png",
+    "description": "Messenger es una aplicación de mensajería para usuarios de Facebook.",
+    "downloads": "868M+",
+    "bannerGradient": "45deg, #006AFF, #0084FF",
+    "security": false,
+    "version": "450.0.0.43.109",
+    "isAvailable": true,
+    "releaseDate": "2024-05-10T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.facebook.orca",
+      "ios": "https://apps.apple.com/us/app/messenger/id454638411"
+    },
+    "previousVersions": ["449.0.0.41.107", "448.0.0.39.105", "447.0.0.37.103"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },           
        {
   "name": "Revolut",
   "developer": "Revolut Ltd",
