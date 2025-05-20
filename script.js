@@ -264,6 +264,42 @@ const apps = [{
       }
     ]
   },
+   {
+    "name": "Quizlet",
+    "developer": "Quizlet Inc.",
+    "packageName": "com.quizlet.quizletandroid",
+    "category": "Educación",
+    "rating": 4.6,
+    "size": "30 MB",
+    "icon": "https://img.icons8.com/?size=512&id=OcH8C89hZ9SZ&format=png",
+    "description": "Quizlet es una aplicación para estudiar y memorizar con tarjetas, juegos y pruebas.",
+    "downloads": "100M+",
+    "bannerGradient": "45deg, #2F80ED, #56CCF2",
+    "security": true,
+    "version": "8.48.1",
+    "isAvailable": true,
+    "releaseDate": "2025-05-10T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.quizlet.quizletandroid",
+      "ios": "https://apps.apple.com/us/app/quizlet-flashcards-homework/id546473125"
+    },
+    "previousVersions": ["8.47.2", "8.46.0", "8.45.3"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+},            
   {
     "name": "WhatsApp",
     "developer": "Meta",
