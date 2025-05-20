@@ -300,42 +300,7 @@ const apps = [{
       }
     ]
   },
-  {
-    "name": "Messenger",
-    "developer": "Meta",
-    "packageName": "com.facebook.orca",
-    "category": "Comunicación",
-    "rating": 4.1,
-    "size": "60 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/3621/3621443.png",
-    "description": "Messenger es una aplicación de mensajería para usuarios de Facebook.",
-    "downloads": "868M+",
-    "bannerGradient": "45deg, #006AFF, #0084FF",
-    "security": false,
-    "version": "450.0.0.43.109",
-    "isAvailable": true,
-    "releaseDate": "2024-05-10T00:00:00",
-    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.facebook.orca",
-      "ios": "https://apps.apple.com/us/app/messenger/id454638411"
-    },
-    "previousVersions": ["449.0.0.41.107", "448.0.0.39.105", "447.0.0.37.103"],
-    "media": [
-      {
-        "type": "image",
-        "url": "/api/placeholder/200/400"
-      },
-      {
-        "type": "video",
-        "url": "dQw4w9WgXcQ"
-      },
-      {
-        "type": "image",
-        "url": "/api/placeholder/200/400"
-      }
-    ]
-  },     
+
          {
     "name": "Messenger",
     "developer": "Meta",
@@ -371,7 +336,43 @@ const apps = [{
         "url": "/api/placeholder/200/400"
       }
     ]
-  },           
+  },         
+      {
+    "name": "Duolingo",
+    "developer": "Duolingo, Inc.",
+    "packageName": "com.duolingo",
+    "category": "Educación",
+    "rating": 4.7,
+    "size": "50 MB",
+    "icon": "https://cdn-icons-png.flaticon.com/512/6124/6124991.png",
+    "description": "Duolingo es una aplicación para aprender idiomas de forma divertida y gratuita.",
+    "downloads": "500M+",
+    "bannerGradient": "45deg, #58CC02, #7EE302",
+    "security": true,
+    "version": "5.151.2",
+    "isAvailable": true,
+    "releaseDate": "2025-05-01T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.duolingo",
+      "ios": "https://apps.apple.com/us/app/duolingo-language-lessons/id570060128"
+    },
+    "previousVersions": ["5.150.1", "5.149.3", "5.148.2"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+},        
        {
   "name": "Revolut",
   "developer": "Revolut Ltd",
