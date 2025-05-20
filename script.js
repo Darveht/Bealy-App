@@ -372,6 +372,42 @@ const apps = [{
         "url": "/api/placeholder/200/400"
       }
     ]
+},   
+      {
+    "name": "PowerSchool",
+    "developer": "PowerSchool Group LLC",
+    "packageName": "com.powerschool.mobile",
+    "category": "Educación",
+    "rating": 4.3,
+    "size": "45 MB",
+    "icon": "https://cdn-icons-png.flaticon.com/512/5996/5996953.png",
+    "description": "PowerSchool es una aplicación para que padres y estudiantes accedan a calificaciones, asistencia y más.",
+    "downloads": "10M+",
+    "bannerGradient": "45deg, #003087, #0059C1",
+    "security": true,
+    "version": "24.10.0",
+    "isAvailable": true,
+    "releaseDate": "2025-04-15T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.powerschool.mobile",
+      "ios": "https://apps.apple.com/us/app/powerschool-mobile/id973741088"
+    },
+    "previousVersions": ["24.9.1", "24.8.2", "24.7.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
 },        
        {
   "name": "Revolut",
