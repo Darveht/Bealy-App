@@ -344,7 +344,7 @@ const apps = [{
     "category": "Educación",
     "rating": 4.7,
     "size": "50 MB",
-    "icon": "ANd9GcTzmpVCfY1uCQO8ept0687mFlxybjy3RAjhOFdDq5poEg",
+    "icon": "https://play-lh.googleusercontent.com/dMWXg0GmzURGK3dFWXOMvo31IXyVKwxWUXwHUqwJBK6jZzj7_n1c9Gfor30HVtad-2AS",
     "description": "Duolingo es una aplicación para aprender idiomas de forma divertida y gratuita.",
     "downloads": "500M+",
     "bannerGradient": "45deg, #58CC02, #7EE302",
