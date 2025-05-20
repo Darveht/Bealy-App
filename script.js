@@ -344,7 +344,7 @@ const apps = [{
     "category": "Educación",
     "rating": 4.7,
     "size": "50 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/6124/6124991.png",
+    "icon": "ANd9GcTzmpVCfY1uCQO8ept0687mFlxybjy3RAjhOFdDq5poEg",
     "description": "Duolingo es una aplicación para aprender idiomas de forma divertida y gratuita.",
     "downloads": "500M+",
     "bannerGradient": "45deg, #58CC02, #7EE302",
