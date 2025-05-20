@@ -372,7 +372,43 @@ const apps = [{
         "url": "/api/placeholder/200/400"
       }
     ]
-  },         
+  },   
+     {
+    "name": "Kahoot!",
+    "developer": "Kahoot AS",
+    "packageName": "no.kahoot.app",
+    "category": "Educación",
+    "rating": 4.5,
+    "size": "35 MB",
+    "icon": "https://play-lh.googleusercontent.com/AyJnaQ0JfEu-F_4bop5hH4qpJwYJ1blePyer6VVUUm4Al80uWJBje4UZHirrf39wI7uI=w480-h960",
+    "description": "Kahoot! es una aplicación para crear y jugar cuestionarios interactivos para el aprendizaje y la diversión.",
+    "downloads": "50M+",
+    "bannerGradient": "45deg, #46178F, #8E2DE2",
+    "security": true,
+    "version": "6.12.0",
+    "isAvailable": true,
+    "releaseDate": "2025-05-15T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=no.kahoot.app",
+      "ios": "https://apps.apple.com/us/app/kahoot-play-create-quizzes/id1131203564"
+    },
+    "previousVersions": ["6.11.2", "6.10.1", "6.9.3"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+},         
       {
     "name": "Duolingo",
     "developer": "Duolingo, Inc.",
@@ -380,7 +416,7 @@ const apps = [{
     "category": "Educación",
     "rating": 4.7,
     "size": "50 MB",
-    "icon": "https://play-lh.googleusercontent.com/dMWXg0GmzURGK3dFWXOMvo31IXyVKwxWUXwHUqwJBK6jZzj7_n1c9Gfor30HVtad-2AS",
+    "icon": "https://play-lh.googleusercontent.com/dMWXg0GmzURGK3dFWXOMvo31IXyVKwxWUXwHUqwJBK6jZzj7_n1c9Gfor30HVtad-2AS=w480-h960",
     "description": "Duolingo es una aplicación para aprender idiomas de forma divertida y gratuita.",
     "downloads": "500M+",
     "bannerGradient": "45deg, #58CC02, #7EE302",
@@ -397,7 +433,7 @@ const apps = [{
     "media": [
       {
         "type": "image",
-        "url": "/api/placeholder/200/400"
+        "url": "https://play-lh.googleusercontent.com/fqFEXqnUA9FfPBf3H03bEDMCC7x4AvdRXgcyCjQyTbNkVrPzk82HE-rLM9WzkHV2y5w=w5120-h2880"
       },
       {
         "type": "video",
@@ -405,7 +441,7 @@ const apps = [{
       },
       {
         "type": "image",
-        "url": "/api/placeholder/200/400"
+        "url": "https://play-lh.googleusercontent.com/6rUUj3m7epGmC1YjHqT5HOlWv8HE3KvH4OmvJGqusQJPMdNlJwoyS7dxDM_NYuPwWxA=w5120-h2880"
       }
     ]
 },   
