@@ -336,7 +336,115 @@ const apps = [{
       }
     ]
   },
-    
+              
+          {
+    "name": "Snapchat",
+    "developer": "Snap Inc.",
+    "packageName": "com.snapchat.android",
+    "category": "Comunicación",
+    "rating": 4.2,
+    "size": "80 MB",
+    "icon": "https://cdn-icons-png.flaticon.com/512/2504/2504947.png",
+    "description": "Snapchat es una aplicación de mensajería que permite compartir fotos y videos que desaparecen después de ser vistos.",
+    "downloads": "2B+",
+    "bannerGradient": "45deg, #FFFC00, #FFDD00",
+    "security": true,
+    "version": "12.85.0.32",
+    "isAvailable": true,
+    "releaseDate": "2024-09-15T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES", "IT"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.snapchat.android",
+      "ios": "https://apps.apple.com/us/app/snapchat/id447188370"
+    },
+    "previousVersions": ["12.84.0.30", "12.83.0.28", "12.82.0.25"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "k9m8n7p6q5r4"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+    "name": "Disney+",
+    "developer": "Disney",
+    "packageName": "com.disney.disneyplus",
+    "category": "Entretenimiento",
+    "rating": 4.4,
+    "size": "120 MB",
+    "icon": "https://cdn-icons-png.flaticon.com/512/7322/7322098.png",
+    "description": "Disney+ es una plataforma de streaming con películas, series y contenido exclusivo de Disney, Pixar, Marvel, Star Wars y más, incluyendo acceso a contenido selecto de Hulu en ciertos mercados.",
+    "downloads": "500M+",
+    "bannerGradient": "45deg, #1B2A44, #3C5A99",
+    "security": true,
+    "version": "3.5.2.10",
+    "isAvailable": true,
+    "releaseDate": "2024-10-01T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES", "IT"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.disney.disneyplus",
+      "ios": "https://apps.apple.com/us/app/disney/id1446145911"
+    },
+    "previousVersions": ["3.5.1.8", "3.5.0.7", "3.4.9.6"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "z1x2y3w4v5u6"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+    "name": "Crunchyroll",
+    "developer": "Crunchyroll, LLC",
+    "packageName": "com.crunchyroll.crunchyroid",
+    "category": "Entretenimiento",
+    "rating": 4.7,
+    "size": "45 MB",
+    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968853.png",
+    "description": "Crunchyroll es una plataforma de streaming especializada en anime, con una amplia biblioteca de series y películas, incluyendo simulcasts de Japón.",
+    "downloads": "100M+",
+    "bannerGradient": "45deg, #FF6200, #FF8C00",
+    "security": true,
+    "version": "3.62.0",
+    "isAvailable": true,
+    "releaseDate": "2024-08-20T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.crunchyroll.crunchyroid",
+      "ios": "https://apps.apple.com/us/app/crunchyroll/id329913454"
+    },
+    "previousVersions": ["3.61.0", "3.60.1", "3.59.2"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "t7u8v9w0x1y2"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },
          {
     "name": "Messenger",
     "developer": "Meta",
