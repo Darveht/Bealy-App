@@ -373,6 +373,78 @@ const apps = [{
       }
     ]
   },   
+        {
+    "name": "Telegram",
+    "developer": "Telegram FZ-LLC",
+    "packageName": "org.telegram.messenger",
+    "category": "Comunicación",
+    "rating": 4.5,
+    "size": "70 MB",
+    "icon": "https://cdn-icons-png.flaticon.com/512/2111/2111710.png",
+    "description": "Telegram es una aplicación de mensajería enfocada en la privacidad y la seguridad.",
+    "downloads": "1B+",
+    "bannerGradient": "45deg, #0088CC, #33B5E5",
+    "security": true,
+    "version": "10.12.0",
+    "isAvailable": true,
+    "releaseDate": "2024-07-20T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "RU", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=org.telegram.messenger",
+      "ios": "https://apps.apple.com/us/app/telegram-messenger/id686449807"
+    },
+    "previousVersions": ["10.11.0", "10.10.1", "10.9.2"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "x7y8z9a0b1c2"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },
+  {
+    "name": "Signal",
+    "developer": "Signal Foundation",
+    "packageName": "org.thoughtcrime.securesms",
+    "category": "Comunicación",
+    "rating": 4.6,
+    "size": "50 MB",
+    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968804.png",
+    "description": "Signal es una aplicación de mensajería cifrada que prioriza la privacidad del usuario.",
+    "downloads": "100M+",
+    "bannerGradient": "45deg, #3A76F0, #5B9DF6",
+    "security": true,
+    "version": "7.8.1",
+    "isAvailable": true,
+    "releaseDate": "2025-08-01T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms",
+      "ios": "https://apps.apple.com/us/app/signal-messenger/id874139669"
+    },
+    "previousVersions": ["7.7.2", "7.6.3", "7.5.4"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "p9q0r1s2t3u4"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
+  },        
      {
     "name": "Kahoot!",
     "developer": "Kahoot AS",
