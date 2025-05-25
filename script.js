@@ -711,7 +711,7 @@ const apps = [{
     "security": false,
     "version": "12.0.0",
     "isAvailable": true,
-    "releaseDate": "2024-10-09T00:00:00",
+    "releaseDate": "2025-10-09T00:00:00",
     "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
     "platforms": {
       "android": "https://play.google.com/store/apps/details?id=com.lemon.lvoverseas",
