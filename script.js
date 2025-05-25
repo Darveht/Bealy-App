@@ -445,42 +445,7 @@ const apps = [{
       }
     ]
   },
-  {
-    "name": "Crunchyroll",
-    "developer": "Crunchyroll, LLC",
-    "packageName": "com.crunchyroll.crunchyroid",
-    "category": "Entretenimiento",
-    "rating": 4.7,
-    "size": "45 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968853.png",
-    "description": "Crunchyroll es una plataforma de streaming especializada en anime, con una amplia biblioteca de series y películas, incluyendo simulcasts de Japón.",
-    "downloads": "100M+",
-    "bannerGradient": "45deg, #FF6200, #FF8C00",
-    "security": true,
-    "version": "3.62.0",
-    "isAvailable": true,
-    "releaseDate": "2024-08-20T00:00:00",
-    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
-    "platforms": {
-      "android": "https://play.google.com/store/apps/details?id=com.crunchyroll.crunchyroid",
-      "ios": "https://apps.apple.com/us/app/crunchyroll/id329913454"
-    },
-    "previousVersions": ["3.61.0", "3.60.1", "3.59.2"],
-    "media": [
-      {
-        "type": "image",
-        "url": "/api/placeholder/200/400"
-      },
-      {
-        "type": "video",
-        "url": "t7u8v9w0x1y2"
-      },
-      {
-        "type": "image",
-        "url": "/api/placeholder/200/400"
-      }
-    ]
-  },
+
          {
     "name": "Messenger",
     "developer": "Meta",
