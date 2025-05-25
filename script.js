@@ -416,7 +416,7 @@ const apps = [{
     "category": "Comunicación",
     "rating": 4.6,
     "size": "50 MB",
-    "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968804.png",
+    "icon": "https://play-lh.googleusercontent.com/FtGKSwVtpmMxKoJrJuI837DkYGRsqlMdiVPAd8bomLQZ3_Hc55XokY_dYdXKgGagiYs",
     "description": "Signal es una aplicación de mensajería cifrada que prioriza la privacidad del usuario.",
     "downloads": "100M+",
     "bannerGradient": "45deg, #3A76F0, #5B9DF6",
