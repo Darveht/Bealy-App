@@ -3147,14 +3147,27 @@ function showWebAppsSection() {
     const webAppsContainer = document.getElementById('webAppsContainer');
     webAppsContainer.innerHTML = webApps.map(webApp => createWebAppCard(webApp)).join('');
 
+    // Agregar event listeners a las tarjetas de Web Apps
+    webApps.forEach(webApp => {
+        const cardId = `webapp-card-${webApp.name.replace(/\s+/g, '-').toLowerCase()}`;
+        const card = document.getElementById(cardId);
+        if (card) {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', () => {
+                openWebApp(webApp.url, webApp.name);
+            });
+        }
+    });
+
     // Update active navigation
     document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
     document.querySelector('.menu-item[href="#webapps"]').classList.add('active');
 }
 
 function createWebAppCard(webApp) {
+    const cardId = `webapp-card-${webApp.name.replace(/\s+/g, '-').toLowerCase()}`;
     return `
-        <div class="app-card" onclick="openWebApp('${webApp.url}', '${webApp.name}')">
+        <div class="app-card" id="${cardId}" data-url="${webApp.url}" data-name="${webApp.name}">
             <div class="app-header">
                 <img class="app-icon" src="${webApp.icon}" alt="${webApp.name}">
                 <div class="app-info">
