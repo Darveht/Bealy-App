@@ -2183,12 +2183,7 @@ async function openAppModal(app) {
       </div>
     </div>
 
-    <div class="previous-versions" id="${app.name}-versions" style="display:none;">
-      <h4>Versiones anteriores:</h4>
-      <ul>
-        ${app.previousVersions.map(version => `<li>${version}</li>`).join('')}
-      </ul>
-    </div>
+    
   `;
 
   document.getElementById('appModal').classList.add('active');
@@ -2317,9 +2312,212 @@ function initializeVideoPlayers() {
 }
 
 function togglePreviousVersions(appName) {
-  const versionsDiv = document.getElementById(`${appName}-versions`);
-  versionsDiv.style.display = versionsDiv.style.display === 'none' ? 'block' : 'none';
+  const app = apps.find(a => a.name === appName);
+  if (!app) return;
+  
+  showVersionsModal(app);
 }
+
+function showVersionsModal(app) {
+  const modal = document.createElement('div');
+  modal.className = 'versions-modal';
+  modal.id = 'versionsModal';
+  
+  modal.innerHTML = `
+    <div class="versions-content">
+      <div class="versions-header">
+        <button class="back-to-app" onclick="closeVersionsModal()">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2>Versiones Anteriores - ${app.name}</h2>
+        <button class="close-versions" onclick="closeVersionsModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="versions-body">
+        <div class="current-version-info">
+          <div class="version-card current">
+            <div class="version-header">
+              <span class="version-number">${app.version}</span>
+              <span class="version-badge current-badge">ACTUAL</span>
+            </div>
+            <div class="version-details">
+              <span class="version-date">Instalada</span>
+              <span class="version-size">${app.size}</span>
+            </div>
+          </div>
+        </div>
+        <div class="previous-versions-list">
+          <h3>Versiones Disponibles</h3>
+          <div id="versionsList">
+            ${app.previousVersions.map((version, index) => `
+              <div class="version-card" data-version="${version}">
+                <div class="version-header">
+                  <input type="checkbox" class="version-checkbox" id="version-${index}" data-version="${version}">
+                  <label for="version-${index}" class="version-number">${version}</label>
+                  <div class="version-actions">
+                    <button class="version-action-btn download-btn" onclick="downloadVersion('${app.name}', '${version}')">
+                      <i class="fas fa-download"></i>
+                    </button>
+                    <button class="version-action-btn delete-btn" onclick="deleteVersion('${app.name}', '${version}', this)">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="version-details">
+                  <span class="version-date">${getRandomDate()}</span>
+                  <span class="version-size">${getRandomSize()}</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <div class="versions-actions">
+          <button class="bulk-action-btn" onclick="selectAllVersions()">
+            <i class="fas fa-check-square"></i> Seleccionar Todo
+          </button>
+          <button class="bulk-action-btn" onclick="deselectAllVersions()">
+            <i class="fas fa-square"></i> Deseleccionar Todo
+          </button>
+          <button class="bulk-action-btn delete-selected" onclick="deleteSelectedVersions('${app.name}')">
+            <i class="fas fa-trash-alt"></i> Eliminar Seleccionadas
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVersionsModal() {
+  const modal = document.getElementById('versionsModal');
+  if (modal) {
+    modal.remove();
+    document.body.style.overflow = 'auto';
+  }
+}
+
+function downloadVersion(appName, version) {
+  const btn = event.target.closest('.download-btn');
+  const originalHTML = btn.innerHTML;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+  btn.disabled = true;
+  
+  setTimeout(() => {
+    btn.innerHTML = '<i class="fas fa-check"></i>';
+    setTimeout(() => {
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+    }, 1000);
+  }, 2000);
+}
+
+function deleteVersion(appName, version, button) {
+  if (confirm(`¿Estás seguro de que quieres eliminar la versión ${version}?`)) {
+    const versionCard = button.closest('.version-card');
+    versionCard.classList.add('deleting');
+    
+    setTimeout(() => {
+      // Remover de la array de versiones
+      const app = apps.find(a => a.name === appName);
+      if (app) {
+        app.previousVersions = app.previousVersions.filter(v => v !== version);
+      }
+      versionCard.remove();
+      
+      // Mostrar notificación
+      showDeleteNotification(`Versión ${version} eliminada`);
+    }, 500);
+  }
+}
+
+function selectAllVersions() {
+  const checkboxes = document.querySelectorAll('.version-checkbox');
+  checkboxes.forEach(checkbox => checkbox.checked = true);
+  updateSelectedCount();
+}
+
+function deselectAllVersions() {
+  const checkboxes = document.querySelectorAll('.version-checkbox');
+  checkboxes.forEach(checkbox => checkbox.checked = false);
+  updateSelectedCount();
+}
+
+function deleteSelectedVersions(appName) {
+  const selectedCheckboxes = document.querySelectorAll('.version-checkbox:checked');
+  
+  if (selectedCheckboxes.length === 0) {
+    alert('No hay versiones seleccionadas para eliminar.');
+    return;
+  }
+  
+  if (confirm(`¿Estás seguro de que quieres eliminar ${selectedCheckboxes.length} versión(es)?`)) {
+    const app = apps.find(a => a.name === appName);
+    
+    selectedCheckboxes.forEach(checkbox => {
+      const version = checkbox.dataset.version;
+      const versionCard = checkbox.closest('.version-card');
+      versionCard.classList.add('deleting');
+      
+      setTimeout(() => {
+        if (app) {
+          app.previousVersions = app.previousVersions.filter(v => v !== version);
+        }
+        versionCard.remove();
+      }, 500);
+    });
+    
+    showDeleteNotification(`${selectedCheckboxes.length} versiones eliminadas`);
+  }
+}
+
+function updateSelectedCount() {
+  const selectedCount = document.querySelectorAll('.version-checkbox:checked').length;
+  const deleteBtn = document.querySelector('.delete-selected');
+  if (deleteBtn) {
+    deleteBtn.innerHTML = `<i class="fas fa-trash-alt"></i> Eliminar Seleccionadas (${selectedCount})`;
+    deleteBtn.disabled = selectedCount === 0;
+  }
+}
+
+function showDeleteNotification(message) {
+  const notification = document.createElement('div');
+  notification.className = 'delete-notification';
+  notification.innerHTML = `
+    <i class="fas fa-check-circle"></i>
+    <span>${message}</span>
+  `;
+  
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.classList.add('show');
+  }, 100);
+  
+  setTimeout(() => {
+    notification.classList.remove('show');
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
+}
+
+function getRandomDate() {
+  const dates = ['Hace 2 días', 'Hace 1 semana', 'Hace 2 semanas', 'Hace 1 mes', 'Hace 2 meses'];
+  return dates[Math.floor(Math.random() * dates.length)];
+}
+
+function getRandomSize() {
+  const sizes = ['45.2 MB', '48.1 MB', '42.8 MB', '50.3 MB', '44.7 MB'];
+  return sizes[Math.floor(Math.random() * sizes.length)];
+}
+
+// Event listeners para los checkboxes
+document.addEventListener('change', (e) => {
+  if (e.target.classList.contains('version-checkbox')) {
+    updateSelectedCount();
+  }
+});
 
 function showDeveloperApps(developer, event) {
   event.stopPropagation();

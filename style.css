@@ -1175,46 +1175,344 @@ body.dark-mode .previous-versions li {
     transform: translateY(-2px);
 }
 
-.previous-versions {
-    margin: 20px 0;
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 20px;
+/* Versions Modal Styles */
+.versions-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 3000;
+    overflow-y: auto;
 }
 
-.previous-versions h4 {
+.versions-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.versions-header {
+    padding: 20px;
+    border-bottom: 2px solid #eaeced;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+}
+
+.versions-header h2 {
+    margin: 0;
+    font-size: 20px;
     color: #2c2e2f;
+}
+
+.back-to-app, .close-versions {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.back-to-app:hover, .close-versions:hover {
+    background-color: #f5f7fa;
+}
+
+.versions-body {
+    flex: 1;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.current-version-info {
+    margin-bottom: 30px;
+}
+
+.current-version-info h3,
+.previous-versions-list h3 {
     margin-bottom: 15px;
+    color: #2c2e2f;
     font-size: 18px;
 }
 
-.previous-versions ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.version-card {
+    background: white;
+    border: 2px solid #eaeced;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
 }
 
-.previous-versions li {
-    padding: 12px;
+.version-card.current {
+    border-color: #0070ba;
+    background: linear-gradient(135deg, #f8fcff 0%, #e3f2fd 100%);
+}
+
+.version-card:hover:not(.current) {
+    border-color: #0070ba;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 112, 186, 0.15);
+}
+
+.version-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
     margin-bottom: 8px;
+}
+
+.version-number {
+    font-weight: 600;
+    font-size: 16px;
+    color: #2c2e2f;
+}
+
+.version-badge {
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.current-badge {
+    background: #0070ba;
+    color: white;
+}
+
+.version-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+}
+
+.version-action-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.download-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.download-btn:hover {
+    background: #45a049;
+    transform: scale(1.1);
+}
+
+.delete-btn {
+    background: #ff4444;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #d32f2f;
+    transform: scale(1.1);
+}
+
+.version-details {
+    display: flex;
+    gap: 20px;
+    color: #687173;
+    font-size: 14px;
+}
+
+.version-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.versions-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eaeced;
+    flex-wrap: wrap;
+}
+
+.bulk-action-btn {
+    padding: 12px 20px;
+    border: 2px solid #0070ba;
     background: white;
+    color: #0070ba;
     border-radius: 8px;
-    border: 1px solid #eaeced;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bulk-action-btn:hover {
+    background: #0070ba;
+    color: white;
+}
+
+.bulk-action-btn.delete-selected {
+    border-color: #ff4444;
+    color: #ff4444;
+}
+
+.bulk-action-btn.delete-selected:hover {
+    background: #ff4444;
+    color: white;
+}
+
+.bulk-action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.version-card.deleting {
+    animation: slideOut 0.5s ease forwards;
+    opacity: 0.5;
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+        height: 0;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.delete-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     gap: 10px;
+    z-index: 4000;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.previous-versions li:before {
-    content: "\f021";
-    font-family: "Font Awesome 5 Free";
-    color: #0070ba;
+.delete-notification.show {
+    transform: translateX(0);
 }
 
-.previous-versions li:hover {
-    background: #f5f7fa;
-    transform: translateX(5px);
-    transition: all 0.3s ease;
+.delete-notification i {
+    font-size: 18px;
+}
+
+/* Dark mode support */
+body.dark-mode .versions-modal {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+body.dark-mode .versions-header {
+    background: #1a1a1a;
+    border-color: #3d3d3d;
+}
+
+body.dark-mode .versions-header h2 {
+    color: #ffffff;
+}
+
+body.dark-mode .back-to-app:hover,
+body.dark-mode .close-versions:hover {
+    background-color: #3d3d3d;
+}
+
+body.dark-mode .version-card {
+    background: #2d2d2d;
+    border-color: #3d3d3d;
+}
+
+body.dark-mode .version-card.current {
+    background: linear-gradient(135deg, #1a2332 0%, #2d3748 100%);
+    border-color: #4a90e2;
+}
+
+body.dark-mode .version-number {
+    color: #ffffff;
+}
+
+body.dark-mode .version-details {
+    color: #cccccc;
+}
+
+body.dark-mode .bulk-action-btn {
+    background: #2d2d2d;
+    border-color: #4a90e2;
+    color: #4a90e2;
+}
+
+body.dark-mode .bulk-action-btn:hover {
+    background: #4a90e2;
+    color: #ffffff;
+}
+
+body.dark-mode .bulk-action-btn.delete-selected {
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+body.dark-mode .bulk-action-btn.delete-selected:hover {
+    background: #ff6b6b;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .versions-header {
+        padding: 15px;
+    }
+    
+    .versions-body {
+        padding: 15px;
+    }
+    
+    .version-header {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .version-actions {
+        order: -1;
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .versions-actions {
+        flex-direction: column;
+    }
+    
+    .bulk-action-btn {
+        justify-content: center;
+    }
 }
 
 .carousel-dot.active {
