@@ -3148,23 +3148,16 @@ function showWebAppsSection() {
     webAppsContainer.innerHTML = webApps.map(webApp => createWebAppCard(webApp)).join('');
 
     // Agregar event listeners a las tarjetas de Web Apps
-    setTimeout(() => {
-        webApps.forEach(webApp => {
-            const cardId = `webapp-card-${webApp.name.replace(/\s+/g, '-').toLowerCase()}`;
-            const card = document.getElementById(cardId);
-            if (card) {
-                card.style.cursor = 'pointer';
-                card.removeEventListener('click', card.webAppClickHandler); // Remove any existing listener
-                card.webAppClickHandler = () => {
-                    console.log('Clicking web app card:', webApp.name);
-                    openWebApp(webApp.url, webApp.name);
-                };
-                card.addEventListener('click', card.webAppClickHandler);
-            } else {
-                console.warn('Web app card not found:', cardId);
-            }
-        });
-    }, 100);
+    webApps.forEach(webApp => {
+        const cardId = `webapp-card-${webApp.name.replace(/\s+/g, '-').toLowerCase()}`;
+        const card = document.getElementById(cardId);
+        if (card) {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', () => {
+                openWebApp(webApp.url, webApp.name);
+            });
+        }
+    });
 
     // Update active navigation
     document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
@@ -3199,18 +3192,10 @@ function openWebApp(url, name) {
     const iframe = document.getElementById('webAppFrame');
     const title = document.getElementById('webAppTitle');
     
-    if (!modal || !iframe || !title) {
-        console.error('Web app modal elements not found');
-        return;
-    }
-    
     title.textContent = name;
     iframe.src = url;
     modal.classList.add('active');
-    modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    
-    console.log('Opening web app:', name, 'URL:', url);
 }
 
 function closeWebApp() {
