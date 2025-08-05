@@ -1926,6 +1926,21 @@ body.dark-mode .version-meta-new {
         flex-direction: column;
         gap: 10px;
     }
+
+    .web-app-header {
+        padding: 10px 15px;
+        min-height: 50px;
+    }
+
+    .web-app-title {
+        font-size: 16px;
+    }
+
+    .close-web-app,
+    .refresh-web-app {
+        font-size: 18px;
+        padding: 8px;
+    }
 }
 
 .carousel-dot.active {
@@ -2344,6 +2359,112 @@ body.dark-mode .close-privacy {
 
 body.dark-mode .policy-section h4 {
   color: #4a90e2;
+}
+
+/* Web App Modal Styles */
+.web-app-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 3000;
+    display: none;
+    flex-direction: column;
+}
+
+.web-app-modal.active {
+    display: flex;
+}
+
+.web-app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #eaeced;
+    min-height: 60px;
+}
+
+.web-app-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c2e2f;
+    flex: 1;
+    text-align: center;
+}
+
+.close-web-app,
+.refresh-web-app {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+    color: #687173;
+}
+
+.close-web-app:hover,
+.refresh-web-app:hover {
+    background-color: #eaeced;
+}
+
+.web-app-content {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.web-app-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.web-app-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.web-app-badge i {
+    font-size: 10px;
+}
+
+/* Dark mode support for web apps */
+body.dark-mode .web-app-modal {
+    background: #1a1a1a;
+}
+
+body.dark-mode .web-app-header {
+    background: #2d2d2d;
+    border-color: #3d3d3d;
+}
+
+body.dark-mode .web-app-title {
+    color: #ffffff;
+}
+
+body.dark-mode .close-web-app,
+body.dark-mode .refresh-web-app {
+    color: #ffffff;
+}
+
+body.dark-mode .close-web-app:hover,
+body.dark-mode .refresh-web-app:hover {
+    background-color: #3d3d3d;
 }
 
 /* Camera styles */

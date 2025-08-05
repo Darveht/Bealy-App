@@ -391,6 +391,10 @@
             <i class="fas fa-edit"></i>
             <span>Editorial</span>
         </a>
+        <a href="#webapps" class="menu-item" onclick="showWebAppsSection()">
+            <i class="fas fa-globe-americas"></i>
+            <span>Web Apps</span>
+        </a>
     </nav>
 
     <!-- Websites Section -->
@@ -427,6 +431,28 @@
                     <p>Submit your application for review. Our team will check for quality and security.</p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Web Apps Section -->
+    <div id="webAppsSection" class="section-container" style="display: none;">
+        <h2 class="section-title">Aplicaciones Web en Tiempo Real</h2>
+        <div id="webAppsContainer" class="apps-grid"></div>
+    </div>
+
+    <!-- Web App Iframe Modal -->
+    <div id="webAppModal" class="web-app-modal">
+        <div class="web-app-header">
+            <button class="close-web-app" id="closeWebApp">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="web-app-title" id="webAppTitle">Aplicación Web</div>
+            <button class="refresh-web-app" id="refreshWebApp">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+        </div>
+        <div class="web-app-content">
+            <iframe id="webAppFrame" src="" frameborder="0"></iframe>
         </div>
     </div>
 </body>

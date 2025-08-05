@@ -2936,6 +2936,82 @@ const websites = [
   }
 ];
 
+// Web Apps data - Apps que se pueden abrir en tiempo real
+const webApps = [
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png",
+    category: "Redes Sociales",
+    developer: "Meta",
+    description: "Red social para compartir fotos y videos.",
+    rating: 4.5
+  },
+  {
+    name: "Twitter/X",
+    url: "https://twitter.com",
+    icon: "https://img.freepik.com/vector-gratis/nuevo-diseno-icono-x-logotipo-twitter-2023_1017-45418.jpg",
+    category: "Redes Sociales",
+    developer: "X Corp.",
+    description: "Plataforma de microblogging y redes sociales.",
+    rating: 4.2
+  },
+  {
+    name: "YouTube",
+    url: "https://www.youtube.com",
+    icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjX5LVxRxYR6uDz_MyBLBgi6ihUSOBsm4g_XUvyBwt4b6INTXV2THSdouK&s=10",
+    category: "Entretenimiento",
+    developer: "Google LLC",
+    description: "Plataforma de videos y streaming.",
+    rating: 4.6
+  },
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+    category: "Redes Sociales",
+    developer: "Meta",
+    description: "La red social más grande del mundo.",
+    rating: 4.1
+  },
+  {
+    name: "Discord",
+    url: "https://discord.com/app",
+    icon: "https://www.svgrepo.com/show/353655/discord-icon.svg",
+    category: "Comunicación",
+    developer: "Discord Inc.",
+    description: "Plataforma de comunicación para comunidades.",
+    rating: 4.7
+  },
+  {
+    name: "Reddit",
+    url: "https://www.reddit.com",
+    icon: "https://cdn6.aptoide.com/imgs/0/5/c/05c2271c0e114965490bee7962608507_icon.png?w=128",
+    category: "Comunidad",
+    developer: "Reddit Inc.",
+    description: "La primera página de internet.",
+    rating: 4.4
+  },
+  {
+    name: "Spotify Web",
+    url: "https://open.spotify.com",
+    icon: "https://cdn-icons-png.flaticon.com/512/2111/2111624.png",
+    category: "Música",
+    developer: "Spotify AB",
+    description: "Reproduce música y podcasts online.",
+    rating: 4.8
+  },
+  {
+    name: "Netflix",
+    url: "https://www.netflix.com",
+    icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU3_FUVPsUWnfx0QU6CEByIfTew5jRQDkqakK-hmaQ3-VQ4wCzYO06kWs&s=10",
+    category: "Entretenimiento",
+    developer: "Netflix Inc.",
+    description: "Plataforma de streaming de películas y series.",
+    rating: 4.5
+  }
+];
+
 function createWebsiteCard(website) {
   return `
     <div class="app-card" onclick="openWebsiteModal(${JSON.stringify(website).replace(/\"/g, '&quot;')})">
@@ -3021,6 +3097,7 @@ function showWebsitesSection() {
   document.getElementById('gamesSection').style.display = 'none';
   document.getElementById('editorialSection').style.display = 'none';
   document.getElementById('websitesSection').style.display = 'block';
+  document.getElementById('webAppsSection').style.display = 'none';
 
   const websitesContainer = document.getElementById('websitesContainer');
   websitesContainer.innerHTML = websites.map(website => createWebsiteCard(website)).join('');
@@ -3035,6 +3112,7 @@ function showGamesSection() {
     document.getElementById('gamesSection').style.display = 'block';
     document.getElementById('editorialSection').style.display = 'none';
     document.getElementById('websitesSection').style.display = 'none';
+    document.getElementById('webAppsSection').style.display = 'none';
 
     // Filter and display only games
     const gameApps = apps.filter(app => app.category === 'Juegos');
@@ -3051,11 +3129,90 @@ function showEditorialSection() {
     document.getElementById('gamesSection').style.display = 'none';
     document.getElementById('editorialSection').style.display = 'block';
     document.getElementById('websitesSection').style.display = 'none';
+    document.getElementById('webAppsSection').style.display = 'none';
 
     // Update active navigation
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
     document.querySelector('.nav-item[href="#editorial"]').classList.add('active');
 }
+
+// Web Apps Section
+function showWebAppsSection() {
+    document.getElementById('featuredApps').style.display = 'none';
+    document.getElementById('gamesSection').style.display = 'none';
+    document.getElementById('editorialSection').style.display = 'none';
+    document.getElementById('websitesSection').style.display = 'none';
+    document.getElementById('webAppsSection').style.display = 'block';
+
+    const webAppsContainer = document.getElementById('webAppsContainer');
+    webAppsContainer.innerHTML = webApps.map(webApp => createWebAppCard(webApp)).join('');
+
+    // Update active navigation
+    document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+    document.querySelector('.menu-item[href="#webapps"]').classList.add('active');
+}
+
+function createWebAppCard(webApp) {
+    return `
+        <div class="app-card" onclick="openWebApp('${webApp.url}', '${webApp.name}')">
+            <div class="app-header">
+                <img class="app-icon" src="${webApp.icon}" alt="${webApp.name}">
+                <div class="app-info">
+                    <div class="app-name">${webApp.name}</div>
+                    <div class="app-developer">${webApp.developer}</div>
+                    <div class="app-category">${webApp.category}</div>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span>${webApp.rating}</span>
+                    </div>
+                    <div class="web-app-badge">
+                        <i class="fas fa-globe"></i> Tiempo Real
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function openWebApp(url, name) {
+    const modal = document.getElementById('webAppModal');
+    const iframe = document.getElementById('webAppFrame');
+    const title = document.getElementById('webAppTitle');
+    
+    title.textContent = name;
+    iframe.src = url;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeWebApp() {
+    const modal = document.getElementById('webAppModal');
+    const iframe = document.getElementById('webAppFrame');
+    
+    modal.classList.remove('active');
+    iframe.src = '';
+    document.body.style.overflow = 'auto';
+}
+
+function refreshWebApp() {
+    const iframe = document.getElementById('webAppFrame');
+    const currentSrc = iframe.src;
+    iframe.src = '';
+    setTimeout(() => {
+        iframe.src = currentSrc;
+    }, 100);
+}
+
+// Event listeners para el modal de web apps
+document.getElementById('closeWebApp').addEventListener('click', closeWebApp);
+document.getElementById('refreshWebApp').addEventListener('click', refreshWebApp);
+
+// Cerrar modal al hacer clic fuera
+document.getElementById('webAppModal').addEventListener('click', (e) => {
+    if (e.target.id === 'webAppModal') {
+        closeWebApp();
+    }
+});
 
 // Home navigation
 document.querySelector('.menu-item[href="#"]').addEventListener('click', (e) => {
@@ -3064,6 +3221,7 @@ document.querySelector('.menu-item[href="#"]').addEventListener('click', (e) => 
     document.getElementById('gamesSection').style.display = 'none';
     document.getElementById('editorialSection').style.display = 'none';
     document.getElementById('websitesSection').style.display = 'none';
+    document.getElementById('webAppsSection').style.display = 'none';
     displayFeaturedApps(); // Aseguramos que se muestren las apps destacadas
 
     // Update active navigation
