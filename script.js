@@ -13,15 +13,15 @@ function showAppOfDayModal(app) {
       </div>
     </div>
   `;
-  
+
   document.body.appendChild(modal);
-  
+
   modal.addEventListener('click', (e) => {
     if (e.target === modal) {
       modal.remove();
     }
   });
-  
+
   const notifyBtn = modal.querySelector('.notify-btn');
   notifyBtn.addEventListener('click', () => {
     showNotification();
@@ -36,19 +36,19 @@ function showNotification() {
     <i class="fas fa-bell bell-icon"></i>
     <span>¡Te notificaremos cuando la app esté disponible!</span>
   `;
-  
+
   document.body.appendChild(notification);
-  
+
   setTimeout(() => {
     notification.classList.add('show');
     const bellIcon = notification.querySelector('.bell-icon');
     bellIcon.classList.add('animate');
   }, 100);
-  
+
   setTimeout(() => {
     const bellIcon = notification.querySelector('.bell-icon');
     bellIcon.classList.add('animate');
-    
+
     setTimeout(() => {
       notification.classList.remove('show');
       setTimeout(() => notification.remove(), 300);
@@ -71,7 +71,7 @@ function shareApp(app) {
     dummy.select();
     document.execCommand('copy');
     document.body.removeChild(dummy);
-    
+
     const notification = document.createElement('div');
     notification.className = 'notification-popup show';
     notification.innerHTML = `
@@ -79,7 +79,7 @@ function shareApp(app) {
       <span>¡Enlace copiado al portapapeles!</span>
     `;
     document.body.appendChild(notification);
-    
+
     setTimeout(() => {
       notification.classList.remove('show');
       setTimeout(() => notification.remove(), 300);
@@ -148,14 +148,14 @@ async function filterAppsByCountry(appsToFilter) {
     const filteredApps = appsToFilter.filter(app => {
       const isAvailable = app.allowedCountries.includes('Global') || 
                          app.allowedCountries.includes(userCountry);
-      
+
       if (!isAvailable) {
         console.log(`App ${app.name} no disponible en ${userCountry}`);
       }
-      
+
       return isAvailable;
     });
-    
+
     return filteredApps;
   } catch (error) {
     console.error('Error filtrando apps por país:', error);
@@ -372,7 +372,7 @@ const apps = [{
       }
     ]
   },
-              
+
           {
     "name": "Snapchat",
     "developer": "Snap Inc.",
@@ -1796,7 +1796,7 @@ function simulateDownload(btn) {
       <span class="download-text">0%</span>
     </div>
   `;
-  
+
   let progress = 0;
   const interval = setInterval(() => {
     progress += Math.random() * 15;
@@ -1836,10 +1836,10 @@ function getStoreLink(app) {
 async function displayFeaturedApps() {
   const featuredApps = document.getElementById('featuredApps');
   featuredApps.innerHTML = '';
-  
+
   // Find upcoming app release
   const upcomingApp = apps.find(app => !isAppReleased(app.releaseDate));
-  
+
   if (upcomingApp) {
     const appOfDaySection = document.createElement('div');
     appOfDaySection.className = 'app-of-day';
@@ -1861,17 +1861,17 @@ async function displayFeaturedApps() {
         </div>
       </div>
     `;
-    
+
     appOfDaySection.addEventListener('click', () => showAppOfDayModal(upcomingApp));
     featuredApps.appendChild(appOfDaySection);
-    
+
     // Add notification functionality
     const notifyBtn = appOfDaySection.querySelector('.notify-btn');
     notifyBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       showNotification();
     });
-    
+
     // Add share functionality
     const shareBtn = appOfDaySection.querySelector('.share-btn');
     shareBtn.addEventListener('click', (e) => {
@@ -2065,7 +2065,7 @@ async function openAppModal(app) {
       </div>
     </div>
 
-    
+
 
     <div class="action-container">
       ${isAvailableInCountry && isReleased && storeLink
@@ -2137,7 +2137,7 @@ async function openAppModal(app) {
       <p>Este desarrollador tiene múltiples aplicaciones exitosas.</p>
     </div>
     ` : ''}
-    
+
     <div class="privacy-policy-section">
       <button class="privacy-btn" onclick="showPrivacyPolicy('${app.name}')">
         <i class="fas fa-shield-alt"></i> Políticas de Privacidad
@@ -2183,7 +2183,7 @@ async function openAppModal(app) {
       </div>
     </div>
 
-    
+
   `;
 
   document.getElementById('appModal').classList.add('active');
@@ -2193,6 +2193,8 @@ async function openAppModal(app) {
 
 function initializeCarousel() {
   const container = document.querySelector('.media-container');
+  if (!container) return; // Exit if container doesn't exist
+
   const wrapper = container.querySelector('.media-wrapper');
   const dots = container.querySelectorAll('.carousel-dot');
   const items = container.querySelectorAll('.media-item');
@@ -2314,10 +2316,10 @@ function initializeVideoPlayers() {
 function togglePreviousVersions(appName) {
   const app = apps.find(a => a.name === appName);
   if (!app) return;
-  
+
   // Cerrar el modal actual de la app
   document.getElementById('appModal').classList.remove('active');
-  
+
   // Mostrar la nueva sección de versiones
   showVersionsSection(app);
 }
@@ -2328,7 +2330,7 @@ function showVersionsSection(app) {
   document.getElementById('gamesSection').style.display = 'none';
   document.getElementById('editorialSection').style.display = 'none';
   document.getElementById('websitesSection').style.display = 'none';
-  
+
   // Crear o actualizar la sección de versiones
   let versionsSection = document.getElementById('versionsSection');
   if (!versionsSection) {
@@ -2337,7 +2339,7 @@ function showVersionsSection(app) {
     versionsSection.className = 'section-container';
     document.body.appendChild(versionsSection);
   }
-  
+
   versionsSection.style.display = 'block';
   versionsSection.innerHTML = `
     <div class="versions-content-full">
@@ -2356,7 +2358,7 @@ function showVersionsSection(app) {
           </div>
         </div>
       </div>
-      
+
       <div class="versions-body-full">
         <div class="current-version-section">
           <h2><i class="fas fa-crown"></i> Versión Actual</h2>
@@ -2390,7 +2392,7 @@ function showVersionsSection(app) {
               </button>
             </div>
           </div>
-          
+
           <div class="versions-grid" id="versionsGrid">
             ${app.previousVersions.map((version, index) => `
               <div class="version-card-new" data-version="${version}">
@@ -2412,7 +2414,7 @@ function showVersionsSection(app) {
                   <h3 class="version-number-new">${version}</h3>
                   <div class="version-meta-new">
                     <span class="version-date-new"><i class="fas fa-calendar-alt"></i> ${getRandomDate()}</span>
-                    <span class="version-size-new"><i class="fas fa-save"></i> ${getRandomSize()}</span>
+                    <span class="version-size-new"><i class="fas fa-hdd"></i> ${getRandomSize()}</span>
                   </div>
                   <div class="version-features">
                     <span class="feature-tag">Estable</span>
@@ -2434,16 +2436,16 @@ function showVersionsSection(app) {
 function backToAppFromVersions(appName) {
   const app = apps.find(a => a.name === appName);
   if (!app) return;
-  
+
   // Ocultar sección de versiones
   const versionsSection = document.getElementById('versionsSection');
   if (versionsSection) {
     versionsSection.style.display = 'none';
   }
-  
+
   // Mostrar la sección principal
   document.getElementById('featuredApps').style.display = 'block';
-  
+
   // Reabrir el modal de la app
   openAppModal(app);
 }
@@ -2469,7 +2471,7 @@ function downloadVersion(appName, version) {
   const originalHTML = btn.innerHTML;
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
   btn.disabled = true;
-  
+
   setTimeout(() => {
     btn.innerHTML = '<i class="fas fa-check"></i>';
     setTimeout(() => {
@@ -2483,7 +2485,7 @@ function deleteVersion(appName, version, button) {
   if (confirm(`¿Estás seguro de que quieres eliminar la versión ${version}?`)) {
     const versionCard = button.closest('.version-card');
     versionCard.classList.add('deleting');
-    
+
     setTimeout(() => {
       // Remover de la array de versiones
       const app = apps.find(a => a.name === appName);
@@ -2491,7 +2493,7 @@ function deleteVersion(appName, version, button) {
         app.previousVersions = app.previousVersions.filter(v => v !== version);
       }
       versionCard.remove();
-      
+
       // Mostrar notificación
       showDeleteNotification(`Versión ${version} eliminada`);
     }, 500);
@@ -2512,20 +2514,20 @@ function deselectAllVersions() {
 
 function deleteSelectedVersions(appName) {
   const selectedCheckboxes = document.querySelectorAll('.version-checkbox:checked, .version-checkbox-new:checked');
-  
+
   if (selectedCheckboxes.length === 0) {
     alert('No hay versiones seleccionadas para eliminar.');
     return;
   }
-  
+
   if (confirm(`¿Estás seguro de que quieres eliminar ${selectedCheckboxes.length} versión(es)?`)) {
     const app = apps.find(a => a.name === appName);
-    
+
     selectedCheckboxes.forEach(checkbox => {
       const version = checkbox.dataset.version;
       const versionCard = checkbox.closest('.version-card, .version-card-new');
       versionCard.classList.add('deleting');
-      
+
       setTimeout(() => {
         if (app) {
           app.previousVersions = app.previousVersions.filter(v => v !== version);
@@ -2533,7 +2535,7 @@ function deleteSelectedVersions(appName) {
         versionCard.remove();
       }, 500);
     });
-    
+
     showDeleteNotification(`${selectedCheckboxes.length} versiones eliminadas`);
   }
 }
@@ -2554,13 +2556,13 @@ function showDeleteNotification(message) {
     <i class="fas fa-check-circle"></i>
     <span>${message}</span>
   `;
-  
+
   document.body.appendChild(notification);
-  
+
   setTimeout(() => {
     notification.classList.add('show');
   }, 100);
-  
+
   setTimeout(() => {
     notification.classList.remove('show');
     setTimeout(() => notification.remove(), 300);
@@ -2633,7 +2635,7 @@ async function displayApps(appsToDisplay) {
 document.getElementById('searchInput').addEventListener('input', async (e) => {
   const searchTerm = e.target.value.toLowerCase();
   const appsContainer = document.getElementById('appsContainer');
-  
+
   if (searchTerm) {
     // Show loading animation
     appsContainer.innerHTML = `
@@ -2644,10 +2646,10 @@ document.getElementById('searchInput').addEventListener('input', async (e) => {
     `;
     appsContainer.style.display = 'block';
     document.getElementById('featuredApps').style.display = 'none';
-    
+
     // Simulate search delay
     await new Promise(resolve => setTimeout(resolve, 800));
-    
+
     const filteredApps = apps.filter(app =>
       app.name.toLowerCase().includes(searchTerm) ||
       app.developer.toLowerCase().includes(searchTerm) ||
@@ -3039,7 +3041,7 @@ function openWebsiteModal(website) {
   const clicks = getWebsiteClicks();
   const isVerifiedDev = website.rating >= 4.5;
   const modalContent = document.getElementById('modalContent');
-  
+
   modalContent.innerHTML = `
     <div class="modal-header-new">
       <div class="app-icon-container">
@@ -3057,7 +3059,7 @@ function openWebsiteModal(website) {
         </div>
       </div>
     </div>
-    
+
     <div class="app-details-scroll">
       <div class="detail-item">
         <div class="detail-label">Rating</div>
@@ -3087,7 +3089,7 @@ function openWebsiteModal(website) {
     </div>
     <p>${website.description}</p>
   `;
-  
+
   document.getElementById('appModal').classList.add('active');
   initializeCarousel();
 }
@@ -3148,16 +3150,39 @@ function showWebAppsSection() {
     webAppsContainer.innerHTML = webApps.map(webApp => createWebAppCard(webApp)).join('');
 
     // Agregar event listeners a las tarjetas de Web Apps
-    webApps.forEach(webApp => {
-        const cardId = `webapp-card-${webApp.name.replace(/\s+/g, '-').toLowerCase()}`;
-        const card = document.getElementById(cardId);
-        if (card) {
-            card.style.cursor = 'pointer';
-            card.addEventListener('click', () => {
-                openWebApp(webApp.url, webApp.name);
-            });
-        }
-    });
+    setTimeout(() => {
+        webApps.forEach(webApp => {
+            const cardId = `webapp-card-${webApp.name.replace(/\s+/g, '-').toLowerCase()}`;
+            const card = document.getElementById(cardId);
+            if (card) {
+                card.style.cursor = 'pointer';
+
+                // Remover listeners existentes
+                if (card.webAppClickHandler) {
+                    card.removeEventListener('click', card.webAppClickHandler);
+                }
+
+                // Crear nuevo handler
+                card.webAppClickHandler = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Clicking web app card:', webApp.name);
+                    openWebApp(webApp.url, webApp.name);
+                };
+
+                // Agregar el listener
+                card.addEventListener('click', card.webAppClickHandler);
+
+                // También agregar listener al header de la app
+                const appHeader = card.querySelector('.app-header');
+                if (appHeader) {
+                    appHeader.addEventListener('click', card.webAppClickHandler);
+                }
+            } else {
+                console.warn('Web app card not found:', cardId);
+            }
+        });
+    }, 100);
 
     // Update active navigation
     document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
@@ -3191,17 +3216,35 @@ function openWebApp(url, name) {
     const modal = document.getElementById('webAppModal');
     const iframe = document.getElementById('webAppFrame');
     const title = document.getElementById('webAppTitle');
-    
+
+    if (!modal || !iframe || !title) {
+        console.error('Web app modal elements not found');
+        return;
+    }
+
+    // Asegurarse de que el modal esté visible
+    modal.style.display = 'flex';
+    modal.classList.add('active');
+
+    // Configurar el título e iframe
     title.textContent = name;
     iframe.src = url;
-    modal.classList.add('active');
+
+    // Bloquear scroll del body
     document.body.style.overflow = 'hidden';
+
+    // Forzar el iframe a ocupar toda la pantalla
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+
+    console.log('Opening web app:', name, 'URL:', url);
 }
 
 function closeWebApp() {
     const modal = document.getElementById('webAppModal');
     const iframe = document.getElementById('webAppFrame');
-    
+
     modal.classList.remove('active');
     iframe.src = '';
     document.body.style.overflow = 'auto';
