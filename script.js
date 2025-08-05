@@ -2315,80 +2315,145 @@ function togglePreviousVersions(appName) {
   const app = apps.find(a => a.name === appName);
   if (!app) return;
   
-  showVersionsModal(app);
+  // Cerrar el modal actual de la app
+  document.getElementById('appModal').classList.remove('active');
+  
+  // Mostrar la nueva sección de versiones
+  showVersionsSection(app);
 }
 
-function showVersionsModal(app) {
-  const modal = document.createElement('div');
-  modal.className = 'versions-modal';
-  modal.id = 'versionsModal';
+function showVersionsSection(app) {
+  // Ocultar todas las otras secciones
+  document.getElementById('featuredApps').style.display = 'none';
+  document.getElementById('gamesSection').style.display = 'none';
+  document.getElementById('editorialSection').style.display = 'none';
+  document.getElementById('websitesSection').style.display = 'none';
   
-  modal.innerHTML = `
-    <div class="versions-content">
-      <div class="versions-header">
-        <button class="back-to-app" onclick="closeVersionsModal()">
-          <i class="fas fa-arrow-left"></i>
-        </button>
-        <h2>Versiones Anteriores - ${app.name}</h2>
-        <button class="close-versions" onclick="closeVersionsModal()">
-          <i class="fas fa-times"></i>
-        </button>
+  // Crear o actualizar la sección de versiones
+  let versionsSection = document.getElementById('versionsSection');
+  if (!versionsSection) {
+    versionsSection = document.createElement('div');
+    versionsSection.id = 'versionsSection';
+    versionsSection.className = 'section-container';
+    document.body.appendChild(versionsSection);
+  }
+  
+  versionsSection.style.display = 'block';
+  versionsSection.innerHTML = `
+    <div class="versions-content-full">
+      <div class="versions-header-full">
+        <div class="versions-nav">
+          <button class="back-to-app-btn" onclick="backToAppFromVersions('${app.name}')">
+            <i class="fas fa-arrow-left"></i>
+            <span>Volver a ${app.name}</span>
+          </button>
+        </div>
+        <div class="versions-title-section">
+          <img src="${app.icon}" alt="${app.name}" class="versions-app-icon">
+          <div class="versions-app-info">
+            <h1>Versiones de ${app.name}</h1>
+            <p>Gestiona las versiones instaladas de esta aplicación</p>
+          </div>
+        </div>
       </div>
-      <div class="versions-body">
-        <div class="current-version-info">
-          <div class="version-card current">
-            <div class="version-header">
-              <span class="version-number">${app.version}</span>
-              <span class="version-badge current-badge">ACTUAL</span>
-            </div>
-            <div class="version-details">
-              <span class="version-date">Instalada</span>
-              <span class="version-size">${app.size}</span>
+      
+      <div class="versions-body-full">
+        <div class="current-version-section">
+          <h2><i class="fas fa-crown"></i> Versión Actual</h2>
+          <div class="version-card current-full">
+            <div class="version-info-main">
+              <div class="version-details-main">
+                <span class="version-number-large">${app.version}</span>
+                <span class="version-badge-large current">INSTALADA</span>
+              </div>
+              <div class="version-meta">
+                <span class="version-date"><i class="fas fa-calendar"></i> Instalada</span>
+                <span class="version-size"><i class="fas fa-hdd"></i> ${app.size}</span>
+                <span class="version-status"><i class="fas fa-check-circle"></i> Activa</span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="previous-versions-list">
-          <h3>Versiones Disponibles</h3>
-          <div id="versionsList">
+
+        <div class="previous-versions-section">
+          <div class="versions-section-header">
+            <h2><i class="fas fa-history"></i> Versiones Disponibles</h2>
+            <div class="versions-actions-header">
+              <button class="bulk-action-btn-new" onclick="selectAllVersions()">
+                <i class="fas fa-check-square"></i> Seleccionar Todo
+              </button>
+              <button class="bulk-action-btn-new" onclick="deselectAllVersions()">
+                <i class="fas fa-square"></i> Deseleccionar
+              </button>
+              <button class="bulk-action-btn-new delete-selected-new" onclick="deleteSelectedVersions('${app.name}')">
+                <i class="fas fa-trash-alt"></i> Eliminar Seleccionadas
+              </button>
+            </div>
+          </div>
+          
+          <div class="versions-grid" id="versionsGrid">
             ${app.previousVersions.map((version, index) => `
-              <div class="version-card" data-version="${version}">
-                <div class="version-header">
-                  <input type="checkbox" class="version-checkbox" id="version-${index}" data-version="${version}">
-                  <label for="version-${index}" class="version-number">${version}</label>
-                  <div class="version-actions">
-                    <button class="version-action-btn download-btn" onclick="downloadVersion('${app.name}', '${version}')">
+              <div class="version-card-new" data-version="${version}">
+                <div class="version-card-header">
+                  <div class="version-select">
+                    <input type="checkbox" class="version-checkbox-new" id="version-new-${index}" data-version="${version}">
+                    <label for="version-new-${index}" class="version-checkbox-label"></label>
+                  </div>
+                  <div class="version-actions-new">
+                    <button class="version-action-btn-new download" onclick="downloadVersion('${app.name}', '${version}')" title="Descargar">
                       <i class="fas fa-download"></i>
                     </button>
-                    <button class="version-action-btn delete-btn" onclick="deleteVersion('${app.name}', '${version}', this)">
+                    <button class="version-action-btn-new delete" onclick="deleteVersion('${app.name}', '${version}', this)" title="Eliminar">
                       <i class="fas fa-trash"></i>
                     </button>
                   </div>
                 </div>
-                <div class="version-details">
-                  <span class="version-date">${getRandomDate()}</span>
-                  <span class="version-size">${getRandomSize()}</span>
+                <div class="version-info-new">
+                  <h3 class="version-number-new">${version}</h3>
+                  <div class="version-meta-new">
+                    <span class="version-date-new"><i class="fas fa-calendar-alt"></i> ${getRandomDate()}</span>
+                    <span class="version-size-new"><i class="fas fa-save"></i> ${getRandomSize()}</span>
+                  </div>
+                  <div class="version-features">
+                    <span class="feature-tag">Estable</span>
+                    ${Math.random() > 0.5 ? '<span class="feature-tag security">Segura</span>' : ''}
+                  </div>
                 </div>
               </div>
             `).join('')}
           </div>
         </div>
-        <div class="versions-actions">
-          <button class="bulk-action-btn" onclick="selectAllVersions()">
-            <i class="fas fa-check-square"></i> Seleccionar Todo
-          </button>
-          <button class="bulk-action-btn" onclick="deselectAllVersions()">
-            <i class="fas fa-square"></i> Deseleccionar Todo
-          </button>
-          <button class="bulk-action-btn delete-selected" onclick="deleteSelectedVersions('${app.name}')">
-            <i class="fas fa-trash-alt"></i> Eliminar Seleccionadas
-          </button>
-        </div>
       </div>
     </div>
   `;
+
+  // Actualizar navegación activa
+  document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+}
+
+function backToAppFromVersions(appName) {
+  const app = apps.find(a => a.name === appName);
+  if (!app) return;
   
-  document.body.appendChild(modal);
-  document.body.style.overflow = 'hidden';
+  // Ocultar sección de versiones
+  const versionsSection = document.getElementById('versionsSection');
+  if (versionsSection) {
+    versionsSection.style.display = 'none';
+  }
+  
+  // Mostrar la sección principal
+  document.getElementById('featuredApps').style.display = 'block';
+  
+  // Reabrir el modal de la app
+  openAppModal(app);
+}
+
+function closeVersionsModal() {
+  const modal = document.getElementById('versionsModal');
+  if (modal) {
+    modal.remove();
+    document.body.style.overflow = 'auto';
+  }
 }
 
 function closeVersionsModal() {
@@ -2434,19 +2499,19 @@ function deleteVersion(appName, version, button) {
 }
 
 function selectAllVersions() {
-  const checkboxes = document.querySelectorAll('.version-checkbox');
+  const checkboxes = document.querySelectorAll('.version-checkbox, .version-checkbox-new');
   checkboxes.forEach(checkbox => checkbox.checked = true);
   updateSelectedCount();
 }
 
 function deselectAllVersions() {
-  const checkboxes = document.querySelectorAll('.version-checkbox');
+  const checkboxes = document.querySelectorAll('.version-checkbox, .version-checkbox-new');
   checkboxes.forEach(checkbox => checkbox.checked = false);
   updateSelectedCount();
 }
 
 function deleteSelectedVersions(appName) {
-  const selectedCheckboxes = document.querySelectorAll('.version-checkbox:checked');
+  const selectedCheckboxes = document.querySelectorAll('.version-checkbox:checked, .version-checkbox-new:checked');
   
   if (selectedCheckboxes.length === 0) {
     alert('No hay versiones seleccionadas para eliminar.');
@@ -2458,7 +2523,7 @@ function deleteSelectedVersions(appName) {
     
     selectedCheckboxes.forEach(checkbox => {
       const version = checkbox.dataset.version;
-      const versionCard = checkbox.closest('.version-card');
+      const versionCard = checkbox.closest('.version-card, .version-card-new');
       versionCard.classList.add('deleting');
       
       setTimeout(() => {
@@ -2474,8 +2539,8 @@ function deleteSelectedVersions(appName) {
 }
 
 function updateSelectedCount() {
-  const selectedCount = document.querySelectorAll('.version-checkbox:checked').length;
-  const deleteBtn = document.querySelector('.delete-selected');
+  const selectedCount = document.querySelectorAll('.version-checkbox:checked, .version-checkbox-new:checked').length;
+  const deleteBtn = document.querySelector('.delete-selected, .delete-selected-new');
   if (deleteBtn) {
     deleteBtn.innerHTML = `<i class="fas fa-trash-alt"></i> Eliminar Seleccionadas (${selectedCount})`;
     deleteBtn.disabled = selectedCount === 0;
@@ -2514,7 +2579,7 @@ function getRandomSize() {
 
 // Event listeners para los checkboxes
 document.addEventListener('change', (e) => {
-  if (e.target.classList.contains('version-checkbox')) {
+  if (e.target.classList.contains('version-checkbox') || e.target.classList.contains('version-checkbox-new')) {
     updateSelectedCount();
   }
 });

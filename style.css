@@ -1485,6 +1485,376 @@ body.dark-mode .bulk-action-btn.delete-selected:hover {
     background: #ff6b6b;
 }
 
+/* Nueva sección expandida de versiones */
+#versionsSection {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #f8f9fa;
+    z-index: 2000;
+    overflow-y: auto;
+    display: none;
+}
+
+body.dark-mode #versionsSection {
+    background: #1a1a1a;
+}
+
+.versions-content-full {
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+
+.versions-header-full {
+    background: white;
+    border-bottom: 1px solid #eaeced;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+body.dark-mode .versions-header-full {
+    background: #2d2d2d;
+    border-color: #3d3d3d;
+}
+
+.versions-nav {
+    margin-bottom: 20px;
+}
+
+.back-to-app-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: none;
+    border: none;
+    color: #0070ba;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.back-to-app-btn:hover {
+    background-color: #f5f7fa;
+}
+
+body.dark-mode .back-to-app-btn {
+    color: #4a90e2;
+}
+
+body.dark-mode .back-to-app-btn:hover {
+    background-color: #3d3d3d;
+}
+
+.versions-title-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.versions-app-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+}
+
+.versions-app-info h1 {
+    margin: 0 0 5px 0;
+    font-size: 28px;
+    color: #2c2e2f;
+}
+
+.versions-app-info p {
+    margin: 0;
+    color: #687173;
+    font-size: 16px;
+}
+
+body.dark-mode .versions-app-info h1 {
+    color: #ffffff;
+}
+
+body.dark-mode .versions-app-info p {
+    color: #cccccc;
+}
+
+.versions-body-full {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.current-version-section,
+.previous-versions-section {
+    margin-bottom: 40px;
+}
+
+.current-version-section h2,
+.previous-versions-section h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #2c2e2f;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+body.dark-mode .current-version-section h2,
+body.dark-mode .previous-versions-section h2 {
+    color: #ffffff;
+}
+
+.version-card.current-full {
+    background: linear-gradient(135deg, #0070ba 0%, #005ea6 100%);
+    color: white;
+    border: none;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 112, 186, 0.3);
+}
+
+.version-info-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.version-details-main {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.version-number-large {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.version-badge-large {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.version-badge-large.current {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.version-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.version-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.versions-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.versions-actions-header {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.bulk-action-btn-new {
+    padding: 10px 16px;
+    border: 2px solid #0070ba;
+    background: white;
+    color: #0070ba;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.bulk-action-btn-new:hover {
+    background: #0070ba;
+    color: white;
+}
+
+.bulk-action-btn-new.delete-selected-new {
+    border-color: #ff4444;
+    color: #ff4444;
+}
+
+.bulk-action-btn-new.delete-selected-new:hover {
+    background: #ff4444;
+    color: white;
+}
+
+body.dark-mode .bulk-action-btn-new {
+    background: #2d2d2d;
+    border-color: #4a90e2;
+    color: #4a90e2;
+}
+
+body.dark-mode .bulk-action-btn-new:hover {
+    background: #4a90e2;
+    color: white;
+}
+
+.versions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.version-card-new {
+    background: white;
+    border: 2px solid #eaeced;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.version-card-new:hover {
+    border-color: #0070ba;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 112, 186, 0.15);
+}
+
+body.dark-mode .version-card-new {
+    background: #2d2d2d;
+    border-color: #3d3d3d;
+}
+
+body.dark-mode .version-card-new:hover {
+    border-color: #4a90e2;
+}
+
+.version-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.version-select {
+    position: relative;
+}
+
+.version-checkbox-new {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.version-checkbox-label {
+    cursor: pointer;
+}
+
+.version-actions-new {
+    display: flex;
+    gap: 8px;
+}
+
+.version-action-btn-new {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.version-action-btn-new.download {
+    background: #4CAF50;
+    color: white;
+}
+
+.version-action-btn-new.download:hover {
+    background: #45a049;
+    transform: scale(1.1);
+}
+
+.version-action-btn-new.delete {
+    background: #ff4444;
+    color: white;
+}
+
+.version-action-btn-new.delete:hover {
+    background: #d32f2f;
+    transform: scale(1.1);
+}
+
+.version-info-new h3 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    color: #2c2e2f;
+}
+
+body.dark-mode .version-info-new h3 {
+    color: #ffffff;
+}
+
+.version-meta-new {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #687173;
+}
+
+body.dark-mode .version-meta-new {
+    color: #cccccc;
+}
+
+.version-meta-new span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.version-features {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.feature-tag {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.feature-tag.security {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .versions-header {
@@ -1512,6 +1882,49 @@ body.dark-mode .bulk-action-btn.delete-selected:hover {
     
     .bulk-action-btn {
         justify-content: center;
+    }
+
+    .versions-body-full {
+        padding: 20px 15px;
+    }
+    
+    .versions-title-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .versions-app-info h1 {
+        font-size: 24px;
+    }
+    
+    .versions-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .versions-actions-header {
+        width: 100%;
+    }
+    
+    .bulk-action-btn-new {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .versions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .version-info-main {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .version-meta {
+        flex-direction: column;
+        gap: 10px;
     }
 }
 
