@@ -90,8 +90,8 @@ function shareApp(app) {
 // Recomendación de apps similares por categoría
 function getSimilarApps(currentApp) {
   return apps
-    .filter(app => 
-      app.category === currentApp.category && 
+    .filter(app =>
+      app.category === currentApp.category &&
       app.name !== currentApp.name
     )
     .slice(0, 5);
@@ -100,7 +100,7 @@ function getSimilarApps(currentApp) {
 // Algoritmo de recomendación basado en categoría y rating
 function getRecommendedApps(currentApp) {
   return apps
-    .filter(app => 
+    .filter(app =>
       app.name !== currentApp.name &&
       (app.category === currentApp.category ||
        app.developer === currentApp.developer ||
@@ -146,7 +146,7 @@ async function filterAppsByCountry(appsToFilter) {
   try {
     const userCountry = await detectCountry();
     const filteredApps = appsToFilter.filter(app => {
-      const isAvailable = app.allowedCountries.includes('Global') || 
+      const isAvailable = app.allowedCountries.includes('Global') ||
                          app.allowedCountries.includes(userCountry);
 
       if (!isAvailable) {
@@ -263,7 +263,7 @@ const apps = [{
         "url": "/api/placeholder/200/400"
       }
     ]
-  },    
+  },
           {
     "name": "Instagram",
     "developer": "Meta",
@@ -335,8 +335,8 @@ const apps = [{
         "url": "/api/placeholder/200/400"
       }
     ]
-},            
-  {
+},
+          {
     "name": "WhatsApp",
     "developer": "Meta",
     "packageName": "com.whatsapp",
@@ -460,7 +460,7 @@ const apps = [{
     "security": false,
     "version": "450.0.0.43.109",
     "isAvailable": true,
-    "releaseDate": "2025-05-310T00:00:00",
+    "releaseDate": "2025-05-31T00:00:00",
     "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
     "platforms": {
       "android": "https://play.google.com/store/apps/details?id=com.facebook.orca",
@@ -481,8 +481,8 @@ const apps = [{
         "url": "/api/placeholder/200/400"
       }
     ]
-  },   
-        {
+  },
+       {
     "name": "Telegram",
     "developer": "Telegram FZ-LLC",
     "packageName": "org.telegram.messenger",
@@ -553,8 +553,8 @@ const apps = [{
         "url": "/api/placeholder/200/400"
       }
     ]
-  },        
-     {
+  },
+       {
     "name": "Kahoot!",
     "developer": "Kahoot AS",
     "packageName": "no.kahoot.app",
@@ -589,8 +589,8 @@ const apps = [{
         "url": "/api/placeholder/200/400"
       }
     ]
-},         
-      {
+},
+       {
     "name": "Duolingo",
     "developer": "Duolingo, Inc.",
     "packageName": "com.duolingo",
@@ -625,7 +625,7 @@ const apps = [{
         "url": "https://play-lh.googleusercontent.com/6rUUj3m7epGmC1YjHqT5HOlWv8HE3KvH4OmvJGqusQJPMdNlJwoyS7dxDM_NYuPwWxA=w5120-h2880"
       }
     ]
-},   
+},
       {
     "name": "PowerSchool",
     "developer": "PowerSchool Group LLC",
@@ -661,7 +661,7 @@ const apps = [{
         "url": "/api/placeholder/200/400"
       }
     ]
-},        
+},
        {
   "name": "Revolut",
   "developer": "Revolut Ltd",
@@ -697,7 +697,7 @@ const apps = [{
       "url": "https://www.youtube.com/watch?v=RevolutDemo"
     }
   ]
-},      
+},
    {
     "name": "TikTok",
     "developer": "ByteDance",
@@ -769,8 +769,8 @@ const apps = [{
       "url": "/api/placeholder/200/400"
     }
   ]
-},            
-  {
+},
+            {
     "name": "Douyin",
     "developer": "ByteDance",
     "packageName": "com.ss.android.ugc.aweme",
@@ -855,7 +855,7 @@ const apps = [{
     "bannerGradient": "45deg, #FFD700, #FF6347",
     "security": false,
     "version": "5.0.0",
-    "isAvailable": false,
+    "isAvailable": true,
     "releaseDate": "2024-08-01T00:00:00",
     "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
     "platforms": {
@@ -891,7 +891,7 @@ const apps = [{
     "bannerGradient": "45deg, #FF69B4, #8A2BE2",
     "security": false,
     "version": "3.0.0",
-    "isAvailable": false,
+    "isAvailable": true,
     "releaseDate": "2024-07-15T00:00:00",
     "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
     "platforms": {
@@ -1057,8 +1057,8 @@ const apps = [{
         "url": "/api/placeholder/200/400"
       }
     ]
-  },           
- {
+  },
+           {
     "name": "TikTok Lite",
     "developer": "TikTok Pte. Ltd.",
     "packageName": "com.zhiliaoapp.musically.go",
@@ -1165,8 +1165,8 @@ const apps = [{
       "url": "https://www.youtube.com/watch?v=GrokDemo"
     }
   ]
-},           
-      {
+},
+       {
   "name": "YouTube",
   "developer": "Google LLC",
   "packageName": "com.google.android.youtube",
@@ -1201,7 +1201,7 @@ const apps = [{
       "url": "https://www.youtube.com/watch?v=YouTubeDemo"
     }
   ]
-},        
+},
      {
   "name": "Among Us",
   "developer": "Innersloth LLC",
@@ -1237,7 +1237,7 @@ const apps = [{
       "url": "https://youtu.be/p0aHDT8wwrw?si=zjbUPvoNlgYvlCSZ"
     }
   ]
-},    
+},
     {
   "name": "Netflix",
   "developer": "Netflix, Inc.",
@@ -1273,8 +1273,8 @@ const apps = [{
       "url": "https://www.youtube.com/watch?v=O4XHCg1AaGQ"
     }
   ]
-},        
-   {
+},
+        {
   "name": "VSCO",
   "developer": "VSCO",
   "packageName": "com.vsco.cam",
@@ -1309,7 +1309,7 @@ const apps = [{
       "url": "https://www.youtube.com/watch?v=VscoDemo"
     }
   ]
-},   
+},
     {
   "name": "Edits, una app de Instagram",
   "developer": "Meta",
@@ -1345,8 +1345,8 @@ const apps = [{
       "url": "https://www.youtube.com/watch?v=EditsDemo"
     }
   ]
-},          
-   {
+},
+          {
     "name": "Flip",
     "developer": "Flip Fit, Inc.",
     "packageName": "co.flip",
@@ -1417,8 +1417,8 @@ const apps = [{
       "url": "https://www.youtube.com/watch?v=StravaDemo"
     }
   ]
-},           
- {
+},
+           {
   "name": "X",
   "developer": "X Corp.",
   "packageName": "com.twitter.android",
@@ -1453,7 +1453,7 @@ const apps = [{
       "url": "https://www.youtube.com/watch?v=twitterDemo"
     }
   ]
-},   
+},
    {
     "name": "Discord",
     "developer": "Discord Inc.",
@@ -1561,7 +1561,7 @@ const apps = [{
         "url": "https://example.com/candycrush_video.mp4"
       }
     ]
-  },           
+  },
     {
   "name": "Reddit",
   "developer": "reddit inc.",
@@ -1619,8 +1619,8 @@ const apps = [{
       "url": "https://cdn6.aptoide.com/imgs/4/2/7/42718296fc6aeec8f7265f3fd2329ef3_screen.png"
     }
   ]
-},          
-  {
+},
+          {
     "name": "Clapper",
     "developer": "Clapper Media Group Inc.",
     "packageName": "com.clapper.video",
@@ -1708,7 +1708,7 @@ const apps = [{
     "bannerGradient": "45deg, #131313, #000000",
     "security": true,
     "version": "1.0.40",
-    "isAvailable": false,
+    "isAvailable": true,
     "releaseDate": "2019-10-01T00:00:00",
     "allowedCountries": ["US", "BR", "IN", "MX", "JP", "UK", "DE", "FR", "RU", "KR"],
     "platforms": {
@@ -1914,8 +1914,8 @@ async function displayFeaturedApps() {
           <img src="${app.icon}" class="poster-icon" alt="${app.name}">
           <div class="poster-title">${app.name}</div>
           <div class="poster-subtitle">${app.category}</div>
-          ${!isReleased ? 
-            `<div class="coming-soon-badge">Próximamente - ${getTimeUntilRelease(app.releaseDate)}</div>` : 
+          ${!isReleased ?
+            `<div class="coming-soon-badge">Próximamente - ${getTimeUntilRelease(app.releaseDate)}</div>` :
             ''}
         </div>
       </div>
@@ -1990,8 +1990,8 @@ function createAppCard(app) {
             <span class="stars">★★★★★</span>
             <span>${app.rating}</span>
           </div>
-          ${!isReleased ? 
-            `<div class="coming-soon-tag">Próximamente - ${getTimeUntilRelease(app.releaseDate)}</div>` : 
+          ${!isReleased ?
+            `<div class="coming-soon-tag">Próximamente - ${getTimeUntilRelease(app.releaseDate)}</div>` :
             ''}
         </div>
       </div>
@@ -2304,9 +2304,9 @@ function initializeVideoPlayers() {
     const videoId = item.dataset.videoId;
     overlay.addEventListener('click', () => {
       item.innerHTML = `
-        <iframe 
-          src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        <iframe
+          src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>`;
     });
@@ -2322,115 +2322,6 @@ function togglePreviousVersions(appName) {
 
   // Mostrar la nueva sección de versiones
   showVersionsSection(app);
-}
-
-function showVersionsSection(app) {
-  // Ocultar todas las otras secciones
-  document.getElementById('featuredApps').style.display = 'none';
-  document.getElementById('gamesSection').style.display = 'none';
-  document.getElementById('editorialSection').style.display = 'none';
-  document.getElementById('websitesSection').style.display = 'none';
-
-  // Crear o actualizar la sección de versiones
-  let versionsSection = document.getElementById('versionsSection');
-  if (!versionsSection) {
-    versionsSection = document.createElement('div');
-    versionsSection.id = 'versionsSection';
-    versionsSection.className = 'section-container';
-    document.body.appendChild(versionsSection);
-  }
-
-  versionsSection.style.display = 'block';
-  versionsSection.innerHTML = `
-    <div class="versions-content-full">
-      <div class="versions-header-full">
-        <div class="versions-nav">
-          <button class="back-to-app-btn" onclick="backToAppFromVersions('${app.name}')">
-            <i class="fas fa-arrow-left"></i>
-            <span>Volver a ${app.name}</span>
-          </button>
-        </div>
-        <div class="versions-title-section">
-          <img src="${app.icon}" alt="${app.name}" class="versions-app-icon">
-          <div class="versions-app-info">
-            <h1>Versiones de ${app.name}</h1>
-            <p>Gestiona las versiones instaladas de esta aplicación</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="versions-body-full">
-        <div class="current-version-section">
-          <h2><i class="fas fa-crown"></i> Versión Actual</h2>
-          <div class="version-card current-full">
-            <div class="version-info-main">
-              <div class="version-details-main">
-                <span class="version-number-large">${app.version}</span>
-                <span class="version-badge-large current">INSTALADA</span>
-              </div>
-              <div class="version-meta">
-                <span class="version-date"><i class="fas fa-calendar"></i> Instalada</span>
-                <span class="version-size"><i class="fas fa-hdd"></i> ${app.size}</span>
-                <span class="version-status"><i class="fas fa-check-circle"></i> Activa</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="previous-versions-section">
-          <div class="versions-section-header">
-            <h2><i class="fas fa-history"></i> Versiones Disponibles</h2>
-            <div class="versions-actions-header">
-              <button class="bulk-action-btn-new" onclick="selectAllVersions()">
-                <i class="fas fa-check-square"></i> Seleccionar Todo
-              </button>
-              <button class="bulk-action-btn-new" onclick="deselectAllVersions()">
-                <i class="fas fa-square"></i> Deseleccionar
-              </button>
-              <button class="bulk-action-btn-new delete-selected-new" onclick="deleteSelectedVersions('${app.name}')">
-                <i class="fas fa-trash-alt"></i> Eliminar Seleccionadas
-              </button>
-            </div>
-          </div>
-
-          <div class="versions-grid" id="versionsGrid">
-            ${app.previousVersions.map((version, index) => `
-              <div class="version-card-new" data-version="${version}">
-                <div class="version-card-header">
-                  <div class="version-select">
-                    <input type="checkbox" class="version-checkbox-new" id="version-new-${index}" data-version="${version}">
-                    <label for="version-new-${index}" class="version-checkbox-label"></label>
-                  </div>
-                  <div class="version-actions-new">
-                    <button class="version-action-btn-new download" onclick="downloadVersion('${app.name}', '${version}')" title="Descargar">
-                      <i class="fas fa-download"></i>
-                    </button>
-                    <button class="version-action-btn-new delete" onclick="deleteVersion('${app.name}', '${version}', this)" title="Eliminar">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="version-info-new">
-                  <h3 class="version-number-new">${version}</h3>
-                  <div class="version-meta-new">
-                    <span class="version-date-new"><i class="fas fa-calendar-alt"></i> ${getRandomDate()}</span>
-                    <span class="version-size-new"><i class="fas fa-hdd"></i> ${getRandomSize()}</span>
-                  </div>
-                  <div class="version-features">
-                    <span class="feature-tag">Estable</span>
-                    ${Math.random() > 0.5 ? '<span class="feature-tag security">Segura</span>' : ''}
-                  </div>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-
-  // Actualizar navegación activa
-  document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
 }
 
 function backToAppFromVersions(appName) {
@@ -3099,7 +2990,6 @@ function showWebsitesSection() {
   document.getElementById('gamesSection').style.display = 'none';
   document.getElementById('editorialSection').style.display = 'none';
   document.getElementById('websitesSection').style.display = 'block';
-  document.getElementById('webAppsSection').style.display = 'none';
 
   const websitesContainer = document.getElementById('websitesContainer');
   websitesContainer.innerHTML = websites.map(website => createWebsiteCard(website)).join('');
@@ -3114,7 +3004,6 @@ function showGamesSection() {
     document.getElementById('gamesSection').style.display = 'block';
     document.getElementById('editorialSection').style.display = 'none';
     document.getElementById('websitesSection').style.display = 'none';
-    document.getElementById('webAppsSection').style.display = 'none';
 
     // Filter and display only games
     const gameApps = apps.filter(app => app.category === 'Juegos');
@@ -3131,144 +3020,11 @@ function showEditorialSection() {
     document.getElementById('gamesSection').style.display = 'none';
     document.getElementById('editorialSection').style.display = 'block';
     document.getElementById('websitesSection').style.display = 'none';
-    document.getElementById('webAppsSection').style.display = 'none';
 
     // Update active navigation
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
     document.querySelector('.nav-item[href="#editorial"]').classList.add('active');
 }
-
-// Web Apps Section
-function showWebAppsSection() {
-    document.getElementById('featuredApps').style.display = 'none';
-    document.getElementById('gamesSection').style.display = 'none';
-    document.getElementById('editorialSection').style.display = 'none';
-    document.getElementById('websitesSection').style.display = 'none';
-    document.getElementById('webAppsSection').style.display = 'block';
-
-    const webAppsContainer = document.getElementById('webAppsContainer');
-    webAppsContainer.innerHTML = webApps.map(webApp => createWebAppCard(webApp)).join('');
-
-    // Agregar event listeners a las tarjetas de Web Apps
-    setTimeout(() => {
-        webApps.forEach(webApp => {
-            const cardId = `webapp-card-${webApp.name.replace(/\s+/g, '-').toLowerCase()}`;
-            const card = document.getElementById(cardId);
-            if (card) {
-                card.style.cursor = 'pointer';
-
-                // Remover listeners existentes
-                if (card.webAppClickHandler) {
-                    card.removeEventListener('click', card.webAppClickHandler);
-                }
-
-                // Crear nuevo handler
-                card.webAppClickHandler = (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    console.log('Clicking web app card:', webApp.name);
-                    openWebApp(webApp.url, webApp.name);
-                };
-
-                // Agregar el listener
-                card.addEventListener('click', card.webAppClickHandler);
-
-                // También agregar listener al header de la app
-                const appHeader = card.querySelector('.app-header');
-                if (appHeader) {
-                    appHeader.addEventListener('click', card.webAppClickHandler);
-                }
-            } else {
-                console.warn('Web app card not found:', cardId);
-            }
-        });
-    }, 100);
-
-    // Update active navigation
-    document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
-    document.querySelector('.menu-item[href="#webapps"]').classList.add('active');
-}
-
-function createWebAppCard(webApp) {
-    const cardId = `webapp-card-${webApp.name.replace(/\s+/g, '-').toLowerCase()}`;
-    return `
-        <div class="app-card" id="${cardId}" data-url="${webApp.url}" data-name="${webApp.name}">
-            <div class="app-header">
-                <img class="app-icon" src="${webApp.icon}" alt="${webApp.name}">
-                <div class="app-info">
-                    <div class="app-name">${webApp.name}</div>
-                    <div class="app-developer">${webApp.developer}</div>
-                    <div class="app-category">${webApp.category}</div>
-                    <div class="rating">
-                        <span class="stars">★★★★★</span>
-                        <span>${webApp.rating}</span>
-                    </div>
-                    <div class="web-app-badge">
-                        <i class="fas fa-globe"></i> Tiempo Real
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-function openWebApp(url, name) {
-    const modal = document.getElementById('webAppModal');
-    const iframe = document.getElementById('webAppFrame');
-    const title = document.getElementById('webAppTitle');
-
-    if (!modal || !iframe || !title) {
-        console.error('Web app modal elements not found');
-        return;
-    }
-
-    // Asegurarse de que el modal esté visible
-    modal.style.display = 'flex';
-    modal.classList.add('active');
-
-    // Configurar el título e iframe
-    title.textContent = name;
-    iframe.src = url;
-
-    // Bloquear scroll del body
-    document.body.style.overflow = 'hidden';
-
-    // Forzar el iframe a ocupar toda la pantalla
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.border = 'none';
-
-    console.log('Opening web app:', name, 'URL:', url);
-}
-
-function closeWebApp() {
-    const modal = document.getElementById('webAppModal');
-    const iframe = document.getElementById('webAppFrame');
-
-    modal.classList.remove('active');
-    iframe.src = '';
-    document.body.style.overflow = 'auto';
-}
-
-function refreshWebApp() {
-    const iframe = document.getElementById('webAppFrame');
-    const currentSrc = iframe.src;
-    iframe.src = '';
-    setTimeout(() => {
-        iframe.src = currentSrc;
-    }, 100);
-}
-
-// Event listeners para el modal de web apps
-document.getElementById('closeWebApp').addEventListener('click', closeWebApp);
-document.getElementById('refreshWebApp').addEventListener('click', refreshWebApp);
-
-// Cerrar modal al hacer clic fuera
-document.getElementById('webAppModal').addEventListener('click', (e) => {
-    if (e.target.id === 'webAppModal') {
-        closeWebApp();
-    }
-});
 
 // Home navigation
 document.querySelector('.menu-item[href="#"]').addEventListener('click', (e) => {
@@ -3277,7 +3033,6 @@ document.querySelector('.menu-item[href="#"]').addEventListener('click', (e) => 
     document.getElementById('gamesSection').style.display = 'none';
     document.getElementById('editorialSection').style.display = 'none';
     document.getElementById('websitesSection').style.display = 'none';
-    document.getElementById('webAppsSection').style.display = 'none';
     displayFeaturedApps(); // Aseguramos que se muestren las apps destacadas
 
     // Update active navigation
