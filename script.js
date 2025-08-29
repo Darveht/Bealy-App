@@ -3057,6 +3057,410 @@ document.querySelectorAll('.menu-item').forEach(item => {
 
 
 
+// Firebase Configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCFQ_geG0HIv2EZ-bfKc97TJNtf2sdqPzc",
+  authDomain: "clack-koder.firebaseapp.com",
+  databaseURL: "https://clack-koder-default-rtdb.firebaseio.com",
+  projectId: "clack-koder",
+  storageBucket: "clack-koder.firebasestorage.app",
+  messagingSenderId: "478151254938",
+  appId: "1:478151254938:web:e2c00e3a5426bd192b9023",
+  measurementId: "G-P29ME5Z3S1"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// Momentos System
+class MomentosSystem {
+  constructor() {
+    this.currentUser = this.generateRandomUser();
+    this.init();
+  }
+
+  generateRandomUser() {
+    const userId = 'user_' + Math.floor(Math.random() * 1000000000);
+    const colors = ['#007aff', '#ff3040', '#30d158', '#ff9500', '#bf5af2', '#ff2d92'];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    return { id: userId, color: color };
+  }
+
+  init() {
+    // Event listeners
+    document.getElementById('momentosBtn').addEventListener('click', () => this.openMomentos());
+    document.getElementById('backMomentos').addEventListener('click', () => this.closeMomentos());
+    document.getElementById('newPostBtn').addEventListener('click', () => this.toggleNewPostForm());
+    document.getElementById('publishBtn').addEventListener('click', () => this.publishPost());
+    
+    // Character counter
+    document.getElementById('postContent').addEventListener('input', (e) => {
+      const remaining = 280 - e.target.value.length;
+      document.querySelector('.char-count').textContent = remaining;
+      document.getElementById('publishBtn').disabled = e.target.value.trim().length === 0 || remaining < 0;
+    });
+  }
+
+  openMomentos() {
+    document.getElementById('momentosModal').style.display = 'block';
+    this.loadPosts();
+  }
+
+  closeMomentos() {
+    document.getElementById('momentosModal').style.display = 'none';
+    document.getElementById('newPostForm').style.display = 'none';
+  }
+
+  toggleNewPostForm() {
+    const form = document.getElementById('newPostForm');
+    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    if (form.style.display === 'block') {
+      document.getElementById('postContent').focus();
+    }
+  }
+
+  async publishPost() {
+    const content = document.getElementById('postContent').value.trim();
+    if (!content) return;
+
+    const post = {
+      id: Date.now().toString(),
+      content: content,
+      author: this.currentUser.id,
+      authorColor: this.currentUser.color,
+      timestamp: Date.now(),
+      likes: 0,
+      likedBy: [],
+      replies: []
+    };
+
+    try {
+      await database.ref('momentos/' + post.id).set(post);
+      document.getElementById('postContent').value = '';
+      document.querySelector('.char-count').textContent = '280';
+      document.getElementById('publishBtn').disabled = true;
+      this.toggleNewPostForm();
+      this.loadPosts();
+      this.showNotification('¡Momento publicado!');
+    } catch (error) {
+      console.error('Error publishing post:', error);
+      this.showNotification('Error al publicar', true);
+    }
+  }
+
+  async loadPosts() {
+    const feed = document.getElementById('momentosFeed');
+    feed.innerHTML = `
+      <div class="loading-posts">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Cargando momentos...</p>
+      </div>
+    `;
+
+    try {
+      const snapshot = await database.ref('momentos').orderByChild('timestamp').once('value');
+      const posts = [];
+      
+      snapshot.forEach((childSnapshot) => {
+        posts.push(childSnapshot.val());
+      });
+
+      posts.reverse(); // Mostrar más recientes primero
+      this.renderPosts(posts);
+    } catch (error) {
+      console.error('Error loading posts:', error);
+      feed.innerHTML = `
+        <div class="loading-posts">
+          <i class="fas fa-exclamation-triangle"></i>
+          <p>Error al cargar momentos</p>
+        </div>
+      `;
+    }
+  }
+
+  renderPosts(posts) {
+    const feed = document.getElementById('momentosFeed');
+    
+    if (posts.length === 0) {
+      feed.innerHTML = `
+        <div class="loading-posts">
+          <i class="fas fa-comment-dots"></i>
+          <p>¡Sé el primero en compartir un momento!</p>
+        </div>
+      `;
+      return;
+    }
+
+    feed.innerHTML = posts.map(post => this.createPostCard(post)).join('');
+    this.attachPostEventListeners();
+  }
+
+  createPostCard(post) {
+    const timeAgo = this.getTimeAgo(post.timestamp);
+    const isLiked = post.likedBy && post.likedBy.includes(this.currentUser.id);
+    const repliesCount = post.replies ? Object.keys(post.replies).length : 0;
+    
+    return `
+      <div class="post-card" data-post-id="${post.id}">
+        <div class="post-header">
+          <div class="user-avatar" style="background: ${post.authorColor}">
+            ${post.author.substring(5, 7).toUpperCase()}
+          </div>
+          <div class="post-user-info">
+            <div class="username">${post.author}</div>
+            <div class="post-time">${timeAgo}</div>
+          </div>
+        </div>
+        
+        <div class="post-content">${post.content}</div>
+        
+        <div class="post-actions">
+          <button class="action-btn-post like-btn ${isLiked ? 'liked' : ''}" data-post-id="${post.id}">
+            <i class="fas fa-heart"></i>
+            <span>${post.likes || 0}</span>
+          </button>
+          <button class="action-btn-post reply-btn" data-post-id="${post.id}">
+            <i class="fas fa-comment"></i>
+            <span>${repliesCount}</span>
+          </button>
+          <button class="action-btn-post share-btn" data-post-id="${post.id}">
+            <i class="fas fa-share"></i>
+          </button>
+        </div>
+        
+        <div class="replies-section" id="replies-${post.id}" style="display: none;">
+          ${this.renderReplies(post.replies || {})}
+          <div class="reply-form">
+            <input type="text" class="reply-input" placeholder="Escribe una respuesta..." maxlength="140">
+            <button class="reply-submit" data-post-id="${post.id}">Responder</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  renderReplies(replies) {
+    if (!replies || Object.keys(replies).length === 0) {
+      return '<p style="color: #666; font-style: italic; padding: 10px 0;">No hay respuestas aún...</p>';
+    }
+
+    return Object.values(replies).map(reply => `
+      <div class="reply-card">
+        <div class="post-header">
+          <div class="user-avatar" style="background: ${reply.authorColor}; width: 30px; height: 30px; font-size: 12px;">
+            ${reply.author.substring(5, 7).toUpperCase()}
+          </div>
+          <div class="post-user-info">
+            <div class="username" style="font-size: 13px;">${reply.author}</div>
+            <div class="post-time">${this.getTimeAgo(reply.timestamp)}</div>
+          </div>
+        </div>
+        <div class="post-content" style="font-size: 14px; margin-left: 40px;">${reply.content}</div>
+        <div class="post-actions" style="margin-left: 40px;">
+          <button class="action-btn-post like-btn ${reply.likedBy && reply.likedBy.includes(this.currentUser.id) ? 'liked' : ''}" data-reply-id="${reply.id}" data-post-id="${reply.postId}">
+            <i class="fas fa-heart"></i>
+            <span>${reply.likes || 0}</span>
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  attachPostEventListeners() {
+    // Like buttons
+    document.querySelectorAll('.like-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const postId = btn.dataset.postId;
+        const replyId = btn.dataset.replyId;
+        if (replyId) {
+          this.toggleReplyLike(postId, replyId);
+        } else {
+          this.toggleLike(postId);
+        }
+      });
+    });
+
+    // Reply buttons
+    document.querySelectorAll('.reply-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const postId = btn.dataset.postId;
+        this.toggleReplies(postId);
+      });
+    });
+
+    // Reply submit buttons
+    document.querySelectorAll('.reply-submit').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const postId = btn.dataset.postId;
+        const input = btn.previousElementSibling;
+        this.submitReply(postId, input.value.trim());
+        input.value = '';
+      });
+    });
+
+    // Share buttons
+    document.querySelectorAll('.share-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.sharePost();
+      });
+    });
+  }
+
+  async toggleLike(postId) {
+    try {
+      const postRef = database.ref('momentos/' + postId);
+      const snapshot = await postRef.once('value');
+      const post = snapshot.val();
+      
+      if (!post) return;
+
+      const likedBy = post.likedBy || [];
+      const likes = post.likes || 0;
+      const userIndex = likedBy.indexOf(this.currentUser.id);
+
+      if (userIndex > -1) {
+        // Unlike
+        likedBy.splice(userIndex, 1);
+        await postRef.update({
+          likes: Math.max(0, likes - 1),
+          likedBy: likedBy
+        });
+      } else {
+        // Like
+        likedBy.push(this.currentUser.id);
+        await postRef.update({
+          likes: likes + 1,
+          likedBy: likedBy
+        });
+      }
+
+      this.loadPosts();
+    } catch (error) {
+      console.error('Error toggling like:', error);
+    }
+  }
+
+  async toggleReplyLike(postId, replyId) {
+    try {
+      const replyRef = database.ref(`momentos/${postId}/replies/${replyId}`);
+      const snapshot = await replyRef.once('value');
+      const reply = snapshot.val();
+      
+      if (!reply) return;
+
+      const likedBy = reply.likedBy || [];
+      const likes = reply.likes || 0;
+      const userIndex = likedBy.indexOf(this.currentUser.id);
+
+      if (userIndex > -1) {
+        likedBy.splice(userIndex, 1);
+        await replyRef.update({
+          likes: Math.max(0, likes - 1),
+          likedBy: likedBy
+        });
+      } else {
+        likedBy.push(this.currentUser.id);
+        await replyRef.update({
+          likes: likes + 1,
+          likedBy: likedBy
+        });
+      }
+
+      this.loadPosts();
+    } catch (error) {
+      console.error('Error toggling reply like:', error);
+    }
+  }
+
+  toggleReplies(postId) {
+    const repliesSection = document.getElementById(`replies-${postId}`);
+    const replyForm = repliesSection.querySelector('.reply-form');
+    
+    if (repliesSection.style.display === 'none') {
+      repliesSection.style.display = 'block';
+      replyForm.style.display = 'block';
+      replyForm.querySelector('.reply-input').focus();
+    } else {
+      repliesSection.style.display = 'none';
+    }
+  }
+
+  async submitReply(postId, content) {
+    if (!content) return;
+
+    const reply = {
+      id: Date.now().toString(),
+      content: content,
+      author: this.currentUser.id,
+      authorColor: this.currentUser.color,
+      timestamp: Date.now(),
+      likes: 0,
+      likedBy: [],
+      postId: postId
+    };
+
+    try {
+      await database.ref(`momentos/${postId}/replies/${reply.id}`).set(reply);
+      this.loadPosts();
+      this.showNotification('¡Respuesta publicada!');
+    } catch (error) {
+      console.error('Error submitting reply:', error);
+      this.showNotification('Error al responder', true);
+    }
+  }
+
+  sharePost() {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Veraxa Momentos',
+        text: '¡Echa un vistazo a este momento en Veraxa!',
+        url: window.location.href
+      });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      this.showNotification('¡Enlace copiado!');
+    }
+  }
+
+  getTimeAgo(timestamp) {
+    const now = Date.now();
+    const diff = now - timestamp;
+    const minutes = Math.floor(diff / 60000);
+    const hours = Math.floor(diff / 3600000);
+    const days = Math.floor(diff / 86400000);
+
+    if (days > 0) return `Hace ${days} día${days > 1 ? 's' : ''}`;
+    if (hours > 0) return `Hace ${hours} hora${hours > 1 ? 's' : ''}`;
+    if (minutes > 0) return `Hace ${minutes} minuto${minutes > 1 ? 's' : ''}`;
+    return 'Ahora mismo';
+  }
+
+  showNotification(message, isError = false) {
+    const notification = document.createElement('div');
+    notification.className = 'notification-popup show';
+    notification.style.background = isError ? '#ff3040' : '#30d158';
+    notification.innerHTML = `
+      <i class="fas fa-${isError ? 'exclamation-triangle' : 'check'}"></i>
+      <span>${message}</span>
+    `;
+    
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      notification.classList.remove('show');
+      setTimeout(() => notification.remove(), 300);
+    }, 3000);
+  }
+}
+
+// Initialize Momentos System
+const momentosSystem = new MomentosSystem();
+
 // Inicializar la visualización de aplicaciones
 displayFeaturedApps();
 

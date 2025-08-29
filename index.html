@@ -17,6 +17,9 @@
     <title>Aviso de Descarga</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     <style>
         body {
             margin: 0;
@@ -242,6 +245,9 @@
             <button class="icon-button search-toggle">
                 <i class="fas fa-search"></i>
             </button>
+            <button class="icon-button" id="momentosBtn">
+                <i class="fas fa-comment-dots"></i>
+            </button>
             <button class="icon-button" id="settingsIcon">
                 <i class="fas fa-cog"></i>
           
@@ -338,6 +344,40 @@
             </button>
             <h3>Aplicaciones del desarrollador</h3>
             <div id="developerApps"></div>
+        </div>
+    </div>
+
+    <!-- Modal de Momentos -->
+    <div class="momentos-modal" id="momentosModal">
+        <div class="momentos-content">
+            <div class="momentos-header">
+                <button class="back-momentos" id="backMomentos">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Momentos</h2>
+                <button class="new-post-btn" id="newPostBtn">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            
+            <!-- Formulario para nuevo post -->
+            <div class="new-post-form" id="newPostForm" style="display: none;">
+                <div class="post-composer">
+                    <textarea id="postContent" placeholder="¿Qué está pasando?..." maxlength="280"></textarea>
+                    <div class="post-actions">
+                        <span class="char-count">280</span>
+                        <button class="publish-btn" id="publishBtn">Publicar</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Feed de posts -->
+            <div class="momentos-feed" id="momentosFeed">
+                <div class="loading-posts">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Cargando momentos...</p>
+                </div>
+            </div>
         </div>
     </div>
 
