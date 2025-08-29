@@ -3094,11 +3094,33 @@ class MomentosSystem {
     document.getElementById('newPostBtn').addEventListener('click', () => this.toggleNewPostForm());
     document.getElementById('publishBtn').addEventListener('click', () => this.publishPost());
     
-    // Character counter
+    // Character counter with PayPal styling
     document.getElementById('postContent').addEventListener('input', (e) => {
       const remaining = 280 - e.target.value.length;
-      document.querySelector('.char-count').textContent = remaining;
+      const charCountElement = document.querySelector('.char-count');
+      charCountElement.textContent = remaining;
+      
+      // Add warning styling when approaching limit
+      if (remaining < 20) {
+        charCountElement.classList.add('warning');
+      } else {
+        charCountElement.classList.remove('warning');
+      }
+      
       document.getElementById('publishBtn').disabled = e.target.value.trim().length === 0 || remaining < 0;
+    });
+
+    // Photo upload functionality for posts
+    document.getElementById('photoUploadBtn').addEventListener('click', () => {
+      document.getElementById('photoInput').click();
+    });
+
+    document.getElementById('photoInput').addEventListener('change', (e) => {
+      this.handlePostImageUpload(e);
+    });
+
+    document.getElementById('removePostImage').addEventListener('click', () => {
+      this.removePostImage();
     });
   }
 
@@ -3124,6 +3146,9 @@ class MomentosSystem {
     const content = document.getElementById('postContent').value.trim();
     if (!content) return;
 
+    // Show publishing animation
+    this.showPublishingAnimation();
+
     const post = {
       id: Date.now().toString(),
       content: content,
@@ -3132,21 +3157,146 @@ class MomentosSystem {
       timestamp: Date.now(),
       likes: 0,
       likedBy: [],
-      replies: []
+      replies: [],
+      image: this.currentPostImage || null
     };
 
     try {
+      // Simulate publishing delay for better UX
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
       await database.ref('momentos/' + post.id).set(post);
+      
+      // Hide publishing animation
+      this.hidePublishingAnimation();
+      
+      // Reset form
       document.getElementById('postContent').value = '';
       document.querySelector('.char-count').textContent = '280';
+      document.querySelector('.char-count').classList.remove('warning');
       document.getElementById('publishBtn').disabled = true;
+      this.removePostImage();
       this.toggleNewPostForm();
       this.loadPosts();
-      this.showNotification('¡Momento publicado!');
+      
+      // Show success notification with PayPal styling
+      this.showSuccessNotification('¡Momento publicado exitosamente!');
     } catch (error) {
       console.error('Error publishing post:', error);
+      this.hidePublishingAnimation();
       this.showNotification('Error al publicar', true);
     }
+  }
+
+  showPublishingAnimation() {
+    const overlay = document.createElement('div');
+    overlay.className = 'publishing-overlay';
+    overlay.id = 'publishingOverlay';
+    overlay.innerHTML = `
+      <div class="publishing-content">
+        <div class="publishing-spinner"></div>
+        <div class="publishing-text">Publicando momento...</div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+  }
+
+  hidePublishingAnimation() {
+    const overlay = document.getElementById('publishingOverlay');
+    if (overlay) {
+      overlay.remove();
+    }
+  }
+
+  showSuccessNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'success-notification';
+    notification.innerHTML = `
+      <i class="fas fa-check-circle"></i>
+      <span>${message}</span>
+    `;
+    
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      notification.classList.add('show');
+    }, 100);
+
+    setTimeout(() => {
+      notification.classList.remove('show');
+      setTimeout(() => notification.remove(), 400);
+    }, 3500);
+  }
+
+  triggerReplyPhotoUpload(postId) {
+    document.getElementById(`replyPhoto-${postId}`).click();
+  }
+
+  handlePostImageUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      this.showNotification('La imagen es demasiado grande (máximo 5MB)', true);
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.currentPostImage = e.target.result;
+      this.showPostImagePreview(e.target.result);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  showPostImagePreview(imageSrc) {
+    const preview = document.getElementById('postImagePreview');
+    const previewImg = document.getElementById('previewImage');
+    
+    previewImg.src = imageSrc;
+    preview.style.display = 'block';
+  }
+
+  removePostImage() {
+    this.currentPostImage = null;
+    document.getElementById('postImagePreview').style.display = 'none';
+    document.getElementById('photoInput').value = '';
+  }
+
+  async handleReplyImageUpload(event, postId) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Validate file size (max 3MB for replies)
+    if (file.size > 3 * 1024 * 1024) {
+      this.showNotification('La imagen es demasiado grande (máximo 3MB)', true);
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const imageData = e.target.result;
+      const replyForm = document.querySelector(`#replies-${postId} .reply-form`);
+      const preview = replyForm.querySelector('.reply-image-preview');
+      
+      if (!preview) {
+        const previewDiv = document.createElement('div');
+        previewDiv.className = 'reply-image-preview';
+        previewDiv.innerHTML = `
+          <img src="${imageData}" alt="Reply image">
+          <button class="remove-reply-image" onclick="this.parentElement.remove(); this.parentElement.parentElement.querySelector('input[type=file]').value = '';">
+            <i class="fas fa-times"></i>
+          </button>
+        `;
+        replyForm.appendChild(previewDiv);
+        previewDiv.style.display = 'block';
+      }
+      
+      // Store image data for submission
+      replyForm.setAttribute('data-image', imageData);
+    };
+    reader.readAsDataURL(file);
   }
 
   async loadPosts() {
@@ -3214,6 +3364,7 @@ class MomentosSystem {
         </div>
         
         <div class="post-content">${post.content}</div>
+        ${post.image ? `<img src="${post.image}" class="post-image" alt="Post image" onclick="this.requestFullscreen()">` : ''}
         
         <div class="post-actions">
           <button class="action-btn-post like-btn ${isLiked ? 'liked' : ''}" data-post-id="${post.id}">
@@ -3232,8 +3383,22 @@ class MomentosSystem {
         <div class="replies-section" id="replies-${post.id}" style="display: none;">
           ${this.renderReplies(post.replies || {})}
           <div class="reply-form">
-            <input type="text" class="reply-input" placeholder="Escribe una respuesta..." maxlength="140">
-            <button class="reply-submit" data-post-id="${post.id}">Responder</button>
+            <div class="reply-composer">
+              <input type="text" class="reply-input" placeholder="Escribe una respuesta..." maxlength="140">
+              <div class="reply-actions">
+                <div class="reply-media-actions">
+                  <button class="reply-photo-btn" onclick="momentosSystem.triggerReplyPhotoUpload('${post.id}')">
+                    <i class="fas fa-image"></i>
+                    Foto
+                  </button>
+                  <input type="file" id="replyPhoto-${post.id}" accept="image/*" style="display: none;" onchange="momentosSystem.handleReplyImageUpload(event, '${post.id}')">
+                </div>
+                <button class="reply-submit" data-post-id="${post.id}">
+                  <i class="fas fa-reply"></i>
+                  Responder
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -3257,6 +3422,7 @@ class MomentosSystem {
           </div>
         </div>
         <div class="post-content" style="font-size: 14px; margin-left: 40px;">${reply.content}</div>
+        ${reply.image ? `<img src="${reply.image}" class="reply-image" alt="Reply image" onclick="this.requestFullscreen()">` : ''}
         <div class="post-actions" style="margin-left: 40px;">
           <button class="action-btn-post like-btn ${reply.likedBy && reply.likedBy.includes(this.currentUser.id) ? 'liked' : ''}" data-reply-id="${reply.id}" data-post-id="${reply.postId}">
             <i class="fas fa-heart"></i>
@@ -3393,6 +3559,9 @@ class MomentosSystem {
   async submitReply(postId, content) {
     if (!content) return;
 
+    const replyForm = document.querySelector(`#replies-${postId} .reply-form`);
+    const imageData = replyForm.getAttribute('data-image');
+
     const reply = {
       id: Date.now().toString(),
       content: content,
@@ -3401,13 +3570,27 @@ class MomentosSystem {
       timestamp: Date.now(),
       likes: 0,
       likedBy: [],
-      postId: postId
+      postId: postId,
+      image: imageData || null
     };
 
     try {
+      // Show mini publishing animation for reply
+      const submitBtn = replyForm.querySelector('.reply-submit');
+      const originalHTML = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<div class="publish-spinner"></div>Publicando...';
+      submitBtn.disabled = true;
+
       await database.ref(`momentos/${postId}/replies/${reply.id}`).set(reply);
+      
+      // Reset reply form
+      replyForm.querySelector('.reply-input').value = '';
+      replyForm.removeAttribute('data-image');
+      const preview = replyForm.querySelector('.reply-image-preview');
+      if (preview) preview.remove();
+      
       this.loadPosts();
-      this.showNotification('¡Respuesta publicada!');
+      this.showSuccessNotification('¡Respuesta publicada!');
     } catch (error) {
       console.error('Error submitting reply:', error);
       this.showNotification('Error al responder', true);

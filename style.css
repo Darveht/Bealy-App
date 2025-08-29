@@ -1119,7 +1119,7 @@ body.dark-mode .previous-versions li {
   background-color: #ff4444 !important;
 }
 
-/* Momentos Styles */
+/* Momentos Styles - PayPal Design */
 .momentos-modal {
   display: none;
   position: fixed;
@@ -1138,7 +1138,7 @@ body.dark-mode .previous-versions li {
   right: 0;
   width: 100%;
   height: 100%;
-  background: white;
+  background: #f5f7fa;
   overflow-y: auto;
 }
 
@@ -1146,76 +1146,183 @@ body.dark-mode .previous-versions li {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 20px;
+  padding: 20px;
   background: white;
-  border-bottom: 1px solid #eee;
+  border-bottom: 2px solid #eaeced;
   position: sticky;
   top: 0;
   z-index: 10;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .back-momentos {
   background: none;
-  border: none;
-  font-size: 18px;
-  color: #007aff;
+  border: 2px solid #0070ba;
+  font-size: 16px;
+  color: #0070ba;
   cursor: pointer;
-  padding: 8px;
-  border-radius: 50%;
+  padding: 10px 15px;
+  border-radius: 24px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-momentos:hover {
+  background: #0070ba;
+  color: white;
+  transform: translateY(-1px);
 }
 
 .new-post-btn {
-  background: #007aff;
+  background: linear-gradient(135deg, #0070ba 0%, #005ea6 100%);
   border: none;
   color: white;
-  padding: 8px 12px;
-  border-radius: 20px;
+  padding: 12px 20px;
+  border-radius: 24px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 112, 186, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.new-post-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 112, 186, 0.3);
 }
 
 .new-post-form {
-  padding: 20px;
-  border-bottom: 1px solid #eee;
-  background: #f9f9f9;
+  padding: 25px;
+  border-bottom: 2px solid #eaeced;
+  background: white;
+  margin: 0 15px 15px 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.post-composer {
+  position: relative;
 }
 
 .post-composer textarea {
   width: 100%;
-  min-height: 80px;
-  padding: 15px;
-  border: 1px solid #ddd;
+  min-height: 120px;
+  padding: 20px;
+  border: 2px solid #eaeced;
   border-radius: 12px;
   font-size: 16px;
   resize: vertical;
-  font-family: inherit;
+  font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
+  transition: all 0.3s ease;
+  background: #f5f7fa;
+}
+
+.post-composer textarea:focus {
+  outline: none;
+  border-color: #0070ba;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(0,112,186,0.1);
 }
 
 .post-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eaeced;
+}
+
+.post-actions-left {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.photo-upload-btn {
+  background: none;
+  border: 2px solid #0070ba;
+  color: #0070ba;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.photo-upload-btn:hover {
+  background: #0070ba;
+  color: white;
 }
 
 .char-count {
-  color: #666;
+  color: #687173;
   font-size: 14px;
+  font-weight: 500;
+}
+
+.char-count.warning {
+  color: #ff4444;
+  font-weight: 600;
 }
 
 .publish-btn {
-  background: #007aff;
+  background: linear-gradient(135deg, #0070ba 0%, #005ea6 100%);
   color: white;
   border: none;
-  padding: 8px 20px;
-  border-radius: 20px;
+  padding: 12px 24px;
+  border-radius: 24px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 112, 186, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.publish-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 112, 186, 0.3);
 }
 
 .publish-btn:disabled {
-  background: #ccc;
+  background: #eaeced;
+  color: #687173;
   cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.publish-btn.publishing {
+  background: #0070ba;
+  pointer-events: none;
+}
+
+.publish-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .momentos-feed {
@@ -1229,35 +1336,42 @@ body.dark-mode .previous-versions li {
 }
 
 .post-card {
-  border-bottom: 1px solid #eee;
-  padding: 15px 20px;
+  border: none;
+  padding: 20px;
   background: white;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
+  margin: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border: 1px solid #eaeced;
 }
 
 .post-card:hover {
-  background: #f9f9f9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-color: #0070ba;
 }
 
 .post-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 12px;
+  margin-bottom: 15px;
 }
 
 .user-avatar {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: linear-gradient(45deg, #007aff, #5ac8fa);
+  background: linear-gradient(45deg, #0070ba, #005ea6);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 112, 186, 0.2);
 }
 
 .post-user-info {
@@ -1265,52 +1379,84 @@ body.dark-mode .previous-versions li {
 }
 
 .username {
-  font-weight: bold;
-  color: #333;
-  font-size: 14px;
+  font-weight: 600;
+  color: #2c2e2f;
+  font-size: 15px;
+  margin-bottom: 2px;
 }
 
 .post-time {
-  color: #666;
-  font-size: 12px;
+  color: #687173;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .post-content {
   font-size: 16px;
-  line-height: 1.4;
-  color: #333;
+  line-height: 1.5;
+  color: #2c2e2f;
   margin-bottom: 15px;
+  font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
+}
+
+.post-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.post-image:hover {
+  transform: scale(1.02);
 }
 
 .post-actions {
   display: flex;
-  gap: 20px;
+  gap: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eaeced;
 }
 
 .action-btn-post {
   background: none;
-  border: none;
-  color: #666;
+  border: 2px solid transparent;
+  color: #687173;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   font-size: 14px;
-  padding: 5px 10px;
-  border-radius: 15px;
-  transition: all 0.2s;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
 }
 
 .action-btn-post:hover {
-  background: #f0f0f0;
+  background: #f5f7fa;
+  border-color: #eaeced;
+  transform: translateY(-1px);
 }
 
 .action-btn-post.liked {
   color: #ff3040;
+  background: rgba(255, 48, 64, 0.1);
+  border-color: #ff3040;
 }
 
 .action-btn-post.liked i {
   color: #ff3040;
+  animation: heartBeat 0.6s ease;
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
 .replies-section {
@@ -1329,36 +1475,265 @@ body.dark-mode .previous-versions li {
 }
 
 .reply-form {
-  margin-top: 10px;
+  margin-top: 15px;
+  padding: 20px;
+  background: #f5f7fa;
+  border-radius: 12px;
+  border: 2px solid #eaeced;
   display: none;
+}
+
+.reply-composer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .reply-input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
+  padding: 15px;
+  border: 2px solid #eaeced;
   border-radius: 8px;
   font-size: 14px;
-  margin-bottom: 10px;
+  font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.reply-input:focus {
+  outline: none;
+  border-color: #0070ba;
+  box-shadow: 0 0 0 4px rgba(0,112,186,0.1);
+}
+
+.reply-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reply-media-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.reply-photo-btn {
+  background: none;
+  border: 2px solid #0070ba;
+  color: #0070ba;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.reply-photo-btn:hover {
+  background: #0070ba;
+  color: white;
 }
 
 .reply-submit {
-  background: #007aff;
+  background: linear-gradient(135deg, #0070ba 0%, #005ea6 100%);
   color: white;
   border: none;
-  padding: 6px 15px;
-  border-radius: 15px;
+  padding: 10px 20px;
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 112, 186, 0.2);
+}
+
+.reply-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 112, 186, 0.3);
+}
+
+.reply-submit:disabled {
+  background: #eaeced;
+  color: #687173;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.reply-image-preview {
+  margin-top: 10px;
+  position: relative;
+  display: none;
+}
+
+.reply-image-preview img {
+  max-width: 200px;
+  max-height: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.remove-reply-image {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff3040;
+  color: white;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reply-image {
+  max-width: 150px;
+  max-height: 120px;
+  border-radius: 6px;
+  margin: 8px 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.reply-image:hover {
+  transform: scale(1.05);
+}
+
+/* Publishing Animation */
+.publishing-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  backdrop-filter: blur(5px);
+}
+
+.publishing-content {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  max-width: 300px;
+}
+
+.publishing-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #eaeced;
+  border-top: 4px solid #0070ba;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px auto;
+}
+
+.publishing-text {
+  color: #2c2e2f;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
+}
+
+/* Success Notification - PayPal Style */
+.success-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #30d158 0%, #28a745 100%);
+  color: white;
+  padding: 20px 25px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 3000;
+  transform: translateX(100%);
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 25px rgba(48, 209, 88, 0.3);
+  font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
+  font-weight: 600;
+}
+
+.success-notification.show {
+  transform: translateX(0);
+}
+
+.success-notification i {
+  font-size: 20px;
+  animation: checkmark 0.6s ease;
+}
+
+@keyframes checkmark {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
 .expand-btn {
-  color: #007aff;
+  color: #0070ba;
   background: none;
   border: none;
   cursor: pointer;
   font-size: 13px;
   margin-top: 5px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.expand-btn:hover {
+  background: #f5f7fa;
+  color: #005ea6;
+}
+
+.post-image-preview {
+  margin-top: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.post-image-preview img {
+  max-width: 200px;
+  max-height: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.remove-post-image {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff3040;
+  color: white;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.remove-post-image:hover {
+  transform: scale(1.1);
 }
 
 /* Dark mode for Momentos */
