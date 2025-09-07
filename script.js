@@ -2911,78 +2911,14 @@ function loadRatingsForApp(appName) {
 
 function displaySampleRatings() {
   const ratingsList = document.getElementById('ratingsList');
-  const sampleRatings = [
-    {
-      user: 'Ana García',
-      rating: 5,
-      comment: 'Excelente aplicación, muy fácil de usar y funciona perfecto.',
-      timestamp: '2024-12-01',
-      replies: [
-        {
-          user: 'Carlos López',
-          comment: 'Estoy de acuerdo, es genial.',
-          timestamp: '2024-12-02'
-        }
-      ]
-    },
-    {
-      user: 'Miguel Torres',
-      rating: 4,
-      comment: 'Muy buena app, solo le falta algunas funciones más.',
-      timestamp: '2024-11-28',
-      replies: []
-    }
-  ];
   
-  ratingsList.innerHTML = sampleRatings.map(rating => `
-    <div class="rating-item">
-      <div class="rating-header">
-        <div class="user-info">
-          <img src="https://via.placeholder.com/40" alt="${rating.user}" class="user-avatar">
-          <div class="user-details">
-            <span class="username">${rating.user}</span>
-            <span class="rating-date">${rating.timestamp}</span>
-          </div>
-        </div>
-        <div class="user-rating">
-          ${generateStarDisplay(rating.rating)}
-        </div>
-      </div>
-      <div class="rating-comment">${rating.comment}</div>
-      
-      <div class="rating-actions">
-        <button class="like-btn" onclick="likeRating(this)">
-          <i class="far fa-heart"></i> <span>0</span>
-        </button>
-        <button class="reply-btn" onclick="toggleReply(this)">
-          <i class="fas fa-reply"></i> Responder
-        </button>
-      </div>
-      
-      <div class="reply-form" style="display: none;">
-        <textarea placeholder="Escribe una respuesta..." maxlength="200"></textarea>
-        <div class="reply-actions">
-          <button class="cancel-reply-btn" onclick="cancelReply(this)">Cancelar</button>
-          <button class="submit-reply-btn" onclick="submitReply(this)">Responder</button>
-        </div>
-      </div>
-      
-      ${rating.replies.length > 0 ? `
-        <div class="replies-list">
-          ${rating.replies.map(reply => `
-            <div class="reply-item">
-              <div class="reply-header">
-                <img src="https://via.placeholder.com/30" alt="${reply.user}" class="reply-avatar">
-                <span class="reply-username">${reply.user}</span>
-                <span class="reply-date">${reply.timestamp}</span>
-              </div>
-              <div class="reply-comment">${reply.comment}</div>
-            </div>
-          `).join('')}
-        </div>
-      ` : ''}
+  ratingsList.innerHTML = `
+    <div class="no-ratings">
+      <i class="fas fa-star-half-alt"></i>
+      <p>No hay calificaciones aún</p>
+      <p class="no-ratings-subtitle">Sé el primero en calificar esta aplicación</p>
     </div>
-  `).join('');
+  `;
 }
 
 function generateStarDisplay(rating) {
