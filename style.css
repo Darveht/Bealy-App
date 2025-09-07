@@ -3742,14 +3742,14 @@ body.dark-mode .refresh-web-app:hover {
     display: none;
 }
 
-/* Plant Growth Animation Styles */
+/* Plant Growth Animation Styles - CSS Pure Design */
 .plant-animation-container {
   position: fixed;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   z-index: 9999;
   pointer-events: none;
-  perspective: 1000px;
+  perspective: 1200px;
   transform-style: preserve-3d;
 }
 
@@ -3885,11 +3885,154 @@ body.dark-mode .refresh-web-app:hover {
   }
 }
 
-.seed-sprout, .small-plant, .medium-plant, .flower-bloom {
-  font-size: 2.5em;
-  display: block;
-  text-align: center;
-  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+/* Diseño CSS puro para plantas */
+.seed-sprout {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #8FBC8F 0%, #228B22 100%);
+  border-radius: 50% 50% 50% 0;
+  position: relative;
+  margin: 0 auto;
+  transform: rotate(45deg);
+  animation: seedPulse 0.5s ease-in-out;
+}
+
+.seed-sprout::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #90EE90;
+  border-radius: 50%;
+  top: 6px;
+  left: 6px;
+}
+
+.small-plant {
+  width: 30px;
+  height: 40px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.small-plant::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 25px;
+  background: linear-gradient(to top, #228B22, #32CD32);
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+
+.small-plant::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 10px;
+  background: #32CD32;
+  border-radius: 50% 20% 50% 20%;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-30deg);
+  box-shadow: 
+    8px 3px 0 -3px #32CD32,
+    -8px 3px 0 -3px #32CD32;
+}
+
+.medium-plant {
+  width: 50px;
+  height: 60px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.medium-plant::before {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 40px;
+  background: linear-gradient(to top, #228B22, #32CD32);
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+
+.medium-plant::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 15px;
+  background: #32CD32;
+  border-radius: 50% 20% 50% 20%;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-20deg);
+  box-shadow: 
+    12px 5px 0 -2px #32CD32,
+    -12px 5px 0 -2px #32CD32,
+    6px -8px 0 -1px #90EE90,
+    -6px -8px 0 -1px #90EE90;
+}
+
+.flower-bloom {
+  width: 60px;
+  height: 80px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.flower-bloom::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 50px;
+  background: linear-gradient(to top, #228B22, #32CD32);
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+
+.flower-bloom::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, #FFD700 30%, #FFA500 60%, #FF4500 100%);
+  border-radius: 50%;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 
+    0 0 0 5px #FF6347,
+    0 0 0 10px #FF8C00,
+    0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+/* Pétalos de la flor */
+.flower-bloom .petal {
+  position: absolute;
+  width: 15px;
+  height: 25px;
+  background: linear-gradient(to top, #FF69B4, #FFB6C1);
+  border-radius: 50% 50% 50% 0;
+  top: -5px;
+  left: 50%;
+  transform-origin: bottom center;
+}
+
+.flower-bloom .petal:nth-child(1) { transform: translateX(-50%) rotate(0deg); }
+.flower-bloom .petal:nth-child(2) { transform: translateX(-50%) rotate(60deg); }
+.flower-bloom .petal:nth-child(3) { transform: translateX(-50%) rotate(120deg); }
+.flower-bloom .petal:nth-child(4) { transform: translateX(-50%) rotate(180deg); }
+.flower-bloom .petal:nth-child(5) { transform: translateX(-50%) rotate(240deg); }
+.flower-bloom .petal:nth-child(6) { transform: translateX(-50%) rotate(300deg); }
+
+@keyframes seedPulse {
+  0% { transform: rotate(45deg) scale(0); }
+  50% { transform: rotate(45deg) scale(1.2); }
+  100% { transform: rotate(45deg) scale(1); }
 }
 
 .roots {

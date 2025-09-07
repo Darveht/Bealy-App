@@ -124,14 +124,23 @@ function detectDevice() {
 // Función para detectar país y actualizar la interfaz
 async function detectCountry() {
   try {
-    const response = await fetch('https://ipapi.co/json/');
+    // Usar un método más simple y confiable
+    const response = await fetch('https://httpbin.org/ip');
     if (!response.ok) throw new Error('Network error');
-    const data = await response.json();
+    
+    // Países predeterminados basados en zona horaria como fallback
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    let defaultCountry = 'US';
+    
+    if (timezone.includes('Mexico')) defaultCountry = 'MX';
+    else if (timezone.includes('Spain')) defaultCountry = 'ES';
+    else if (timezone.includes('Argentina')) defaultCountry = 'AR';
+    
     const countryElement = document.getElementById('user-country');
-    if (countryElement && data.country_code) {
-      countryElement.innerHTML = `Tu país: ${data.country_name} (${data.country_code})`;
+    if (countryElement) {
+      countryElement.innerHTML = `País detectado: ${defaultCountry}`;
     }
-    return data.country_code || 'US';
+    return defaultCountry;
   } catch (error) {
     console.log('Using default country due to network limitations');
     const countryElement = document.getElementById('user-country');
@@ -3708,6 +3717,123 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
+// Sistema de Administración de Animaciones
+class AnimationAdminSystem {
+  constructor() {
+    this.animations = {};
+    this.loadAnimationsFromFirebase();
+  }
+
+  // Cargar animaciones desde Firebase
+  async loadAnimationsFromFirebase() {
+    try {
+      const snapshot = await database.ref('app-animations').once('value');
+      const animations = snapshot.val();
+      if (animations) {
+        this.animations = animations;
+        console.log('Animaciones cargadas desde Firebase:', animations);
+      }
+    } catch (error) {
+      console.error('Error cargando animaciones:', error);
+    }
+  }
+
+  // Guardar nueva animación en Firebase
+  async saveAnimation(appName, animationConfig) {
+    try {
+      await database.ref(`app-animations/${appName}`).set({
+        type: animationConfig.type,
+        css: animationConfig.css,
+        javascript: animationConfig.javascript,
+        duration: animationConfig.duration || 5000,
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+      });
+      
+      this.animations[appName] = animationConfig;
+      console.log(`Animación guardada para ${appName}`);
+      return true;
+    } catch (error) {
+      console.error('Error guardando animación:', error);
+      return false;
+    }
+  }
+
+  // Obtener animación específica
+  getAnimation(appName) {
+    return this.animations[appName] || null;
+  }
+
+  // Ejecutar animación personalizada
+  executeCustomAnimation(appName) {
+    const animation = this.getAnimation(appName);
+    if (!animation) {
+      console.log(`No hay animación personalizada para ${appName}`);
+      return false;
+    }
+
+    try {
+      // Crear contenedor de animación
+      const container = document.createElement('div');
+      container.className = 'custom-animation-container';
+      container.style.position = 'fixed';
+      container.style.top = '50%';
+      container.style.left = '50%';
+      container.style.transform = 'translate(-50%, -50%)';
+      container.style.zIndex = '9999';
+      container.style.pointerEvents = 'none';
+
+      // Aplicar CSS personalizado
+      if (animation.css) {
+        const style = document.createElement('style');
+        style.textContent = animation.css;
+        document.head.appendChild(style);
+      }
+
+      // Aplicar estructura HTML de la animación
+      if (animation.html) {
+        container.innerHTML = animation.html;
+      }
+
+      document.body.appendChild(container);
+
+      // Ejecutar JavaScript personalizado si existe
+      if (animation.javascript) {
+        try {
+          const customFunction = new Function('container', animation.javascript);
+          customFunction(container);
+        } catch (jsError) {
+          console.error('Error ejecutando JavaScript personalizado:', jsError);
+        }
+      }
+
+      // Limpiar después de la duración especificada
+      setTimeout(() => {
+        container.remove();
+      }, animation.duration || 5000);
+
+      return true;
+    } catch (error) {
+      console.error('Error ejecutando animación personalizada:', error);
+      return false;
+    }
+  }
+
+  // Sincronizar con GitHub (para futuro desarrollo)
+  async syncWithGitHub(repoConfig) {
+    try {
+      // Aquí implementarías la sincronización con GitHub
+      console.log('Sincronizando con GitHub:', repoConfig);
+      // Esta función se puede expandir para integrar con GitHub API
+    } catch (error) {
+      console.error('Error sincronizando con GitHub:', error);
+    }
+  }
+}
+
+// Instanciar el sistema de administración
+const animationAdmin = new AnimationAdminSystem();
+
 // Momentos System
 class MomentosSystem {
   constructor() {
@@ -4210,13 +4336,18 @@ class AppAnimationSystem {
     if (this.isAnimating) return;
     this.isAnimating = true;
 
-    const animationType = this.getAnimationType(appName);
+    // Primero intentar animación personalizada desde Firebase
+    const hasCustomAnimation = animationAdmin.executeCustomAnimation(appName);
     
-    // Ejecutar animación de forma no bloqueante
-    if (animationType === 'plant') {
-      this.showPlantAnimation();
-    } else if (animationType === 'tiktok') {
-      this.showTikTokAnimation();
+    if (!hasCustomAnimation) {
+      // Si no hay animación personalizada, usar las predefinidas
+      const animationType = this.getAnimationType(appName);
+      
+      if (animationType === 'plant') {
+        this.showPlantAnimation();
+      } else if (animationType === 'tiktok') {
+        this.showTikTokAnimation();
+      }
     }
 
     // Limpiar después de exactamente 5 segundos
@@ -4246,19 +4377,26 @@ class AppAnimationSystem {
         </div>
         <div class="plant-stages">
           <div class="stage stage-1">
-            <div class="seed-sprout">🌱</div>
+            <div class="seed-sprout"></div>
             <div class="roots"></div>
           </div>
           <div class="stage stage-2">
-            <div class="small-plant">🌿</div>
+            <div class="small-plant"></div>
             <div class="growing-stem"></div>
           </div>
           <div class="stage stage-3">
-            <div class="medium-plant">🪴</div>
+            <div class="medium-plant"></div>
             <div class="leaves-swaying"></div>
           </div>
           <div class="stage stage-4">
-            <div class="flower-bloom">🌻</div>
+            <div class="flower-bloom">
+              <div class="petal"></div>
+              <div class="petal"></div>
+              <div class="petal"></div>
+              <div class="petal"></div>
+              <div class="petal"></div>
+              <div class="petal"></div>
+            </div>
             <div class="pollen-particles"></div>
           </div>
         </div>
@@ -4404,6 +4542,43 @@ class AppAnimationSystem {
   delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+}
+
+// Función faltante para versiones
+function showVersionsSection(app) {
+  // Cerrar modal actual
+  document.getElementById('appModal').classList.remove('active');
+  
+  // Crear modal de versiones
+  const versionsModal = document.createElement('div');
+  versionsModal.className = 'versions-modal';
+  versionsModal.id = 'versionsModal';
+  versionsModal.innerHTML = `
+    <div class="versions-content">
+      <div class="versions-header">
+        <h2>Versiones de ${app.name}</h2>
+        <button class="close-versions" onclick="closeVersionsModal()">×</button>
+      </div>
+      <div class="versions-body">
+        <div class="current-version-info">
+          <h3>Versión Actual</h3>
+          <div class="version-card current">
+            <div class="version-header">
+              <span class="version-number">${app.version}</span>
+              <span class="version-badge current-badge">Actual</span>
+            </div>
+            <div class="version-details">
+              <span><i class="fas fa-calendar"></i> Hace 2 días</span>
+              <span><i class="fas fa-download"></i> ${app.size}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(versionsModal);
+  document.body.style.overflow = 'hidden';
 }
 
 // Instanciar el sistema de animación
