@@ -1891,7 +1891,7 @@ async function displayFeaturedApps() {
             <button class="share-button notify-btn">
               <i class="fas fa-bell"></i> Notificar
             </button>
-            <button class="share-button share-btn">
+            <button class="share-button share-button share-btn">
               <i class="fas fa-share-alt"></i> Compartir
             </button>
           </div>
@@ -1899,7 +1899,11 @@ async function displayFeaturedApps() {
       </div>
     `;
 
-    appOfDaySection.addEventListener('click', () => showAppOfDayModal(upcomingApp));
+    appOfDaySection.addEventListener('click', (e) => {
+      if (!e.target.classList.contains('share-button')) {
+        openAppModalWithAnimation(upcomingApp, appOfDaySection);
+      }
+    });
     featuredApps.appendChild(appOfDaySection);
 
     // Add notification functionality
@@ -1945,6 +1949,7 @@ async function displayFeaturedApps() {
     const poster = document.createElement('div');
     poster.className = 'app-poster';
     poster.style.background = `linear-gradient(${app.bannerGradient})`;
+    poster.setAttribute('data-app-name', app.name);
     poster.innerHTML = `
       <div class="poster-gradient">
         <div class="poster-content">
@@ -1957,7 +1962,7 @@ async function displayFeaturedApps() {
         </div>
       </div>
     `;
-    poster.addEventListener('click', () => openAppModal(app));
+    poster.addEventListener('click', () => openAppModalWithAnimation(app, poster));
     postersContainer.appendChild(poster);
   });
 
@@ -1999,6 +2004,28 @@ async function displayFeaturedApps() {
         </div>
       `;
       featuredApps.appendChild(sectionElement);
+      
+      // Agregar detectores de click a las apps de esta sección
+      setTimeout(() => {
+        sectionElement.querySelectorAll('.app-card').forEach(card => {
+          if (!card.hasAttribute('data-click-attached')) {
+            card.setAttribute('data-click-attached', 'true');
+            card.addEventListener('click', (e) => {
+              if (!e.target.classList.contains('developer-link')) {
+                const appName = card.getAttribute('data-app-name') || 
+                               card.querySelector('.app-name')?.textContent.trim();
+                
+                if (appName) {
+                  const app = apps.find(a => a.name === appName);
+                  if (app) {
+                    openAppModalWithAnimation(app, card);
+                  }
+                }
+              }
+            });
+          }
+        });
+      }, 50);
     }
   });
 }
@@ -2045,9 +2072,11 @@ function getVerificationMessage(developer) {
 function createAppCard(app) {
   const isReleased = isAppReleased(app.releaseDate);
   const verificationStatus = getDeveloperVerificationStatus(app.developer);
+  const cardId = `app-card-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  
   return `
-    <div class="app-card">
-      <div class="app-header" onclick="openAppModal(${JSON.stringify(app).replace(/\"/g, '&quot;')}, this)">
+    <div class="app-card" id="${cardId}" data-app-name="${app.name}">
+      <div class="app-header">
         <img class="app-icon" src="${app.icon}" alt="${app.name}">
         <div class="app-info">
           <div class="app-name">${app.name}</div>
@@ -2645,6 +2674,78 @@ function showVersionsSection(app) {
   document.body.style.overflow = 'hidden';
 }
 
+function showVersionsSection(app) {
+  // Cerrar modal actual
+  document.getElementById('appModal').classList.remove('active');
+  
+  // Crear modal de versiones
+  const versionsModal = document.createElement('div');
+  versionsModal.className = 'versions-modal';
+  versionsModal.id = 'versionsModal';
+  versionsModal.innerHTML = `
+    <div class="versions-content">
+      <div class="versions-header">
+        <h2>Versiones de ${app.name}</h2>
+        <button class="close-versions" onclick="closeVersionsModal()">×</button>
+      </div>
+      <div class="versions-body">
+        <div class="current-version-info">
+          <h3>Versión Actual</h3>
+          <div class="version-card current">
+            <div class="version-header">
+              <span class="version-number">${app.version}</span>
+              <span class="version-badge current-badge">Actual</span>
+            </div>
+            <div class="version-details">
+              <span><i class="fas fa-calendar"></i> Hace 2 días</span>
+              <span><i class="fas fa-download"></i> ${app.size}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="previous-versions-list">
+          <h3>Versiones Anteriores</h3>
+          ${app.previousVersions.map(version => `
+            <div class="version-card">
+              <div class="version-header">
+                <input type="checkbox" class="version-checkbox" data-version="${version}">
+                <span class="version-number">${version}</span>
+                <div class="version-actions">
+                  <button class="version-action-btn download-btn" onclick="downloadVersion('${app.name}', '${version}')">
+                    <i class="fas fa-download"></i>
+                  </button>
+                  <button class="version-action-btn delete-btn" onclick="deleteVersion('${app.name}', '${version}', this)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="version-details">
+                <span><i class="fas fa-calendar"></i> ${getRandomDate()}</span>
+                <span><i class="fas fa-file-archive"></i> ${getRandomSize()}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        
+        <div class="versions-actions">
+          <button class="bulk-action-btn" onclick="selectAllVersions()">
+            <i class="fas fa-check-square"></i> Seleccionar Todo
+          </button>
+          <button class="bulk-action-btn" onclick="deselectAllVersions()">
+            <i class="fas fa-square"></i> Deseleccionar Todo
+          </button>
+          <button class="bulk-action-btn delete-selected" onclick="deleteSelectedVersions('${app.name}')" disabled>
+            <i class="fas fa-trash-alt"></i> Eliminar Seleccionadas (0)
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(versionsModal);
+  document.body.style.overflow = 'hidden';
+}
+
 function togglePreviousVersions(appName) {
   const app = apps.find(a => a.name === appName);
   if (!app) return;
@@ -2823,12 +2924,13 @@ async function displayApps(appsToDisplay) {
     appsContainer.style.display = 'block';
     appsContainer.innerHTML = '';
     availableApps.forEach(app => {
-      const appCard = document.createElement('div');
-      appCard.classList.add('app-card');
-      appCard.innerHTML = createAppCard(app);
+      const appCardDiv = document.createElement('div');
+      appCardDiv.innerHTML = createAppCard(app);
+      const appCard = appCardDiv.firstElementChild;
+      
       appCard.addEventListener('click', (e) => {
         if (!e.target.classList.contains('developer-link')) {
-          openAppModal(app, appCard);
+          openAppModalWithAnimation(app, appCard);
         }
       });
       appsContainer.appendChild(appCard);
@@ -4104,15 +4206,17 @@ class AppAnimationSystem {
   }
 
   async showAnimation(appName, clickedElement) {
+    // No bloquear si ya hay una animación en curso
     if (this.isAnimating) return;
     this.isAnimating = true;
 
     const animationType = this.getAnimationType(appName);
     
+    // Ejecutar animación de forma no bloqueante
     if (animationType === 'plant') {
-      await this.showPlantAnimation();
+      this.showPlantAnimation();
     } else if (animationType === 'tiktok') {
-      await this.showTikTokAnimation();
+      this.showTikTokAnimation();
     }
 
     // Limpiar después de exactamente 5 segundos
@@ -4305,24 +4409,95 @@ class AppAnimationSystem {
 // Instanciar el sistema de animación
 const appAnimationSystem = new AppAnimationSystem();
 
-// Modificar la función openAppModal para incluir las animaciones
-const originalOpenAppModal = openAppModal;
-openAppModal = function(app, clickedElement) {
-  // Verificar si debe mostrar animación
+// Función para mostrar animación y abrir modal
+function openAppModalWithAnimation(app, clickedElement) {
+  // Solo mostrar animación si se hace clic en una app card directamente
   if (appAnimationSystem.shouldShowAnimation(app.name) && clickedElement) {
+    // Mostrar animación sin bloquear el modal
     appAnimationSystem.showAnimation(app.name, clickedElement);
     
-    // Retrasar la apertura del modal para que se vea la animación (5 segundos)
+    // Abrir modal inmediatamente, no esperar la animación
     setTimeout(() => {
-      originalOpenAppModal(app);
-    }, 5000);
+      openAppModal(app);
+    }, 100); // Delay mínimo para que inicie la animación
   } else {
-    originalOpenAppModal(app);
+    // Si no hay animación, abrir modal directamente
+    openAppModal(app);
   }
-};
+}
+
+// Función para agregar detectores de click a todas las apps en la página
+function attachUniversalAppClickHandlers() {
+  // Detectar clicks en app-posters (carrusel principal)
+  document.querySelectorAll('.app-poster').forEach(poster => {
+    poster.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Buscar la app por el título del poster
+      const titleElement = poster.querySelector('.poster-title');
+      if (titleElement) {
+        const appName = titleElement.textContent.trim();
+        const app = apps.find(a => a.name === appName);
+        if (app) {
+          openAppModalWithAnimation(app, poster);
+        }
+      }
+    });
+  });
+
+  // Detectar clicks en app-cards generales
+  document.querySelectorAll('.app-card').forEach(card => {
+    if (!card.hasAttribute('data-click-attached')) {
+      card.setAttribute('data-click-attached', 'true');
+      card.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('developer-link')) {
+          const appName = card.getAttribute('data-app-name') || 
+                         card.querySelector('.app-name')?.textContent.trim();
+          
+          if (appName) {
+            const app = apps.find(a => a.name === appName);
+            if (app) {
+              openAppModalWithAnimation(app, card);
+            }
+          }
+        }
+      });
+    }
+  });
+
+  // Detectar clicks en horizontal-scroll apps
+  document.querySelectorAll('.horizontal-scroll .app-card').forEach(card => {
+    if (!card.hasAttribute('data-click-attached')) {
+      card.setAttribute('data-click-attached', 'true');
+      card.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('developer-link')) {
+          const appName = card.getAttribute('data-app-name') || 
+                         card.querySelector('.app-name')?.textContent.trim();
+          
+          if (appName) {
+            const app = apps.find(a => a.name === appName);
+            if (app) {
+              openAppModalWithAnimation(app, card);
+            }
+          }
+        }
+      });
+    }
+  });
+}
+
+// Función para re-aplicar detectores después de actualizar contenido
+function reattachClickHandlers() {
+  setTimeout(() => {
+    attachUniversalAppClickHandlers();
+  }, 100);
+}
 
 // Inicializar la visualización de aplicaciones
-displayFeaturedApps();
+displayFeaturedApps().then(() => {
+  reattachClickHandlers();
+});
 
 // Function to save rating using local storage
 function saveRating(appName, rating) {
