@@ -133,6 +133,31 @@
     }
 }
 
+/* Crunchyroll Animation */
+.crunchyroll-animation-container {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    z-index: 10000;
+    transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.crunchyroll-animation-container.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+.crunchyroll-animation-container.hide {
+    transform: translateX(-50%) translateY(100%);
+}
+
+.crunchyroll-gif {
+    width: auto;
+    height: 300px;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -4px 20px rgba(255, 98, 0, 0.3);
+}
+
 .bell-icon.animate {
     animation: ring 1s ease;
     color: #FF416C;

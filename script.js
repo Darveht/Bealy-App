@@ -4318,7 +4318,7 @@ class AppAnimationSystem {
   constructor() {
     this.isAnimating = false;
     this.plantApps = ['Roblox', 'Among Us', 'Candy Crush Saga']; // Apps que tendrán animación de planta
-    this.specialApps = ['TikTok', 'Netflix']; // Apps con animaciones especiales
+    this.specialApps = ['TikTok', 'Netflix', 'Crunchyroll']; // Apps con animaciones especiales
   }
 
   shouldShowAnimation(appName) {
@@ -4329,6 +4329,7 @@ class AppAnimationSystem {
     if (this.plantApps.includes(appName)) return 'plant';
     if (appName === 'TikTok') return 'tiktok';
     if (appName === 'Netflix') return 'wednesday';
+    if (appName === 'Crunchyroll') return 'crunchyroll';
     return 'none';
   }
 
@@ -4350,6 +4351,8 @@ class AppAnimationSystem {
         this.showTikTokAnimation();
       } else if (animationType === 'wednesday') {
         this.showWednesdayAnimation();
+      } else if (animationType === 'crunchyroll') {
+        this.showCrunchyrollAnimation();
       }
     }
 
@@ -4480,7 +4483,7 @@ class AppAnimationSystem {
     animationOverlay.className = 'wednesday-logo-overlay';
     
     animationOverlay.innerHTML = `
-      <img src="https://static.wikia.nocookie.net/timburton/images/8/81/Wednesday_Logo.png/revision/latest?cb=20230902200434" 
+      <img src="https://dx35vtwkllhj9.cloudfront.net/netflix/wednesday-addams-nevermore-academy/images/tt.png" 
            alt="Wednesday Logo" 
            class="wednesday-logo" 
            onerror="this.src='https://via.placeholder.com/300x150/000000/FFFFFF?text=WEDNESDAY'">
@@ -4506,6 +4509,35 @@ class AppAnimationSystem {
       
       setTimeout(() => {
         animationOverlay.remove();
+      }, 500);
+    }, 5000);
+  }
+
+  async showCrunchyrollAnimation() {
+    // Crear el contenedor de animación Crunchyroll
+    const animationContainer = document.createElement('div');
+    animationContainer.className = 'crunchyroll-animation-container';
+    
+    animationContainer.innerHTML = `
+      <img src="https://64.media.tumblr.com/1238b61a8ed096f113079ef6e1909f98/8d52336120e92f25-12/s400x600/554db7170f3d81fede6908d087cee59c22077e52.gif" 
+           alt="Crunchyroll Animation" 
+           class="crunchyroll-gif" 
+           onerror="this.src='https://via.placeholder.com/400x600/FF6200/FFFFFF?text=CRUNCHYROLL'">
+    `;
+
+    document.body.appendChild(animationContainer);
+
+    // Mostrar animación desde abajo
+    setTimeout(() => {
+      animationContainer.classList.add('show');
+    }, 100);
+
+    // Limpiar después de 5 segundos exactos
+    setTimeout(() => {
+      animationContainer.classList.add('hide');
+      
+      setTimeout(() => {
+        animationContainer.remove();
       }, 500);
     }, 5000);
   }
