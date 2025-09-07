@@ -1058,6 +1058,42 @@ const apps = [{
       }
     ]
   },
+  {
+    "name": "Roblox",
+    "developer": "Roblox Corporation",
+    "packageName": "com.roblox.client",
+    "category": "Juegos",
+    "rating": 4.4,
+    "size": "180 MB",
+    "icon": "https://play-lh.googleusercontent.com/WNWZaxi9RdJKe2GQM3vqXIAkk69mnIl4Cc8EyZcir2BB2nCYyzpNUGWfdpJnBp5XV-bJ=w480-h960",
+    "description": "Roblox es la plataforma de creación definitiva que permite a millones de usuarios crear e interactuar juntos en experiencias 3D inmersivas creadas por la comunidad global de desarrolladores.",
+    "downloads": "500M+",
+    "bannerGradient": "45deg, #00A2FF, #0078D4",
+    "security": true,
+    "version": "2.628.526",
+    "isAvailable": true,
+    "releaseDate": "2012-05-26T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.roblox.client",
+      "ios": "https://apps.apple.com/us/app/roblox/id431946152"
+    },
+    "previousVersions": ["2.627.525", "2.626.524", "2.625.523"],
+    "media": [
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/RobloxScreenshot1.jpg"
+      },
+      {
+        "type": "image",
+        "url": "https://play-lh.googleusercontent.com/RobloxScreenshot2.jpg"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=RobloxDemo"
+      }
+    ]
+  },
            {
     "name": "TikTok Lite",
     "developer": "TikTok Pte. Ltd.",
@@ -4014,18 +4050,41 @@ class PlantGrowthAnimation {
     
     animationContainer.innerHTML = `
       <div class="plant-growth-scene">
-        <div class="soil"></div>
-        <div class="plant-stages">
-          <div class="stage stage-1">🌱</div>
-          <div class="stage stage-2">🌿</div>
-          <div class="stage stage-3">🪴</div>
-          <div class="stage stage-4">🌻</div>
+        <div class="ground-layer"></div>
+        <div class="soil-3d">
+          <div class="soil-surface"></div>
+          <div class="soil-depth"></div>
         </div>
-        <div class="particle-effects">
-          <div class="sparkle sparkle-1">✨</div>
-          <div class="sparkle sparkle-2">⭐</div>
-          <div class="sparkle sparkle-3">🌟</div>
-          <div class="sparkle sparkle-4">💫</div>
+        <div class="plant-stages">
+          <div class="stage stage-1">
+            <div class="seed-sprout">🌱</div>
+            <div class="roots"></div>
+          </div>
+          <div class="stage stage-2">
+            <div class="small-plant">🌿</div>
+            <div class="growing-stem"></div>
+          </div>
+          <div class="stage stage-3">
+            <div class="medium-plant">🪴</div>
+            <div class="leaves-swaying"></div>
+          </div>
+          <div class="stage stage-4">
+            <div class="flower-bloom">🌻</div>
+            <div class="pollen-particles"></div>
+          </div>
+        </div>
+        <div class="particle-effects-3d">
+          <div class="magic-sparkle sparkle-1">✨</div>
+          <div class="magic-sparkle sparkle-2">⭐</div>
+          <div class="magic-sparkle sparkle-3">🌟</div>
+          <div class="magic-sparkle sparkle-4">💫</div>
+          <div class="growth-energy"></div>
+          <div class="nature-aura"></div>
+        </div>
+        <div class="environmental-effects">
+          <div class="sunlight-rays"></div>
+          <div class="water-droplets"></div>
+          <div class="wind-effect"></div>
         </div>
       </div>
     `;
