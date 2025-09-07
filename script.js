@@ -2101,6 +2101,65 @@ async function openAppModal(app) {
       <button class="action-btn secondary-btn" onclick="togglePreviousVersions('${app.name}')">
         Ver versiones anteriores
       </button>
+      <button class="action-btn secondary-btn" onclick="shareApp(${JSON.stringify(app).replace(/\"/g, '&quot;')})">
+        <i class="fas fa-share-alt"></i> Compartir
+      </button>
+      <button class="action-btn rating-btn" onclick="toggleRatingSection('${app.name}')">
+        <i class="fas fa-star"></i> Calificar
+      </button>
+    </div>
+
+    <!-- Sección de Calificaciones -->
+    <div class="rating-section" id="ratingSection" style="display: none;">
+      <div class="rating-header">
+        <h3>Califica y comenta</h3>
+        <div class="rating-stats">
+          <div class="average-rating">
+            <span class="rating-number">4.2</span>
+            <div class="rating-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            <span class="rating-count">(124 calificaciones)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario para nueva calificación -->
+      <div class="new-rating-form" id="newRatingForm">
+        <div class="user-rating-input">
+          <h4>Tu calificación:</h4>
+          <div class="star-rating-input">
+            <i class="fas fa-star rating-star" data-rating="1"></i>
+            <i class="fas fa-star rating-star" data-rating="2"></i>
+            <i class="fas fa-star rating-star" data-rating="3"></i>
+            <i class="fas fa-star rating-star" data-rating="4"></i>
+            <i class="fas fa-star rating-star" data-rating="5"></i>
+          </div>
+          <div class="rating-text">Selecciona una calificación</div>
+        </div>
+        
+        <div class="comment-input-container">
+          <textarea id="ratingComment" placeholder="Escribe tu comentario sobre esta aplicación (opcional)..." maxlength="500"></textarea>
+          <div class="comment-actions">
+            <span class="char-count" id="ratingCharCount">500</span>
+            <button class="submit-rating-btn" id="submitRatingBtn" disabled>
+              <i class="fas fa-paper-plane"></i> Publicar Calificación
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de calificaciones existentes -->
+      <div class="ratings-list" id="ratingsList">
+        <div class="loading-ratings">
+          <i class="fas fa-spinner fa-spin"></i>
+          <p>Cargando calificaciones...</p>
+        </div>
+      </div>
     </div>
 
     ${availabilityWarning}
@@ -2721,6 +2780,279 @@ function closePrivacyPolicy() {
   const modal = document.getElementById('privacyModal');
   modal.style.display = 'none';
   document.body.style.overflow = 'auto';
+}
+
+// Funciones para el sistema de calificaciones
+let currentAppForRating = null;
+let selectedRating = 0;
+
+function toggleRatingSection(appName) {
+  const ratingSection = document.getElementById('ratingSection');
+  currentAppForRating = appName;
+  
+  if (ratingSection.style.display === 'none') {
+    ratingSection.style.display = 'block';
+    loadRatingsForApp(appName);
+    ratingSection.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    ratingSection.style.display = 'none';
+  }
+}
+
+function initializeRatingSystem() {
+  const ratingStars = document.querySelectorAll('.rating-star');
+  const ratingText = document.querySelector('.rating-text');
+  const submitBtn = document.getElementById('submitRatingBtn');
+  const commentTextarea = document.getElementById('ratingComment');
+  const charCount = document.getElementById('ratingCharCount');
+  
+  // Manejo de estrellas
+  ratingStars.forEach((star, index) => {
+    star.addEventListener('mouseover', () => {
+      highlightStars(index + 1);
+    });
+    
+    star.addEventListener('click', () => {
+      selectedRating = index + 1;
+      setRatingText(selectedRating);
+      updateSubmitButton();
+    });
+  });
+  
+  // Resetear estrellas al salir
+  document.querySelector('.star-rating-input').addEventListener('mouseleave', () => {
+    highlightStars(selectedRating);
+  });
+  
+  // Contador de caracteres
+  commentTextarea.addEventListener('input', () => {
+    const remaining = 500 - commentTextarea.value.length;
+    charCount.textContent = remaining;
+    updateSubmitButton();
+  });
+  
+  // Enviar calificación
+  submitBtn.addEventListener('click', () => {
+    if (selectedRating > 0) {
+      submitRating();
+    }
+  });
+}
+
+function highlightStars(rating) {
+  const stars = document.querySelectorAll('.rating-star');
+  stars.forEach((star, index) => {
+    if (index < rating) {
+      star.className = 'fas fa-star rating-star active';
+    } else {
+      star.className = 'far fa-star rating-star';
+    }
+  });
+}
+
+function setRatingText(rating) {
+  const texts = {
+    1: 'Muy malo',
+    2: 'Malo', 
+    3: 'Regular',
+    4: 'Bueno',
+    5: 'Excelente'
+  };
+  document.querySelector('.rating-text').textContent = texts[rating];
+}
+
+function updateSubmitButton() {
+  const submitBtn = document.getElementById('submitRatingBtn');
+  submitBtn.disabled = selectedRating === 0;
+}
+
+function submitRating() {
+  const comment = document.getElementById('ratingComment').value;
+  const rating = {
+    appName: currentAppForRating,
+    rating: selectedRating,
+    comment: comment,
+    timestamp: new Date().toISOString(),
+    user: 'Usuario Actual', // Esto debería venir del sistema de usuarios
+    replies: []
+  };
+  
+  // Guardar en Firebase (implementar después)
+  saveRatingToFirebase(rating);
+  
+  // Resetear formulario
+  selectedRating = 0;
+  document.getElementById('ratingComment').value = '';
+  document.getElementById('ratingCharCount').textContent = '500';
+  document.querySelector('.rating-text').textContent = 'Selecciona una calificación';
+  highlightStars(0);
+  updateSubmitButton();
+  
+  // Recargar calificaciones
+  loadRatingsForApp(currentAppForRating);
+}
+
+function loadRatingsForApp(appName) {
+  const ratingsList = document.getElementById('ratingsList');
+  
+  // Mostrar cargando
+  ratingsList.innerHTML = `
+    <div class="loading-ratings">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Cargando calificaciones...</p>
+    </div>
+  `;
+  
+  // Cargar desde Firebase (implementar después)
+  setTimeout(() => {
+    displaySampleRatings();
+  }, 1000);
+}
+
+function displaySampleRatings() {
+  const ratingsList = document.getElementById('ratingsList');
+  const sampleRatings = [
+    {
+      user: 'Ana García',
+      rating: 5,
+      comment: 'Excelente aplicación, muy fácil de usar y funciona perfecto.',
+      timestamp: '2024-12-01',
+      replies: [
+        {
+          user: 'Carlos López',
+          comment: 'Estoy de acuerdo, es genial.',
+          timestamp: '2024-12-02'
+        }
+      ]
+    },
+    {
+      user: 'Miguel Torres',
+      rating: 4,
+      comment: 'Muy buena app, solo le falta algunas funciones más.',
+      timestamp: '2024-11-28',
+      replies: []
+    }
+  ];
+  
+  ratingsList.innerHTML = sampleRatings.map(rating => `
+    <div class="rating-item">
+      <div class="rating-header">
+        <div class="user-info">
+          <img src="https://via.placeholder.com/40" alt="${rating.user}" class="user-avatar">
+          <div class="user-details">
+            <span class="username">${rating.user}</span>
+            <span class="rating-date">${rating.timestamp}</span>
+          </div>
+        </div>
+        <div class="user-rating">
+          ${generateStarDisplay(rating.rating)}
+        </div>
+      </div>
+      <div class="rating-comment">${rating.comment}</div>
+      
+      <div class="rating-actions">
+        <button class="like-btn" onclick="likeRating(this)">
+          <i class="far fa-heart"></i> <span>0</span>
+        </button>
+        <button class="reply-btn" onclick="toggleReply(this)">
+          <i class="fas fa-reply"></i> Responder
+        </button>
+      </div>
+      
+      <div class="reply-form" style="display: none;">
+        <textarea placeholder="Escribe una respuesta..." maxlength="200"></textarea>
+        <div class="reply-actions">
+          <button class="cancel-reply-btn" onclick="cancelReply(this)">Cancelar</button>
+          <button class="submit-reply-btn" onclick="submitReply(this)">Responder</button>
+        </div>
+      </div>
+      
+      ${rating.replies.length > 0 ? `
+        <div class="replies-list">
+          ${rating.replies.map(reply => `
+            <div class="reply-item">
+              <div class="reply-header">
+                <img src="https://via.placeholder.com/30" alt="${reply.user}" class="reply-avatar">
+                <span class="reply-username">${reply.user}</span>
+                <span class="reply-date">${reply.timestamp}</span>
+              </div>
+              <div class="reply-comment">${reply.comment}</div>
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+    </div>
+  `).join('');
+}
+
+function generateStarDisplay(rating) {
+  let stars = '';
+  for (let i = 1; i <= 5; i++) {
+    if (i <= rating) {
+      stars += '<i class="fas fa-star"></i>';
+    } else {
+      stars += '<i class="far fa-star"></i>';
+    }
+  }
+  return stars;
+}
+
+function likeRating(button) {
+  const icon = button.querySelector('i');
+  const count = button.querySelector('span');
+  const currentCount = parseInt(count.textContent);
+  
+  if (icon.classList.contains('far')) {
+    icon.classList.remove('far');
+    icon.classList.add('fas');
+    count.textContent = currentCount + 1;
+  } else {
+    icon.classList.remove('fas');
+    icon.classList.add('far');
+    count.textContent = currentCount - 1;
+  }
+}
+
+function toggleReply(button) {
+  const ratingItem = button.closest('.rating-item');
+  const replyForm = ratingItem.querySelector('.reply-form');
+  
+  if (replyForm.style.display === 'none') {
+    replyForm.style.display = 'block';
+    replyForm.querySelector('textarea').focus();
+  } else {
+    replyForm.style.display = 'none';
+  }
+}
+
+function cancelReply(button) {
+  const replyForm = button.closest('.reply-form');
+  replyForm.style.display = 'none';
+  replyForm.querySelector('textarea').value = '';
+}
+
+function submitReply(button) {
+  const replyForm = button.closest('.reply-form');
+  const textarea = replyForm.querySelector('textarea');
+  const replyText = textarea.value.trim();
+  
+  if (replyText) {
+    // Aquí se guardaría en Firebase
+    console.log('Respuesta:', replyText);
+    
+    // Resetear formulario
+    textarea.value = '';
+    replyForm.style.display = 'none';
+    
+    // Recargar calificaciones para mostrar la nueva respuesta
+    loadRatingsForApp(currentAppForRating);
+  }
+}
+
+// Placeholder para Firebase
+function saveRatingToFirebase(rating) {
+  console.log('Guardando calificación:', rating);
+  // Implementar conexión Firebase después
 }
 
 // Close privacy policy modal when clicking outside
