@@ -2997,15 +2997,79 @@ body.dark-mode .version-meta-new {
 
 .privacy-body {
   padding: 20px;
+  line-height: 1.6;
+}
+
+.policy-document {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.document-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 20px 0;
+  border-bottom: 2px solid #0070ba;
+}
+
+.document-header h3 {
+  color: #0070ba;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.last-updated, .developer-info {
+  color: #666;
+  font-size: 14px;
+  margin: 5px 0;
 }
 
 .policy-section {
   margin-bottom: 30px;
+  padding: 0 10px;
 }
 
 .policy-section h4 {
   color: #0070ba;
   margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  border-left: 4px solid #0070ba;
+  padding-left: 15px;
+}
+
+.policy-section h5 {
+  color: #333;
+  margin: 20px 0 10px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.policy-section p {
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+.policy-section ul {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.policy-section li {
+  margin-bottom: 8px;
+}
+
+.contact-info {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 15px;
+  border-left: 4px solid #0070ba;
+}
+
+.contact-info p {
+  margin: 8px 0;
+  font-size: 14px;
 }
 
 .policy-section ul {

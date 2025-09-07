@@ -2169,37 +2169,166 @@ async function openAppModal(app) {
     <div id="privacyModal" class="privacy-modal">
       <div class="privacy-content">
         <div class="privacy-header">
-          <h2>Políticas de Privacidad</h2>
+          <h2>Política de Privacidad</h2>
           <button class="close-privacy" onclick="closePrivacyPolicy()">×</button>
         </div>
         <div class="privacy-body">
-          <h3>${app.name}</h3>
-          <div class="policy-section">
-            <h4>Recolección de Datos</h4>
-            <p>Esta aplicación recolecta los siguientes datos:</p>
-            <ul>
-              <li>Información del dispositivo</li>
-              <li>Datos de uso de la aplicación</li>
-              <li>Información de ubicación (si se autoriza)</li>
-            </ul>
-          </div>
-          <div class="policy-section">
-            <h4>Uso de Datos</h4>
-            <p>Los datos recolectados se utilizan para:</p>
-            <ul>
-              <li>Mejorar la experiencia del usuario</li>
-              <li>Análisis de rendimiento</li>
-              <li>Personalización de contenido</li>
-            </ul>
-          </div>
-          <div class="policy-section">
-            <h4>Compartir Datos</h4>
-            <p>Sus datos pueden ser compartidos con:</p>
-            <ul>
-              <li>Proveedores de servicios</li>
-              <li>Socios comerciales</li>
-              <li>Autoridades legales cuando sea requerido</li>
-            </ul>
+          <div class="policy-document">
+            <div class="document-header">
+              <h3>Política de Privacidad de ${app.name}</h3>
+              <p class="last-updated">Última actualización: ${new Date().toLocaleDateString('es-ES')}</p>
+              <p class="developer-info">Desarrollado por: ${app.developer}</p>
+            </div>
+            
+            <div class="policy-section">
+              <h4>1. Introducción</h4>
+              <p>Esta Política de Privacidad describe cómo ${app.name} ("nosotros", "nuestro" o "la aplicación") recopila, usa, almacena y protege su información personal cuando utiliza nuestra aplicación. Al usar ${app.name}, usted acepta las prácticas descritas en esta política.</p>
+            </div>
+
+            <div class="policy-section">
+              <h4>2. Información que Recopilamos</h4>
+              <h5>2.1 Información Personal</h5>
+              <ul>
+                <li>Nombre de usuario y información de perfil</li>
+                <li>Dirección de correo electrónico</li>
+                <li>Número de teléfono (cuando se proporciona)</li>
+                <li>Foto de perfil (cuando se carga)</li>
+              </ul>
+              
+              <h5>2.2 Información del Dispositivo</h5>
+              <ul>
+                <li>Tipo de dispositivo, modelo y sistema operativo</li>
+                <li>Identificadores únicos del dispositivo</li>
+                <li>Dirección IP y información de red</li>
+                <li>Configuraciones de idioma y región</li>
+              </ul>
+              
+              <h5>2.3 Información de Uso</h5>
+              <ul>
+                <li>Interacciones con la aplicación</li>
+                <li>Funciones utilizadas y frecuencia de uso</li>
+                <li>Tiempo de sesión y patrones de navegación</li>
+                <li>Preferencias de configuración</li>
+              </ul>
+              
+              <h5>2.4 Información de Ubicación</h5>
+              <ul>
+                <li>Ubicación aproximada basada en IP</li>
+                <li>Ubicación precisa (solo con su consentimiento explícito)</li>
+              </ul>
+            </div>
+
+            <div class="policy-section">
+              <h4>3. Cómo Utilizamos su Información</h4>
+              <p>Utilizamos la información recopilada para los siguientes propósitos:</p>
+              <ul>
+                <li><strong>Funcionamiento de la Aplicación:</strong> Proporcionar, mantener y mejorar las funcionalidades de ${app.name}</li>
+                <li><strong>Personalización:</strong> Adaptar la experiencia del usuario según sus preferencias</li>
+                <li><strong>Comunicación:</strong> Enviar notificaciones importantes y actualizaciones</li>
+                <li><strong>Análisis:</strong> Comprender cómo se utiliza la aplicación para mejorar los servicios</li>
+                <li><strong>Seguridad:</strong> Detectar y prevenir fraudes, abusos y actividades maliciosas</li>
+                <li><strong>Cumplimiento Legal:</strong> Cumplir con obligaciones legales y regulatorias</li>
+              </ul>
+            </div>
+
+            <div class="policy-section">
+              <h4>4. Compartir Información</h4>
+              <p>No vendemos ni alquilamos su información personal. Podemos compartir información limitada en las siguientes circunstancias:</p>
+              
+              <h5>4.1 Proveedores de Servicios</h5>
+              <ul>
+                <li>Servicios de análisis y métricas</li>
+                <li>Servicios de almacenamiento en la nube</li>
+                <li>Proveedores de notificaciones push</li>
+                <li>Procesadores de pagos (si aplica)</li>
+              </ul>
+              
+              <h5>4.2 Requisitos Legales</h5>
+              <ul>
+                <li>Cuando sea requerido por ley o proceso legal</li>
+                <li>Para proteger los derechos y seguridad de los usuarios</li>
+                <li>En caso de investigaciones de seguridad</li>
+              </ul>
+              
+              <h5>4.3 Transferencias Comerciales</h5>
+              <p>En caso de fusión, adquisición o venta de activos, su información puede ser transferida como parte de la transacción.</p>
+            </div>
+
+            <div class="policy-section">
+              <h4>5. Seguridad de Datos</h4>
+              <p>Implementamos medidas de seguridad técnicas y organizativas apropiadas para proteger su información personal:</p>
+              <ul>
+                <li>Cifrado de datos en tránsito y en reposo</li>
+                <li>Controles de acceso estrictos</li>
+                <li>Monitoreo regular de seguridad</li>
+                <li>Auditorías de seguridad periódicas</li>
+                <li>Capacitación del personal en protección de datos</li>
+              </ul>
+            </div>
+
+            <div class="policy-section">
+              <h4>6. Retención de Datos</h4>
+              <p>Conservamos su información personal solo durante el tiempo necesario para los fines descritos en esta política:</p>
+              <ul>
+                <li>Datos de cuenta: Mientras mantenga una cuenta activa</li>
+                <li>Datos de uso: Hasta 24 meses después de la recopilación</li>
+                <li>Datos de soporte: Hasta 3 años después de la resolución</li>
+                <li>Datos legales: Según lo requiera la legislación aplicable</li>
+              </ul>
+            </div>
+
+            <div class="policy-section">
+              <h4>7. Sus Derechos</h4>
+              <p>Usted tiene los siguientes derechos sobre su información personal:</p>
+              <ul>
+                <li><strong>Acceso:</strong> Solicitar una copia de la información que tenemos sobre usted</li>
+                <li><strong>Rectificación:</strong> Corregir información inexacta o incompleta</li>
+                <li><strong>Eliminación:</strong> Solicitar la eliminación de su información personal</li>
+                <li><strong>Portabilidad:</strong> Recibir sus datos en un formato estructurado</li>
+                <li><strong>Oposición:</strong> Oponerse al procesamiento de sus datos</li>
+                <li><strong>Limitación:</strong> Restringir el procesamiento en ciertas circunstancias</li>
+              </ul>
+              <p>Para ejercer estos derechos, contáctenos a través de los medios proporcionados en la sección de contacto.</p>
+            </div>
+
+            <div class="policy-section">
+              <h4>8. Cookies y Tecnologías Similares</h4>
+              <p>Utilizamos cookies y tecnologías similares para:</p>
+              <ul>
+                <li>Recordar sus preferencias</li>
+                <li>Proporcionar funcionalidades personalizadas</li>
+                <li>Analizar el uso de la aplicación</li>
+                <li>Mejorar la seguridad</li>
+              </ul>
+              <p>Puede gestionar las preferencias de cookies en la configuración de su dispositivo.</p>
+            </div>
+
+            <div class="policy-section">
+              <h4>9. Transferencias Internacionales</h4>
+              <p>Sus datos pueden ser procesados en países fuera de su jurisdicción. Garantizamos que tales transferencias se realizan con protecciones adecuadas según las leyes aplicables de protección de datos.</p>
+            </div>
+
+            <div class="policy-section">
+              <h4>10. Menores de Edad</h4>
+              <p>${app.name} no está dirigida intencionalmente a menores de 13 años. No recopilamos conscientemente información personal de menores de 13 años. Si descubrimos que hemos recopilado información de un menor, tomaremos medidas para eliminarla.</p>
+            </div>
+
+            <div class="policy-section">
+              <h4>11. Cambios en la Política</h4>
+              <p>Nos reservamos el derecho de actualizar esta Política de Privacidad. Los cambios importantes serán notificados a través de la aplicación o por otros medios apropiados. Le recomendamos revisar esta política periódicamente.</p>
+            </div>
+
+            <div class="policy-section">
+              <h4>12. Contacto</h4>
+              <p>Si tiene preguntas sobre esta Política de Privacidad o desea ejercer sus derechos, puede contactarnos:</p>
+              <div class="contact-info">
+                <p><strong>Desarrollador:</strong> ${app.developer}</p>
+                <p><strong>Aplicación:</strong> ${app.name}</p>
+                <p><strong>Versión:</strong> ${app.version}</p>
+                <p><strong>Email de soporte:</strong> privacy@${app.developer.toLowerCase().replace(/\s+/g, '')}.com</p>
+                <p><strong>Última actualización:</strong> ${new Date().toLocaleDateString('es-ES')}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
