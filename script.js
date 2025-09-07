@@ -1972,9 +1972,29 @@ function isVerifiedDeveloper(developer) {
   return devApps.length > 1 && totalDownloads > 3000000;
 }
 
+// Nueva función para detectar desarrolladores con múltiples apps pero con menos de 1M por app
+function hasMultipleAppsUnderMillion(developer) {
+  const devApps = apps.filter(app => app.developer === developer);
+  if (devApps.length < 2) return false;
+  
+  // Verificar que todas las apps tengan menos de 1 millón de descargas
+  const allUnderMillion = devApps.every(app => parseDownloads(app.downloads) < 1000000);
+  return allUnderMillion;
+}
+
+// Función para obtener el tipo de verificación del desarrollador
+function getDeveloperVerificationStatus(developer) {
+  if (isVerifiedDeveloper(developer)) {
+    return 'verified'; // Insignia azul
+  } else if (hasMultipleAppsUnderMillion(developer)) {
+    return 'semi-verified'; // Insignia amarilla
+  }
+  return 'none'; // Sin verificación
+}
+
 function createAppCard(app) {
   const isReleased = isAppReleased(app.releaseDate);
-  const isVerified = isVerifiedDeveloper(app.developer);
+  const verificationStatus = getDeveloperVerificationStatus(app.developer);
   return `
     <div class="app-card">
       <div class="app-header" onclick="openAppModal(${JSON.stringify(app).replace(/\"/g, '&quot;')})">
@@ -1983,7 +2003,8 @@ function createAppCard(app) {
           <div class="app-name">${app.name}</div>
           <div class="app-developer">
             <span class="developer-link" onclick="event.stopPropagation(); showDeveloperApps('${app.developer}', event)">${app.developer}</span>
-            ${isVerified ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}
+            ${verificationStatus === 'verified' ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}
+            ${verificationStatus === 'semi-verified' ? '<i class="fas fa-check-circle semi-verified-badge"></i>' : ''}
           </div>
           <div class="package-name">${app.packageName || 'No disponible'}</div>
           <div class="rating">
@@ -2035,7 +2056,8 @@ async function openAppModal(app) {
         <div class="app-version">Versión ${app.version}</div>
         <div class="app-developer-new">
           ${app.developer}
-          ${isVerifiedDeveloper(app.developer) ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}
+          ${getDeveloperVerificationStatus(app.developer) === 'verified' ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}
+          ${getDeveloperVerificationStatus(app.developer) === 'semi-verified' ? '<i class="fas fa-check-circle semi-verified-badge"></i>' : ''}
         </div>
         <div class="app-category">${app.category}</div>
         <div class="package-name">${app.packageName}</div>

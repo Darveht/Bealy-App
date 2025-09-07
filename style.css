@@ -1061,6 +1061,12 @@ body.dark-mode .previous-versions li {
   font-size: 14px;
 }
 
+.semi-verified-badge {
+  color: #ffc107;
+  margin-left: 5px;
+  font-size: 14px;
+}
+
 .developer-verification {
   margin-top: 20px;
   padding: 15px;
