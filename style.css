@@ -678,17 +678,32 @@ body.dark-mode .previous-versions li {
     overflow-x: auto;
     padding: 15px 0;
     gap: 15px;
-    scrollbar-width: thin;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     margin: 10px 0;
+    scroll-behavior: smooth;
+}
+
+.app-details-scroll::-webkit-scrollbar {
+    display: none;
 }
 
 .detail-item {
     flex: 0 0 auto;
-    min-width: 100px;
-    padding: 10px 15px;
+    min-width: 110px;
+    padding: 12px 16px;
     background: #f8f9fa;
-    border-radius: 8px;
+    border-radius: 10px;
     text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.detail-item:hover {
+    background: #e9ecef;
+    border-color: #0070ba;
+    transform: translateY(-1px);
 }
 
 .detail-label {
@@ -700,6 +715,22 @@ body.dark-mode .previous-versions li {
 .detail-value {
     font-weight: 600;
     font-size: 14px;
+    color: #333;
+}
+
+/* Dark mode para el carrusel de detalles */
+body.dark-mode .detail-item {
+    background: #3d3d3d;
+    border-color: #4d4d4d;
+}
+
+body.dark-mode .detail-item:hover {
+    background: #4d4d4d;
+    border-color: #4a90e2;
+}
+
+body.dark-mode .detail-value {
+    color: #ffffff;
 }
 
 .app-info-new .rating {
