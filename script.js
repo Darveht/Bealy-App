@@ -661,7 +661,7 @@ const apps = [{
         "url": "/api/placeholder/200/400"
       }
     ]
-},
+  },
        {
   "name": "Revolut",
   "developer": "Revolut Ltd",
@@ -1109,7 +1109,7 @@ const apps = [{
   "version": "1.2.3",
   "isAvailable": true,
   "releaseDate": "2024-05-28T00:00:00",
-  "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "FR", "DE", "ES", "IT", "IN"],
+  "allowedCountries": ["US", "CA", "GB", "AU", "FR", "DE", "ES", "IT", "IN"],
   "platforms": {
     "android": "https://play.google.com/store/apps/details?id=com.google.gemini",
     "ios": "https://apps.apple.com/app/gemini/id1677739987"
@@ -1226,7 +1226,7 @@ const apps = [{
   "media": [
     {
       "type": "image",
-      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEnCFwQIw8tkKGKRPQGskN7yZTwEUBSYF0Web2Jc6ekPOLGPPxyIiMq3Fh&s=10"
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEnCFwQIw8tkKGKRPQGskN7yZTwEUBSYF0Web2Jc6ekPOLGdjzYPIMcoJvySY&s=10"
     },
     {
       "type": "image",
@@ -1976,7 +1976,7 @@ function isVerifiedDeveloper(developer) {
 function hasMultipleAppsUnderMillion(developer) {
   const devApps = apps.filter(app => app.developer === developer);
   if (devApps.length < 2) return false;
-  
+
   // Verificar que todas las apps tengan menos de 1 millón de descargas
   const allUnderMillion = devApps.every(app => parseDownloads(app.downloads) < 1000000);
   return allUnderMillion;
@@ -1990,6 +1990,19 @@ function getDeveloperVerificationStatus(developer) {
     return 'semi-verified'; // Insignia amarilla
   }
   return 'none'; // Sin verificación
+}
+
+// Función para obtener mensaje de verificación
+function getVerificationMessage(developer) {
+  const status = getDeveloperVerificationStatus(developer);
+  switch(status) {
+    case 'verified':
+      return 'Este desarrollador tiene múltiples aplicaciones exitosas con millones de descargas.';
+    case 'semi-verified':
+      return 'Este desarrollador tiene varias aplicaciones con bajo éxito, pero son descargables y verificadas.';
+    default:
+      return '';
+  }
 }
 
 function createAppCard(app) {
@@ -2141,7 +2154,7 @@ async function openAppModal(app) {
           </div>
           <div class="rating-text">Selecciona una calificación</div>
         </div>
-        
+
         <div class="comment-input-container">
           <textarea id="ratingComment" placeholder="Escribe tu comentario sobre esta aplicación (opcional)..." maxlength="500"></textarea>
           <div class="comment-actions">
@@ -2210,12 +2223,12 @@ async function openAppModal(app) {
       </div>
     </div>
 
-    ${isVerifiedDeveloper(app.developer) ? `
+    ${getVerificationMessage(app.developer) ? `
     <div class="developer-verification">
       <div class="verification-badge">
-        <i class="fas fa-check-circle"></i> Desarrollador Verificado
+        <i class="fas fa-check-circle"></i> ${getDeveloperVerificationStatus(app.developer) === 'verified' ? 'Desarrollador Verificado' : 'Desarrollador Verificado'}
       </div>
-      <p>Este desarrollador tiene múltiples aplicaciones exitosas.</p>
+      <p>${getVerificationMessage(app.developer)}</p>
     </div>
     ` : ''}
 
@@ -2238,7 +2251,7 @@ async function openAppModal(app) {
               <p class="last-updated">Última actualización: ${new Date().toLocaleDateString('es-ES')}</p>
               <p class="developer-info">Desarrollado por: ${app.developer}</p>
             </div>
-            
+
             <div class="policy-section">
               <h4>1. Introducción</h4>
               <p>Esta Política de Privacidad describe cómo ${app.name} ("nosotros", "nuestro" o "la aplicación") recopila, usa, almacena y protege su información personal cuando utiliza nuestra aplicación. Al usar ${app.name}, usted acepta las prácticas descritas en esta política.</p>
@@ -2253,7 +2266,7 @@ async function openAppModal(app) {
                 <li>Número de teléfono (cuando se proporciona)</li>
                 <li>Foto de perfil (cuando se carga)</li>
               </ul>
-              
+
               <h5>2.2 Información del Dispositivo</h5>
               <ul>
                 <li>Tipo de dispositivo, modelo y sistema operativo</li>
@@ -2261,7 +2274,7 @@ async function openAppModal(app) {
                 <li>Dirección IP y información de red</li>
                 <li>Configuraciones de idioma y región</li>
               </ul>
-              
+
               <h5>2.3 Información de Uso</h5>
               <ul>
                 <li>Interacciones con la aplicación</li>
@@ -2269,7 +2282,7 @@ async function openAppModal(app) {
                 <li>Tiempo de sesión y patrones de navegación</li>
                 <li>Preferencias de configuración</li>
               </ul>
-              
+
               <h5>2.4 Información de Ubicación</h5>
               <ul>
                 <li>Ubicación aproximada basada en IP</li>
@@ -2293,7 +2306,7 @@ async function openAppModal(app) {
             <div class="policy-section">
               <h4>4. Compartir Información</h4>
               <p>No vendemos ni alquilamos su información personal. Podemos compartir información limitada en las siguientes circunstancias:</p>
-              
+
               <h5>4.1 Proveedores de Servicios</h5>
               <ul>
                 <li>Servicios de análisis y métricas</li>
@@ -2301,14 +2314,14 @@ async function openAppModal(app) {
                 <li>Proveedores de notificaciones push</li>
                 <li>Procesadores de pagos (si aplica)</li>
               </ul>
-              
+
               <h5>4.2 Requisitos Legales</h5>
               <ul>
                 <li>Cuando sea requerido por ley o proceso legal</li>
                 <li>Para proteger los derechos y seguridad de los usuarios</li>
                 <li>En caso de investigaciones de seguridad</li>
               </ul>
-              
+
               <h5>4.3 Transferencias Comerciales</h5>
               <p>En caso de fusión, adquisición o venta de activos, su información puede ser transferida como parte de la transacción.</p>
             </div>
@@ -2559,14 +2572,6 @@ function closeVersionsModal() {
   }
 }
 
-function closeVersionsModal() {
-  const modal = document.getElementById('versionsModal');
-  if (modal) {
-    modal.remove();
-    document.body.style.overflow = 'auto';
-  }
-}
-
 function downloadVersion(appName, version) {
   const btn = event.target.closest('.download-btn');
   const originalHTML = btn.innerHTML;
@@ -2584,7 +2589,7 @@ function downloadVersion(appName, version) {
 
 function deleteVersion(appName, version, button) {
   if (confirm(`¿Estás seguro de que quieres eliminar la versión ${version}?`)) {
-    const versionCard = button.closest('.version-card');
+    const versionCard = button.closest('.version-card, .version-card-new');
     versionCard.classList.add('deleting');
 
     setTimeout(() => {
@@ -2789,7 +2794,7 @@ let selectedRating = 0;
 function toggleRatingSection(appName) {
   const ratingSection = document.getElementById('ratingSection');
   currentAppForRating = appName;
-  
+
   if (ratingSection.style.display === 'none') {
     ratingSection.style.display = 'block';
     loadRatingsForApp(appName);
@@ -2805,32 +2810,32 @@ function initializeRatingSystem() {
   const submitBtn = document.getElementById('submitRatingBtn');
   const commentTextarea = document.getElementById('ratingComment');
   const charCount = document.getElementById('ratingCharCount');
-  
+
   // Manejo de estrellas
   ratingStars.forEach((star, index) => {
     star.addEventListener('mouseover', () => {
       highlightStars(index + 1);
     });
-    
+
     star.addEventListener('click', () => {
       selectedRating = index + 1;
       setRatingText(selectedRating);
       updateSubmitButton();
     });
   });
-  
+
   // Resetear estrellas al salir
   document.querySelector('.star-rating-input').addEventListener('mouseleave', () => {
     highlightStars(selectedRating);
   });
-  
+
   // Contador de caracteres
   commentTextarea.addEventListener('input', () => {
     const remaining = 500 - commentTextarea.value.length;
     charCount.textContent = remaining;
     updateSubmitButton();
   });
-  
+
   // Enviar calificación
   submitBtn.addEventListener('click', () => {
     if (selectedRating > 0) {
@@ -2876,10 +2881,10 @@ function submitRating() {
     user: 'Usuario Actual', // Esto debería venir del sistema de usuarios
     replies: []
   };
-  
+
   // Guardar en Firebase (implementar después)
   saveRatingToFirebase(rating);
-  
+
   // Resetear formulario
   selectedRating = 0;
   document.getElementById('ratingComment').value = '';
@@ -2887,14 +2892,14 @@ function submitRating() {
   document.querySelector('.rating-text').textContent = 'Selecciona una calificación';
   highlightStars(0);
   updateSubmitButton();
-  
+
   // Recargar calificaciones
   loadRatingsForApp(currentAppForRating);
 }
 
 function loadRatingsForApp(appName) {
   const ratingsList = document.getElementById('ratingsList');
-  
+
   // Mostrar cargando
   ratingsList.innerHTML = `
     <div class="loading-ratings">
@@ -2902,7 +2907,7 @@ function loadRatingsForApp(appName) {
       <p>Cargando calificaciones...</p>
     </div>
   `;
-  
+
   // Cargar desde Firebase (implementar después)
   setTimeout(() => {
     displaySampleRatings();
@@ -2911,7 +2916,7 @@ function loadRatingsForApp(appName) {
 
 function displaySampleRatings() {
   const ratingsList = document.getElementById('ratingsList');
-  
+
   ratingsList.innerHTML = `
     <div class="no-ratings">
       <i class="fas fa-star-half-alt"></i>
@@ -2937,7 +2942,7 @@ function likeRating(button) {
   const icon = button.querySelector('i');
   const count = button.querySelector('span');
   const currentCount = parseInt(count.textContent);
-  
+
   if (icon.classList.contains('far')) {
     icon.classList.remove('far');
     icon.classList.add('fas');
@@ -2952,7 +2957,7 @@ function likeRating(button) {
 function toggleReply(button) {
   const ratingItem = button.closest('.rating-item');
   const replyForm = ratingItem.querySelector('.reply-form');
-  
+
   if (replyForm.style.display === 'none') {
     replyForm.style.display = 'block';
     replyForm.querySelector('textarea').focus();
@@ -2971,15 +2976,15 @@ function submitReply(button) {
   const replyForm = button.closest('.reply-form');
   const textarea = replyForm.querySelector('textarea');
   const replyText = textarea.value.trim();
-  
+
   if (replyText) {
     // Aquí se guardaría en Firebase
     console.log('Respuesta:', replyText);
-    
+
     // Resetear formulario
     textarea.value = '';
     replyForm.style.display = 'none';
-    
+
     // Recargar calificaciones para mostrar la nueva respuesta
     loadRatingsForApp(currentAppForRating);
   }
@@ -3512,20 +3517,20 @@ class MomentosSystem {
     document.getElementById('backMomentos').addEventListener('click', () => this.closeMomentos());
     document.getElementById('newPostBtn').addEventListener('click', () => this.toggleNewPostForm());
     document.getElementById('publishBtn').addEventListener('click', () => this.publishPost());
-    
+
     // Character counter with PayPal styling
     document.getElementById('postContent').addEventListener('input', (e) => {
       const remaining = 280 - e.target.value.length;
       const charCountElement = document.querySelector('.char-count');
       charCountElement.textContent = remaining;
-      
+
       // Add warning styling when approaching limit
       if (remaining < 20) {
         charCountElement.classList.add('warning');
       } else {
         charCountElement.classList.remove('warning');
       }
-      
+
       document.getElementById('publishBtn').disabled = e.target.value.trim().length === 0 || remaining < 0;
     });
   }
@@ -3569,12 +3574,12 @@ class MomentosSystem {
     try {
       // Simulate publishing delay for better UX
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       await database.ref('momentos/' + post.id).set(post);
-      
+
       // Hide publishing animation
       this.hidePublishingAnimation();
-      
+
       // Reset form
       document.getElementById('postContent').value = '';
       document.querySelector('.char-count').textContent = '280';
@@ -3582,7 +3587,7 @@ class MomentosSystem {
       document.getElementById('publishBtn').disabled = true;
       this.toggleNewPostForm();
       this.loadPosts();
-      
+
       // Show success notification with PayPal styling
       this.showSuccessNotification('¡Momento publicado exitosamente!');
     } catch (error) {
@@ -3619,7 +3624,7 @@ class MomentosSystem {
       <i class="fas fa-check-circle"></i>
       <span>${message}</span>
     `;
-    
+
     document.body.appendChild(notification);
 
     setTimeout(() => {
@@ -3632,7 +3637,7 @@ class MomentosSystem {
     }, 3500);
   }
 
-  
+
 
   async loadPosts() {
     const feed = document.getElementById('momentosFeed');
@@ -3646,7 +3651,7 @@ class MomentosSystem {
     try {
       const snapshot = await database.ref('momentos').orderByChild('timestamp').once('value');
       const posts = [];
-      
+
       snapshot.forEach((childSnapshot) => {
         posts.push(childSnapshot.val());
       });
@@ -3666,7 +3671,7 @@ class MomentosSystem {
 
   renderPosts(posts) {
     const feed = document.getElementById('momentosFeed');
-    
+
     if (posts.length === 0) {
       feed.innerHTML = `
         <div class="loading-posts">
@@ -3685,7 +3690,7 @@ class MomentosSystem {
     const timeAgo = this.getTimeAgo(post.timestamp);
     const isLiked = post.likedBy && post.likedBy.includes(this.currentUser.id);
     const repliesCount = post.replies ? Object.keys(post.replies).length : 0;
-    
+
     return `
       <div class="post-card" data-post-id="${post.id}">
         <div class="post-header">
@@ -3697,9 +3702,9 @@ class MomentosSystem {
             <div class="post-time">${timeAgo}</div>
           </div>
         </div>
-        
+
         <div class="post-content">${post.content}</div>
-        
+
         <div class="post-actions">
           <button class="action-btn-post like-btn ${isLiked ? 'liked' : ''}" data-post-id="${post.id}">
             <i class="fas fa-heart"></i>
@@ -3713,7 +3718,7 @@ class MomentosSystem {
             <i class="fas fa-share"></i>
           </button>
         </div>
-        
+
         <div class="replies-section" id="replies-${post.id}" style="display: none;">
           ${this.renderReplies(post.replies || {})}
           <div class="reply-form">
@@ -3809,7 +3814,7 @@ class MomentosSystem {
       const postRef = database.ref('momentos/' + postId);
       const snapshot = await postRef.once('value');
       const post = snapshot.val();
-      
+
       if (!post) return;
 
       const likedBy = post.likedBy || [];
@@ -3843,7 +3848,7 @@ class MomentosSystem {
       const replyRef = database.ref(`momentos/${postId}/replies/${replyId}`);
       const snapshot = await replyRef.once('value');
       const reply = snapshot.val();
-      
+
       if (!reply) return;
 
       const likedBy = reply.likedBy || [];
@@ -3873,7 +3878,7 @@ class MomentosSystem {
   toggleReplies(postId) {
     const repliesSection = document.getElementById(`replies-${postId}`);
     const replyForm = repliesSection.querySelector('.reply-form');
-    
+
     if (repliesSection.style.display === 'none') {
       repliesSection.style.display = 'block';
       replyForm.style.display = 'block';
@@ -3907,12 +3912,12 @@ class MomentosSystem {
       submitBtn.disabled = true;
 
       await database.ref(`momentos/${postId}/replies/${reply.id}`).set(reply);
-      
+
       // Reset reply form
       replyForm.querySelector('.reply-input').value = '';
       submitBtn.innerHTML = originalHTML;
       submitBtn.disabled = false;
-      
+
       this.loadPosts();
       this.showSuccessNotification('¡Respuesta publicada!');
     } catch (error) {
@@ -3958,7 +3963,7 @@ class MomentosSystem {
       <i class="fas fa-${isError ? 'exclamation-triangle' : 'check'}"></i>
       <span>${message}</span>
     `;
-    
+
     document.body.appendChild(notification);
 
     setTimeout(() => {

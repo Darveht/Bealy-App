@@ -1129,6 +1129,11 @@ body.dark-mode .detail-value {
   border: 1px solid #0070ba;
 }
 
+.developer-verification.semi-verified {
+  background-color: #fffbf0;
+  border: 1px solid #ffc107;
+}
+
 .verification-badge {
   display: inline-flex;
   align-items: center;
@@ -1139,6 +1144,11 @@ body.dark-mode .detail-value {
   font-weight: bold;
   margin-bottom: 10px;
   gap: 5px;
+}
+
+.verification-badge.semi-verified {
+  background-color: #ffc107;
+  color: #333;
 }
 
 .security-info.secure {
