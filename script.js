@@ -2010,7 +2010,7 @@ function createAppCard(app) {
   const verificationStatus = getDeveloperVerificationStatus(app.developer);
   return `
     <div class="app-card">
-      <div class="app-header" onclick="openAppModal(${JSON.stringify(app).replace(/\"/g, '&quot;')})">
+      <div class="app-header" onclick="openAppModal(${JSON.stringify(app).replace(/\"/g, '&quot;')}, this)">
         <img class="app-icon" src="${app.icon}" alt="${app.name}">
         <div class="app-info">
           <div class="app-name">${app.name}</div>
@@ -2536,6 +2536,20 @@ function initializeVideoPlayers() {
   });
 }
 
+function showVersionsSection(app) {
+  const versionsSection = document.getElementById('versionsSection');
+  if (!versionsSection) {
+    // Crear la sección de versiones si no existe
+    const section = document.createElement('div');
+    section.id = 'versionsSection';
+    section.style.display = 'none';
+    document.body.appendChild(section);
+  }
+  
+  // Implementar la lógica de versiones aquí
+  console.log('Showing versions for:', app.name);
+}
+
 function togglePreviousVersions(appName) {
   const app = apps.find(a => a.name === appName);
   if (!app) return;
@@ -2719,7 +2733,7 @@ async function displayApps(appsToDisplay) {
       appCard.innerHTML = createAppCard(app);
       appCard.addEventListener('click', (e) => {
         if (!e.target.classList.contains('developer-link')) {
-          openAppModal(app);
+          openAppModal(app, appCard);
         }
       });
       appsContainer.appendChild(appCard);
@@ -3975,6 +3989,131 @@ class MomentosSystem {
 
 // Initialize Momentos System
 const momentosSystem = new MomentosSystem();
+
+// Sistema de animación de planta para aplicaciones específicas
+class PlantGrowthAnimation {
+  constructor() {
+    this.isAnimating = false;
+    this.plantApps = ['Roblox', 'Among Us', 'Candy Crush Saga']; // Apps que tendrán animación de planta
+  }
+
+  shouldShowAnimation(appName) {
+    return this.plantApps.includes(appName);
+  }
+
+  async showGrowthAnimation(clickedElement) {
+    if (this.isAnimating) return;
+    this.isAnimating = true;
+
+    // Crear el contenedor de la animación
+    const animationContainer = document.createElement('div');
+    animationContainer.className = 'plant-animation-container';
+    
+    // Obtener la posición del elemento clickeado
+    const rect = clickedElement.getBoundingClientRect();
+    
+    animationContainer.innerHTML = `
+      <div class="plant-growth-scene">
+        <div class="soil"></div>
+        <div class="plant-stages">
+          <div class="stage stage-1">🌱</div>
+          <div class="stage stage-2">🌿</div>
+          <div class="stage stage-3">🪴</div>
+          <div class="stage stage-4">🌻</div>
+        </div>
+        <div class="particle-effects">
+          <div class="sparkle sparkle-1">✨</div>
+          <div class="sparkle sparkle-2">⭐</div>
+          <div class="sparkle sparkle-3">🌟</div>
+          <div class="sparkle sparkle-4">💫</div>
+        </div>
+      </div>
+    `;
+
+    // Posicionar la animación donde se hizo clic
+    animationContainer.style.left = `${rect.left + (rect.width / 2) - 75}px`;
+    animationContainer.style.top = `${rect.top + (rect.height / 2) - 75}px`;
+
+    document.body.appendChild(animationContainer);
+
+    // Ejecutar la secuencia de crecimiento
+    await this.executeGrowthSequence(animationContainer);
+
+    // Limpiar después de la animación
+    setTimeout(() => {
+      animationContainer.remove();
+      this.isAnimating = false;
+    }, 1000);
+  }
+
+  async executeGrowthSequence(container) {
+    const stages = container.querySelectorAll('.stage');
+    const sparkles = container.querySelectorAll('.sparkle');
+
+    // Mostrar suelo primero
+    await this.animateElement(container.querySelector('.soil'), 'soil-appear');
+    await this.delay(300);
+
+    // Crecimiento por etapas
+    for (let i = 0; i < stages.length; i++) {
+      // Ocultar etapa anterior
+      if (i > 0) {
+        stages[i - 1].style.opacity = '0';
+        stages[i - 1].style.transform = 'scale(0)';
+      }
+
+      // Mostrar etapa actual
+      await this.animateElement(stages[i], 'plant-grow');
+      
+      // Efectos de partículas
+      if (sparkles[i]) {
+        this.animateElement(sparkles[i], 'sparkle-burst');
+      }
+
+      await this.delay(600);
+    }
+
+    // Animación final de florecimiento
+    await this.animateElement(stages[stages.length - 1], 'flower-bloom');
+    
+    // Efecto de partículas final
+    sparkles.forEach(sparkle => {
+      this.animateElement(sparkle, 'final-sparkle');
+    });
+  }
+
+  animateElement(element, animationClass) {
+    return new Promise(resolve => {
+      element.classList.add(animationClass);
+      element.addEventListener('animationend', () => {
+        resolve();
+      }, { once: true });
+    });
+  }
+
+  delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+}
+
+// Instanciar el sistema de animación
+const plantAnimation = new PlantGrowthAnimation();
+
+// Modificar la función openAppModal para incluir la animación
+const originalOpenAppModal = openAppModal;
+openAppModal = function(app, clickedElement) {
+  // Verificar si debe mostrar animación de planta
+  if (plantAnimation.shouldShowAnimation(app.name) && clickedElement) {
+    plantAnimation.showGrowthAnimation(clickedElement);
+    
+    // Retrasar la apertura del modal para que se vea la animación
+    setTimeout(() => {
+      originalOpenAppModal(app);
+    }, 2500);
+  } else {
+    originalOpenAppModal(app);
+  }
+};
 
 // Inicializar la visualización de aplicaciones
 displayFeaturedApps();

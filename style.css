@@ -3742,6 +3742,205 @@ body.dark-mode .refresh-web-app:hover {
     display: none;
 }
 
+/* Plant Growth Animation Styles */
+.plant-animation-container {
+    position: fixed;
+    width: 150px;
+    height: 150px;
+    z-index: 10000;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+.plant-growth-scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.soil {
+    width: 80px;
+    height: 20px;
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    border-radius: 10px;
+    margin-bottom: 5px;
+    opacity: 0;
+    transform: scale(0);
+    position: relative;
+    z-index: 1;
+}
+
+.soil.soil-appear {
+    animation: soilAppear 0.5s ease-out forwards;
+}
+
+@keyframes soilAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.plant-stages {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.stage {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3em;
+    opacity: 0;
+    transform-origin: bottom center;
+}
+
+.stage.plant-grow {
+    animation: plantGrow 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes plantGrow {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0) translateY(20px);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(0.8) translateY(-5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1) translateY(0);
+    }
+}
+
+.stage.flower-bloom {
+    animation: flowerBloom 0.8s ease-out forwards;
+}
+
+@keyframes flowerBloom {
+    0% {
+        transform: translateX(-50%) scale(1) rotate(0deg);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.2) rotate(5deg);
+    }
+    100% {
+        transform: translateX(-50%) scale(1.1) rotate(0deg);
+        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+    }
+}
+
+.particle-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 1.5em;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sparkle-1 { top: 20%; left: 10%; }
+.sparkle-2 { top: 30%; right: 15%; }
+.sparkle-3 { top: 10%; left: 60%; }
+.sparkle-4 { top: 40%; left: 80%; }
+
+.sparkle.sparkle-burst {
+    animation: sparkleBurst 0.8s ease-out forwards;
+}
+
+@keyframes sparkleBurst {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5) rotate(180deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5) rotate(360deg);
+    }
+}
+
+.sparkle.final-sparkle {
+    animation: finalSparkle 1.2s ease-out forwards;
+}
+
+@keyframes finalSparkle {
+    0% {
+        opacity: 0;
+        transform: scale(0) translateY(0) rotate(0deg);
+    }
+    30% {
+        opacity: 1;
+        transform: scale(1.2) translateY(-20px) rotate(120deg);
+    }
+    60% {
+        opacity: 0.8;
+        transform: scale(1) translateY(-30px) rotate(240deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-50px) rotate(360deg);
+    }
+}
+
+/* Efecto de brillo adicional para la flor final */
+@keyframes glowPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.4));
+    }
+    50% {
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+    }
+}
+
+.stage:last-child.flower-bloom {
+    animation: plantGrow 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+               flowerBloom 0.8s ease-out 0.8s forwards,
+               glowPulse 2s ease-in-out 1.6s infinite;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .plant-animation-container {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .stage {
+        font-size: 2.5em;
+    }
+    
+    .soil {
+        width: 60px;
+        height: 15px;
+    }
+    
+    .sparkle {
+        font-size: 1.2em;
+    }
+}
+
 /* Loading animation styles */
 .loading-container {
     display: flex;
