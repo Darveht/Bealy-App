@@ -4318,7 +4318,7 @@ class AppAnimationSystem {
   constructor() {
     this.isAnimating = false;
     this.plantApps = ['Roblox', 'Among Us', 'Candy Crush Saga']; // Apps que tendrán animación de planta
-    this.specialApps = ['TikTok', 'Netflix', 'Crunchyroll']; // Apps con animaciones especiales
+    this.specialApps = ['TikTok', 'Netflix', 'Crunchyroll', 'Telegram', 'WhatsApp']; // Apps con animaciones especiales
   }
 
   shouldShowAnimation(appName) {
@@ -4330,6 +4330,8 @@ class AppAnimationSystem {
     if (appName === 'TikTok') return 'tiktok';
     if (appName === 'Netflix') return 'wednesday';
     if (appName === 'Crunchyroll') return 'crunchyroll';
+    if (appName === 'Telegram') return 'telegram';
+    if (appName === 'WhatsApp') return 'whatsapp';
     return 'none';
   }
 
@@ -4353,13 +4355,20 @@ class AppAnimationSystem {
         this.showWednesdayAnimation();
       } else if (animationType === 'crunchyroll') {
         this.showCrunchyrollAnimation();
+      } else if (animationType === 'telegram') {
+        this.showTelegramAnimation();
+      } else if (animationType === 'whatsapp') {
+        this.showWhatsAppAnimation();
       }
     }
 
-    // Limpiar después de exactamente 5 segundos
+    // Limpiar después del tiempo apropiado para cada animación
+    const animationType = this.getAnimationType(appName);
+    const cleanupTime = animationType === 'telegram' ? 6000 : 5000;
+    
     setTimeout(() => {
       this.isAnimating = false;
-    }, 5000);
+    }, cleanupTime);
   }
 
   async showPlantAnimation() {
@@ -4539,6 +4548,53 @@ class AppAnimationSystem {
       setTimeout(() => {
         animationContainer.remove();
       }, 500);
+    }, 5000);
+  }
+
+  async showTelegramAnimation() {
+    // Crear el contenedor de animación Telegram
+    const animationContainer = document.createElement('div');
+    animationContainer.className = 'telegram-animation-container';
+    
+    animationContainer.innerHTML = `
+      <div class="telegram-plane">✈️</div>
+    `;
+
+    document.body.appendChild(animationContainer);
+
+    // La animación durará 6 segundos exactos
+    setTimeout(() => {
+      animationContainer.remove();
+    }, 6000);
+  }
+
+  async showWhatsAppAnimation() {
+    // Crear el contenedor de animación WhatsApp
+    const animationContainer = document.createElement('div');
+    animationContainer.className = 'whatsapp-animation-container';
+    
+    animationContainer.innerHTML = `
+      <div class="whatsapp-typing">
+        <div class="typing-indicator">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+        <div class="typing-text">Escribiendo...</div>
+      </div>
+    `;
+
+    document.body.appendChild(animationContainer);
+
+    // Limpiar después de 5 segundos exactos
+    setTimeout(() => {
+      animationContainer.style.opacity = '0';
+      animationContainer.style.transform = 'translate(-50%, -50%) scale(0.8)';
+      animationContainer.style.transition = 'all 0.3s ease';
+      
+      setTimeout(() => {
+        animationContainer.remove();
+      }, 300);
     }, 5000);
   }
 
