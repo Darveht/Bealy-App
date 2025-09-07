@@ -125,17 +125,18 @@ function detectDevice() {
 async function detectCountry() {
   try {
     const response = await fetch('https://ipapi.co/json/');
+    if (!response.ok) throw new Error('Network error');
     const data = await response.json();
     const countryElement = document.getElementById('user-country');
-    if (countryElement) {
+    if (countryElement && data.country_code) {
       countryElement.innerHTML = `Tu país: ${data.country_name} (${data.country_code})`;
     }
-    return data.country_code;
+    return data.country_code || 'US';
   } catch (error) {
-    console.error('Error detecting country:', error);
+    console.log('Using default country due to network limitations');
     const countryElement = document.getElementById('user-country');
     if (countryElement) {
-      countryElement.innerHTML = 'No se pudo detectar tu país';
+      countryElement.innerHTML = 'País: Estados Unidos (US)';
     }
     return 'US';
   }
@@ -1065,7 +1066,7 @@ const apps = [{
     "category": "Juegos",
     "rating": 4.4,
     "size": "180 MB",
-    "icon": "https://play-lh.googleusercontent.com/WNWZaxi9RdJKe2GQM3vqXIAkk69mnIl4Cc8EyZcir2BB2nCYyzpNUGWfdpJnBp5XV-bJ=w480-h960",
+    "icon": "https://play-lh.googleusercontent.com/7cIIPlWm4m7AGqVpEsIfyL-HW4cQla4ucXnfalMft1TMIYQIlf2vqgmthlZgbNAQoaQ",
     "description": "Roblox es la plataforma de creación definitiva que permite a millones de usuarios crear e interactuar juntos en experiencias 3D inmersivas creadas por la comunidad global de desarrolladores.",
     "downloads": "500M+",
     "bannerGradient": "45deg, #00A2FF, #0078D4",
@@ -2573,17 +2574,75 @@ function initializeVideoPlayers() {
 }
 
 function showVersionsSection(app) {
-  const versionsSection = document.getElementById('versionsSection');
-  if (!versionsSection) {
-    // Crear la sección de versiones si no existe
-    const section = document.createElement('div');
-    section.id = 'versionsSection';
-    section.style.display = 'none';
-    document.body.appendChild(section);
-  }
+  // Cerrar modal actual
+  document.getElementById('appModal').classList.remove('active');
   
-  // Implementar la lógica de versiones aquí
-  console.log('Showing versions for:', app.name);
+  // Crear modal de versiones
+  const versionsModal = document.createElement('div');
+  versionsModal.className = 'versions-modal';
+  versionsModal.id = 'versionsModal';
+  versionsModal.innerHTML = `
+    <div class="versions-content">
+      <div class="versions-header">
+        <h2>Versiones de ${app.name}</h2>
+        <button class="close-versions" onclick="closeVersionsModal()">×</button>
+      </div>
+      <div class="versions-body">
+        <div class="current-version-info">
+          <h3>Versión Actual</h3>
+          <div class="version-card current">
+            <div class="version-header">
+              <span class="version-number">${app.version}</span>
+              <span class="version-badge current-badge">Actual</span>
+            </div>
+            <div class="version-details">
+              <span><i class="fas fa-calendar"></i> Hace 2 días</span>
+              <span><i class="fas fa-download"></i> ${app.size}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="previous-versions-list">
+          <h3>Versiones Anteriores</h3>
+          ${app.previousVersions.map(version => `
+            <div class="version-card">
+              <div class="version-header">
+                <input type="checkbox" class="version-checkbox" data-version="${version}">
+                <span class="version-number">${version}</span>
+                <div class="version-actions">
+                  <button class="version-action-btn download-btn" onclick="downloadVersion('${app.name}', '${version}')">
+                    <i class="fas fa-download"></i>
+                  </button>
+                  <button class="version-action-btn delete-btn" onclick="deleteVersion('${app.name}', '${version}', this)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="version-details">
+                <span><i class="fas fa-calendar"></i> ${getRandomDate()}</span>
+                <span><i class="fas fa-file-archive"></i> ${getRandomSize()}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        
+        <div class="versions-actions">
+          <button class="bulk-action-btn" onclick="selectAllVersions()">
+            <i class="fas fa-check-square"></i> Seleccionar Todo
+          </button>
+          <button class="bulk-action-btn" onclick="deselectAllVersions()">
+            <i class="fas fa-square"></i> Deseleccionar Todo
+          </button>
+          <button class="bulk-action-btn delete-selected" onclick="deleteSelectedVersions('${app.name}')" disabled>
+            <i class="fas fa-trash-alt"></i> Eliminar Seleccionadas (0)
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(versionsModal);
+  document.body.style.overflow = 'hidden';
 }
 
 function togglePreviousVersions(appName) {
@@ -4026,27 +4085,53 @@ class MomentosSystem {
 // Initialize Momentos System
 const momentosSystem = new MomentosSystem();
 
-// Sistema de animación de planta para aplicaciones específicas
-class PlantGrowthAnimation {
+// Sistema de animación para aplicaciones específicas
+class AppAnimationSystem {
   constructor() {
     this.isAnimating = false;
     this.plantApps = ['Roblox', 'Among Us', 'Candy Crush Saga']; // Apps que tendrán animación de planta
+    this.specialApps = ['TikTok']; // Apps con animaciones especiales
   }
 
   shouldShowAnimation(appName) {
-    return this.plantApps.includes(appName);
+    return this.plantApps.includes(appName) || this.specialApps.includes(appName);
   }
 
-  async showGrowthAnimation(clickedElement) {
+  getAnimationType(appName) {
+    if (this.plantApps.includes(appName)) return 'plant';
+    if (appName === 'TikTok') return 'tiktok';
+    return 'none';
+  }
+
+  async showAnimation(appName, clickedElement) {
     if (this.isAnimating) return;
     this.isAnimating = true;
 
-    // Crear el contenedor de la animación
+    const animationType = this.getAnimationType(appName);
+    
+    if (animationType === 'plant') {
+      await this.showPlantAnimation();
+    } else if (animationType === 'tiktok') {
+      await this.showTikTokAnimation();
+    }
+
+    // Limpiar después de exactamente 5 segundos
+    setTimeout(() => {
+      this.isAnimating = false;
+    }, 5000);
+  }
+
+  async showPlantAnimation() {
+    // Crear el contenedor de la animación centrado
     const animationContainer = document.createElement('div');
     animationContainer.className = 'plant-animation-container';
     
-    // Obtener la posición del elemento clickeado
-    const rect = clickedElement.getBoundingClientRect();
+    // Centrar en la pantalla
+    animationContainer.style.position = 'fixed';
+    animationContainer.style.top = '50%';
+    animationContainer.style.left = '50%';
+    animationContainer.style.transform = 'translate(-50%, -50%)';
+    animationContainer.style.zIndex = '9999';
     
     animationContainer.innerHTML = `
       <div class="plant-growth-scene">
@@ -4089,31 +4174,93 @@ class PlantGrowthAnimation {
       </div>
     `;
 
-    // Posicionar la animación donde se hizo clic
-    animationContainer.style.left = `${rect.left + (rect.width / 2) - 75}px`;
-    animationContainer.style.top = `${rect.top + (rect.height / 2) - 75}px`;
+    document.body.appendChild(animationContainer);
+
+    // Ejecutar la secuencia de crecimiento rápida
+    await this.executeGrowthSequence(animationContainer);
+
+    // Limpiar después de 5 segundos exactos
+    setTimeout(() => {
+      animationContainer.remove();
+    }, 5000);
+  }
+
+  async showTikTokAnimation() {
+    // Crear el contenedor de animación TikTok
+    const animationContainer = document.createElement('div');
+    animationContainer.className = 'tiktok-animation-container';
+    
+    // Centrar en la pantalla
+    animationContainer.style.position = 'fixed';
+    animationContainer.style.top = '50%';
+    animationContainer.style.left = '50%';
+    animationContainer.style.transform = 'translate(-50%, -50%)';
+    animationContainer.style.zIndex = '9999';
+    animationContainer.style.width = '300px';
+    animationContainer.style.height = '300px';
+    
+    animationContainer.innerHTML = `
+      <div class="tiktok-scene">
+        <div class="red-dot-container">
+          <div class="red-dot"></div>
+          <div class="live-text">LIVE</div>
+        </div>
+        <div class="musical-notes">
+          <div class="note note-1">♪</div>
+          <div class="note note-2">♫</div>
+          <div class="note note-3">♪</div>
+          <div class="note note-4">♫</div>
+          <div class="note note-5">♪</div>
+          <div class="note note-6">♫</div>
+          <div class="note note-7">♪</div>
+          <div class="note note-8">♫</div>
+        </div>
+      </div>
+    `;
 
     document.body.appendChild(animationContainer);
 
-    // Ejecutar la secuencia de crecimiento
-    await this.executeGrowthSequence(animationContainer);
+    // Ejecutar animación TikTok
+    await this.executeTikTokSequence(animationContainer);
 
-    // Limpiar después de la animación
+    // Limpiar después de 5 segundos exactos
     setTimeout(() => {
       animationContainer.remove();
-      this.isAnimating = false;
+    }, 5000);
+  }
+
+  async executeTikTokSequence(container) {
+    const redDot = container.querySelector('.red-dot');
+    const liveText = container.querySelector('.live-text');
+    const notes = container.querySelectorAll('.note');
+
+    // Iniciar parpadeo del punto rojo inmediatamente
+    redDot.classList.add('pulsing');
+
+    // Después de 1 segundo, mostrar "LIVE"
+    setTimeout(() => {
+      liveText.classList.add('show-live');
     }, 1000);
+
+    // Después de 1.5 segundos, empezar las notas musicales
+    setTimeout(() => {
+      notes.forEach((note, index) => {
+        setTimeout(() => {
+          note.classList.add('floating');
+        }, index * 200);
+      });
+    }, 1500);
   }
 
   async executeGrowthSequence(container) {
     const stages = container.querySelectorAll('.stage');
     const sparkles = container.querySelectorAll('.sparkle');
 
-    // Mostrar suelo primero
-    await this.animateElement(container.querySelector('.soil'), 'soil-appear');
-    await this.delay(300);
+    // Mostrar suelo primero (más rápido)
+    await this.animateElement(container.querySelector('.soil-3d'), 'soil-appear');
+    await this.delay(200);
 
-    // Crecimiento por etapas
+    // Crecimiento por etapas (más rápido)
     for (let i = 0; i < stages.length; i++) {
       // Ocultar etapa anterior
       if (i > 0) {
@@ -4129,7 +4276,7 @@ class PlantGrowthAnimation {
         this.animateElement(sparkles[i], 'sparkle-burst');
       }
 
-      await this.delay(600);
+      await this.delay(400); // Reducido de 600 a 400
     }
 
     // Animación final de florecimiento
@@ -4156,19 +4303,19 @@ class PlantGrowthAnimation {
 }
 
 // Instanciar el sistema de animación
-const plantAnimation = new PlantGrowthAnimation();
+const appAnimationSystem = new AppAnimationSystem();
 
-// Modificar la función openAppModal para incluir la animación
+// Modificar la función openAppModal para incluir las animaciones
 const originalOpenAppModal = openAppModal;
 openAppModal = function(app, clickedElement) {
-  // Verificar si debe mostrar animación de planta
-  if (plantAnimation.shouldShowAnimation(app.name) && clickedElement) {
-    plantAnimation.showGrowthAnimation(clickedElement);
+  // Verificar si debe mostrar animación
+  if (appAnimationSystem.shouldShowAnimation(app.name) && clickedElement) {
+    appAnimationSystem.showAnimation(app.name, clickedElement);
     
-    // Retrasar la apertura del modal para que se vea la animación
+    // Retrasar la apertura del modal para que se vea la animación (5 segundos)
     setTimeout(() => {
       originalOpenAppModal(app);
-    }, 2500);
+    }, 5000);
   } else {
     originalOpenAppModal(app);
   }

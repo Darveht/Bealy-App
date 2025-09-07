@@ -3758,7 +3758,7 @@ body.dark-mode .refresh-web-app:hover {
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  animation: scene-rotate 4s ease-in-out;
+  animation: scene-rotate 3s ease-in-out;
 }
 
 @keyframes scene-rotate {
@@ -3844,7 +3844,7 @@ body.dark-mode .refresh-web-app:hover {
 }
 
 .plant-grow {
-  animation: plant-emergence 1s ease-out forwards;
+  animation: plant-emergence 0.6s ease-out forwards;
 }
 
 @keyframes plant-emergence {
@@ -3863,7 +3863,7 @@ body.dark-mode .refresh-web-app:hover {
 }
 
 .flower-bloom {
-  animation: flower-blossom 1.5s ease-out forwards;
+  animation: flower-blossom 0.8s ease-out forwards;
 }
 
 @keyframes flower-blossom {
@@ -4169,6 +4169,133 @@ body.dark-mode .refresh-web-app:hover {
   0%, 100% { transform: translateX(-10px) skewX(0deg); opacity: 0; }
   50% { transform: translateX(10px) skewX(5deg); opacity: 0.3; }
 }
+
+/* TikTok Animation Styles */
+.tiktok-animation-container {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  z-index: 9999;
+  pointer-events: none;
+  perspective: 1000px;
+}
+
+.tiktok-scene {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.red-dot-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.red-dot {
+  width: 12px;
+  height: 12px;
+  background: #ff0000;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+}
+
+.red-dot.pulsing {
+  animation: redDotPulse 1s ease-in-out infinite;
+}
+
+@keyframes redDotPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+  }
+}
+
+.live-text {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ff0000;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.live-text.show-live {
+  opacity: 1;
+  transform: translateX(0);
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.musical-notes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.note {
+  position: absolute;
+  font-size: 20px;
+  color: #ff0050;
+  opacity: 0;
+  transform: scale(0);
+  text-shadow: 0 0 10px rgba(255, 0, 80, 0.8);
+}
+
+.note.floating {
+  animation: noteFloat 3s ease-out forwards;
+}
+
+@keyframes noteFloat {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(0) rotate(0deg);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1) translateY(-20px) rotate(45deg);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1.2) translateY(-100px) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5) translateY(-150px) rotate(360deg);
+  }
+}
+
+.note-1 { top: 20%; left: 10%; animation-delay: 0s; }
+.note-2 { top: 30%; right: 15%; animation-delay: 0.2s; }
+.note-3 { bottom: 40%; left: 20%; animation-delay: 0.4s; }
+.note-4 { top: 15%; left: 60%; animation-delay: 0.6s; }
+.note-5 { bottom: 20%; right: 10%; animation-delay: 0.8s; }
+.note-6 { top: 50%; left: 5%; animation-delay: 1s; }
+.note-7 { bottom: 60%; right: 25%; animation-delay: 1.2s; }
+.note-8 { top: 40%; right: 5%; animation-delay: 1.4s; }
 
 /* Styles for app cards and general layout */
 
