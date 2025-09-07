@@ -89,6 +89,50 @@
     100% { transform: rotate(0) scale(1); }
 }
 
+/* Wednesday Logo Animation */
+.wednesday-logo-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.wednesday-logo-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.wednesday-logo {
+    width: 300px;
+    height: auto;
+    transform: translateY(100vh);
+    transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.wednesday-logo.animate {
+    transform: translateY(0);
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}
+
 .bell-icon.animate {
     animation: ring 1s ease;
     color: #FF416C;

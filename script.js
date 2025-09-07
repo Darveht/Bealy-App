@@ -4318,7 +4318,7 @@ class AppAnimationSystem {
   constructor() {
     this.isAnimating = false;
     this.plantApps = ['Roblox', 'Among Us', 'Candy Crush Saga']; // Apps que tendrán animación de planta
-    this.specialApps = ['TikTok']; // Apps con animaciones especiales
+    this.specialApps = ['TikTok', 'Netflix']; // Apps con animaciones especiales
   }
 
   shouldShowAnimation(appName) {
@@ -4328,6 +4328,7 @@ class AppAnimationSystem {
   getAnimationType(appName) {
     if (this.plantApps.includes(appName)) return 'plant';
     if (appName === 'TikTok') return 'tiktok';
+    if (appName === 'Netflix') return 'wednesday';
     return 'none';
   }
 
@@ -4347,6 +4348,8 @@ class AppAnimationSystem {
         this.showPlantAnimation();
       } else if (animationType === 'tiktok') {
         this.showTikTokAnimation();
+      } else if (animationType === 'wednesday') {
+        this.showWednesdayAnimation();
       }
     }
 
@@ -4468,6 +4471,42 @@ class AppAnimationSystem {
     // Limpiar después de 5 segundos exactos
     setTimeout(() => {
       animationContainer.remove();
+    }, 5000);
+  }
+
+  async showWednesdayAnimation() {
+    // Crear el contenedor de animación Wednesday
+    const animationOverlay = document.createElement('div');
+    animationOverlay.className = 'wednesday-logo-overlay';
+    
+    animationOverlay.innerHTML = `
+      <img src="https://static.wikia.nocookie.net/timburton/images/8/81/Wednesday_Logo.png/revision/latest?cb=20230902200434" 
+           alt="Wednesday Logo" 
+           class="wednesday-logo" 
+           onerror="this.src='https://via.placeholder.com/300x150/000000/FFFFFF?text=WEDNESDAY'">
+    `;
+
+    document.body.appendChild(animationOverlay);
+
+    // Mostrar overlay
+    setTimeout(() => {
+      animationOverlay.classList.add('show');
+    }, 100);
+
+    // Animar logo desde abajo después de mostrar overlay
+    setTimeout(() => {
+      const logo = animationOverlay.querySelector('.wednesday-logo');
+      logo.classList.add('animate');
+    }, 200);
+
+    // Limpiar después de 5 segundos exactos
+    setTimeout(() => {
+      const logo = animationOverlay.querySelector('.wednesday-logo');
+      logo.style.animation = 'fadeOut 0.5s ease-out forwards';
+      
+      setTimeout(() => {
+        animationOverlay.remove();
+      }, 500);
     }, 5000);
   }
 
