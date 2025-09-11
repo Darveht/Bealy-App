@@ -233,6 +233,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
+    <!-- Pantalla de Mantenimiento (debe estar al principio para mayor efectividad) -->
+    <div class="maintenance-overlay" id="maintenanceOverlay" aria-hidden="true">
+        <div class="maintenance-content">
+            <div class="maintenance-icon">
+                <i class="fas fa-tools"></i>
+            </div>
+            <h1 class="maintenance-title">Sitio en Mantenimiento</h1>
+            <p class="maintenance-message">
+                Estamos trabajando para mejorar tu experiencia.
+                <br>
+                Por favor, vuelve pronto hasta que se terminen las correcciones.
+            </p>
+            <p class="maintenance-details">
+                Nuestro equipo está realizando actualizaciones importantes para ofrecerte un mejor servicio.
+                <br>
+                Gracias por tu paciencia.
+            </p>
+            <div class="maintenance-animation">
+                <div class="maintenance-dot"></div>
+                <div class="maintenance-dot"></div>
+                <div class="maintenance-dot"></div>
+            </div>
+        </div>
+    </div>
     <!-- Header -->
     <div class="header-container">
         <div class="left-section">

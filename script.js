@@ -4775,3 +4775,81 @@ function updateRatingStats(appName) {
     Promedio: ${avgRating.toFixed(1)} estrellas (${appRatings.length} votos)
   `;
 }
+
+// ===========================================
+// SISTEMA DE PANTALLA DE MANTENIMIENTO
+// ===========================================
+
+// Variable para activar/desactivar la pantalla de mantenimiento
+// Cambiar a true para activar, false para desactivar
+let MAINTENANCE_MODE = false;
+
+/**
+ * Función para activar o desactivar el modo mantenimiento
+ * @param {boolean} enable - true para activar, false para desactivar
+ */
+function setMaintenanceMode(enable) {
+  MAINTENANCE_MODE = enable;
+  const overlay = document.getElementById('maintenanceOverlay');
+  
+  // Verificar que el elemento exista antes de manipularlo
+  if (!overlay) {
+    console.warn('⚠️  Elemento de mantenimiento no encontrado');
+    return;
+  }
+  
+  if (enable) {
+    overlay.classList.add('active');
+    // Deshabilitar el scroll del body y bloquear interacciones
+    document.body.style.overflow = 'hidden';
+    document.body.style.pointerEvents = 'none';
+    overlay.style.pointerEvents = 'auto';
+    // Configurar aria para accesibilidad
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.setAttribute('aria-hidden', 'true');
+    console.log('🔧 Modo mantenimiento ACTIVADO');
+  } else {
+    overlay.classList.remove('active');
+    // Rehabilitar el scroll del body y las interacciones
+    document.body.style.overflow = 'auto';
+    document.body.style.pointerEvents = 'auto';
+    // Restaurar aria para accesibilidad
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.setAttribute('aria-hidden', 'false');
+    console.log('✅ Modo mantenimiento DESACTIVADO');
+  }
+}
+
+/**
+ * Función para alternar el modo mantenimiento
+ */
+function toggleMaintenanceMode() {
+  setMaintenanceMode(!MAINTENANCE_MODE);
+}
+
+/**
+ * Función para obtener el estado actual del modo mantenimiento
+ * @returns {boolean} - true si está activado, false si está desactivado
+ */
+function getMaintenanceMode() {
+  return MAINTENANCE_MODE;
+}
+
+// Inicializar el modo mantenimiento al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+  // Verificar si el modo mantenimiento debe estar activo
+  if (MAINTENANCE_MODE) {
+    setMaintenanceMode(true);
+  }
+  
+  // NOTA: Para mayor seguridad en producción, se recomienda:
+  // 1. Remover las funciones globales de window
+  // 2. Configurar el estado desde el servidor (503 Service Unavailable)
+  // 3. Usar variables de entorno o archivos de configuración
+});
+
+// ADVERTENCIA: Estas funciones están expuestas para desarrollo
+// En producción, se recomienda removerlas por seguridad
+window.setMaintenanceMode = setMaintenanceMode;
+window.toggleMaintenanceMode = toggleMaintenanceMode;
+window.getMaintenanceMode = getMaintenanceMode;
