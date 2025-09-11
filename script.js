@@ -4782,7 +4782,7 @@ function updateRatingStats(appName) {
 
 // Variable para activar/desactivar la pantalla de mantenimiento
 // Cambiar a true para activar, false para desactivar
-let MAINTENANCE_MODE = false;
+let MAINTENANCE_MODE = true;
 
 /**
  * Función para activar o desactivar el modo mantenimiento
