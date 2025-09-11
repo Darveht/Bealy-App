@@ -1,120 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Veraxa</title>
-  <link rel="stylesheet" href="./style.css">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4653147807800151" crossorigin="anonymous"></script>
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviso de Descarga</title>
+    <title>Veraxa</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-    <style>
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f2f2f7;
-        }
-
-        /* Contenedor del aviso */
-        .aviso-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-
-        /* Ventana flotante */
-        .slider {
-            width: 90%;
-            max-width: 380px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            padding: 20px;
-        }
-
-        /* Slide */
-        .slide {
-            display: none;
-            text-align: center;
-        }
-
-        .slide h3 {
-            font-size: 18px;
-            color: #333;
-        }
-
-        .slide p {
-            font-size: 14px;
-            color: #666;
-            margin: 10px 0;
-        }
-
-        .slide i {
-            font-size: 40px;
-            color: #007aff;
-            margin-bottom: 10px;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            background: #f2f2f7;
-            border-top: 1px solid #ddd;
-        }
-
-        .btn {
-            background: transparent;
-            border: none;
-            font-size: 16px;
-            color: #007aff;
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        .btn:disabled {
-            color: #ccc;
-        }
-
-        /* Estilo para la verificación */
-        .verified {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            font-weight: bold;
-            color: #007aff;
-        }
-
-        /* Ocultar aviso después de completarlo */
-        .hidden {
-            display: none !important;
-        }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4653147807800151" crossorigin="anonymous"></script>
 </head>
 <body>
+    <!-- Pantalla de Mantenimiento (debe estar al principio para mayor efectividad) -->
+    <div class="maintenance-overlay" id="maintenanceOverlay" role="dialog" aria-modal="true" aria-labelledby="maintenance-title" aria-hidden="true">
+        <div class="maintenance-content">
+            <div class="maintenance-icon">
+                <i class="fas fa-tools"></i>
+            </div>
+            <h1 class="maintenance-title" id="maintenance-title">Sitio en Mantenimiento</h1>
+            <p class="maintenance-message">
+                Estamos trabajando para mejorar tu experiencia.
+                <br>
+                Por favor, vuelve pronto hasta que se terminen las correcciones.
+            </p>
+            <p class="maintenance-details">
+                Nuestro equipo está realizando actualizaciones importantes para ofrecerte un mejor servicio.
+                <br>
+                Gracias por tu paciencia.
+            </p>
+            <div class="maintenance-animation">
+                <div class="maintenance-dot"></div>
+                <div class="maintenance-dot"></div>
+                <div class="maintenance-dot"></div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Contenedor del aviso -->
+    <!-- Contenedor del aviso inicial -->
     <div class="aviso-container" id="aviso">
         <div class="slider">
             <!-- Slide 1: Aviso sobre enlaces -->
@@ -160,103 +86,6 @@
         </div>
     </div>
 
-    <script>
-        let currentSlide = 1;
-
-        // Muestra la primera página y oculta las demás
-        function updateSlide() {
-            // Ocultar todos los slides
-            for (let i = 1; i <= 4; i++) {
-                document.getElementById("slide" + i).style.display = "none";
-            }
-
-            // Mostrar solo el slide actual
-            document.getElementById("slide" + currentSlide).style.display = "block";
-
-            // Habilitar/deshabilitar botones
-            document.getElementById("prevBtn").disabled = currentSlide === 1;
-            document.getElementById("nextBtn").innerText = currentSlide === 4 ? "Comenzar" : "Siguiente";
-        }
-
-        function nextSlide() {
-            if (currentSlide < 4) {
-                currentSlide++;
-                updateSlide();
-            } else {
-                document.getElementById("aviso").classList.add("hidden");
-                localStorage.setItem("avisoMostrado", "true");
-            }
-        }
-
-        function prevSlide() {
-            if (currentSlide > 1) {
-                currentSlide--;
-                updateSlide();
-            }
-        }
-
-        // Actualizar nombre y foto de perfil
-        document.getElementById("file-input").addEventListener("change", function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById("profile-pic").src = e.target.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-
-        document.getElementById("username").addEventListener("input", function() {
-            document.getElementById("user-display").innerText = this.value || "Usuario";
-        });
-
-        // Si el aviso ya se mostró antes, lo ocultamos
-        if (localStorage.getItem("avisoMostrado")) {
-            document.getElementById("aviso").classList.add("hidden");
-        }
-
-        // Inicializar el primer slide
-        updateSlide();
-    </script>
-
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veraxa</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-</head>
-<body>
-    <!-- Pantalla de Mantenimiento (debe estar al principio para mayor efectividad) -->
-    <div class="maintenance-overlay" id="maintenanceOverlay" aria-hidden="true">
-        <div class="maintenance-content">
-            <div class="maintenance-icon">
-                <i class="fas fa-tools"></i>
-            </div>
-            <h1 class="maintenance-title">Sitio en Mantenimiento</h1>
-            <p class="maintenance-message">
-                Estamos trabajando para mejorar tu experiencia.
-                <br>
-                Por favor, vuelve pronto hasta que se terminen las correcciones.
-            </p>
-            <p class="maintenance-details">
-                Nuestro equipo está realizando actualizaciones importantes para ofrecerte un mejor servicio.
-                <br>
-                Gracias por tu paciencia.
-            </p>
-            <div class="maintenance-animation">
-                <div class="maintenance-dot"></div>
-                <div class="maintenance-dot"></div>
-                <div class="maintenance-dot"></div>
-            </div>
-        </div>
-    </div>
     <!-- Header -->
     <div class="header-container">
         <div class="left-section">
@@ -274,7 +103,7 @@
             </button>
             <button class="icon-button" id="settingsIcon">
                 <i class="fas fa-cog"></i>
-          
+            </button>
         </div>
     </div>
 
@@ -440,8 +269,6 @@
         </div>
     </div>
 
-
-
     <!-- Side Menu -->
     <nav class="side-menu">
         <a href="#" class="menu-item active">
@@ -460,7 +287,6 @@
             <i class="fas fa-edit"></i>
             <span>Editorial</span>
         </a>
-        
     </nav>
 
     <!-- Websites Section -->
@@ -500,11 +326,86 @@
         </div>
     </div>
 
-    
-</body>
-</html>
-<!-- partial -->
-  <script  src="./script.js"></script>
+    <!-- JavaScript para el aviso inicial -->
+    <script>
+        let currentSlide = 1;
 
+        // Muestra la primera página y oculta las demás
+        function updateSlide() {
+            // Ocultar todos los slides
+            for (let i = 1; i <= 4; i++) {
+                const slide = document.getElementById("slide" + i);
+                if (slide) slide.style.display = "none";
+            }
+
+            // Mostrar solo el slide actual
+            const currentSlideElement = document.getElementById("slide" + currentSlide);
+            if (currentSlideElement) currentSlideElement.style.display = "block";
+
+            // Habilitar/deshabilitar botones
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
+            if (prevBtn) prevBtn.disabled = currentSlide === 1;
+            if (nextBtn) nextBtn.innerText = currentSlide === 4 ? "Comenzar" : "Siguiente";
+        }
+
+        function nextSlide() {
+            if (currentSlide < 4) {
+                currentSlide++;
+                updateSlide();
+            } else {
+                const aviso = document.getElementById("aviso");
+                if (aviso) {
+                    aviso.classList.add("hidden");
+                    localStorage.setItem("avisoMostrado", "true");
+                }
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Actualizar nombre y foto de perfil
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById("file-input");
+            if (fileInput) {
+                fileInput.addEventListener("change", function(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const profilePic = document.getElementById("profile-pic");
+                            if (profilePic) profilePic.src = e.target.result;
+                        }
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            const usernameInput = document.getElementById("username");
+            if (usernameInput) {
+                usernameInput.addEventListener("input", function() {
+                    const userDisplay = document.getElementById("user-display");
+                    if (userDisplay) userDisplay.innerText = this.value || "Usuario";
+                });
+            }
+
+            // Si el aviso ya se mostró antes, lo ocultamos
+            if (localStorage.getItem("avisoMostrado")) {
+                const aviso = document.getElementById("aviso");
+                if (aviso) aviso.classList.add("hidden");
+            }
+
+            // Inicializar el primer slide
+            updateSlide();
+        });
+    </script>
+
+    <!-- JavaScript principal -->
+    <script src="./script.js"></script>
 </body>
 </html>
