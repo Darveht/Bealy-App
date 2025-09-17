@@ -4976,11 +4976,11 @@ class SupportChatSystem {
         
         // Agregar mensaje de bienvenida del agente
         setTimeout(() => {
-            this.addAgentMessage('¡Hola! 👋 Soy tu agente virtual de soporte. Estoy aquí para ayudarte con cualquier problema que tengas con nuestras aplicaciones.');
+            this.addAgentMessage('Hola! Soy tu agente virtual de soporte. Estoy aquí para ayudarte con cualquier problema que tengas con nuestras aplicaciones.');
         }, 500);
         
         setTimeout(() => {
-            this.addAgentMessage('Para poder asistirte mejor, por favor proporciona tu correo electrónico y describe brevemente el problema que tienes. 📝');
+            this.addAgentMessage('Para poder asistirte mejor, por favor proporciona tu correo electrónico y describe brevemente el problema que tienes.');
         }, 1500);
         
         this.currentStep = 'contact_form';
@@ -5041,11 +5041,11 @@ class SupportChatSystem {
         
         // Respuesta del agente
         setTimeout(() => {
-            this.addAgentMessage(`¡Perfecto! He verificado tu correo electrónico: ${email} ✅`);
+            this.addAgentMessage(`Perfecto! He verificado tu correo electrónico: ${email}`);
         }, 1000);
         
         setTimeout(() => {
-            this.addAgentMessage('Por favor, indícame con más detalle cuál es el problema que tienes. ¿Es con alguna aplicación específica? 🤔');
+            this.addAgentMessage('Por favor, indícame con más detalle cuál es el problema que tienes. ¿Es con alguna aplicación específica?');
         }, 2500);
         
         this.currentStep = 'conversation';
@@ -5090,43 +5090,153 @@ class SupportChatSystem {
         
         setTimeout(() => {
             this.removeTypingIndicator();
-            this.addAgentMessage('¡Entiendo! Tienes un problema con alguna aplicación. 📱 Te voy a mostrar todas las aplicaciones disponibles en nuestra plataforma para que selecciones con cuál tienes el problema.');
+            this.addAgentMessage('Entiendo! Tienes un problema con alguna aplicación. Te voy a mostrar todas las aplicaciones disponibles en nuestra plataforma en pantalla completa para que selecciones con cuál tienes el problema.');
         }, 1500);
         
         setTimeout(() => {
-            this.displayAppCarousel();
+            this.displayFullscreenAppSelector();
         }, 3000);
         
         this.currentStep = 'app_selection';
     }
     
-    displayAppCarousel() {
-        const appSelector = document.getElementById('appSelectorContainer');
-        const appCarousel = document.getElementById('appCarousel');
+    displayFullscreenAppSelector() {
+        // Crear modal de pantalla completa para selección de apps
+        const fullscreenSelector = document.createElement('div');
+        fullscreenSelector.className = 'fullscreen-app-selector';
+        fullscreenSelector.id = 'fullscreenAppSelector';
         
-        if (!appSelector || !appCarousel) return;
+        fullscreenSelector.innerHTML = `
+            <div class="fullscreen-selector-header">
+                <button class="back-from-selector" onclick="supportChatSystem.closeAppSelector()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Selecciona la aplicación</h2>
+                <div style="width: 40px;"></div>
+            </div>
+            <div class="fullscreen-selector-body">
+                <div class="search-apps">
+                    <input type="text" placeholder="Buscar aplicación..." id="searchAppsInput">
+                </div>
+                <div class="apps-grid-fullscreen" id="appsGridFullscreen">
+                    <!-- Apps se cargarán aquí -->
+                </div>
+                <div class="selector-footer">
+                    <button class="confirm-selected-app-btn" id="confirmSelectedAppBtn" disabled>
+                        Confirmar Selección
+                    </button>
+                </div>
+            </div>
+        `;
         
-        // Mostrar selector de aplicaciones
-        appSelector.style.display = 'block';
+        document.body.appendChild(fullscreenSelector);
         
-        // Limpiar carrusel
-        appCarousel.innerHTML = '';
+        // Cargar aplicaciones
+        this.loadAppsInFullscreen();
         
-        // Agregar aplicaciones al carrusel (usando el array global 'apps')
+        // Agregar evento de búsqueda
+        const searchInput = document.getElementById('searchAppsInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                this.filterAppsInFullscreen(e.target.value);
+            });
+        }
+        
+        // Mostrar el modal
+        setTimeout(() => {
+            fullscreenSelector.classList.add('active');
+        }, 100);
+    }
+    
+    loadAppsInFullscreen() {
+        const appsGrid = document.getElementById('appsGridFullscreen');
+        if (!appsGrid) return;
+        
+        appsGrid.innerHTML = '';
+        
         if (typeof apps !== 'undefined' && apps.length > 0) {
             apps.forEach((app, index) => {
                 const appItem = document.createElement('div');
-                appItem.className = 'app-carousel-item';
+                appItem.className = 'app-grid-item';
                 appItem.dataset.appIndex = index;
+                appItem.dataset.appName = app.name.toLowerCase();
                 
                 appItem.innerHTML = `
-                    <img src="${app.icon}" alt="${app.name}" onerror="this.src='https://via.placeholder.com/50x50?text=${app.name.charAt(0)}'">
-                    <h4>${app.name}</h4>
+                    <div class="app-item-content">
+                        <img src="${app.icon}" alt="${app.name}" onerror="this.src='https://via.placeholder.com/60x60?text=${app.name.charAt(0)}'">
+                        <div class="app-item-info">
+                            <h4>${app.name}</h4>
+                            <p>${app.developer}</p>
+                            <span class="app-category">${app.category}</span>
+                        </div>
+                        <div class="selection-indicator">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
                 `;
                 
-                appItem.addEventListener('click', () => this.selectApp(appItem, app));
-                appCarousel.appendChild(appItem);
+                appItem.addEventListener('click', () => this.selectAppFullscreen(appItem, app));
+                appsGrid.appendChild(appItem);
             });
+        }
+    }
+    
+    filterAppsInFullscreen(searchTerm) {
+        const appItems = document.querySelectorAll('.app-grid-item');
+        const term = searchTerm.toLowerCase();
+        
+        appItems.forEach(item => {
+            const appName = item.dataset.appName;
+            const isVisible = appName.includes(term);
+            item.style.display = isVisible ? 'block' : 'none';
+        });
+    }
+    
+    selectAppFullscreen(element, app) {
+        // Remover selección previa
+        const allItems = document.querySelectorAll('.app-grid-item');
+        allItems.forEach(item => item.classList.remove('selected'));
+        
+        // Seleccionar nueva app
+        element.classList.add('selected');
+        this.selectedApp = app;
+        
+        // Habilitar botón de confirmación
+        const confirmBtn = document.getElementById('confirmSelectedAppBtn');
+        if (confirmBtn) {
+            confirmBtn.disabled = false;
+            confirmBtn.onclick = () => this.confirmAppSelectionFullscreen();
+        }
+    }
+    
+    confirmAppSelectionFullscreen() {
+        if (!this.selectedApp) return;
+        
+        // Cerrar selector de pantalla completa
+        this.closeAppSelector();
+        
+        // Agregar mensaje del usuario
+        this.addUserMessage(`He seleccionado: ${this.selectedApp.name}`);
+        
+        // Respuesta del agente
+        setTimeout(() => {
+            this.addAgentMessage(`Excelente! Veo que tienes un problema con ${this.selectedApp.name}.`);
+        }, 1000);
+        
+        setTimeout(() => {
+            this.addAgentMessage(`Ahora, por favor describe detalladamente qué problema estás experimentando con ${this.selectedApp.name}. Mientras más información me proporciones, mejor podremos ayudarte.`);
+        }, 2500);
+        
+        this.currentStep = 'app_problem';
+    }
+    
+    closeAppSelector() {
+        const fullscreenSelector = document.getElementById('fullscreenAppSelector');
+        if (fullscreenSelector) {
+            fullscreenSelector.classList.remove('active');
+            setTimeout(() => {
+                fullscreenSelector.remove();
+            }, 300);
         }
     }
     
@@ -5176,15 +5286,15 @@ class SupportChatSystem {
         
         setTimeout(() => {
             this.removeTypingIndicator();
-            this.addAgentMessage('¡Gracias por tu ayuda! 🙏 Nos ayudas a mejorar nuestros servicios y las aplicaciones en nuestra plataforma.');
+            this.addAgentMessage('Gracias por tu ayuda! Nos ayudas a mejorar nuestros servicios y las aplicaciones en nuestra plataforma.');
         }, 1500);
         
         setTimeout(() => {
-            this.addAgentMessage('Muchas gracias. Daremos estos resultados tan pronto como sea posible cuando nuestro equipo revise las aplicaciones. 👨‍💻👩‍💻');
+            this.addAgentMessage('Muchas gracias. Daremos estos resultados tan pronto como sea posible cuando nuestro equipo revise las aplicaciones.');
         }, 3500);
         
         setTimeout(() => {
-            this.addAgentMessage('Gracias, vuelve en 24 horas hasta que estén los resultados. ⏰ ¡Que tengas un excelente día! 😊');
+            this.addAgentMessage('Gracias, vuelve en 24 horas hasta que estén los resultados. Que tengas un excelente día!');
         }, 5500);
         
         this.currentStep = 'final';
