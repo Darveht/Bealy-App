@@ -5444,9 +5444,11 @@ body.dark-mode .loading-spinner {
     padding: 20px;
     overflow-y: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(120px, auto);
     gap: 15px;
     background: #f5f7fa;
+    max-height: 400px;
 }
 
 .app-grid-item {
@@ -5631,9 +5633,11 @@ body.dark-mode .selector-footer {
 
 @media (max-width: 768px) {
     .apps-grid-fullscreen {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         padding: 15px;
+        gap: 12px;
     }
+}
     
     .app-item-content {
         padding: 15px;

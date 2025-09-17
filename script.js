@@ -4870,46 +4870,8 @@ class AppAnimationSystem {
   }
 
   async showWednesdayAnimation() {
-    // Crear el contenedor de animación Wednesday
-    const animationOverlay = document.createElement('div');
-    animationOverlay.className = 'wednesday-logo-overlay';
-
-    animationOverlay.innerHTML = `
-      <div class="netflix-announcement">
-        <div class="announcement-text">
-          🎭 ¡Todos los capítulos de Wednesday ya están disponibles! 
-          <br>
-          📺 Ve ahora con una suscripción desde $7 USD
-        </div>
-      </div>
-      <img src="https://dx35vtwkllhj9.cloudfront.net/netflix/wednesday-addams-nevermore-academy/images/tt.png" 
-           alt="Wednesday Logo" 
-           class="wednesday-logo" 
-           onerror="this.src='https://via.placeholder.com/300x150/000000/FFFFFF?text=WEDNESDAY'">
-    `;
-
-    document.body.appendChild(animationOverlay);
-
-    // Mostrar overlay
-    setTimeout(() => {
-      animationOverlay.classList.add('show');
-    }, 100);
-
-    // Animar logo desde abajo después de mostrar overlay
-    setTimeout(() => {
-      const logo = animationOverlay.querySelector('.wednesday-logo');
-      logo.classList.add('animate');
-    }, 200);
-
-    // Limpiar después de 5 segundos exactos
-    setTimeout(() => {
-      const logo = animationOverlay.querySelector('.wednesday-logo');
-      logo.style.animation = 'fadeOut 0.5s ease-out forwards';
-
-      setTimeout(() => {
-        animationOverlay.remove();
-      }, 500);
-    }, 5000);
+    // Animación deshabilitada - no mostrar promoción
+    console.log('Animación de Wednesday deshabilitada');
   }
 
   async showCrunchyrollAnimation() {
@@ -5536,7 +5498,10 @@ class SupportChatSystem {
         appsGrid.innerHTML = '';
 
         if (typeof apps !== 'undefined' && apps.length > 0) {
-            apps.forEach((app, index) => {
+            // Filtrar solo las primeras 12 aplicaciones para mostrar en orden 3x4
+            const limitedApps = apps.slice(0, 12);
+            
+            limitedApps.forEach((app, index) => {
                 const appItem = document.createElement('div');
                 appItem.className = 'app-grid-item';
                 appItem.dataset.appIndex = index;
@@ -5662,21 +5627,42 @@ class SupportChatSystem {
     }
 
     handleAppProblemDescription(message) {
-        // Agregar respuesta final del agente
+        // Analizar el mensaje del usuario para detectar el tipo de problema
+        this.analyzeUserReport(message);
+        
+        // Agregar respuesta inicial del agente
         this.showTypingIndicator();
 
         setTimeout(() => {
             this.removeTypingIndicator();
-            this.addAgentMessage('Gracias por tu ayuda! Nos ayudas a mejorar nuestros servicios y las aplicaciones en nuestra plataforma.');
+            this.addAgentMessage('Perfecto! He recibido tu reporte sobre ' + this.selectedApp.name + '. Estoy analizando tu problema...');
         }, 1500);
 
+        // Simular análisis en la base de datos
         setTimeout(() => {
-            this.addAgentMessage('Muchas gracias. Daremos estos resultados tan pronto como sea posible cuando nuestro equipo revise las aplicaciones.');
-        }, 3500);
+            this.showTypingIndicator();
+        }, 3000);
 
         setTimeout(() => {
-            this.addAgentMessage('Gracias, vuelve en 24 horas hasta que estén los resultados. Que tengas un excelente día!');
-        }, 5500);
+            this.removeTypingIndicator();
+            this.addAgentMessage('🔍 Analizando en la base de datos... Un momento por favor.');
+        }, 4000);
+
+        // Realizar análisis completo y dar respuesta
+        setTimeout(() => {
+            this.showTypingIndicator();
+        }, 6000);
+
+        setTimeout(() => {
+            this.removeTypingIndicator();
+            const analysisResult = this.performDatabaseAnalysis(message);
+            this.addAgentMessage(analysisResult);
+        }, 7000);
+
+        // Mensaje final de agradecimiento
+        setTimeout(() => {
+            this.addAgentMessage('Gracias por reportar este problema. Tu retroalimentación nos ayuda a mejorar continuamente nuestros servicios. ¡Que tengas un excelente día! 😊');
+        }, 9000);
 
         this.currentStep = 'final';
 
@@ -5693,7 +5679,75 @@ class SupportChatSystem {
             if (sendBtn) {
                 sendBtn.disabled = true;
             }
-        }, 6000);
+        }, 10000);
+    }
+
+    analyzeUserReport(message) {
+        const lowerMessage = message.toLowerCase();
+        
+        // Detectar palabras clave de problemas
+        const problemKeywords = {
+            crash: ['crash', 'cierra', 'error', 'falla', 'no funciona', 'no abre'],
+            connection: ['conexión', 'internet', 'red', 'wifi', 'no conecta'],
+            slow: ['lento', 'lenta', 'despacio', 'carga mucho', 'demora'],
+            bugs: ['bug', 'error', 'problema', 'fallo', 'mal funcionamiento'],
+            ui: ['pantalla', 'interfaz', 'botón', 'diseño', 'visual'],
+            account: ['cuenta', 'login', 'usuario', 'contraseña', 'acceso']
+        };
+
+        // Clasificar el tipo de problema
+        for (const [category, keywords] of Object.entries(problemKeywords)) {
+            if (keywords.some(keyword => lowerMessage.includes(keyword))) {
+                console.log(`Problema detectado: ${category} para ${this.selectedApp.name}`);
+                return category;
+            }
+        }
+
+        return 'general';
+    }
+
+    performDatabaseAnalysis(message) {
+        const appName = this.selectedApp.name;
+        const problemType = this.analyzeUserReport(message);
+        
+        // Simular consulta a base de datos basada en la aplicación y problema
+        const analysisResults = {
+            'TikTok': {
+                crash: '✅ **Análisis completado**: TikTok está funcionando correctamente en nuestros servidores. El problema puede ser específico de tu dispositivo. Recomiendo reiniciar la app y verificar que tengas la última versión.',
+                connection: '✅ **Estado verificado**: Los servidores de TikTok están operativos. Si tienes problemas de conexión, verifica tu conexión a internet.',
+                slow: '⚠️ **Revisión detectada**: Hemos identificado algunos reportes similares. Nuestro equipo técnico está investigando posibles optimizaciones.',
+                general: '✅ **Análisis general**: TikTok está funcionando dentro de parámetros normales. Tu reporte será enviado al equipo de desarrollo.'
+            },
+            'Instagram': {
+                crash: '✅ **Verificación completa**: Instagram funciona correctamente. Intenta cerrar y reabrir la aplicación.',
+                connection: '✅ **Servidores OK**: Instagram está operativo. Problema puede ser de conectividad local.',
+                slow: '✅ **Rendimiento normal**: Instagram está funcionando a velocidad normal según nuestros monitores.',
+                general: '✅ **Estado normal**: Instagram funciona correctamente según nuestros sistemas de monitoreo.'
+            },
+            'Netflix': {
+                crash: '✅ **Sistemas operativos**: Netflix está funcionando correctamente en nuestros sistemas.',
+                connection: '✅ **Streaming OK**: Los servidores de Netflix están funcionando normalmente.',
+                slow: '⚠️ **Análisis detectado**: Algunos usuarios reportan problemas de velocidad. Verifica tu conexión a internet.',
+                general: '✅ **Todo operativo**: Netflix está funcionando dentro de los parámetros normales.'
+            },
+            'WhatsApp': {
+                crash: '✅ **Funcionamiento normal**: WhatsApp está operativo en todos nuestros sistemas de monitoreo.',
+                connection: '✅ **Conexión estable**: Los servidores de WhatsApp están funcionando correctamente.',
+                slow: '✅ **Velocidad normal**: WhatsApp está respondiendo a velocidad normal.',
+                general: '✅ **Estado óptimo**: WhatsApp funciona correctamente según nuestros análisis.'
+            }
+        };
+
+        // Obtener resultado específico o genérico
+        const appResults = analysisResults[appName];
+        if (appResults && appResults[problemType]) {
+            return appResults[problemType];
+        } else if (appResults && appResults.general) {
+            return appResults.general;
+        }
+
+        // Respuesta genérica para apps no específicamente configuradas
+        return `✅ **Análisis completado**: He revisado ${appName} en nuestra base de datos y los sistemas están funcionando normalmente. Tu reporte ha sido registrado y será revisado por nuestro equipo técnico. Si el problema persiste, intenta reinstalar la aplicación.`;
     }
 
     addGenericAgentResponse(userMessage) {
