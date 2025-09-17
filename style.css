@@ -5678,3 +5678,882 @@ body.dark-mode .selector-footer {
         width: 100%;
     }
 }
+
+/* === SISTEMA DE REPORTE DE APLICACIONES === */
+
+.report-app-section {
+    margin: 20px 0;
+    padding: 15px;
+    border-top: 1px solid #eaeced;
+}
+
+.report-btn {
+    width: 100%;
+    padding: 15px;
+    background: #f8f9fa;
+    border: 1px solid #eaeced;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    color: #2c2e2f;
+    font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
+    font-weight: 500;
+}
+
+.report-btn:hover {
+    background: #eaeced;
+    border-color: #ff4444;
+    color: #ff4444;
+    transform: translateY(-1px);
+}
+
+.report-btn i {
+    color: #ff4444;
+}
+
+/* Modal de Reporte - Estilo PayPal */
+.report-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 3000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
+    backdrop-filter: blur(5px);
+}
+
+.report-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.report-content {
+    background: white;
+    width: 95%;
+    height: 95%;
+    max-width: 900px;
+    max-height: 700px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    border: 1px solid #eaeced;
+}
+
+.report-modal.active .report-content {
+    transform: scale(1);
+    animation: reportModalSlideIn 0.4s ease-out;
+}
+
+@keyframes reportModalSlideIn {
+    from {
+        transform: scale(0.8) translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Header del Modal */
+.report-header {
+    background: linear-gradient(135deg, #ff4444 0%, #d32f2f 100%);
+    padding: 25px 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(255, 68, 68, 0.2);
+}
+
+.report-title-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.report-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.report-title-section h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.report-subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-top: 5px;
+}
+
+.close-report {
+    background: none;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.close-report:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Cuerpo del Modal */
+.report-body {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    background: #f5f7fa;
+}
+
+.app-info-report {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 2px solid #e3f2fd;
+    box-shadow: 0 2px 8px rgba(0, 112, 186, 0.1);
+}
+
+.app-info-report img {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.app-info-report h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #2c2e2f;
+    font-weight: 600;
+}
+
+.app-info-report p {
+    margin: 5px 0 0 0;
+    color: #687173;
+    font-size: 14px;
+}
+
+/* Lista de Razones de Reporte */
+.report-reasons {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eaeced;
+}
+
+.report-reasons h3 {
+    background: #0070ba;
+    color: white;
+    padding: 20px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.reason-item {
+    padding: 18px 20px;
+    border-bottom: 1px solid #eaeced;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.reason-item:last-child {
+    border-bottom: none;
+}
+
+.reason-item:hover {
+    background: #f8fcff;
+    border-left: 4px solid #0070ba;
+    padding-left: 16px;
+}
+
+.reason-item.selected {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f8fcff 100%);
+    border-left: 4px solid #0070ba;
+    padding-left: 16px;
+    box-shadow: inset 0 0 0 2px rgba(0, 112, 186, 0.1);
+}
+
+.reason-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f5f7fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #687173;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.reason-item.selected .reason-icon {
+    background: #0070ba;
+    color: white;
+    transform: scale(1.1);
+}
+
+.reason-text {
+    flex: 1;
+}
+
+.reason-title {
+    font-weight: 600;
+    color: #2c2e2f;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.reason-description {
+    font-size: 14px;
+    color: #687173;
+    line-height: 1.4;
+}
+
+.reason-item.selected .reason-title {
+    color: #0070ba;
+}
+
+.selection-indicator {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #eaeced;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.reason-item.selected .selection-indicator {
+    border-color: #0070ba;
+    background: #0070ba;
+}
+
+.reason-item.selected .selection-indicator::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Formulario de Descripción Personalizada */
+.custom-report-form {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 20px;
+    display: none;
+    border: 2px solid #eaeced;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.custom-report-form.active {
+    display: block;
+    animation: formSlideDown 0.3s ease-out;
+}
+
+@keyframes formSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.custom-report-form h4 {
+    color: #2c2e2f;
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.description-group {
+    margin-bottom: 25px;
+}
+
+.description-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c2e2f;
+    font-size: 14px;
+}
+
+.word-counter {
+    float: right;
+    font-size: 12px;
+    color: #687173;
+    font-weight: 500;
+}
+
+.word-counter.warning {
+    color: #ff4444;
+}
+
+.description-textarea {
+    width: 100%;
+    min-height: 80px;
+    max-height: 120px;
+    padding: 15px;
+    border: 2px solid #eaeced;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
+    resize: vertical;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.description-textarea:focus {
+    outline: none;
+    border-color: #0070ba;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(0, 112, 186, 0.1);
+}
+
+.description-textarea.error {
+    border-color: #ff4444;
+    background: #fff5f5;
+}
+
+.images-upload-section {
+    margin-top: 25px;
+}
+
+.images-upload-section h5 {
+    color: #2c2e2f;
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.upload-area {
+    border: 2px dashed #eaeced;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    background: #f8f9fa;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.upload-area:hover {
+    border-color: #0070ba;
+    background: #f8fcff;
+    transform: translateY(-2px);
+}
+
+.upload-area.dragover {
+    border-color: #0070ba;
+    background: linear-gradient(135deg, #e3f2fd 0%, #f8fcff 100%);
+    box-shadow: 0 4px 15px rgba(0, 112, 186, 0.2);
+}
+
+.upload-icon {
+    font-size: 40px;
+    color: #687173;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.upload-area:hover .upload-icon,
+.upload-area.dragover .upload-icon {
+    color: #0070ba;
+}
+
+.upload-text {
+    color: #687173;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.upload-subtext {
+    color: #999;
+    font-size: 14px;
+}
+
+.file-input {
+    display: none;
+}
+
+.uploaded-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.uploaded-image {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: white;
+    border: 2px solid #eaeced;
+}
+
+.uploaded-image img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+}
+
+.remove-image {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.remove-image:hover {
+    background: #d32f2f;
+    transform: scale(1.1);
+}
+
+/* Botones de Acción */
+.report-actions {
+    padding: 25px 30px;
+    background: white;
+    border-top: 2px solid #eaeced;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.cancel-report-btn {
+    background: #f5f7fa;
+    color: #687173;
+    border: 2px solid #eaeced;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
+}
+
+.cancel-report-btn:hover {
+    background: #eaeced;
+    border-color: #d0d0d0;
+    transform: translateY(-1px);
+}
+
+.submit-report-btn {
+    background: linear-gradient(135deg, #ff4444 0%, #d32f2f 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
+    box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-report-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 68, 68, 0.4);
+}
+
+.submit-report-btn:disabled {
+    background: #eaeced;
+    color: #687173;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.submit-report-btn.loading {
+    pointer-events: none;
+}
+
+.submit-report-btn.loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: reportButtonSpin 1s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes reportButtonSpin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Overlay de Carga */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 4000;
+    font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
+}
+
+.loading-overlay.active {
+    display: flex;
+}
+
+.loading-content {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #eaeced;
+    border-top: 4px solid #ff4444;
+    border-radius: 50%;
+    animation: reportSpinner 1s linear infinite;
+    margin: 0 auto 20px auto;
+}
+
+@keyframes reportSpinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: #2c2e2f;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.loading-subtext {
+    color: #687173;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Confirmación de Éxito */
+.success-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 4000;
+    font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
+}
+
+.success-overlay.active {
+    display: flex;
+}
+
+.success-content {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    max-width: 450px;
+    width: 90%;
+    animation: successBounce 0.6s ease-out;
+}
+
+@keyframes successBounce {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    margin: 0 auto 25px auto;
+    animation: successCheckmark 0.8s ease-out 0.2s both;
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+}
+
+@keyframes successCheckmark {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-title {
+    color: #2c2e2f;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.success-message {
+    color: #687173;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.close-success-btn {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: PayPalSansBig-Regular, Helvetica Neue, Arial, sans-serif;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.close-success-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+/* Dark Mode Support */
+body.dark-mode .report-btn {
+    background: #2d2d2d;
+    border-color: #3d3d3d;
+    color: #ffffff;
+}
+
+body.dark-mode .report-btn:hover {
+    background: #3d3d3d;
+}
+
+body.dark-mode .report-content {
+    background: #1a1a1a;
+}
+
+body.dark-mode .report-body {
+    background: #1a1a1a;
+}
+
+body.dark-mode .app-info-report,
+body.dark-mode .report-reasons,
+body.dark-mode .custom-report-form {
+    background: #2d2d2d;
+    border-color: #3d3d3d;
+}
+
+body.dark-mode .reason-item {
+    border-color: #3d3d3d;
+}
+
+body.dark-mode .reason-item:hover {
+    background: #3d3d3d;
+}
+
+body.dark-mode .reason-title {
+    color: #ffffff;
+}
+
+body.dark-mode .reason-description {
+    color: #cccccc;
+}
+
+body.dark-mode .description-textarea {
+    background: #2d2d2d;
+    border-color: #3d3d3d;
+    color: #ffffff;
+}
+
+body.dark-mode .upload-area {
+    background: #2d2d2d;
+    border-color: #3d3d3d;
+}
+
+body.dark-mode .loading-content,
+body.dark-mode .success-content {
+    background: #2d2d2d;
+    color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .report-content {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        border-radius: 0;
+    }
+    
+    .report-header {
+        padding: 20px;
+    }
+    
+    .report-title-section h2 {
+        font-size: 20px;
+    }
+    
+    .report-body {
+        padding: 20px;
+    }
+    
+    .report-actions {
+        padding: 20px;
+        flex-direction: column;
+    }
+    
+    .cancel-report-btn,
+    .submit-report-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .uploaded-images {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .reason-item {
+        padding: 15px;
+    }
+    
+    .reason-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .report-title-section {
+        gap: 10px;
+    }
+    
+    .report-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .app-info-report {
+        padding: 15px;
+        gap: 12px;
+    }
+    
+    .app-info-report img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .uploaded-images {
+        grid-template-columns: 1fr;
+    }
+}

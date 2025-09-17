@@ -2313,6 +2313,12 @@ async function openAppModal(app) {
       </button>
     </div>
 
+    <div class="report-app-section">
+      <button class="report-btn" onclick="showReportModal(${JSON.stringify(app).replace(/\"/g, '&quot;')})">
+        <i class="fas fa-flag"></i> Reportar Aplicación
+      </button>
+    </div>
+
     <div id="privacyModal" class="privacy-modal">
       <div class="privacy-content">
         <div class="privacy-header">
@@ -3419,6 +3425,454 @@ document.getElementById('faqSearch')?.addEventListener('input', (e) => {
 document.querySelector('.search-toggle').addEventListener('click', () => {
     document.querySelector('.search-container').classList.toggle('active');
 });
+
+// === SISTEMA DE REPORTE DE APLICACIONES ===
+
+let currentReportApp = null;
+let selectedReportReason = null;
+let uploadedReportImages = [];
+
+// Lista de razones predefinidas para reportar
+const reportReasons = [
+    {
+        id: 'inappropriate',
+        icon: 'fas fa-exclamation-triangle',
+        title: 'Contenido Inapropiado',
+        description: 'La aplicación contiene contenido ofensivo, violento o inapropiado'
+    },
+    {
+        id: 'fake',
+        icon: 'fas fa-mask',
+        title: 'Aplicación Falsa',
+        description: 'Esta aplicación parece ser una copia o imitación de otra aplicación'
+    },
+    {
+        id: 'malware',
+        icon: 'fas fa-virus',
+        title: 'Posible Malware',
+        description: 'Sospecho que esta aplicación puede contener software malicioso'
+    },
+    {
+        id: 'privacy',
+        icon: 'fas fa-user-secret',
+        title: 'Violación de Privacidad',
+        description: 'La aplicación recopila datos personales sin consentimiento'
+    },
+    {
+        id: 'copyright',
+        icon: 'fas fa-copyright',
+        title: 'Infracción de Derechos de Autor',
+        description: 'La aplicación viola derechos de autor o propiedad intelectual'
+    },
+    {
+        id: 'spam',
+        icon: 'fas fa-ban',
+        title: 'Spam o Publicidad Excesiva',
+        description: 'La aplicación muestra demasiados anuncios o comportamiento de spam'
+    },
+    {
+        id: 'broken',
+        icon: 'fas fa-bug',
+        title: 'No Funciona Correctamente',
+        description: 'La aplicación tiene errores graves o no funciona como se describe'
+    },
+    {
+        id: 'other',
+        icon: 'fas fa-ellipsis-h',
+        title: 'Otros',
+        description: 'Otro motivo no listado anteriormente'
+    }
+];
+
+function showReportModal(app) {
+    currentReportApp = app;
+    selectedReportReason = null;
+    uploadedReportImages = [];
+    
+    // Crear el modal si no existe
+    if (!document.getElementById('reportModal')) {
+        createReportModal();
+    }
+    
+    // Actualizar información de la app
+    updateReportAppInfo(app);
+    
+    // Mostrar modal
+    const modal = document.getElementById('reportModal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Reset form
+    resetReportForm();
+}
+
+function createReportModal() {
+    const modal = document.createElement('div');
+    modal.className = 'report-modal';
+    modal.id = 'reportModal';
+    
+    modal.innerHTML = `
+        <div class="report-content">
+            <div class="report-header">
+                <div class="report-title-section">
+                    <div class="report-icon">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <div>
+                        <h2>Reportar Aplicación</h2>
+                        <div class="report-subtitle">Ayúdanos a mantener la seguridad de la plataforma</div>
+                    </div>
+                </div>
+                <button class="close-report" onclick="closeReportModal()">
+                    <i class="fas fa-times"></i> Cerrar
+                </button>
+            </div>
+            
+            <div class="report-body">
+                <!-- Información de la App -->
+                <div class="app-info-report" id="reportAppInfo">
+                    <!-- Se llena dinámicamente -->
+                </div>
+                
+                <!-- Lista de Razones -->
+                <div class="report-reasons">
+                    <h3><i class="fas fa-list-alt"></i> ¿Por qué quieres reportar esta aplicación?</h3>
+                    <div id="reasonsList">
+                        <!-- Se llena dinámicamente -->
+                    </div>
+                </div>
+                
+                <!-- Formulario Personalizado -->
+                <div class="custom-report-form" id="customReportForm">
+                    <h4><i class="fas fa-edit"></i> Describe el problema</h4>
+                    
+                    <div class="description-group">
+                        <label>
+                            Descripción del problema
+                            <span class="word-counter" id="wordCounter">12 palabras restantes</span>
+                        </label>
+                        <textarea 
+                            class="description-textarea" 
+                            id="reportDescription" 
+                            placeholder="Describe brevemente el problema con esta aplicación..."
+                            maxlength="200"></textarea>
+                    </div>
+                    
+                    <div class="images-upload-section">
+                        <h5><i class="fas fa-images"></i> Subir evidencia (máximo 2 imágenes)</h5>
+                        <div class="upload-area" onclick="document.getElementById('reportImages').click()">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <div class="upload-text">Haz clic aquí para subir imágenes</div>
+                            <div class="upload-subtext">PNG, JPG hasta 5MB cada una</div>
+                        </div>
+                        <input type="file" id="reportImages" class="file-input" multiple accept="image/*" onchange="handleImageUpload(event)">
+                        <div class="uploaded-images" id="uploadedImages"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="report-actions">
+                <button class="cancel-report-btn" onclick="closeReportModal()">
+                    Cancelar
+                </button>
+                <button class="submit-report-btn" id="submitReportBtn" onclick="submitReport()" disabled>
+                    Enviar Reporte
+                </button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Generar lista de razones
+    generateReasonsList();
+    
+    // Agregar event listeners
+    setupReportEventListeners();
+}
+
+function generateReasonsList() {
+    const reasonsList = document.getElementById('reasonsList');
+    reasonsList.innerHTML = reportReasons.map(reason => `
+        <div class="reason-item" data-reason-id="${reason.id}" onclick="selectReportReason('${reason.id}')">
+            <div class="reason-icon">
+                <i class="${reason.icon}"></i>
+            </div>
+            <div class="reason-text">
+                <div class="reason-title">${reason.title}</div>
+                <div class="reason-description">${reason.description}</div>
+            </div>
+            <div class="selection-indicator"></div>
+        </div>
+    `).join('');
+}
+
+function setupReportEventListeners() {
+    const textarea = document.getElementById('reportDescription');
+    const wordCounter = document.getElementById('wordCounter');
+    
+    textarea.addEventListener('input', () => {
+        const words = textarea.value.trim().split(/\s+/).filter(word => word.length > 0);
+        const remainingWords = Math.max(0, 12 - words.length);
+        
+        wordCounter.textContent = `${remainingWords} palabras restantes`;
+        wordCounter.className = remainingWords === 0 ? 'word-counter warning' : 'word-counter';
+        
+        textarea.className = words.length > 12 ? 'description-textarea error' : 'description-textarea';
+        
+        updateSubmitButtonState();
+    });
+    
+    // Drag and drop para imágenes
+    const uploadArea = document.querySelector('.upload-area');
+    
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('dragover');
+    });
+    
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('dragover');
+    });
+    
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+        const files = e.dataTransfer.files;
+        handleImageFiles(files);
+    });
+}
+
+function selectReportReason(reasonId) {
+    // Remover selección anterior
+    document.querySelectorAll('.reason-item').forEach(item => {
+        item.classList.remove('selected');
+    });
+    
+    // Seleccionar nueva razón
+    const reasonElement = document.querySelector(`[data-reason-id="${reasonId}"]`);
+    reasonElement.classList.add('selected');
+    selectedReportReason = reasonId;
+    
+    // Mostrar/ocultar formulario personalizado
+    const customForm = document.getElementById('customReportForm');
+    if (reasonId === 'other') {
+        customForm.classList.add('active');
+    } else {
+        customForm.classList.remove('active');
+        // Reset custom form
+        document.getElementById('reportDescription').value = '';
+        document.getElementById('wordCounter').textContent = '12 palabras restantes';
+        uploadedReportImages = [];
+        updateUploadedImagesDisplay();
+    }
+    
+    updateSubmitButtonState();
+}
+
+function handleImageUpload(event) {
+    const files = event.target.files;
+    handleImageFiles(files);
+}
+
+function handleImageFiles(files) {
+    const maxImages = 2;
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    
+    for (let i = 0; i < files.length && uploadedReportImages.length < maxImages; i++) {
+        const file = files[i];
+        
+        if (!file.type.startsWith('image/')) {
+            showReportNotification('Solo se permiten archivos de imagen', true);
+            continue;
+        }
+        
+        if (file.size > maxSize) {
+            showReportNotification('La imagen es demasiado grande (máximo 5MB)', true);
+            continue;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            uploadedReportImages.push({
+                file: file,
+                dataUrl: e.target.result,
+                name: file.name
+            });
+            updateUploadedImagesDisplay();
+            updateSubmitButtonState();
+        };
+        reader.readAsDataURL(file);
+    }
+    
+    // Reset input
+    event.target.value = '';
+}
+
+function updateUploadedImagesDisplay() {
+    const container = document.getElementById('uploadedImages');
+    container.innerHTML = uploadedReportImages.map((image, index) => `
+        <div class="uploaded-image">
+            <img src="${image.dataUrl}" alt="${image.name}">
+            <button class="remove-image" onclick="removeReportImage(${index})">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `).join('');
+}
+
+function removeReportImage(index) {
+    uploadedReportImages.splice(index, 1);
+    updateUploadedImagesDisplay();
+    updateSubmitButtonState();
+}
+
+function updateSubmitButtonState() {
+    const submitBtn = document.getElementById('submitReportBtn');
+    const isValid = selectedReportReason && (
+        selectedReportReason !== 'other' || 
+        (isValidDescription() && uploadedReportImages.length > 0)
+    );
+    
+    submitBtn.disabled = !isValid;
+}
+
+function isValidDescription() {
+    const textarea = document.getElementById('reportDescription');
+    const words = textarea.value.trim().split(/\s+/).filter(word => word.length > 0);
+    return words.length > 0 && words.length <= 12;
+}
+
+function updateReportAppInfo(app) {
+    const container = document.getElementById('reportAppInfo');
+    container.innerHTML = `
+        <img src="${app.icon}" alt="${app.name}" onerror="this.src='https://via.placeholder.com/60x60?text=${app.name.charAt(0)}'">
+        <div>
+            <h3>${app.name}</h3>
+            <p>Desarrollado por ${app.developer} • ${app.category}</p>
+        </div>
+    `;
+}
+
+function resetReportForm() {
+    selectedReportReason = null;
+    uploadedReportImages = [];
+    
+    document.querySelectorAll('.reason-item').forEach(item => {
+        item.classList.remove('selected');
+    });
+    
+    const customForm = document.getElementById('customReportForm');
+    customForm.classList.remove('active');
+    
+    document.getElementById('reportDescription').value = '';
+    document.getElementById('wordCounter').textContent = '12 palabras restantes';
+    document.getElementById('wordCounter').className = 'word-counter';
+    
+    updateUploadedImagesDisplay();
+    updateSubmitButtonState();
+}
+
+function closeReportModal() {
+    const modal = document.getElementById('reportModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    resetReportForm();
+}
+
+function submitReport() {
+    if (!selectedReportReason) return;
+    
+    // Mostrar overlay de carga
+    showLoadingOverlay();
+    
+    // Simular envío del reporte
+    setTimeout(() => {
+        hideLoadingOverlay();
+        showSuccessOverlay();
+        closeReportModal();
+    }, 3000);
+}
+
+function showLoadingOverlay() {
+    const overlay = document.createElement('div');
+    overlay.className = 'loading-overlay active';
+    overlay.id = 'loadingOverlay';
+    
+    overlay.innerHTML = `
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Enviando reporte...</div>
+            <div class="loading-subtext">Por favor espera mientras procesamos tu reporte</div>
+        </div>
+    `;
+    
+    document.body.appendChild(overlay);
+}
+
+function hideLoadingOverlay() {
+    const overlay = document.getElementById('loadingOverlay');
+    if (overlay) {
+        overlay.remove();
+    }
+}
+
+function showSuccessOverlay() {
+    const overlay = document.createElement('div');
+    overlay.className = 'success-overlay active';
+    overlay.id = 'successOverlay';
+    
+    overlay.innerHTML = `
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <div class="success-title">¡Reporte Enviado!</div>
+            <div class="success-message">
+                Gracias por ayudarnos a mantener la seguridad de la plataforma. 
+                Revisaremos tu reporte y haremos lo posible por resolver el problema.
+            </div>
+            <button class="close-success-btn" onclick="closeSuccessOverlay()">
+                Entendido
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(overlay);
+}
+
+function closeSuccessOverlay() {
+    const overlay = document.getElementById('successOverlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+        setTimeout(() => {
+            overlay.remove();
+        }, 300);
+    }
+}
+
+function showReportNotification(message, isError = false) {
+    const notification = document.createElement('div');
+    notification.className = 'notification-popup show';
+    notification.style.background = isError ? '#ff4444' : '#4CAF50';
+    notification.innerHTML = `
+        <i class="fas fa-${isError ? 'exclamation-triangle' : 'check'}"></i>
+        <span>${message}</span>
+    `;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Función global para mostrar el modal de reporte
+window.showReportModal = showReportModal;
+window.closeReportModal = closeReportModal;
 
 // Función para el menú lateral usando el nuevo botón
 document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
