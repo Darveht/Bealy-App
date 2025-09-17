@@ -4853,3 +4853,491 @@ document.addEventListener('DOMContentLoaded', function() {
 window.setMaintenanceMode = setMaintenanceMode;
 window.toggleMaintenanceMode = toggleMaintenanceMode;
 window.getMaintenanceMode = getMaintenanceMode;
+
+// === SISTEMA DE CHAT DE SOPORTE ===
+
+class SupportChatSystem {
+    constructor() {
+        this.isOpen = false;
+        this.currentStep = 'welcome'; // welcome, contact_form, conversation, app_selection, app_problem, final
+        this.userEmail = '';
+        this.userProblem = '';
+        this.selectedApp = null;
+        this.conversationState = {
+            emailConfirmed: false,
+            appSelected: false,
+            problemDescribed: false
+        };
+        
+        this.init();
+    }
+    
+    init() {
+        // Inicializar eventos
+        this.bindEvents();
+        // Mostrar mensaje inicial del agente cuando se abra por primera vez
+        this.setupInitialState();
+    }
+    
+    bindEvents() {
+        // Eventos para abrir/cerrar chat
+        const chatBubble = document.getElementById('chatBubble');
+        const closeBtn = document.getElementById('closeSupportChat');
+        const modal = document.getElementById('supportChatModal');
+        
+        if (chatBubble) {
+            chatBubble.addEventListener('click', () => this.openChat());
+        }
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => this.closeChat());
+        }
+        
+        // Cerrar al hacer clic fuera del modal
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    this.closeChat();
+                }
+            });
+        }
+        
+        // Eventos para formulario de contacto
+        const submitContactBtn = document.getElementById('submitContactBtn');
+        if (submitContactBtn) {
+            submitContactBtn.addEventListener('click', () => this.submitContactForm());
+        }
+        
+        // Eventos para enviar mensajes
+        const sendBtn = document.getElementById('sendMessageBtn');
+        const messageInput = document.getElementById('chatMessageInput');
+        
+        if (sendBtn) {
+            sendBtn.addEventListener('click', () => this.sendUserMessage());
+        }
+        
+        if (messageInput) {
+            messageInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    this.sendUserMessage();
+                }
+            });
+        }
+        
+        // Eventos para selección de aplicaciones
+        const confirmAppBtn = document.getElementById('confirmAppBtn');
+        if (confirmAppBtn) {
+            confirmAppBtn.addEventListener('click', () => this.confirmSelectedApp());
+        }
+    }
+    
+    setupInitialState() {
+        // Ocultar notificación inicialmente pero mostrarla después de unos segundos
+        setTimeout(() => {
+            const notification = document.getElementById('chatNotification');
+            if (notification) {
+                notification.style.display = 'flex';
+            }
+        }, 3000);
+    }
+    
+    openChat() {
+        const modal = document.getElementById('supportChatModal');
+        const notification = document.getElementById('chatNotification');
+        
+        if (modal) {
+            modal.classList.add('active');
+            this.isOpen = true;
+            
+            // Ocultar notificación
+            if (notification) {
+                notification.style.display = 'none';
+            }
+            
+            // Si es la primera vez que abre el chat, mostrar mensaje de bienvenida
+            if (this.currentStep === 'welcome') {
+                this.showWelcomeMessage();
+            }
+        }
+    }
+    
+    closeChat() {
+        const modal = document.getElementById('supportChatModal');
+        if (modal) {
+            modal.classList.remove('active');
+            this.isOpen = false;
+        }
+    }
+    
+    showWelcomeMessage() {
+        // Limpiar chat y mostrar formulario de contacto
+        this.clearChat();
+        this.showContactForm();
+        
+        // Agregar mensaje de bienvenida del agente
+        setTimeout(() => {
+            this.addAgentMessage('¡Hola! 👋 Soy tu agente virtual de soporte. Estoy aquí para ayudarte con cualquier problema que tengas con nuestras aplicaciones.');
+        }, 500);
+        
+        setTimeout(() => {
+            this.addAgentMessage('Para poder asistirte mejor, por favor proporciona tu correo electrónico y describe brevemente el problema que tienes. 📝');
+        }, 1500);
+        
+        this.currentStep = 'contact_form';
+    }
+    
+    clearChat() {
+        const chatBody = document.getElementById('supportChatBody');
+        if (chatBody) {
+            chatBody.innerHTML = '';
+        }
+    }
+    
+    showContactForm() {
+        const contactForm = document.getElementById('chatContactForm');
+        const chatInput = document.getElementById('supportChatInput');
+        const appSelector = document.getElementById('appSelectorContainer');
+        
+        if (contactForm) contactForm.classList.add('active');
+        if (chatInput) chatInput.style.display = 'none';
+        if (appSelector) appSelector.style.display = 'none';
+    }
+    
+    hideContactForm() {
+        const contactForm = document.getElementById('chatContactForm');
+        const chatInput = document.getElementById('supportChatInput');
+        
+        if (contactForm) contactForm.classList.remove('active');
+        if (chatInput) chatInput.style.display = 'block';
+    }
+    
+    submitContactForm() {
+        const emailInput = document.getElementById('chatEmailInput');
+        const problemInput = document.getElementById('chatProblemInput');
+        
+        if (!emailInput || !problemInput) return;
+        
+        const email = emailInput.value.trim();
+        const problem = problemInput.value.trim();
+        
+        if (!email || !problem) {
+            alert('Por favor completa todos los campos');
+            return;
+        }
+        
+        if (!this.isValidEmail(email)) {
+            alert('Por favor ingresa un correo electrónico válido');
+            return;
+        }
+        
+        this.userEmail = email;
+        this.userProblem = problem;
+        
+        // Ocultar formulario y mostrar input de chat
+        this.hideContactForm();
+        
+        // Agregar mensaje del usuario
+        this.addUserMessage(`Correo: ${email}\nProblema: ${problem}`);
+        
+        // Respuesta del agente
+        setTimeout(() => {
+            this.addAgentMessage(`¡Perfecto! He verificado tu correo electrónico: ${email} ✅`);
+        }, 1000);
+        
+        setTimeout(() => {
+            this.addAgentMessage('Por favor, indícame con más detalle cuál es el problema que tienes. ¿Es con alguna aplicación específica? 🤔');
+        }, 2500);
+        
+        this.currentStep = 'conversation';
+    }
+    
+    sendUserMessage() {
+        const messageInput = document.getElementById('chatMessageInput');
+        if (!messageInput) return;
+        
+        const message = messageInput.value.trim();
+        if (!message) return;
+        
+        // Agregar mensaje del usuario
+        this.addUserMessage(message);
+        messageInput.value = '';
+        
+        // Procesar respuesta del agente
+        this.processUserMessage(message);
+    }
+    
+    processUserMessage(message) {
+        const lowerMessage = message.toLowerCase();
+        
+        // Detectar palabras relacionadas con aplicaciones
+        const appKeywords = ['aplicación', 'aplicaciones', 'app', 'apps', 'aplicacion', 'aplicaciones'];
+        const hasAppKeyword = appKeywords.some(keyword => lowerMessage.includes(keyword));
+        
+        if (hasAppKeyword && this.currentStep === 'conversation') {
+            // Mostrar selector de aplicaciones
+            this.showAppSelector();
+        } else if (this.currentStep === 'app_problem') {
+            // El usuario está describiendo el problema con la aplicación seleccionada
+            this.handleAppProblemDescription(message);
+        } else {
+            // Respuesta genérica del agente
+            this.addGenericAgentResponse(message);
+        }
+    }
+    
+    showAppSelector() {
+        this.showTypingIndicator();
+        
+        setTimeout(() => {
+            this.removeTypingIndicator();
+            this.addAgentMessage('¡Entiendo! Tienes un problema con alguna aplicación. 📱 Te voy a mostrar todas las aplicaciones disponibles en nuestra plataforma para que selecciones con cuál tienes el problema.');
+        }, 1500);
+        
+        setTimeout(() => {
+            this.displayAppCarousel();
+        }, 3000);
+        
+        this.currentStep = 'app_selection';
+    }
+    
+    displayAppCarousel() {
+        const appSelector = document.getElementById('appSelectorContainer');
+        const appCarousel = document.getElementById('appCarousel');
+        
+        if (!appSelector || !appCarousel) return;
+        
+        // Mostrar selector de aplicaciones
+        appSelector.style.display = 'block';
+        
+        // Limpiar carrusel
+        appCarousel.innerHTML = '';
+        
+        // Agregar aplicaciones al carrusel (usando el array global 'apps')
+        if (typeof apps !== 'undefined' && apps.length > 0) {
+            apps.forEach((app, index) => {
+                const appItem = document.createElement('div');
+                appItem.className = 'app-carousel-item';
+                appItem.dataset.appIndex = index;
+                
+                appItem.innerHTML = `
+                    <img src="${app.icon}" alt="${app.name}" onerror="this.src='https://via.placeholder.com/50x50?text=${app.name.charAt(0)}'">
+                    <h4>${app.name}</h4>
+                `;
+                
+                appItem.addEventListener('click', () => this.selectApp(appItem, app));
+                appCarousel.appendChild(appItem);
+            });
+        }
+    }
+    
+    selectApp(element, app) {
+        // Remover selección previa
+        const allItems = document.querySelectorAll('.app-carousel-item');
+        allItems.forEach(item => item.classList.remove('selected'));
+        
+        // Seleccionar nueva app
+        element.classList.add('selected');
+        this.selectedApp = app;
+        
+        // Habilitar botón de confirmación
+        const confirmBtn = document.getElementById('confirmAppBtn');
+        if (confirmBtn) {
+            confirmBtn.disabled = false;
+        }
+    }
+    
+    confirmSelectedApp() {
+        if (!this.selectedApp) return;
+        
+        // Ocultar selector de aplicaciones
+        const appSelector = document.getElementById('appSelectorContainer');
+        if (appSelector) {
+            appSelector.style.display = 'none';
+        }
+        
+        // Agregar mensaje del usuario
+        this.addUserMessage(`He seleccionado: ${this.selectedApp.name}`);
+        
+        // Respuesta del agente
+        setTimeout(() => {
+            this.addAgentMessage(`¡Excelente! Veo que tienes un problema con ${this.selectedApp.name}. 🎯`);
+        }, 1000);
+        
+        setTimeout(() => {
+            this.addAgentMessage(`Ahora, por favor describe detalladamente qué problema estás experimentando con ${this.selectedApp.name}. Mientras más información me proporciones, mejor podremos ayudarte. 📝`);
+        }, 2500);
+        
+        this.currentStep = 'app_problem';
+    }
+    
+    handleAppProblemDescription(message) {
+        // Agregar respuesta final del agente
+        this.showTypingIndicator();
+        
+        setTimeout(() => {
+            this.removeTypingIndicator();
+            this.addAgentMessage('¡Gracias por tu ayuda! 🙏 Nos ayudas a mejorar nuestros servicios y las aplicaciones en nuestra plataforma.');
+        }, 1500);
+        
+        setTimeout(() => {
+            this.addAgentMessage('Muchas gracias. Daremos estos resultados tan pronto como sea posible cuando nuestro equipo revise las aplicaciones. 👨‍💻👩‍💻');
+        }, 3500);
+        
+        setTimeout(() => {
+            this.addAgentMessage('Gracias, vuelve en 24 horas hasta que estén los resultados. ⏰ ¡Que tengas un excelente día! 😊');
+        }, 5500);
+        
+        this.currentStep = 'final';
+        
+        // Deshabilitar input después del mensaje final
+        setTimeout(() => {
+            const messageInput = document.getElementById('chatMessageInput');
+            const sendBtn = document.getElementById('sendMessageBtn');
+            
+            if (messageInput) {
+                messageInput.disabled = true;
+                messageInput.placeholder = 'Conversación finalizada. ¡Gracias por contactarnos!';
+            }
+            
+            if (sendBtn) {
+                sendBtn.disabled = true;
+            }
+        }, 6000);
+    }
+    
+    addGenericAgentResponse(userMessage) {
+        this.showTypingIndicator();
+        
+        setTimeout(() => {
+            this.removeTypingIndicator();
+            
+            const responses = [
+                'Entiendo tu preocupación. ¿Podrías proporcionarme más detalles?',
+                'Gracias por la información. ¿Hay algo más específico que pueda ayudarte?',
+                'Perfecto. ¿El problema está relacionado con alguna aplicación en particular?',
+                'Te entiendo. Para poder ayudarte mejor, ¿podrías ser más específico sobre el problema?'
+            ];
+            
+            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+            this.addAgentMessage(randomResponse);
+        }, 1500);
+    }
+    
+    addUserMessage(message) {
+        const chatBody = document.getElementById('supportChatBody');
+        if (!chatBody) return;
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'chat-message user';
+        
+        messageDiv.innerHTML = `
+            <div class="message-avatar user">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="message-content">
+                <div>${message.replace(/\n/g, '<br>')}</div>
+                <div class="message-time">${this.getCurrentTime()}</div>
+            </div>
+        `;
+        
+        chatBody.appendChild(messageDiv);
+        this.scrollToBottom();
+    }
+    
+    addAgentMessage(message) {
+        const chatBody = document.getElementById('supportChatBody');
+        if (!chatBody) return;
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'chat-message agent';
+        
+        messageDiv.innerHTML = `
+            <div class="message-avatar agent">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="message-content">
+                <div>${message}</div>
+                <div class="message-time">${this.getCurrentTime()}</div>
+            </div>
+        `;
+        
+        chatBody.appendChild(messageDiv);
+        this.scrollToBottom();
+    }
+    
+    showTypingIndicator() {
+        const chatBody = document.getElementById('supportChatBody');
+        if (!chatBody) return;
+        
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'typing-indicator';
+        typingDiv.id = 'typingIndicator';
+        
+        typingDiv.innerHTML = `
+            <div class="message-avatar agent">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="message-content">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        `;
+        
+        chatBody.appendChild(typingDiv);
+        this.scrollToBottom();
+    }
+    
+    removeTypingIndicator() {
+        const typingIndicator = document.getElementById('typingIndicator');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+    }
+    
+    scrollToBottom() {
+        const chatBody = document.getElementById('supportChatBody');
+        if (chatBody) {
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+    }
+    
+    getCurrentTime() {
+        const now = new Date();
+        return now.toLocaleTimeString('es-ES', { 
+            hour: '2-digit', 
+            minute: '2-digit' 
+        });
+    }
+    
+    isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+}
+
+// Variable global para el sistema de chat
+window.supportChatSystem = null;
+
+// Función global para abrir el chat desde configuración
+function openSupportChat() {
+    if (window.supportChatSystem) {
+        window.supportChatSystem.openChat();
+    } else {
+        // Si aún no está inicializado, intentar inicializarlo
+        setTimeout(() => {
+            if (window.supportChatSystem) {
+                window.supportChatSystem.openChat();
+            }
+        }, 100);
+    }
+}
+
+// Hacer la función disponible globalmente
+window.openSupportChat = openSupportChat;
+
+// Inicializar sistema de chat cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    // Crear instancia global del sistema de chat
+    window.supportChatSystem = new SupportChatSystem();
+});

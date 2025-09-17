@@ -141,6 +141,10 @@
                     <h3>FAQ y Soporte</h3>
                     <i class="fas fa-chevron-right"></i>
                 </div>
+                <div class="settings-item" onclick="openSupportChat()">
+                    <h3>Chat de Soporte</h3>
+                    <i class="fas fa-comments"></i>
+                </div>
             </div>
         </div>
     </div>
@@ -264,6 +268,75 @@
                 <div class="faq-item">
                     <h3>Problemas comunes</h3>
                     <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Burbuja de Chat Flotante -->
+    <div class="chat-bubble" id="chatBubble" onclick="openSupportChat()">
+        <i class="fas fa-comments"></i>
+        <div class="chat-bubble-notification" id="chatNotification">1</div>
+    </div>
+
+    <!-- Modal de Chat de Soporte -->
+    <div class="support-chat-modal" id="supportChatModal">
+        <div class="support-chat-content">
+            <div class="support-chat-header">
+                <div class="support-agent-info">
+                    <div class="agent-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="agent-details">
+                        <h3>Agente Virtual</h3>
+                        <span class="agent-status">En línea</span>
+                    </div>
+                </div>
+                <button class="close-support-chat" id="closeSupportChat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="support-chat-body" id="supportChatBody">
+                <!-- Los mensajes se agregarán aquí dinámicamente -->
+            </div>
+            
+            <div class="support-chat-input" id="supportChatInput">
+                <div class="chat-input-container">
+                    <input type="text" placeholder="Escribe tu mensaje..." id="chatMessageInput">
+                    <button class="send-message-btn" id="sendMessageBtn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Formulario de contacto inicial -->
+            <div class="chat-contact-form" id="chatContactForm">
+                <div class="form-group">
+                    <label>Correo Electrónico:</label>
+                    <input type="email" id="chatEmailInput" placeholder="tu@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Descripción del problema:</label>
+                    <textarea id="chatProblemInput" placeholder="Describe tu problema aquí..."></textarea>
+                </div>
+                <button class="submit-contact-btn" id="submitContactBtn">
+                    <i class="fas fa-check"></i> Enviar
+                </button>
+            </div>
+            
+            <!-- Selector de aplicaciones -->
+            <div class="app-selector-container" id="appSelectorContainer" style="display: none;">
+                <div class="app-selector-header">
+                    <h3>Selecciona la aplicación con la que tienes problemas:</h3>
+                </div>
+                <div class="app-carousel" id="appCarousel">
+                    <!-- Las aplicaciones se cargarán aquí -->
+                </div>
+                <div class="app-selector-actions">
+                    <button class="confirm-app-btn" id="confirmAppBtn" disabled>
+                        <i class="fas fa-check"></i> Confirmar Aplicación
+                    </button>
                 </div>
             </div>
         </div>
