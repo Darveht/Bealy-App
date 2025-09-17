@@ -4932,27 +4932,16 @@ class SupportChatSystem {
     }
     
     setupInitialState() {
-        // Ocultar notificación inicialmente pero mostrarla después de unos segundos
-        setTimeout(() => {
-            const notification = document.getElementById('chatNotification');
-            if (notification) {
-                notification.style.display = 'flex';
-            }
-        }, 3000);
+        // Configuración inicial del chat sin burbuja flotante
+        console.log('Sistema de chat inicializado - disponible solo desde configuración');
     }
     
     openChat() {
         const modal = document.getElementById('supportChatModal');
-        const notification = document.getElementById('chatNotification');
         
         if (modal) {
             modal.classList.add('active');
             this.isOpen = true;
-            
-            // Ocultar notificación
-            if (notification) {
-                notification.style.display = 'none';
-            }
             
             // Si es la primera vez que abre el chat, mostrar mensaje de bienvenida
             if (this.currentStep === 'welcome') {
