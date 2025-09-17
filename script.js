@@ -127,15 +127,15 @@ async function detectCountry() {
     // Usar un método más simple y confiable
     const response = await fetch('https://httpbin.org/ip');
     if (!response.ok) throw new Error('Network error');
-    
+
     // Países predeterminados basados en zona horaria como fallback
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     let defaultCountry = 'US';
-    
+
     if (timezone.includes('Mexico')) defaultCountry = 'MX';
     else if (timezone.includes('Spain')) defaultCountry = 'ES';
     else if (timezone.includes('Argentina')) defaultCountry = 'AR';
-    
+
     const countryElement = document.getElementById('user-country');
     if (countryElement) {
       countryElement.innerHTML = `País detectado: ${defaultCountry}`;
@@ -723,7 +723,7 @@ const apps = [{
     "version": "36.0.0",
     "isAvailable": true,
     "releaseDate": "2024-10-01T00:00:00",
-    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
+    "allowedCountries": ["CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES"],
     "platforms": {
       "android": "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically",
       "ios": "https://apps.apple.com/us/app/tiktok/id835599320"
@@ -745,41 +745,41 @@ const apps = [{
     ]
   },
   {
-  "name": "RedNote",
-  "developer": "Xingin Information Technology Co., Ltd.",
-  "packageName": "com.xingin.xhs",
-  "category": "Redes sociales",
-  "rating": 4.3,
-  "size": "90 MB",
-  "icon": "https://play-lh.googleusercontent.com/cvxZysz34aPGO1l__roDVapiQTNFeWpQ1tKD2YNO3RodNqBF3bI8cNQkDm1EVxY9CiM=w240-h480-rw",
-  "description": "RedNote es una plataforma de redes sociales y comercio electrónico que combina videos cortos, fotos y recomendaciones de estilo de vida.",
-  "downloads": "300M+",
-  "bannerGradient": "45deg, #FF0000, #FFD700",
-  "security": true,
-  "version": "8.82.0",
-  "isAvailable": true,
-  "releaseDate": "2025-05-12T00:00:00",
-  "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES", "CN"],
-  "platforms": {
-    "android": "https://play.google.com/store/apps/details?id=com.xingin.xhs",
-    "ios": "https://apps.apple.com/us/app/rednote/id659680863"
+    "name": "RedNote",
+    "developer": "Xingin Information Technology Co., Ltd.",
+    "packageName": "com.xingin.xhs",
+    "category": "Redes sociales",
+    "rating": 4.3,
+    "size": "90 MB",
+    "icon": "https://play-lh.googleusercontent.com/cvxZysz34aPGO1l__roDVapiQTNFeWpQ1tKD2YNO3RodNqBF3bI8cNQkDm1EVxY9CiM=w240-h480-rw",
+    "description": "RedNote es una plataforma de redes sociales y comercio electrónico que combina videos cortos, fotos y recomendaciones de estilo de vida.",
+    "downloads": "300M+",
+    "bannerGradient": "45deg, #FF0000, #FFD700",
+    "security": true,
+    "version": "8.82.0",
+    "isAvailable": true,
+    "releaseDate": "2025-05-12T00:00:00",
+    "allowedCountries": ["US", "CA", "GB", "AU", "NZ", "MX", "BR", "IN", "JP", "DE", "FR", "ES", "CN"],
+    "platforms": {
+      "android": "https://play.google.com/store/apps/details?id=com.xingin.xhs",
+      "ios": "https://apps.apple.com/us/app/rednote/id659680863"
+    },
+    "previousVersions": ["8.81.0", "8.80.0", "8.79.0"],
+    "media": [
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      },
+      {
+        "type": "video",
+        "url": "dQw4w9WgXcQ"
+      },
+      {
+        "type": "image",
+        "url": "/api/placeholder/200/400"
+      }
+    ]
   },
-  "previousVersions": ["8.81.0", "8.80.0", "8.79.0"],
-  "media": [
-    {
-      "type": "image",
-      "url": "/api/placeholder/200/400"
-    },
-    {
-      "type": "video",
-      "url": "dQw4w9WgXcQ"
-    },
-    {
-      "type": "image",
-      "url": "/api/placeholder/200/400"
-    }
-  ]
-},
             {
     "name": "Douyin",
     "developer": "ByteDance",
@@ -2013,7 +2013,7 @@ async function displayFeaturedApps() {
         </div>
       `;
       featuredApps.appendChild(sectionElement);
-      
+
       // Agregar detectores de click a las apps de esta sección
       setTimeout(() => {
         sectionElement.querySelectorAll('.app-card').forEach(card => {
@@ -2023,7 +2023,7 @@ async function displayFeaturedApps() {
               if (!e.target.classList.contains('developer-link')) {
                 const appName = card.getAttribute('data-app-name') || 
                                card.querySelector('.app-name')?.textContent.trim();
-                
+
                 if (appName) {
                   const app = apps.find(a => a.name === appName);
                   if (app) {
@@ -2082,7 +2082,7 @@ function createAppCard(app) {
   const isReleased = isAppReleased(app.releaseDate);
   const verificationStatus = getDeveloperVerificationStatus(app.developer);
   const cardId = `app-card-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-  
+
   return `
     <div class="app-card" id="${cardId}" data-app-name="${app.name}">
       <div class="app-header">
@@ -2620,79 +2620,7 @@ function initializeVideoPlayers() {
 function showVersionsSection(app) {
   // Cerrar modal actual
   document.getElementById('appModal').classList.remove('active');
-  
-  // Crear modal de versiones
-  const versionsModal = document.createElement('div');
-  versionsModal.className = 'versions-modal';
-  versionsModal.id = 'versionsModal';
-  versionsModal.innerHTML = `
-    <div class="versions-content">
-      <div class="versions-header">
-        <h2>Versiones de ${app.name}</h2>
-        <button class="close-versions" onclick="closeVersionsModal()">×</button>
-      </div>
-      <div class="versions-body">
-        <div class="current-version-info">
-          <h3>Versión Actual</h3>
-          <div class="version-card current">
-            <div class="version-header">
-              <span class="version-number">${app.version}</span>
-              <span class="version-badge current-badge">Actual</span>
-            </div>
-            <div class="version-details">
-              <span><i class="fas fa-calendar"></i> Hace 2 días</span>
-              <span><i class="fas fa-download"></i> ${app.size}</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="previous-versions-list">
-          <h3>Versiones Anteriores</h3>
-          ${app.previousVersions.map(version => `
-            <div class="version-card">
-              <div class="version-header">
-                <input type="checkbox" class="version-checkbox" data-version="${version}">
-                <span class="version-number">${version}</span>
-                <div class="version-actions">
-                  <button class="version-action-btn download-btn" onclick="downloadVersion('${app.name}', '${version}')">
-                    <i class="fas fa-download"></i>
-                  </button>
-                  <button class="version-action-btn delete-btn" onclick="deleteVersion('${app.name}', '${version}', this)">
-                    <i class="fas fa-trash-alt"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="version-details">
-                <span><i class="fas fa-calendar"></i> ${getRandomDate()}</span>
-                <span><i class="fas fa-file-archive"></i> ${getRandomSize()}</span>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-        
-        <div class="versions-actions">
-          <button class="bulk-action-btn" onclick="selectAllVersions()">
-            <i class="fas fa-check-square"></i> Seleccionar Todo
-          </button>
-          <button class="bulk-action-btn" onclick="deselectAllVersions()">
-            <i class="fas fa-square"></i> Deseleccionar Todo
-          </button>
-          <button class="bulk-action-btn delete-selected" onclick="deleteSelectedVersions('${app.name}')" disabled>
-            <i class="fas fa-trash-alt"></i> Eliminar Seleccionadas (0)
-          </button>
-        </div>
-      </div>
-    </div>
-  `;
-  
-  document.body.appendChild(versionsModal);
-  document.body.style.overflow = 'hidden';
-}
 
-function showVersionsSection(app) {
-  // Cerrar modal actual
-  document.getElementById('appModal').classList.remove('active');
-  
   // Crear modal de versiones
   const versionsModal = document.createElement('div');
   versionsModal.className = 'versions-modal';
@@ -2717,7 +2645,7 @@ function showVersionsSection(app) {
             </div>
           </div>
         </div>
-        
+
         <div class="previous-versions-list">
           <h3>Versiones Anteriores</h3>
           ${app.previousVersions.map(version => `
@@ -2741,7 +2669,7 @@ function showVersionsSection(app) {
             </div>
           `).join('')}
         </div>
-        
+
         <div class="versions-actions">
           <button class="bulk-action-btn" onclick="selectAllVersions()">
             <i class="fas fa-check-square"></i> Seleccionar Todo
@@ -2756,7 +2684,7 @@ function showVersionsSection(app) {
       </div>
     </div>
   `;
-  
+
   document.body.appendChild(versionsModal);
   document.body.style.overflow = 'hidden';
 }
@@ -2942,7 +2870,7 @@ async function displayApps(appsToDisplay) {
       const appCardDiv = document.createElement('div');
       appCardDiv.innerHTML = createAppCard(app);
       const appCard = appCardDiv.firstElementChild;
-      
+
       appCard.addEventListener('click', (e) => {
         if (!e.target.classList.contains('developer-link')) {
           openAppModalWithAnimation(app, appCard);
@@ -3488,20 +3416,20 @@ function showReportModal(app) {
     currentReportApp = app;
     selectedReportReason = null;
     uploadedReportImages = [];
-    
+
     // Crear el modal si no existe
     if (!document.getElementById('reportModal')) {
         createReportModal();
     }
-    
+
     // Actualizar información de la app
     updateReportAppInfo(app);
-    
+
     // Mostrar modal
     const modal = document.getElementById('reportModal');
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
-    
+
     // Reset form
     resetReportForm();
 }
@@ -3510,7 +3438,7 @@ function createReportModal() {
     const modal = document.createElement('div');
     modal.className = 'report-modal';
     modal.id = 'reportModal';
-    
+
     modal.innerHTML = `
         <div class="report-content">
             <div class="report-header">
@@ -3527,13 +3455,13 @@ function createReportModal() {
                     <i class="fas fa-times"></i> Cerrar
                 </button>
             </div>
-            
+
             <div class="report-body">
                 <!-- Información de la App -->
                 <div class="app-info-report" id="reportAppInfo">
                     <!-- Se llena dinámicamente -->
                 </div>
-                
+
                 <!-- Lista de Razones -->
                 <div class="report-reasons">
                     <h3><i class="fas fa-list-alt"></i> ¿Por qué quieres reportar esta aplicación?</h3>
@@ -3541,11 +3469,11 @@ function createReportModal() {
                         <!-- Se llena dinámicamente -->
                     </div>
                 </div>
-                
+
                 <!-- Formulario Personalizado -->
                 <div class="custom-report-form" id="customReportForm">
                     <h4><i class="fas fa-edit"></i> Describe el problema</h4>
-                    
+
                     <div class="description-group">
                         <label>
                             Descripción del problema
@@ -3557,7 +3485,7 @@ function createReportModal() {
                             placeholder="Describe brevemente el problema con esta aplicación..."
                             maxlength="200"></textarea>
                     </div>
-                    
+
                     <div class="images-upload-section">
                         <h5><i class="fas fa-images"></i> Subir evidencia (máximo 2 imágenes)</h5>
                         <div class="upload-area" onclick="document.getElementById('reportImages').click()">
@@ -3572,7 +3500,7 @@ function createReportModal() {
                     </div>
                 </div>
             </div>
-            
+
             <div class="report-actions">
                 <button class="cancel-report-btn" onclick="closeReportModal()">
                     Cancelar
@@ -3583,12 +3511,12 @@ function createReportModal() {
             </div>
         </div>
     `;
-    
+
     document.body.appendChild(modal);
-    
+
     // Generar lista de razones
     generateReasonsList();
-    
+
     // Agregar event listeners
     setupReportEventListeners();
 }
@@ -3606,37 +3534,36 @@ function generateReasonsList() {
             </div>
             <div class="selection-indicator"></div>
         </div>
-    `).join('');
-}
+    `).join('');}
 
 function setupReportEventListeners() {
     const textarea = document.getElementById('reportDescription');
     const wordCounter = document.getElementById('wordCounter');
-    
+
     textarea.addEventListener('input', () => {
         const words = textarea.value.trim().split(/\s+/).filter(word => word.length > 0);
         const remainingWords = Math.max(0, 12 - words.length);
-        
+
         wordCounter.textContent = `${remainingWords} palabras restantes`;
         wordCounter.className = remainingWords === 0 ? 'word-counter warning' : 'word-counter';
-        
+
         textarea.className = words.length > 12 ? 'description-textarea error' : 'description-textarea';
-        
+
         updateSubmitButtonState();
     });
-    
+
     // Drag and drop para imágenes
     const uploadArea = document.querySelector('.upload-area');
-    
+
     uploadArea.addEventListener('dragover', (e) => {
         e.preventDefault();
         uploadArea.classList.add('dragover');
     });
-    
+
     uploadArea.addEventListener('dragleave', () => {
         uploadArea.classList.remove('dragover');
     });
-    
+
     uploadArea.addEventListener('drop', (e) => {
         e.preventDefault();
         uploadArea.classList.remove('dragover');
@@ -3650,12 +3577,12 @@ function selectReportReason(reasonId) {
     document.querySelectorAll('.reason-item').forEach(item => {
         item.classList.remove('selected');
     });
-    
+
     // Seleccionar nueva razón
     const reasonElement = document.querySelector(`[data-reason-id="${reasonId}"]`);
     reasonElement.classList.add('selected');
     selectedReportReason = reasonId;
-    
+
     // Mostrar/ocultar formulario personalizado
     const customForm = document.getElementById('customReportForm');
     if (reasonId === 'other') {
@@ -3668,7 +3595,7 @@ function selectReportReason(reasonId) {
         uploadedReportImages = [];
         updateUploadedImagesDisplay();
     }
-    
+
     updateSubmitButtonState();
 }
 
@@ -3680,20 +3607,20 @@ function handleImageUpload(event) {
 function handleImageFiles(files) {
     const maxImages = 2;
     const maxSize = 5 * 1024 * 1024; // 5MB
-    
+
     for (let i = 0; i < files.length && uploadedReportImages.length < maxImages; i++) {
         const file = files[i];
-        
+
         if (!file.type.startsWith('image/')) {
             showReportNotification('Solo se permiten archivos de imagen', true);
             continue;
         }
-        
+
         if (file.size > maxSize) {
             showReportNotification('La imagen es demasiado grande (máximo 5MB)', true);
             continue;
         }
-        
+
         const reader = new FileReader();
         reader.onload = (e) => {
             uploadedReportImages.push({
@@ -3706,7 +3633,7 @@ function handleImageFiles(files) {
         };
         reader.readAsDataURL(file);
     }
-    
+
     // Reset input
     event.target.value = '';
 }
@@ -3735,7 +3662,7 @@ function updateSubmitButtonState() {
         selectedReportReason !== 'other' || 
         (isValidDescription() && uploadedReportImages.length > 0)
     );
-    
+
     submitBtn.disabled = !isValid;
 }
 
@@ -3759,18 +3686,18 @@ function updateReportAppInfo(app) {
 function resetReportForm() {
     selectedReportReason = null;
     uploadedReportImages = [];
-    
+
     document.querySelectorAll('.reason-item').forEach(item => {
         item.classList.remove('selected');
     });
-    
+
     const customForm = document.getElementById('customReportForm');
     customForm.classList.remove('active');
-    
+
     document.getElementById('reportDescription').value = '';
     document.getElementById('wordCounter').textContent = '12 palabras restantes';
     document.getElementById('wordCounter').className = 'word-counter';
-    
+
     updateUploadedImagesDisplay();
     updateSubmitButtonState();
 }
@@ -3784,10 +3711,10 @@ function closeReportModal() {
 
 function submitReport() {
     if (!selectedReportReason) return;
-    
+
     // Mostrar overlay de carga
     showLoadingOverlay();
-    
+
     // Simular envío del reporte
     setTimeout(() => {
         hideLoadingOverlay();
@@ -3800,7 +3727,7 @@ function showLoadingOverlay() {
     const overlay = document.createElement('div');
     overlay.className = 'loading-overlay active';
     overlay.id = 'loadingOverlay';
-    
+
     overlay.innerHTML = `
         <div class="loading-content">
             <div class="loading-spinner"></div>
@@ -3808,7 +3735,7 @@ function showLoadingOverlay() {
             <div class="loading-subtext">Por favor espera mientras procesamos tu reporte</div>
         </div>
     `;
-    
+
     document.body.appendChild(overlay);
 }
 
@@ -3823,7 +3750,7 @@ function showSuccessOverlay() {
     const overlay = document.createElement('div');
     overlay.className = 'success-overlay active';
     overlay.id = 'successOverlay';
-    
+
     overlay.innerHTML = `
         <div class="success-content">
             <div class="success-icon">
@@ -3839,7 +3766,7 @@ function showSuccessOverlay() {
             </button>
         </div>
     `;
-    
+
     document.body.appendChild(overlay);
 }
 
@@ -4203,7 +4130,7 @@ class AnimationAdminSystem {
         createdAt: Date.now(),
         updatedAt: Date.now()
       });
-      
+
       this.animations[appName] = animationConfig;
       console.log(`Animación guardada para ${appName}`);
       return true;
@@ -4793,24 +4720,35 @@ class AppAnimationSystem {
     this.isAnimating = true;
 
     // Primero intentar animación personalizada desde Firebase
-    const hasCustomAnimation = animationAdmin.executeCustomAnimation(appName);
-    
-    if (!hasCustomAnimation) {
-      // Si no hay animación personalizada, usar las predefinidas
-      const animationType = this.getAnimationType(appName);
-      
-      if (animationType === 'plant') {
-        this.showPlantAnimation();
-      } else if (animationType === 'tiktok') {
-        this.showTikTokAnimation();
-      } else if (animationType === 'wednesday') {
-        this.showWednesdayAnimation();
-      } else if (animationType === 'crunchyroll') {
-        this.showCrunchyrollAnimation();
+    const hasCustomAnimation = animationAdmin.getAnimation(appName);
+
+    if (hasCustomAnimation) {
+      // Ejecutar animación personalizada desde Firebase
+      const animationSuccess = animationAdmin.executeCustomAnimation(appName);
+      if (animationSuccess) {
+        console.log(`Ejecutando animación personalizada para ${appName}`);
+        // Limpiar después de 5 segundos exactos
+        setTimeout(() => {
+          this.isAnimating = false;
+        }, 5000);
+        return;
       }
     }
 
-    // Limpiar después de exactamente 5 segundos
+    // Si no hay animación personalizada, usar las predefinidas
+    const animationType = this.getAnimationType(appName);
+
+    if (animationType === 'plant') {
+      this.showPlantAnimation();
+    } else if (animationType === 'tiktok') {
+      this.showTikTokAnimation();
+    } else if (animationType === 'wednesday') {
+      this.showWednesdayAnimation();
+    } else if (animationType === 'crunchyroll') {
+      this.showCrunchyrollAnimation();
+    }
+
+    // Limpiar después de 5 segundos exactos
     setTimeout(() => {
       this.isAnimating = false;
     }, 5000);
@@ -4820,14 +4758,14 @@ class AppAnimationSystem {
     // Crear el contenedor de la animación centrado
     const animationContainer = document.createElement('div');
     animationContainer.className = 'plant-animation-container';
-    
+
     // Centrar en la pantalla
     animationContainer.style.position = 'fixed';
     animationContainer.style.top = '50%';
     animationContainer.style.left = '50%';
     animationContainer.style.transform = 'translate(-50%, -50%)';
     animationContainer.style.zIndex = '9999';
-    
+
     animationContainer.innerHTML = `
       <div class="plant-growth-scene">
         <div class="ground-layer"></div>
@@ -4891,7 +4829,7 @@ class AppAnimationSystem {
     // Crear el contenedor de animación TikTok
     const animationContainer = document.createElement('div');
     animationContainer.className = 'tiktok-animation-container';
-    
+
     // Centrar en la pantalla
     animationContainer.style.position = 'fixed';
     animationContainer.style.top = '50%';
@@ -4900,7 +4838,7 @@ class AppAnimationSystem {
     animationContainer.style.zIndex = '9999';
     animationContainer.style.width = '300px';
     animationContainer.style.height = '300px';
-    
+
     animationContainer.innerHTML = `
       <div class="tiktok-scene">
         <div class="red-dot-container">
@@ -4935,7 +4873,7 @@ class AppAnimationSystem {
     // Crear el contenedor de animación Wednesday
     const animationOverlay = document.createElement('div');
     animationOverlay.className = 'wednesday-logo-overlay';
-    
+
     animationOverlay.innerHTML = `
       <div class="netflix-announcement">
         <div class="announcement-text">
@@ -4967,7 +4905,7 @@ class AppAnimationSystem {
     setTimeout(() => {
       const logo = animationOverlay.querySelector('.wednesday-logo');
       logo.style.animation = 'fadeOut 0.5s ease-out forwards';
-      
+
       setTimeout(() => {
         animationOverlay.remove();
       }, 500);
@@ -4978,7 +4916,7 @@ class AppAnimationSystem {
     // Crear el contenedor de animación Crunchyroll
     const animationContainer = document.createElement('div');
     animationContainer.className = 'crunchyroll-animation-container';
-    
+
     animationContainer.innerHTML = `
       <img src="https://64.media.tumblr.com/1238b61a8ed096f113079ef6e1909f98/8d52336120e92f25-12/s400x600/554db7170f3d81fede6908d087cee59c22077e52.gif" 
            alt="Crunchyroll Animation" 
@@ -4996,7 +4934,7 @@ class AppAnimationSystem {
     // Limpiar después de 5 segundos exactos
     setTimeout(() => {
       animationContainer.classList.add('hide');
-      
+
       setTimeout(() => {
         animationContainer.remove();
       }, 500);
@@ -5044,7 +4982,7 @@ class AppAnimationSystem {
 
       // Mostrar etapa actual
       await this.animateElement(stages[i], 'plant-grow');
-      
+
       // Efectos de partículas
       if (sparkles[i]) {
         this.animateElement(sparkles[i], 'sparkle-burst');
@@ -5055,7 +4993,7 @@ class AppAnimationSystem {
 
     // Animación final de florecimiento
     await this.animateElement(stages[stages.length - 1], 'flower-bloom');
-    
+
     // Efecto de partículas final
     sparkles.forEach(sparkle => {
       this.animateElement(sparkle, 'final-sparkle');
@@ -5080,7 +5018,7 @@ class AppAnimationSystem {
 function showVersionsSection(app) {
   // Cerrar modal actual
   document.getElementById('appModal').classList.remove('active');
-  
+
   // Crear modal de versiones
   const versionsModal = document.createElement('div');
   versionsModal.className = 'versions-modal';
@@ -5108,7 +5046,7 @@ function showVersionsSection(app) {
       </div>
     </div>
   `;
-  
+
   document.body.appendChild(versionsModal);
   document.body.style.overflow = 'hidden';
 }
@@ -5122,7 +5060,7 @@ function openAppModalWithAnimation(app, clickedElement) {
   if (appAnimationSystem.shouldShowAnimation(app.name) && clickedElement) {
     // Mostrar animación sin bloquear el modal
     appAnimationSystem.showAnimation(app.name, clickedElement);
-    
+
     // Abrir modal inmediatamente, no esperar la animación
     setTimeout(() => {
       openAppModal(app);
@@ -5133,14 +5071,14 @@ function openAppModalWithAnimation(app, clickedElement) {
   }
 }
 
-// Función para agregar detectores de click a todas las apps en la página
+// Función para re-aplicar detectores de click a todas las apps en la página
 function attachUniversalAppClickHandlers() {
   // Detectar clicks en app-posters (carrusel principal)
   document.querySelectorAll('.app-poster').forEach(poster => {
     poster.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      
+
       // Buscar la app por el título del poster
       const titleElement = poster.querySelector('.poster-title');
       if (titleElement) {
@@ -5161,7 +5099,7 @@ function attachUniversalAppClickHandlers() {
         if (!e.target.classList.contains('developer-link')) {
           const appName = card.getAttribute('data-app-name') || 
                          card.querySelector('.app-name')?.textContent.trim();
-          
+
           if (appName) {
             const app = apps.find(a => a.name === appName);
             if (app) {
@@ -5181,7 +5119,7 @@ function attachUniversalAppClickHandlers() {
         if (!e.target.classList.contains('developer-link')) {
           const appName = card.getAttribute('data-app-name') || 
                          card.querySelector('.app-name')?.textContent.trim();
-          
+
           if (appName) {
             const app = apps.find(a => a.name === appName);
             if (app) {
@@ -5194,7 +5132,7 @@ function attachUniversalAppClickHandlers() {
   });
 }
 
-// Función para re-aplicar detectores después de actualizar contenido
+// Función para re-aplicar detectores de click después de actualizar contenido
 function reattachClickHandlers() {
   setTimeout(() => {
     attachUniversalAppClickHandlers();
@@ -5245,13 +5183,13 @@ let MAINTENANCE_MODE = false;
 function setMaintenanceMode(enable) {
   MAINTENANCE_MODE = enable;
   const overlay = document.getElementById('maintenanceOverlay');
-  
+
   // Verificar que el elemento exista antes de manipularlo
   if (!overlay) {
     console.warn('⚠️  Elemento de mantenimiento no encontrado');
     return;
   }
-  
+
   if (enable) {
     overlay.classList.add('active');
     // Deshabilitar el scroll del body y bloquear interacciones
@@ -5295,7 +5233,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (MAINTENANCE_MODE) {
     setMaintenanceMode(true);
   }
-  
+
   // NOTA: Para mayor seguridad en producción, se recomienda:
   // 1. Remover las funciones globales de window
   // 2. Configurar el estado desde el servidor (503 Service Unavailable)
@@ -5322,31 +5260,31 @@ class SupportChatSystem {
             appSelected: false,
             problemDescribed: false
         };
-        
+
         this.init();
     }
-    
+
     init() {
         // Inicializar eventos
         this.bindEvents();
         // Mostrar mensaje inicial del agente cuando se abra por primera vez
         this.setupInitialState();
     }
-    
+
     bindEvents() {
         // Eventos para abrir/cerrar chat
         const chatBubble = document.getElementById('chatBubble');
         const closeBtn = document.getElementById('closeSupportChat');
         const modal = document.getElementById('supportChatModal');
-        
+
         if (chatBubble) {
             chatBubble.addEventListener('click', () => this.openChat());
         }
-        
+
         if (closeBtn) {
             closeBtn.addEventListener('click', () => this.closeChat());
         }
-        
+
         // Cerrar al hacer clic fuera del modal
         if (modal) {
             modal.addEventListener('click', (e) => {
@@ -5355,21 +5293,21 @@ class SupportChatSystem {
                 }
             });
         }
-        
+
         // Eventos para formulario de contacto
         const submitContactBtn = document.getElementById('submitContactBtn');
         if (submitContactBtn) {
             submitContactBtn.addEventListener('click', () => this.submitContactForm());
         }
-        
+
         // Eventos para enviar mensajes
         const sendBtn = document.getElementById('sendMessageBtn');
         const messageInput = document.getElementById('chatMessageInput');
-        
+
         if (sendBtn) {
             sendBtn.addEventListener('click', () => this.sendUserMessage());
         }
-        
+
         if (messageInput) {
             messageInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
@@ -5377,33 +5315,33 @@ class SupportChatSystem {
                 }
             });
         }
-        
+
         // Eventos para selección de aplicaciones
         const confirmAppBtn = document.getElementById('confirmAppBtn');
         if (confirmAppBtn) {
             confirmAppBtn.addEventListener('click', () => this.confirmSelectedApp());
         }
     }
-    
+
     setupInitialState() {
         // Configuración inicial del chat sin burbuja flotante
         console.log('Sistema de chat inicializado - disponible solo desde configuración');
     }
-    
+
     openChat() {
         const modal = document.getElementById('supportChatModal');
-        
+
         if (modal) {
             modal.classList.add('active');
             this.isOpen = true;
-            
+
             // Si es la primera vez que abre el chat, mostrar mensaje de bienvenida
             if (this.currentStep === 'welcome') {
                 this.showWelcomeMessage();
             }
         }
     }
-    
+
     closeChat() {
         const modal = document.getElementById('supportChatModal');
         if (modal) {
@@ -5411,111 +5349,111 @@ class SupportChatSystem {
             this.isOpen = false;
         }
     }
-    
+
     showWelcomeMessage() {
         // Limpiar chat y mostrar formulario de contacto
         this.clearChat();
         this.showContactForm();
-        
+
         // Agregar mensaje de bienvenida del agente
         setTimeout(() => {
             this.addAgentMessage('Hola! Soy tu agente virtual de soporte. Estoy aquí para ayudarte con cualquier problema que tengas con nuestras aplicaciones.');
         }, 500);
-        
+
         setTimeout(() => {
             this.addAgentMessage('Para poder asistirte mejor, por favor proporciona tu correo electrónico y describe brevemente el problema que tienes.');
         }, 1500);
-        
+
         this.currentStep = 'contact_form';
     }
-    
+
     clearChat() {
         const chatBody = document.getElementById('supportChatBody');
         if (chatBody) {
             chatBody.innerHTML = '';
         }
     }
-    
+
     showContactForm() {
         const contactForm = document.getElementById('chatContactForm');
         const chatInput = document.getElementById('supportChatInput');
         const appSelector = document.getElementById('appSelectorContainer');
-        
+
         if (contactForm) contactForm.classList.add('active');
         if (chatInput) chatInput.style.display = 'none';
         if (appSelector) appSelector.style.display = 'none';
     }
-    
+
     hideContactForm() {
         const contactForm = document.getElementById('chatContactForm');
         const chatInput = document.getElementById('supportChatInput');
-        
+
         if (contactForm) contactForm.classList.remove('active');
         if (chatInput) chatInput.style.display = 'block';
     }
-    
+
     submitContactForm() {
         const emailInput = document.getElementById('chatEmailInput');
         const problemInput = document.getElementById('chatProblemInput');
-        
+
         if (!emailInput || !problemInput) return;
-        
+
         const email = emailInput.value.trim();
         const problem = problemInput.value.trim();
-        
+
         if (!email || !problem) {
             alert('Por favor completa todos los campos');
             return;
         }
-        
+
         if (!this.isValidEmail(email)) {
             alert('Por favor ingresa un correo electrónico válido');
             return;
         }
-        
+
         this.userEmail = email;
         this.userProblem = problem;
-        
+
         // Ocultar formulario y mostrar input de chat
         this.hideContactForm();
-        
+
         // Agregar mensaje del usuario
         this.addUserMessage(`Correo: ${email}\nProblema: ${problem}`);
-        
+
         // Respuesta del agente
         setTimeout(() => {
-            this.addAgentMessage(`Perfecto! He verificado tu correo electrónico: ${email}`);
+            this.addAgentMessage('Perfecto! He verificado tu correo electrónico: ' + email);
         }, 1000);
-        
+
         setTimeout(() => {
             this.addAgentMessage('Por favor, indícame con más detalle cuál es el problema que tienes. ¿Es con alguna aplicación específica?');
         }, 2500);
-        
+
         this.currentStep = 'conversation';
     }
-    
+
     sendUserMessage() {
         const messageInput = document.getElementById('chatMessageInput');
         if (!messageInput) return;
-        
+
         const message = messageInput.value.trim();
         if (!message) return;
-        
+
         // Agregar mensaje del usuario
         this.addUserMessage(message);
         messageInput.value = '';
-        
+
         // Procesar respuesta del agente
         this.processUserMessage(message);
     }
-    
+
     processUserMessage(message) {
         const lowerMessage = message.toLowerCase();
-        
+
         // Detectar palabras relacionadas con aplicaciones
         const appKeywords = ['aplicación', 'aplicaciones', 'app', 'apps', 'aplicacion', 'aplicaciones'];
         const hasAppKeyword = appKeywords.some(keyword => lowerMessage.includes(keyword));
-        
+
         if (hasAppKeyword && this.currentStep === 'conversation') {
             // Mostrar selector de aplicaciones
             this.showAppSelector();
@@ -5527,28 +5465,28 @@ class SupportChatSystem {
             this.addGenericAgentResponse(message);
         }
     }
-    
+
     showAppSelector() {
         this.showTypingIndicator();
-        
+
         setTimeout(() => {
             this.removeTypingIndicator();
             this.addAgentMessage('Entiendo! Tienes un problema con alguna aplicación. Te voy a mostrar todas las aplicaciones disponibles en nuestra plataforma en pantalla completa para que selecciones con cuál tienes el problema.');
         }, 1500);
-        
+
         setTimeout(() => {
             this.displayFullscreenAppSelector();
         }, 3000);
-        
+
         this.currentStep = 'app_selection';
     }
-    
+
     displayFullscreenAppSelector() {
         // Crear modal de pantalla completa para selección de apps
         const fullscreenSelector = document.createElement('div');
         fullscreenSelector.className = 'fullscreen-app-selector';
         fullscreenSelector.id = 'fullscreenAppSelector';
-        
+
         fullscreenSelector.innerHTML = `
             <div class="fullscreen-selector-header">
                 <button class="back-from-selector" onclick="supportChatSystem.closeAppSelector()">
@@ -5571,12 +5509,12 @@ class SupportChatSystem {
                 </div>
             </div>
         `;
-        
+
         document.body.appendChild(fullscreenSelector);
-        
+
         // Cargar aplicaciones
         this.loadAppsInFullscreen();
-        
+
         // Agregar evento de búsqueda
         const searchInput = document.getElementById('searchAppsInput');
         if (searchInput) {
@@ -5584,26 +5522,26 @@ class SupportChatSystem {
                 this.filterAppsInFullscreen(e.target.value);
             });
         }
-        
+
         // Mostrar el modal
         setTimeout(() => {
             fullscreenSelector.classList.add('active');
         }, 100);
     }
-    
+
     loadAppsInFullscreen() {
         const appsGrid = document.getElementById('appsGridFullscreen');
         if (!appsGrid) return;
-        
+
         appsGrid.innerHTML = '';
-        
+
         if (typeof apps !== 'undefined' && apps.length > 0) {
             apps.forEach((app, index) => {
                 const appItem = document.createElement('div');
                 appItem.className = 'app-grid-item';
                 appItem.dataset.appIndex = index;
                 appItem.dataset.appName = app.name.toLowerCase();
-                
+
                 appItem.innerHTML = `
                     <div class="app-item-content">
                         <img src="${app.icon}" alt="${app.name}" onerror="this.src='https://via.placeholder.com/60x60?text=${app.name.charAt(0)}'">
@@ -5617,33 +5555,33 @@ class SupportChatSystem {
                         </div>
                     </div>
                 `;
-                
+
                 appItem.addEventListener('click', () => this.selectAppFullscreen(appItem, app));
                 appsGrid.appendChild(appItem);
             });
         }
     }
-    
+
     filterAppsInFullscreen(searchTerm) {
         const appItems = document.querySelectorAll('.app-grid-item');
         const term = searchTerm.toLowerCase();
-        
+
         appItems.forEach(item => {
             const appName = item.dataset.appName;
             const isVisible = appName.includes(term);
             item.style.display = isVisible ? 'block' : 'none';
         });
     }
-    
+
     selectAppFullscreen(element, app) {
         // Remover selección previa
         const allItems = document.querySelectorAll('.app-grid-item');
         allItems.forEach(item => item.classList.remove('selected'));
-        
+
         // Seleccionar nueva app
         element.classList.add('selected');
         this.selectedApp = app;
-        
+
         // Habilitar botón de confirmación
         const confirmBtn = document.getElementById('confirmSelectedAppBtn');
         if (confirmBtn) {
@@ -5651,28 +5589,28 @@ class SupportChatSystem {
             confirmBtn.onclick = () => this.confirmAppSelectionFullscreen();
         }
     }
-    
+
     confirmAppSelectionFullscreen() {
         if (!this.selectedApp) return;
-        
+
         // Cerrar selector de pantalla completa
         this.closeAppSelector();
-        
+
         // Agregar mensaje del usuario
         this.addUserMessage(`He seleccionado: ${this.selectedApp.name}`);
-        
+
         // Respuesta del agente
         setTimeout(() => {
             this.addAgentMessage(`Excelente! Veo que tienes un problema con ${this.selectedApp.name}.`);
         }, 1000);
-        
+
         setTimeout(() => {
             this.addAgentMessage(`Ahora, por favor describe detalladamente qué problema estás experimentando con ${this.selectedApp.name}. Mientras más información me proporciones, mejor podremos ayudarte.`);
         }, 2500);
-        
+
         this.currentStep = 'app_problem';
     }
-    
+
     closeAppSelector() {
         const fullscreenSelector = document.getElementById('fullscreenAppSelector');
         if (fullscreenSelector) {
@@ -5682,107 +5620,107 @@ class SupportChatSystem {
             }, 300);
         }
     }
-    
+
     selectApp(element, app) {
         // Remover selección previa
         const allItems = document.querySelectorAll('.app-carousel-item');
         allItems.forEach(item => item.classList.remove('selected'));
-        
+
         // Seleccionar nueva app
         element.classList.add('selected');
         this.selectedApp = app;
-        
+
         // Habilitar botón de confirmación
         const confirmBtn = document.getElementById('confirmAppBtn');
         if (confirmBtn) {
             confirmBtn.disabled = false;
         }
     }
-    
+
     confirmSelectedApp() {
         if (!this.selectedApp) return;
-        
+
         // Ocultar selector de aplicaciones
         const appSelector = document.getElementById('appSelectorContainer');
         if (appSelector) {
             appSelector.style.display = 'none';
         }
-        
+
         // Agregar mensaje del usuario
         this.addUserMessage(`He seleccionado: ${this.selectedApp.name}`);
-        
+
         // Respuesta del agente
         setTimeout(() => {
             this.addAgentMessage(`¡Excelente! Veo que tienes un problema con ${this.selectedApp.name}. 🎯`);
         }, 1000);
-        
+
         setTimeout(() => {
             this.addAgentMessage(`Ahora, por favor describe detalladamente qué problema estás experimentando con ${this.selectedApp.name}. Mientras más información me proporciones, mejor podremos ayudarte. 📝`);
         }, 2500);
-        
+
         this.currentStep = 'app_problem';
     }
-    
+
     handleAppProblemDescription(message) {
         // Agregar respuesta final del agente
         this.showTypingIndicator();
-        
+
         setTimeout(() => {
             this.removeTypingIndicator();
             this.addAgentMessage('Gracias por tu ayuda! Nos ayudas a mejorar nuestros servicios y las aplicaciones en nuestra plataforma.');
         }, 1500);
-        
+
         setTimeout(() => {
             this.addAgentMessage('Muchas gracias. Daremos estos resultados tan pronto como sea posible cuando nuestro equipo revise las aplicaciones.');
         }, 3500);
-        
+
         setTimeout(() => {
             this.addAgentMessage('Gracias, vuelve en 24 horas hasta que estén los resultados. Que tengas un excelente día!');
         }, 5500);
-        
+
         this.currentStep = 'final';
-        
+
         // Deshabilitar input después del mensaje final
         setTimeout(() => {
             const messageInput = document.getElementById('chatMessageInput');
             const sendBtn = document.getElementById('sendMessageBtn');
-            
+
             if (messageInput) {
                 messageInput.disabled = true;
                 messageInput.placeholder = 'Conversación finalizada. ¡Gracias por contactarnos!';
             }
-            
+
             if (sendBtn) {
                 sendBtn.disabled = true;
             }
         }, 6000);
     }
-    
+
     addGenericAgentResponse(userMessage) {
         this.showTypingIndicator();
-        
+
         setTimeout(() => {
             this.removeTypingIndicator();
-            
+
             const responses = [
                 'Entiendo tu preocupación. ¿Podrías proporcionarme más detalles?',
                 'Gracias por la información. ¿Hay algo más específico que pueda ayudarte?',
                 'Perfecto. ¿El problema está relacionado con alguna aplicación en particular?',
                 'Te entiendo. Para poder ayudarte mejor, ¿podrías ser más específico sobre el problema?'
             ];
-            
+
             const randomResponse = responses[Math.floor(Math.random() * responses.length)];
             this.addAgentMessage(randomResponse);
         }, 1500);
     }
-    
+
     addUserMessage(message) {
         const chatBody = document.getElementById('supportChatBody');
         if (!chatBody) return;
-        
+
         const messageDiv = document.createElement('div');
         messageDiv.className = 'chat-message user';
-        
+
         messageDiv.innerHTML = `
             <div class="message-avatar user">
                 <i class="fas fa-user"></i>
@@ -5792,18 +5730,18 @@ class SupportChatSystem {
                 <div class="message-time">${this.getCurrentTime()}</div>
             </div>
         `;
-        
+
         chatBody.appendChild(messageDiv);
         this.scrollToBottom();
     }
-    
+
     addAgentMessage(message) {
         const chatBody = document.getElementById('supportChatBody');
         if (!chatBody) return;
-        
+
         const messageDiv = document.createElement('div');
         messageDiv.className = 'chat-message agent';
-        
+
         messageDiv.innerHTML = `
             <div class="message-avatar agent">
                 <i class="fas fa-robot"></i>
@@ -5813,19 +5751,19 @@ class SupportChatSystem {
                 <div class="message-time">${this.getCurrentTime()}</div>
             </div>
         `;
-        
+
         chatBody.appendChild(messageDiv);
         this.scrollToBottom();
     }
-    
+
     showTypingIndicator() {
         const chatBody = document.getElementById('supportChatBody');
         if (!chatBody) return;
-        
+
         const typingDiv = document.createElement('div');
         typingDiv.className = 'typing-indicator';
         typingDiv.id = 'typingIndicator';
-        
+
         typingDiv.innerHTML = `
             <div class="message-avatar agent">
                 <i class="fas fa-robot"></i>
@@ -5836,25 +5774,25 @@ class SupportChatSystem {
                 <div class="typing-dot"></div>
             </div>
         `;
-        
+
         chatBody.appendChild(typingDiv);
         this.scrollToBottom();
     }
-    
+
     removeTypingIndicator() {
         const typingIndicator = document.getElementById('typingIndicator');
         if (typingIndicator) {
             typingIndicator.remove();
         }
     }
-    
+
     scrollToBottom() {
         const chatBody = document.getElementById('supportChatBody');
         if (chatBody) {
             chatBody.scrollTop = chatBody.scrollHeight;
         }
     }
-    
+
     getCurrentTime() {
         const now = new Date();
         return now.toLocaleTimeString('es-ES', { 
@@ -5862,7 +5800,7 @@ class SupportChatSystem {
             minute: '2-digit' 
         });
     }
-    
+
     isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
